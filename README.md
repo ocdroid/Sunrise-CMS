@@ -1,4 +1,4 @@
-# Sunrise_CMS_Project
+# Sunrise CMS
 
 ## Install
 1. Move /dev/ contents to your webroot
