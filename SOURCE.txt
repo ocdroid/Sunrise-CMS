@@ -1,0 +1,11 @@
+@license GNU General Public License version 3; see LICENSE
+
+- OpenCart							(C) 2006-2015 Daniel Kerr, OpenCart Ltd.
+- Arastta							(С) 2015 Arastta Association.
+- Popular Products					(С)	Php Dev Zone
+- Product Extra Tabs				(C)	Pushap.Manik
+- X-Shipping						(C)	OpencartMart
+- OPENCART.PRO                      (C) 2018 OPENCART.PRO
+- https://www.pexels.com/photo/icons-love-love-ukraine-png-167905/
+- https://unsplash.com/
+- 
