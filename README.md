@@ -1,4 +1,9 @@
 # Sunrise CMS
+Another e-commerce solution
+
+## Demo
+Frontend https://sunrise-cms.freelance-team.su/  
+Backend https://sunrise-cms.freelance-team.su/admin/ (admin/dev)
 
 ## Install
 1. Move /dev/ contents to your webroot
