@@ -48,6 +48,7 @@ button > span.uk-icon {
 /* header */
 .cc_admin_header_logo {
 	max-height: 44px;
+	width: auto;
 }
 
 /* footer vertical separator */
