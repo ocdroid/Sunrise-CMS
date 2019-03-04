@@ -141,7 +141,7 @@
 								<div class="uk-margin">
 									<label class="uk-form-label" for="input-meta-description"><?php echo $entry_meta_description; ?></label>
 									<div class="uk-form-controls">
-										<textarea name="config_meta_description" rows="5" placeholder="<?php echo $entry_meta_description; ?>" id="input-meta-description" class="uk-textarea"><?php echo $config_meta_description; ?></textarea>
+										<input type="text" name="config_meta_description" value="<?php echo $config_meta_description; ?>" placeholder="<?php echo $entry_meta_description; ?>" id="input-meta-description" class="uk-input">
 									</div>
 								</div>
 
