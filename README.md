@@ -1,6 +1,9 @@
 # Sunrise CMS
 Another e-commerce solution
 
+## Warning!
+**This is not a release or even a test build. The project is in development and sooner or later it will be ready.**
+
 ## Demo
 Frontend https://sunrise-cms.freelance-team.su/  
 Backend https://sunrise-cms.freelance-team.su/admin/ (admin/dev)
