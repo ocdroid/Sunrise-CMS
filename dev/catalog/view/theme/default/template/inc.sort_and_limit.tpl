@@ -22,6 +22,7 @@
 						<option value="<?php echo $sorts['href']; ?>">
 							<?php echo $sorts['text']; ?>
 						</option>
+						
 					<?php } ?>
 
 				<?php } ?>

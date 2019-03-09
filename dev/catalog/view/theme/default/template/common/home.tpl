@@ -1,6 +1,9 @@
 <!-- home.tpl -->
 <?php echo $header; ?>
 
+	<?php echo $content_top; ?>
+	<?php echo $content_bottom; ?>
+	<?php echo $column; ?>
 
 	<?php if(isMobile || isTablet) { ?>
 		1/ мобила или планшет
@@ -31,11 +34,6 @@
 	<?php if(isTablet) { ?>
 		6/ планшет
 	<?php } ?>
-
-
-	<?php echo $content_top; ?>
-	<?php echo $content_bottom; ?>
-	<?php echo $column; ?>
 
 <?php echo $footer; ?>
 <!-- /home.tpl -->
