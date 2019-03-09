@@ -29,22 +29,6 @@
 </div>
 <!-- /breadcrumbs -->
 
-<!-- heading -->
-<div class="uk-section uk-padding-remove uk-margin-small uk-margin-medium-bottom">
-	<div class="uk-container">
-
-		<article class="uk-article">
-
-			<h1 class="uk-article-title uk-margin-medium-top uk-margin-medium-bottom uk-text-center">
-				<?php echo $heading_title; ?>
-			</h1>
-
-		</article>
-
-	</div>
-</div>
-<!-- /heading -->
-
 <?php if ($success) { ?>
 	<div class="uk-alert-success" uk-alert>
 		<a class="uk-alert-close" uk-close></a>
@@ -62,7 +46,6 @@
 		</p>
 	</div>
 <?php } ?>
-
 
 <div class="uk-section uk-padding-remove uk-margin-small uk-margin-medium-bottom">
 	<div class="uk-container">
