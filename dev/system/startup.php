@@ -46,9 +46,9 @@ if ((isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTP
 }
 
 // Autoloader
-if (is_file(DIR_SYSTEM . '../../vendor/autoload.php')) {
-    require_once(DIR_SYSTEM . '../../vendor/autoload.php');
-}
+// if (is_file(DIR_SYSTEM . '../../vendor/autoload.php')) {
+//     require_once(DIR_SYSTEM . '../../vendor/autoload.php');
+// }
 
 //
 function library($class)

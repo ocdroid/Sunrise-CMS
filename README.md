@@ -7,7 +7,7 @@ Backend https://sunrise-cms.freelance-team.su/admin/ (admin/dev)
 
 ## Install
 1. Move /dev/ contents to your webroot
-2. Edit $real_url and DB settings in config.php and admin/config.php
+2. Edit $domain and DB settings in config.php and admin/config.php
 3. Import cms.sql
 
 ## Requirements

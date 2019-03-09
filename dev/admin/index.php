@@ -3,9 +3,11 @@
 define('VERSION', '0.1a');
 
 // Configuration
-require_once('config.php');
+require('config/db.php');
+require('config/directory.php');
+require('config/domain.php');
 
 // Startup
-require_once(DIR_SYSTEM . 'startup.php');
+require(DIR_SYSTEM . 'startup.php');
 
 start('admin');

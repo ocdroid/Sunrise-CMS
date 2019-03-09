@@ -1,7 +1,7 @@
+<!-- debug-panel.tpl -->
 <?php
 
 if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG) {
-    
     global $debugModelQueries;
     global $debugControllerActions;
 
@@ -26,9 +26,7 @@ if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG
         $debugControllerActionsSortDescByTime[$key] = $arr;
     }
 
-    krsort($debugControllerActionsSortDescByTime);
-
-    ?>
+    krsort($debugControllerActionsSortDescByTime); ?>
 
     <style>
         .cc_modal_debug {
@@ -106,11 +104,11 @@ if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG
                                     <tr>
                                         <td class="uk-table-shrink"><?php echo $qc++; ?></td>
                                         <td>
-                                            <?php echo ($debugModelQuery['file']); ?><br>
-                                            <b><?php echo ($debugModelQuery['class:method']); ?></b>
+                                            <?php echo($debugModelQuery['file']); ?><br>
+                                            <b><?php echo($debugModelQuery['class:method']); ?></b>
                                         </td>
-                                        <td><?php echo ($debugModelQuery['time']); ?></td>
-                                        <td><?php echo ($debugModelQuery['query']); ?></td>
+                                        <td><?php echo($debugModelQuery['time']); ?></td>
+                                        <td><?php echo($debugModelQuery['query']); ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
@@ -141,8 +139,8 @@ if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG
                                 <?php foreach ($debugControllerActionsSortDescByTime as $debugControllerAction) { ?>
                                     <tr>
                                         <td class="uk-table-shrink"><?php echo $ac++; ?></td>
-                                        <td class="uk-table-shrink"><?php echo ($debugControllerAction['class'] . '&nbsp;->&nbsp;' . $debugControllerAction['method']); ?></td>
-                                        <td><?php echo ($debugControllerAction['time']); ?></td>
+                                        <td class="uk-table-shrink"><?php echo($debugControllerAction['class'] . '&nbsp;->&nbsp;' . $debugControllerAction['method']); ?></td>
+                                        <td><?php echo($debugControllerAction['time']); ?></td>
                                     </tr>
                                 <?php } ?>
                             <?php } ?>
@@ -158,7 +156,7 @@ if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG
                         </h3>
 
                         <h4>
-                            GET <kbd><?php echo ((!empty($_GET)) ? count($_GET) : 0); ?></kbd>:
+                            GET <kbd><?php echo((!empty($_GET)) ? count($_GET) : 0); ?></kbd>:
                         </h4>
 
                         <?php if (!empty($_GET)) { ?>
@@ -187,7 +185,7 @@ if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG
                         <?php } ?>
     
                         <h4>
-                            POST <kbd><?php echo ((!empty($_POST)) ? count($_POST) : 0); ?></kbd>:
+                            POST <kbd><?php echo((!empty($_POST)) ? count($_POST) : 0); ?></kbd>:
                         </h4>
                         
                         <?php if (!empty($_POST)) { ?>
@@ -216,7 +214,7 @@ if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG
                         <?php } ?>
     
                         <h4>
-                            SERVER <kbd><?php echo ((!empty($_SERVER)) ? count($_SERVER) : 0); ?></kbd>:
+                            SERVER <kbd><?php echo((!empty($_SERVER)) ? count($_SERVER) : 0); ?></kbd>:
                         </h4>
 
                         <?php if (!empty($_SERVER)) { ?>
@@ -245,7 +243,7 @@ if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG
                         <?php } ?>
     
                         <h4>
-                            COOKIE <kbd><?php echo ((!empty($_COOKIE)) ? count($_COOKIE) : 0); ?></kbd>:
+                            COOKIE <kbd><?php echo((!empty($_COOKIE)) ? count($_COOKIE) : 0); ?></kbd>:
                         </h4>
 
                         <?php if (!empty($_COOKIE)) { ?>
@@ -285,3 +283,4 @@ if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG
     <!-- /debug.php -->
 
 <?php } ?>
+<!-- /debug-panel.tpl -->

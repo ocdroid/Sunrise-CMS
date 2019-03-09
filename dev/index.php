@@ -3,12 +3,12 @@
 define('VERSION', '0.1a');
 
 // Configuration
-require_once('config.php');
+require('catalog/config/db.php');
+require('catalog/config/debug.php');
+require('catalog/config/directory.php');
+require('catalog/config/domain.php');
 
 // Startup
-require_once(DIR_SYSTEM . 'startup.php');
+require(DIR_SYSTEM . 'startup.php');
 
 start('catalog');
-
-// Debug
-require_once('debug.php');
