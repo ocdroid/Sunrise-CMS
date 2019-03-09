@@ -154,13 +154,13 @@
 				</div>
 			</div>
 
+			<!-- inc.debug_panel.tpl -->
+			<?php if (defined('IS_DEBUG')) { ?>
+				<?php require_once(DIR_TEMPLATE.'/default/template/inc.debug_panel.tpl'); ?>
+			<?php } ?>
+
 		</div>
 
-		<!-- debug-panel -->
-		<?php if (defined('IS_DEBUG')) { ?>
-			<?php require_once(DIR_TEMPLATE.'/default/template/inc.debug_panel.tpl'); ?>
-		<?php } ?>
-		
 	</body>
 
 </html>
