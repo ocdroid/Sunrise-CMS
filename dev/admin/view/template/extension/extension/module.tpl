@@ -40,7 +40,7 @@
 			</div>
 		</div>
 
-		<ul class="cc_filter_extentions uk-child-width-1-1 uk-child-width-1-2@l uk-child-width-1-3@xl" uk-grid>
+		<ul class="cc_filter_extentions uk-child-width-1-1 uk-child-width-1-2@m uk-child-width-1-3@l uk-child-width-1-4@xl" uk-grid>
 
 			<?php foreach ($extensions as $extension) { ?>
 
@@ -50,39 +50,60 @@
 					class="uk-margin-remove"
 				>
 
-					<div class="uk-margin-small-bottom <?php if (!$extension['module']) { ?>uk-background-secondary<?php } ?>">
+					<div class="uk-card uk-card-default uk-card-small uk-margin-small-bottom <?php if (!$extension['module']) { ?>uk-background-secondary<?php } ?>">
 						
-						<?php echo $extension['name']; ?>
+						<div class="uk-card-media-top">
+							<img src="/image/admin/light.jpg" alt="">
+						</div>
 
-						<?php if ($extension['installed']) { ?>
+						<div class="uk-card-body">
 							
-							<a 
-								href="<?php echo $extension['edit']; ?>" 
-								title="<?php echo $button_edit; ?>" 
-								class="uk-button uk-button-default"
-							>
-								<span uk-icon="<?php if ($extension['module']) { ?>move<?php } else { ?>pencil<?php } ?>"></span>
-							</a>
+							<div class="uk-card-badge uk-label">
+								Badge
+							</div>
+				
+							<h3 class="uk-card-title">
+								<?php echo $extension['name']; ?>
+							</h3>
+				
+							<p>
 
-							<a 
-								href="<?php echo $extension['uninstall']; ?>" 
-								title="<?php echo $button_uninstall; ?>" 
-								class="uk-button uk-button-default"
-							>
-								<span uk-icon="minus"></span>
-							</a>
+								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
 
-						<?php } else { ?>
+								<hr>
 
-							<a 
-								href="<?php echo $extension['install']; ?>" 
-								title="<?php echo $button_install; ?>" 
-								class="uk-button uk-button-default"
-							>
-								<span uk-icon="plus"></span>
-							</a>
-
-						<?php } ?>
+								<?php if ($extension['installed']) { ?>
+										
+									<a 
+										href="<?php echo $extension['edit']; ?>" 
+										title="<?php echo $button_edit; ?>" 
+										class="uk-button uk-button-link"
+									>
+										<?php if ($extension['module']) { ?>Add new<?php } else { ?>Edit<?php } ?>
+									</a>
+				
+									<a 
+										href="<?php echo $extension['uninstall']; ?>" 
+										title="<?php echo $button_uninstall; ?>" 
+										class="uk-button uk-button-link"
+									>
+										Uninstall
+									</a>
+				
+								<?php } else { ?>
+				
+									<a 
+										href="<?php echo $extension['install']; ?>" 
+										title="<?php echo $button_install; ?>" 
+										class="uk-button uk-button-link"
+									>
+										Install
+									</a>
+				
+								<?php } ?>
+							</p>
+				
+						</div>
 
 					</div>
 
@@ -96,26 +117,48 @@
 						class="uk-margin-remove"
 					>
 						
-						<div class="uk-margin-small-bottom uk-background-muted">
+						<div class="uk-card uk-card-default uk-card-small uk-margin-small-bottom <?php if (!$extension['module']) { ?>uk-background-muted<?php } ?>">
+												
+							<div class="uk-card-media-top">
+								<img src="/image/admin/light.jpg" alt="">
+							</div>
 							
-							_____<?php echo $module['name']; ?>
+							<div class="uk-card-body">
 								
-							<a 
-								href="<?php echo $extension['edit']; ?>" 
-								title="<?php echo $button_edit; ?>" 
-								class="uk-button uk-button-default"
-							>
-								<span uk-icon="pencil"></span>
-							</a>
-	
-							<a 
-								href="<?php echo $module['delete']; ?>" 
-								title="<?php echo $button_delete; ?>" 
-								class="uk-button uk-button-default"
-							>
-								<span uk-icon="trash"></span>
-							</a>
-	
+								<div class="uk-card-badge uk-label">
+									Badge
+								</div>
+
+								<h3 class="uk-card-title">
+									_____<?php echo $module['name']; ?>
+								</h3>
+
+								<p>
+
+									Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.
+
+									<hr>
+
+									<a 
+										href="<?php echo $extension['edit']; ?>" 
+										title="<?php echo $button_edit; ?>" 
+										class="uk-button uk-button-link"
+									>
+										Edit
+									</a>
+
+									<a 
+										href="<?php echo $module['delete']; ?>" 
+										title="<?php echo $button_delete; ?>" 
+										class="uk-button uk-button-link"
+									>
+										Delete
+									</a>
+
+								</p>
+
+							</div>
+
 						</div>
 	
 					</li>
