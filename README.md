@@ -9,12 +9,12 @@ Another e-commerce solution
 ![Sunrise CMS Demo screenshot](git-res/screenshot-demo.png)
 
 ## Demo
-Frontend https://sunrise-cms.freelance-team.su/  
-Backend https://sunrise-cms.freelance-team.su/admin/ (admin/dev)
+* Frontend: https://sunrise-cms.freelance-team.su/  
+* Backend: https://sunrise-cms.freelance-team.su/admin/ (login: ```admin```, password: ```dev```)
 
 ## Support and discussion
-[Issues](https://github.com/Nickbur/Sunrise_CMS_Project/issues)  
-[Official forum](https://freelance-team.su/forum/2-sunrise-cms/)
+* [Issues](https://github.com/Nickbur/Sunrise_CMS_Project/issues)  
+* [Official forum](https://freelance-team.su/forum/2-sunrise-cms/)
 
 ## Install
 1. Move ```/dist/``` contents to your webroot
