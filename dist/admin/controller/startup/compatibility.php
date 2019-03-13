@@ -10,7 +10,6 @@ class ControllerStartupCompatibility extends Controller
     {
         if (isset($this->request->get['route'])) {
             $extension = array(
-                'extension/captcha',
                 'extension/feed',
                 'extension/module',
                 'extension/payment',

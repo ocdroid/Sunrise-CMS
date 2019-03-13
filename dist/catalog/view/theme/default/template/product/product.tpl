@@ -754,9 +754,7 @@
 								</div>
 					
 							</div>
-					
-							<?php echo $captcha; ?>
-					
+										
 							<button class="" id="button-review" type="button" data-loading-text="<?php echo $text_loading; ?>">
 								<?php echo $button_continue; ?>
 							</button>

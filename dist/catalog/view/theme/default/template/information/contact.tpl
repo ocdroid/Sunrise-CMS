@@ -219,8 +219,6 @@
 
 			</div>
 
-			<?php echo $captcha; ?>
-
 			<input class="uk-button uk-button-primary" type="submit" value="<?php echo $button_submit; ?>">
 
 		</form>

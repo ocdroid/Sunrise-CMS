@@ -282,7 +282,6 @@
       <?php } ?>
     </fieldset>
 
-    <?php echo $captcha; ?>
   </div>
 </div>
 

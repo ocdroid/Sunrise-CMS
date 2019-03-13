@@ -302,8 +302,7 @@
       <?php } ?>
       <?php } ?>
     </fieldset>
-    
-    <?php echo $captcha; ?>
+
   </div>
 </div>
 <?php if ($shipping_required) { ?>

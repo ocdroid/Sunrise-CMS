@@ -121,11 +121,6 @@
 				<?php echo $text_note; ?>
 
 
-
-
-				<?php echo $captcha; ?>
-
-
 				<button type="button" id="button-review">
 					<?php echo $button_continue; ?>
 				</button>

@@ -334,13 +334,21 @@ class ControllerProductProduct extends Controller
             $this->load->model('tool/image');
 
             if ($product_info['image']) {
-                $data['popup'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height'));
+                $data['popup'] = $this->model_tool_image->resize(
+                    $product_info['image'],
+                    $this->config->get($this->config->get('config_theme') . '_image_popup_width'),
+                    $this->config->get($this->config->get('config_theme') . '_image_popup_height')
+                );
             } else {
                 $data['popup'] = '';
             }
 
             if ($product_info['image']) {
-                $data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get($this->config->get('config_theme') . '_image_thumb_width'), $this->config->get($this->config->get('config_theme') . '_image_thumb_height'));
+                $data['thumb'] = $this->model_tool_image->resize(
+                    $product_info['image'],
+                    $this->config->get($this->config->get('config_theme') . '_image_thumb_width'),
+                    $this->config->get($this->config->get('config_theme') . '_image_thumb_height')
+                );
             } else {
                 $data['thumb'] = '';
             }
@@ -353,8 +361,20 @@ class ControllerProductProduct extends Controller
 
             foreach ($results as $result) {
                 $data['images'][] = array(
-                    'popup' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_popup_width'), $this->config->get($this->config->get('config_theme') . '_image_popup_height')),
-                    'thumb' => $this->model_tool_image->resize($result['image'], $this->config->get($this->config->get('config_theme') . '_image_additional_width'), $this->config->get($this->config->get('config_theme') . '_image_additional_height')),
+                    'popup' => $this->model_tool_image->resize(
+                        $result['image'],
+                        $this->config->get(
+                            $this->config->get('config_theme') . '_image_popup_width'
+                        ),
+                        $this->config->get($this->config->get('config_theme') . '_image_popup_height')
+                    ),
+                    'thumb' => $this->model_tool_image->resize(
+                        $result['image'],
+                        $this->config->get(
+                            $this->config->get('config_theme') . '_image_additional_width'
+                        ),
+                        $this->config->get($this->config->get('config_theme') . '_image_additional_height')
+                    ),
                     'image_id' => $image_id++
                 );
             }
@@ -486,13 +506,6 @@ class ControllerProductProduct extends Controller
             }
 
             $data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
-
-            // Captcha
-            if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('review', (array)$this->config->get('config_captcha_page'))) {
-                $data['captcha'] = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha'));
-            } else {
-                $data['captcha'] = '';
-            }
 
             $data['attribute_groups'] = $this->model_catalog_product->getProductAttributes($this->request->get['product_id']);
 
@@ -802,15 +815,6 @@ class ControllerProductProduct extends Controller
 
             if ((utf8_strlen($this->request->post['text']) < 25) || (utf8_strlen($this->request->post['text']) > 1000)) {
                 $json['error'] = $this->language->get('error_text');
-            }
-
-            // Captcha
-            if ($this->config->get($this->config->get('config_captcha') . '_status') && in_array('review', (array)$this->config->get('config_captcha_page'))) {
-                $captcha = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha') . '/validate');
-
-                if ($captcha) {
-                    $json['error'] = $captcha;
-                }
             }
 
             if (!isset($json['error'])) {
