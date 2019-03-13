@@ -50,11 +50,9 @@ if ($config->get('db_autostart')) {
 
 // Session
 $session = new Session();
-
 if ($config->get('session_autostart')) {
     $session->start();
 }
-
 $registry->set('session', $session);
 
 // Cache

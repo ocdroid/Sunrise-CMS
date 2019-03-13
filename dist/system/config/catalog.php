@@ -1,15 +1,10 @@
 <?php
-
-
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
 // Site
 $_['site_base']        = HTTP_SERVER;
 $_['site_ssl']         = HTTPS_SERVER;
-
-// Url
-$_['url_autostart']    = false;
 
 // Database
 $_['db_autostart']     = true;
@@ -22,6 +17,9 @@ $_['db_port']          = DB_PORT;
 
 // Session
 $_['session_autostart'] = false;
+
+// Url
+$_['url_autostart']    = false;
 
 // Autoload Libraries
 $_['library_autoload'] = array(
