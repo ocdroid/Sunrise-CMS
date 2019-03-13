@@ -1,3 +1,5 @@
+![Sunrise CMS Logo](git-res/logo.png)
+
 # Sunrise CMS
 Another e-commerce solution
 
@@ -11,6 +13,7 @@ Frontend https://sunrise-cms.freelance-team.su/
 Backend https://sunrise-cms.freelance-team.su/admin/ (admin/dev)
 
 ## Support and discussion
+[Issues](https://github.com/Nickbur/Sunrise_CMS_Project/issues)  
 [Official forum](https://freelance-team.su/forum/2-sunrise-cms/)
 
 ## Install
@@ -36,5 +39,10 @@ RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
 RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
 ```
 
+## Author
+
+* *Current main developer:* Mykola Burakov burakov.work@gmail.com
+
 ## License
 GNU General Public License v3.0
+* [License terms](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/LICENSE)
