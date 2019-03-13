@@ -9,8 +9,8 @@ Another e-commerce solution
 ![Sunrise CMS Demo screenshot](git-res/screenshot-demo.png)
 
 ## Demo
-* Frontend: https://sunrise-cms.freelance-team.su/  
-* Backend: https://sunrise-cms.freelance-team.su/admin/ (login: ```admin```, password: ```dev```)
+* [Frontend](https://sunrise-cms.freelance-team.su/)   
+* [Backend](https://sunrise-cms.freelance-team.su/admin/) (login: ```admin```, password: ```dev```)
 
 ## Support and discussion
 * [Issues](https://github.com/Nickbur/Sunrise_CMS_Project/issues)  
