@@ -1,0 +1,286 @@
+<!-- debug-panel.tpl -->
+<?php
+
+if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG) {
+    global $debugModelQueries;
+    global $debugControllerActions;
+
+    $qc = 1;
+    $ac = 1;
+
+    //SORT LOCAL TIMES
+    $debugModelQueriesSortDescByTime = array();
+
+    foreach ($debugModelQueries as $arr) {
+        $key = (string)substr(str_replace(['.', '-', 'E'], '', (string)$arr['time']), 0, 13);
+        $debugModelQueriesSortDescByTime[$key] = $arr;
+    }
+
+    krsort($debugModelQueriesSortDescByTime);
+
+    //SORT LOCAL TIMES
+    $debugControllerActionsSortDescByTime = array();
+    
+    foreach ($debugControllerActions as $arr) {
+        $key = (string)substr(str_replace(['.', '-', 'E'], '', (string)$arr['time']), 0, 13);
+        $debugControllerActionsSortDescByTime[$key] = $arr;
+    }
+
+    krsort($debugControllerActionsSortDescByTime); ?>
+
+    <style>
+        .cc_modal_debug {
+            top: 12px;
+            left: 12px;
+            position: fixed !important;
+        }
+            .cc_debug_header_image {
+                position: relative;
+                top: -10px;
+                right: -10px;
+            }
+            #cc_modal_debug .uk-modal-close-full {
+                background: transparent;
+            }
+    </style>
+
+    <!-- debug.php -->
+    <a class="cc_modal_debug uk-icon-button uk-margin-small-right uk-box-shadow-medium" href="#cc_modal_debug" uk-icon="server" uk-toggle uk-tooltip="title: Debug Panel; pos: right"></a>
+
+    <div id="cc_modal_debug" class="uk-modal-full" uk-modal>
+        
+        <div class="uk-modal-dialog" uk-overflow-auto>
+
+            <button class="uk-modal-close-full uk-close-large uk-position-top-left" type="button" uk-close></button>
+           
+            <div class="uk-padding-small uk-text-small">
+                
+                <h3 class="uk-text-right uk-text-center@s">
+                    <img class="cc_debug_header_image" data-src="/image/catalog/logos/bug.gif" alt="bug" uk-img> 
+                    Sunrise CMS Debug Panel
+                </h3>
+
+                <ul uk-tab>
+                    <li>
+                        <a class="uk-text-capitalize" href="#">
+                            Queries
+                        </a>
+                    </li>
+                    <li>
+                        <a class="uk-text-capitalize" href="#">
+                            Actions
+                        </a>
+                    </li>
+                    <li>
+                        <a class="uk-text-capitalize" href="#">
+                            Requests
+                        </a>
+                    </li>
+                </ul>
+                
+                <ul class="uk-switcher uk-margin">
+
+                    <li>
+
+                        <h3>
+                            Queries:
+                        </h3>
+
+                        <p>
+                            <kbd>Count: <?php echo count($debugModelQueriesSortDescByTime); ?></kbd>
+                        </p>
+
+                        <table class="uk-table uk-table-divider uk-table-striped uk-table-small uk-table-responsive uk-text-break">
+                            <thead>
+                                <tr>
+                                    <td class="uk-text-warning uk-table-shrink">#</td>
+                                    <td class="uk-text-warning">File / Class -> method</td>
+                                    <td class="uk-text-warning">Time (mcsec)</td>
+                                    <td class="uk-text-warning">Query</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($debugModelQueriesSortDescByTime as $debugModelQuery) { ?>
+                                    <tr>
+                                        <td class="uk-table-shrink"><?php echo $qc++; ?></td>
+                                        <td>
+                                            <?php echo($debugModelQuery['file']); ?><br>
+                                            <b><?php echo($debugModelQuery['class:method']); ?></b>
+                                        </td>
+                                        <td><?php echo($debugModelQuery['time']); ?></td>
+                                        <td><?php echo($debugModelQuery['query']); ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+
+                    </li>
+
+                    <li>
+
+                        <h3>
+                            Actions:
+                        </h3>
+
+                        <p>
+                            <kbd>Count: <?php echo count($debugControllerActionsSortDescByTime); ?></kbd>
+                        </p>
+
+                        <table class="uk-table uk-table-divider uk-table-striped uk-table-small uk-table-responsive uk-text-break">
+                            <thead>
+                                <tr>
+                                    <td class="uk-text-warning uk-table-shrink">#</td>
+                                    <td class="uk-text-warning uk-table-shrink">Class -> method</td>
+                                    <td class="uk-text-warning">Time (mcsec)</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php if (!empty($debugControllerActionsSortDescByTime)) { ?>
+                                <?php foreach ($debugControllerActionsSortDescByTime as $debugControllerAction) { ?>
+                                    <tr>
+                                        <td class="uk-table-shrink"><?php echo $ac++; ?></td>
+                                        <td class="uk-table-shrink"><?php echo($debugControllerAction['class'] . '&nbsp;->&nbsp;' . $debugControllerAction['method']); ?></td>
+                                        <td><?php echo($debugControllerAction['time']); ?></td>
+                                    </tr>
+                                <?php } ?>
+                            <?php } ?>
+                            </tbody>
+                        </table>
+
+                    </li>
+
+                    <li>
+
+                        <h3>
+                            Requests:
+                        </h3>
+
+                        <h4>
+                            GET <kbd><?php echo((!empty($_GET)) ? count($_GET) : 0); ?></kbd>:
+                        </h4>
+
+                        <?php if (!empty($_GET)) { ?>
+                            <table class="uk-table uk-table-divider uk-table-striped uk-table-small uk-table-responsive uk-text-break">
+                                <thead>
+                                    <tr>
+                                        <td class="uk-text-warning">Key</td>
+                                        <td class="uk-text-warning">Value</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($_GET as $key => $value) { ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $key; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $value; ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        <?php } else { ?>
+                            <p>Empty</p>
+                        <?php } ?>
+    
+                        <h4>
+                            POST <kbd><?php echo((!empty($_POST)) ? count($_POST) : 0); ?></kbd>:
+                        </h4>
+                        
+                        <?php if (!empty($_POST)) { ?>
+                            <table class="uk-table uk-table-divider uk-table-striped uk-table-small uk-table-responsive uk-text-break">
+                                <thead>
+                                    <tr>
+                                        <td class="uk-text-warning">Key</td>
+                                        <td class="uk-text-warning">Value</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($_POST as $key => $value) { ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $key; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $value; ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        <?php } else { ?>
+                            <p>Empty</p>
+                        <?php } ?>
+    
+                        <h4>
+                            SERVER <kbd><?php echo((!empty($_SERVER)) ? count($_SERVER) : 0); ?></kbd>:
+                        </h4>
+
+                        <?php if (!empty($_SERVER)) { ?>
+                            <table class="uk-table uk-table-divider uk-table-striped uk-table-small uk-table-responsive uk-text-break">
+                                <thead>
+                                    <tr>
+                                        <td class="uk-text-warning">Key</td>
+                                        <td class="uk-text-warning">Value</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($_SERVER as $key => $value) { ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $key; ?>
+                                            </td>
+                                            <td>
+                                                <?php print_r($value); ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        <?php } else { ?>
+                            <p>Empty</p>
+                        <?php } ?>
+    
+                        <h4>
+                            COOKIE <kbd><?php echo((!empty($_COOKIE)) ? count($_COOKIE) : 0); ?></kbd>:
+                        </h4>
+
+                        <?php if (!empty($_COOKIE)) { ?>
+                            <table class="uk-table uk-table-divider uk-table-striped uk-table-small uk-table-responsive uk-text-break">
+                                <thead>
+                                    <tr>
+                                        <td class="uk-text-warning">Key</td>
+                                        <td class="uk-text-warning">Value</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($_COOKIE as $key => $value) { ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $key; ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $value; ?>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        <?php } else { ?>
+                            <p>Empty</p>
+                        <?php } ?>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+    <!-- /debug.php -->
+
+<?php } ?>
+<!-- /debug-panel.tpl -->

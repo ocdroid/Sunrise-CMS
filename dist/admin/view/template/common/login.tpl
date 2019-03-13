@@ -1,0 +1,147 @@
+<!-- login.tpl -->
+<?php echo $header; ?>
+
+<div class="cc_admin_bacground uk-section uk-padding-small" uk-height-viewport="expand: true">
+	<div class="uk-container uk-padding-remove">
+			
+		<div class="uk-flex uk-flex-center">
+		
+			<div class="uk-margin uk-margin-small-top uk-margin-small-bottom uk-padding uk-background-default uk-box-shadow-large uk-width-auto uk-width-large@s">
+
+				<div class="uk-margin uk-margin-medium-bottom">
+					<h4 class="uk-margin-small-bottom">
+						<b><?php echo $text_hello; ?></b>, <?php echo $text_welcome; ?>
+					</h4>
+					<?php echo $text_login; ?>
+				</div>
+
+				<?php if ($success) { ?>
+					<div class="uk-alert-success" uk-alert>
+						<a class="uk-alert-close" uk-close></a>
+						<p class="uk-text-center">
+							<?php echo $success; ?>
+						</p>
+					</div>
+				<?php } ?>
+
+				<?php if ($error_warning) { ?>
+					<div class="uk-alert-warning" uk-alert>
+						<a class="uk-alert-close" uk-close></a>
+						<p class="uk-text-center">
+							<?php echo $error_warning; ?>
+						</p>
+					</div>
+				<?php } ?>
+
+				<form 
+					action="<?php echo $action; ?>" 
+					method="post" 
+					enctype="multipart/form-data" 
+					class="uk-form-stacked" 
+				>
+
+					<div class="uk-margin">
+
+						<label 
+							for="input-username" 
+							class="uk-form-label uk-text-meta"
+						>
+							<?php echo $entry_username_short; ?>
+						</label>
+
+						<div class="uk-form-controls uk-inline uk-width-1-1">
+							<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: user"></span>
+							<input 
+								type="text" 
+								name="username" 
+								value="<?php echo $username; ?>" 
+								placeholder="<?php echo $entry_username; ?>" 
+								id="input-username" 
+								class="uk-input"
+							>
+						</div>
+
+					</div>
+
+					<div class="uk-margin <?php if ($forgotten) { ?>uk-margin-remove-bottom<?php } ?>">
+
+						<label 
+							for="input-password" 
+							class="uk-form-label uk-text-meta"
+						>
+							<?php echo $entry_password_short; ?>
+						</label>
+
+						<div class="uk-form-controls uk-inline uk-width-1-1">
+							<span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: lock"></span>
+							<input 
+								type="password" 
+								name="password" 
+								value="<?php echo $password; ?>" 
+								placeholder="<?php echo $entry_password; ?>" 
+								id="input-password" 
+								class="uk-input uk-width-1-1"
+							>
+						</div>
+
+					</div>
+
+					<?php if ($forgotten) { ?>
+						<div class="cc_admin_login_restore_password uk-margin-remove uk-margin-small-top uk-text-right">
+							<a 
+								href="<?php echo $forgotten; ?>" 
+								class="uk-text-small uk-text-meta uk-link-text"
+							>
+								<?php echo $text_forgotten; ?>
+							</a>
+
+						</div>
+					<?php } ?>
+
+					<!-- <div class="uk-margin uk-background-muted uk-padding-small uk-flex uk-flex-center uk-flex-middle">
+						место под рекапчу
+					</div> -->
+
+					<div class="uk-margin uk-flex uk-flex-right">
+
+						<button 
+							type="submit" 
+							class="uk-button uk-button-primary uk-width-1-1"
+						>
+							<?php echo $button_login; ?>
+							<span uk-icon="sign-in"></span>
+						</button>
+
+					</div>
+
+					<?php if ($redirect) { ?>
+						<input 
+							type="hidden" 
+							name="redirect" 
+							value="<?php echo $redirect; ?>"
+						>
+					<?php } ?>
+
+				</form>
+
+				<div class="uk-margin uk-margin-remove-bottom uk-margin-medium-top uk-text-left">
+											
+					<span uk-icon="icon: arrow-left; ratio: 1"></span>
+					<a 
+						href="/" 
+						class="uk-text-small"
+					>
+						<?php echo $text_return; ?>
+					</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+<?php echo $footer; ?>
+<!-- /login.tpl -->

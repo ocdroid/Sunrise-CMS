@@ -1,6 +1,8 @@
 # Sunrise CMS
 Another e-commerce solution
 
+![Sunrise CMS Demo screenshot](git-res/screenshot-demo.png)
+
 ## Warning!
 **This is not a release or even a test build. The project is in development and sooner or later it will be ready.**
 
@@ -9,8 +11,8 @@ Frontend https://sunrise-cms.freelance-team.su/
 Backend https://sunrise-cms.freelance-team.su/admin/ (admin/dev)
 
 ## Install
-1. Move /dev/ contents to your webroot
-2. Edit $domain and DB settings in config.php and admin/config.php
+1. Move /dist/ contents to your webroot
+2. Edit $domain and DB settings in catalog/config/domain.php and admin/config/domain.php
 3. Import cms.sql
 
 ## Requirements

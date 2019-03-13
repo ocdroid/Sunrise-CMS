@@ -1,0 +1,11 @@
+<!-- stickers.tpl -->
+<?php foreach ($stickers as $sticker) { ?>
+
+	<div class="cc_sticker cc_label_position_<?php echo $sticker['position'];?> uk-card-badge uk-label uk-label-success">
+
+		<img class="cc_stickers_item_<?php echo $sticker['position'];?>" src="<?php echo $sticker['image'];?>">
+
+	</div>
+
+<?php } ?>
+<!-- /stickers.tpl -->
