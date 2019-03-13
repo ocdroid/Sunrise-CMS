@@ -8,7 +8,7 @@
 							Sunrise CMS <?php echo $text_version; ?> <?php echo $text_footer; ?>
 							<span class="cc_admin_footer_vertical_separator"></span>
 							<span uk-icon="icon: github; ratio: 1"></span>
-							<a class="uk-link-muted uk-link-text" href="#">github</a>
+							<a class="uk-link-muted uk-link-text" href="https://github.com/Nickbur/Sunrise_CMS_Project">github</a>
 							<span class="cc_admin_footer_vertical_separator"></span>
 							<span uk-icon="icon: facebook; ratio: 1"></span>
 							<a class="uk-link-muted uk-link-text" href="#">facebook</a>
