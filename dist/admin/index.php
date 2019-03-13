@@ -4,7 +4,7 @@ define('VERSION', '0.1a');
 
 // Configuration
 require('config/db.php');
-require('config/directory.php');
+require('config/defines.php');
 require('config/domain.php');
 
 // Startup
