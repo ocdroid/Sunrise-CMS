@@ -23,10 +23,10 @@ Another e-commerce solution
 4. Import ```cms.sql```
 
 ## Requirements
-* Apache Web Server (v2.4 recommended)  
-* PHP 7.2+ (v7.3 recommended)  
-* MySQL 5.6+ (v8.0 recommended)  
-* Fast file storage or Redis (Redis recommended)
+* Apache Web Server *(v2.4 recommended)*  
+* PHP 7.2+ *(v7.3 recommended)*  
+* MySQL 5.6+ *(v8.0 recommended)*  
+* Fast file storage or Redis *(Redis recommended)*
 
 ## .htaccess
 ```
@@ -44,5 +44,4 @@ RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
 * *Current main developer:* Mykola Burakov burakov.work@gmail.com
 
 ## License
-GNU General Public License v3.0
-* [License terms](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/LICENSE)
+[GNU General Public License v3.0](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/LICENSE)
