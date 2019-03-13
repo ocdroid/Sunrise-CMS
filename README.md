@@ -2,7 +2,7 @@
 Another e-commerce solution
 
 > **Warning!**
-> This is not a release or even a test build. The project is **in development** and sooner or later it will be ready.
+> This is **not a release** or even a test build. The project is **in development** and sooner or later it will be ready.
 
 ![Sunrise CMS Demo screenshot](git-res/screenshot-demo.png)
 
@@ -15,14 +15,15 @@ Backend https://sunrise-cms.freelance-team.su/admin/ (admin/dev)
 
 ## Install
 1. Move ```/dist/``` contents to your webroot
-2. Edit $domain and DB settings in ```catalog/config/domain.php``` and ```admin/config/domain.php```
-3. Import ```cms.sql```
+2. Edit ```$domain``` value in ```catalog/config/domain.php``` and ```admin/config/domain.php```
+3. Edit your database settings in ```catalog/config/db.php``` and ```admin/config/db.php```
+4. Import ```cms.sql```
 
 ## Requirements
-* Apache 2.4+  
-* PHP 7.2+  
-* MySQL 5.6+  
-* Redis
+* Apache Web Server (v2.4 recommended)  
+* PHP 7.2+ (v7.3 recommended)  
+* MySQL 5.6+ (v8.0 recommended)  
+* Fast file storage or Redis (Redis recommended)
 
 ## .htaccess
 ```
