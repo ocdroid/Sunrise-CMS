@@ -1134,12 +1134,6 @@
 										</div>
 									</div>
 
-									<div class="uk-margin">
-										<label class="uk-form-label" for="input-compression"><span data-toggle="tooltip" title="<?php echo $help_compression; ?>"><?php echo $entry_compression; ?></span></label>
-										<div class="uk-form-controls">
-											<input type="text" name="config_compression" value="<?php echo $config_compression; ?>" placeholder="<?php echo $entry_compression; ?>" id="input-compression" class="uk-input">
-										</div>
-									</div>
 								</fieldset>
 
 								<fieldset class="uk-fieldset">

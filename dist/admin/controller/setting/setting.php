@@ -136,7 +136,6 @@ class ControllerSettingSetting extends Controller
         $data['entry_seo_url'] = $this->language->get('entry_seo_url');
         $data['entry_seo_url_include_path'] = $this->language->get('entry_seo_url_include_path');
         $data['entry_seo_url_postfix'] = $this->language->get('entry_seo_url_postfix');
-        $data['entry_compression'] = $this->language->get('entry_compression');
         $data['entry_error_display'] = $this->language->get('entry_error_display');
         $data['entry_error_log'] = $this->language->get('entry_error_log');
         $data['entry_error_filename'] = $this->language->get('entry_error_filename');
@@ -191,7 +190,6 @@ class ControllerSettingSetting extends Controller
         $data['help_maintenance'] = $this->language->get('help_maintenance');
         $data['help_password'] = $this->language->get('help_password');
         $data['help_encryption'] = $this->language->get('help_encryption');
-        $data['help_compression'] = $this->language->get('help_compression');
 
         $data['button_save'] = $this->language->get('button_save');
         $data['button_cancel'] = $this->language->get('button_cancel');
@@ -966,12 +964,6 @@ class ControllerSettingSetting extends Controller
             $data['config_encryption'] = $this->request->post['config_encryption'];
         } else {
             $data['config_encryption'] = $this->config->get('config_encryption');
-        }
-
-        if (isset($this->request->post['config_compression'])) {
-            $data['config_compression'] = $this->request->post['config_compression'];
-        } else {
-            $data['config_compression'] = $this->config->get('config_compression');
         }
 
         if (isset($this->request->post['config_error_display'])) {

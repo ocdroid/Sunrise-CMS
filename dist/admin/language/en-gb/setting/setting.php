@@ -109,7 +109,6 @@ $_['entry_file_mime_allowed']      = 'Allowed File Mime Types';
 $_['entry_maintenance']            = 'Maintenance Mode';
 $_['entry_password']               = 'Allow Forgotten Password';
 $_['entry_encryption']             = 'Encryption Key';
-$_['entry_compression']            = 'Output Compression Level';
 $_['entry_error_display']          = 'Display Errors';
 $_['entry_error_log']              = 'Log Errors';
 $_['entry_error_filename']         = 'Error Log Filename';
