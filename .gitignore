@@ -2,6 +2,9 @@
 node_modules/
 
 dist/images/cache/
+dist/images/.tmp/*
+dist/images/.trash/*
+dist/images/.quarantine/*
 dist/system/storage/cache/
 *.log
 
