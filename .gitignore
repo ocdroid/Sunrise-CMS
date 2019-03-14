@@ -1,7 +1,7 @@
 .vscode/
 node_modules/
 
-dev/image/cache/
+dev/images/cache/
 dev/system/storage/cache/
 *.log
 
