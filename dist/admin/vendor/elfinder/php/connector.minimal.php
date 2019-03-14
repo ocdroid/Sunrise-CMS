@@ -123,8 +123,8 @@ $opts = array(
         // Items volume
         array(
             'driver'        => 'LocalFileSystem',           // driver for accessing file system (REQUIRED)
-            'path'          => $_SERVER['DOCUMENT_ROOT'] . '/image/',                 // path to files (REQUIRED)
-            'URL'           => $_SERVER['DOCUMENT_ROOT'] . '/image/', // URL to files (REQUIRED)
+            'path'          => $_SERVER['DOCUMENT_ROOT'] . '/images/',                 // path to files (REQUIRED)
+            'URL'           => '/images/', // URL to files (REQUIRED)
             'trashHash'     => 't1_Lw',                     // elFinder's hash of trash folder
             'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
             'uploadDeny'    => array('all'),                // All Mimetypes not allowed to upload
@@ -136,9 +136,8 @@ $opts = array(
         array(
             'id'            => '1',
             'driver'        => 'Trash',
-            'path'          => $_SERVER['DOCUMENT_ROOT'] . '/image/.trash/',
-            // 'tmbURL'        => dirname($_SERVER['PHP_SELF']) . '/image/.trash/.tmb/',
-            'tmbURL'        => $_SERVER['DOCUMENT_ROOT'] . '/image/.trash/.tmb/',
+            'path'          => $_SERVER['DOCUMENT_ROOT'] . '/images/.trash/',
+            'tmbURL'        => '/images/.trash/.tmb/',
             'winHashFix'    => DIRECTORY_SEPARATOR !== '/', // to make hash same to Linux one on windows too
             'uploadDeny'    => array('all'),                // Recomend the same settings as the original volume that uses the trash
             'uploadAllow'   => array('image/x-ms-bmp', 'image/gif', 'image/jpeg', 'image/png', 'image/x-icon', 'text/plain'), // Same as above

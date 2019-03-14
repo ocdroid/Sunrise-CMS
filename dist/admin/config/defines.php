@@ -2,7 +2,7 @@
 
 define('DIR_APPLICATION', $_SERVER['DOCUMENT_ROOT'] . '/admin/');
 define('DIR_SYSTEM', $_SERVER['DOCUMENT_ROOT'] . '/system/');
-define('DIR_IMAGE', $_SERVER['DOCUMENT_ROOT'] . '/image/');
+define('DIR_IMAGE', $_SERVER['DOCUMENT_ROOT'] . '/images/');
 define('DIR_LANGUAGE', $_SERVER['DOCUMENT_ROOT'] . '/admin/language/');
 define('DIR_TEMPLATE', $_SERVER['DOCUMENT_ROOT'] . '/admin/view/template/');
 define('DIR_CONFIG', $_SERVER['DOCUMENT_ROOT'] . '/system/config/');
