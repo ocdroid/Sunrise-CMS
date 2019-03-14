@@ -85,15 +85,6 @@ span[uk-icon*="icon"] {
 
 }
 
-/* card */
-.uk-card.uk-box-shadow-hover-large {
-	transition: 150ms transform;
-}
-	.uk-card.uk-box-shadow-hover-large:hover {
-		/* box-shadow: 0 0 36px rgba(0,0,0,0.1); */
-		transform: translateY(-5px);
-	}
-
 /* to top */
 .cc_to_top a {
 	display: block;

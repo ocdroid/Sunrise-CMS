@@ -35,6 +35,18 @@
 			<link rel="<?php echo $style['rel']; ?>" href="<?php echo $style['href']; ?>" media="screen">
 		<?php } ?>
 
+		<?php if(!isMobile || !isTablet) { ?>
+			<style>
+				/* card effect */
+				.uk-card.uk-box-shadow-hover-large {
+					transition: 150ms transform;
+				}
+					.uk-card.uk-box-shadow-hover-large:hover {
+						transform: translateY(-5px);
+					}
+			</style>
+		<?php } ?>
+
 		<!-- scripts -->
 		<?php foreach ($scriptsasync as $scriptasync) { ?>
 			<script src="<?php echo $scriptasync; ?>" async></script>
