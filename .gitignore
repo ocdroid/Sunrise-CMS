@@ -1,11 +1,11 @@
 .vscode/
 node_modules/
 
-dev/images/cache/
-dev/system/storage/cache/
+dist/images/cache/
+dist/system/storage/cache/
 *.log
 
-dev/.htaccess
+dist/.htaccess
 
 gulpfile.js
 package-lock.json
