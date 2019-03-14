@@ -126,7 +126,7 @@ class ControllerExtensionModuleSpecial extends Controller {
 		foreach ($stickers as $sticker) {
 			$data['stickers'][] = array(
 				'position' => $sticker['position'],
-				'image'    => $prot_server . 'image/' . $sticker['image']
+				'image' => $prot_server . 'images/' . $sticker['image']
 			);		
 		}
 				

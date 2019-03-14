@@ -24,7 +24,7 @@ class ControllerCommonHeader extends Controller
         }
 
         if (is_file(DIR_IMAGE . $this->config->get('config_icon'))) {
-            $this->document->addLink($server . 'image/' . $this->config->get('config_icon'), 'icon');
+            $this->document->addLink($server . 'images/' . $this->config->get('config_icon'), 'icon');
         }
 
         $data['title'] = $this->document->getTitle();
@@ -47,7 +47,7 @@ class ControllerCommonHeader extends Controller
         $data['name'] = $this->config->get('config_name');
 
         if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
-            $data['logo'] = $server . 'image/' . $this->config->get('config_logo');
+            $data['logo'] = $server . 'images/' . $this->config->get('config_logo');
         } else {
             $data['logo'] = '';
         }
