@@ -106,12 +106,12 @@
 								>
 									<img 
 										class="cc_admin_header_logo" 
-										data-src="/image/catalog/logos/logo-small.png" 
+										data-src="/images/catalog/logos/logo-small.png" 
 										uk-img
 									>
 									<img 
 										class="cc_admin_header_logo uk-logo-inverse" 
-										data-src="/image/catalog/logos/logo-small-inversed.png" 
+										data-src="/images/catalog/logos/logo-small-inversed.png" 
 										uk-img
 									>
 								</a>

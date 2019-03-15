@@ -23,7 +23,7 @@
 								From Ukraine with love
 							</span>
 		
-							<img class="cc_footer_image" src="/image/ilu.png" alt="From Ukraine With Love">
+							<img class="cc_footer_image" src="/images/ilu.png" alt="From Ukraine With Love">
 
 						</div>
 

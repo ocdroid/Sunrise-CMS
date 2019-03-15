@@ -53,7 +53,7 @@
 					<div class="uk-card uk-card-default uk-card-small uk-margin-small-bottom <?php if (!$extension['module']) { ?>uk-background-secondary<?php } ?>">
 						
 						<div class="uk-card-media-top">
-							<img src="/image/admin/light.jpg" alt="">
+							<img src="/images/admin/light.jpg" alt="">
 						</div>
 
 						<div class="uk-card-body">
@@ -120,7 +120,7 @@
 						<div class="uk-card uk-card-default uk-card-small uk-margin-small-bottom <?php if (!$extension['module']) { ?>uk-background-muted<?php } ?>">
 												
 							<div class="uk-card-media-top">
-								<img src="/image/admin/light.jpg" alt="">
+								<img src="/images/admin/light.jpg" alt="">
 							</div>
 							
 							<div class="uk-card-body">
