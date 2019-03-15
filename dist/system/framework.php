@@ -1,6 +1,4 @@
 <?php
-
-
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
@@ -70,7 +68,9 @@ if ($config->get('url_autostart')) {
 }
 
 // Language
-$language = new Language($config->get('language_default'));
+$language = new Language(
+    $config->get('language_default')
+);
 $language->load(
     $config->get('language_default')
 );
