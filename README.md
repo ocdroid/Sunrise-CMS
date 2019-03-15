@@ -28,7 +28,9 @@ Cart | Menu
 ![Sunrise CMS Demo cart](git-res/screenshot-cart.png) | ![Sunrise CMS Demo menu](git-res/screenshot-menu.jpg)
 
 ## Support and discussion
-* [Issues](https://github.com/Nickbur/Sunrise_CMS_Project/issues)  
+* [Issue Tracker](https://github.com/Nickbur/Sunrise_CMS_Project/issues)  
+  * [Report a bug](https://github.com/Nickbur/Sunrise_CMS_Project/issues/new?assignees=&labels=bug%2C+help+wanted%2C+invalid&template=bug_report.md&title=%5BBUG%5D+...)  
+  * [Feature request](https://github.com/Nickbur/Sunrise_CMS_Project/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=)  
 * [Official forum](https://freelance-team.su/forum/2-sunrise-cms/)
 
 ## Install
