@@ -4,17 +4,27 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Build Status](https://travis-ci.com/Nickbur/Sunrise_CMS_Project.svg?branch=master)](https://travis-ci.com/Nickbur/Sunrise_CMS_Project)
+![Scrutinizer build](https://img.shields.io/scrutinizer/build/g/Nickbur/Sunrise_CMS_Project.svg)
+![GitHub All Releases](https://img.shields.io/github/downloads/Nickbur/Sunrise_CMS_Project/total.svg)
 
-Another e-commerce solution
 
 > **Warning!**
 > This is **not a release** or even a test build. The project is **in development** and sooner or later it will be ready.
 
-![Sunrise CMS Demo screenshot](git-res/screenshot-demo.png)
+Another e-commerce solution
 
 ## Demo
 * [Frontend](https://sunrise-cms.freelance-team.su/)   
 * [Backend](https://sunrise-cms.freelance-team.su/admin/) (login: ```admin```, password: ```dev```)
+
+## Screenshots
+Main page | Catalog page | Product page | Checkout page
+--- | --- | --- | ---
+![Sunrise CMS Demo main](git-res/screenshot-main.png) | ![Sunrise CMS Demo catalog](git-res/screenshot-catalog.png) | ![Sunrise CMS Demo product](git-res/screenshot-product.png) | ![Sunrise CMS Demo checkout](git-res/screenshot-checkout.png)
+
+Info page |
+--- | 
+![Sunrise CMS Demo info](git-res/screenshot-info.png) |
 
 ## Support and discussion
 * [Issues](https://github.com/Nickbur/Sunrise_CMS_Project/issues)  

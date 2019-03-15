@@ -56,7 +56,7 @@ if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) && defined("IS_DEBUG") && IS_DEBUG
             <div class="uk-padding-small uk-text-small">
                 
                 <h3 class="uk-text-right uk-text-center@s">
-                    <img class="cc_debug_header_image" data-src="/image/catalog/logos/bug.gif" alt="bug" uk-img> 
+                    <img class="cc_debug_header_image" data-src="/images/catalog/logos/bug.gif" alt="bug" uk-img> 
                     Sunrise CMS Debug Panel
                 </h3>
 
