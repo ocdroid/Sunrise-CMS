@@ -10,8 +10,8 @@ $_['site_ssl']             = false;
 $_['url_autostart']        = true;
 
 // Language
-$_['language_default']     = 'uk-ua';
-$_['language_autoload']    = array('uk-ua');
+$_['language_default']     = 'en-gb';
+$_['language_autoload']    = array('en-gb');
 
 // Database
 $_['db_autostart']         = false;
