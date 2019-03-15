@@ -1,6 +1,9 @@
 ![Sunrise CMS Logo](git-res/logo.png)
 
 # Sunrise CMS
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 Another e-commerce solution
 
 > **Warning!**
