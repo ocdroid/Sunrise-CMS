@@ -20,11 +20,11 @@ Another e-commerce solution
 ## Screenshots
 Main page | Catalog page | Product page | Checkout page
 --- | --- | --- | ---
-![Sunrise CMS Demo main](git-res/screenshot-main.png) | ![Sunrise CMS Demo catalog](git-res/screenshot-catalog.png) | ![Sunrise CMS Demo product](git-res/screenshot-product.png) | ![Sunrise CMS Demo checkout](git-res/screenshot-checkout.png)
+![Sunrise CMS Demo main](git-res/screenshot-main.jpg) | ![Sunrise CMS Demo catalog](git-res/screenshot-catalog.jpg) | ![Sunrise CMS Demo product](git-res/screenshot-product.png) | ![Sunrise CMS Demo checkout](git-res/screenshot-checkout.png)
 
-Info page |
---- | 
-![Sunrise CMS Demo info](git-res/screenshot-info.png) |
+Cart | Menu
+--- | ---
+![Sunrise CMS Demo cart](git-res/screenshot-cart.png) | ![Sunrise CMS Demo menu](git-res/screenshot-menu.jpg)
 
 ## Support and discussion
 * [Issues](https://github.com/Nickbur/Sunrise_CMS_Project/issues)  
