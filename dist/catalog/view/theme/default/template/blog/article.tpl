@@ -2,7 +2,7 @@
 <?php echo $header; ?>
 
 <!-- breadcrumbs -->
-<?php require_once(DIR_TEMPLATE.'/default/template/inc.breadcrumbs.tpl'); ?>
+<?php require_once(DIR_TEMPLATE.'/default/template/inc.breadcrumbs.html'); ?>
 
 <!-- heading & description -->
 <div class="uk-section uk-padding-remove uk-margin-small uk-margin-medium-bottom">

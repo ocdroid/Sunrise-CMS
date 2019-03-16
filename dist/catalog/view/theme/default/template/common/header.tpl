@@ -66,13 +66,13 @@
 
 		<div class="uk-offcanvas-content">
 
-			<!-- inc.main_menu.tpl -->
-			<?php require_once(DIR_TEMPLATE.'/default/template/inc.main_menu.tpl'); ?>
+			<!-- inc.main_menu.html -->
+			<?php require_once(DIR_TEMPLATE.'/default/template/inc.main_menu.html'); ?>
 
-			<!-- inc.header.tpl -->
-			<?php require_once(DIR_TEMPLATE.'/default/template/inc.header.tpl'); ?>
+			<!-- inc.header.html -->
+			<?php require_once(DIR_TEMPLATE.'/default/template/inc.header.html'); ?>
 
 			<!-- inc.adminbar.tpl -->
-			<?php require_once(DIR_TEMPLATE.'/default/template/inc.adminbar.tpl'); ?>
+			<?php require_once(DIR_TEMPLATE.'/default/template/inc.adminbar.html'); ?>
 
 			<!-- /header.tpl -->

@@ -2,7 +2,7 @@
 <?php echo $header; ?>
 
 <!-- breadcrumbs -->
-<?php require_once(DIR_TEMPLATE.'/default/template/inc.breadcrumbs.tpl'); ?>
+<?php require_once(DIR_TEMPLATE.'/default/template/inc.breadcrumbs.html'); ?>
 
 <!-- heading & small description -->
 <div class="uk-section uk-padding-remove uk-margin-small uk-margin-medium-bottom">
@@ -93,7 +93,7 @@
 <?php if ($products) { ?>
 
 	<!-- sort & limit -->
-	<?php require_once(DIR_TEMPLATE.'/default/template/inc.sort_and_limit.tpl'); ?>
+	<?php require_once(DIR_TEMPLATE.'/default/template/inc.sort_and_limit.html'); ?>
 
 	<div class="uk-section uk-padding-remove uk-margin-small">
 		<div class="uk-container">

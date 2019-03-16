@@ -154,9 +154,9 @@
 				</div>
 			</div>
 
-			<!-- inc.debug_panel.tpl -->
+			<!-- inc.debug_panel.html -->
 			<?php if (defined('IS_DEBUG')) { ?>
-				<?php require_once(DIR_TEMPLATE.'/default/template/inc.debug_panel.tpl'); ?>
+				<?php require_once(DIR_TEMPLATE.'/default/template/inc.debug_panel.html'); ?>
 			<?php } ?>
 
 		</div>

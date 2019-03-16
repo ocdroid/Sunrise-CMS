@@ -2,7 +2,7 @@
 <?php echo $header; ?>
 
 <!-- breadcrumbs -->
-<?php require_once(DIR_TEMPLATE.'/default/template/inc.breadcrumbs.tpl'); ?>
+<?php require_once(DIR_TEMPLATE.'/default/template/inc.breadcrumbs.html'); ?>
 
 <?php echo $content_top; ?>
 
