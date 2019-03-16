@@ -2,11 +2,10 @@
 
 # Sunrise CMS
 
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+![GitHub All Releases](https://img.shields.io/github/downloads/Nickbur/Sunrise_CMS_Project/total.svg)
 [![Build Status](https://travis-ci.com/Nickbur/Sunrise_CMS_Project.svg?branch=master)](https://travis-ci.com/Nickbur/Sunrise_CMS_Project)
 ![Scrutinizer build](https://img.shields.io/scrutinizer/build/g/Nickbur/Sunrise_CMS_Project.svg)
-![GitHub All Releases](https://img.shields.io/github/downloads/Nickbur/Sunrise_CMS_Project/total.svg)
-
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 > **Warning!**
 > This is **not a release** or even a test build. The project is **in development** and sooner or later it will be ready.
@@ -71,7 +70,7 @@ RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
 * *Current main developer:* Mykola Burakov burakov.work@gmail.com
 
 ## Join the development
-See [CONTRIBUTING](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/CONTRIBUTING.md) and [pull_request_template](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/pull_request_template.md)
+Feel free to join the project, we need your help! See [CONTRIBUTING](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/CONTRIBUTING.md) and [pull_request_template](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/pull_request_template.md) for more information.
 
 ## License
 ![GNU GPLv3 Logo](git-res/GPLv3_Logo.png)  
