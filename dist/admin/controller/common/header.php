@@ -10,7 +10,7 @@ class ControllerCommonHeader extends Controller
     {
 
         // scripts & styles
-        $this->document->addStyle('/css/general/admin.css');
+        $this->document->addStyle('/css/admin/general/styles.css');
         $this->document->addStyle('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css');
         $this->document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js');
         $this->document->addScript('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js');

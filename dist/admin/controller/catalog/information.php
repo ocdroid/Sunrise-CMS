@@ -21,9 +21,9 @@ class ControllerCatalogInformation extends Controller
 
     public function add()
     {
-        $this->document->addStyle('/css/admin/suneditor.css');
+        $this->document->addStyle('/css/admin/general/suneditor.css');
         $this->document->addStyle('/css/admin/page/catalog/information.css');
-        $this->document->addScript('/js/admin/suneditor.js');
+        $this->document->addScript('/js/admin/general/suneditor.js');
 
         $this->load->language('catalog/information');
 
@@ -58,9 +58,9 @@ class ControllerCatalogInformation extends Controller
 
     public function edit()
     {
-        $this->document->addStyle('/css/admin/suneditor.css');
+        $this->document->addStyle('/css/admin/general/suneditor.css');
         $this->document->addStyle('/css/admin/page/catalog/information.css');
-        $this->document->addScript('/js/admin/suneditor.js');
+        $this->document->addScript('/js/admin/general/suneditor.js');
     
         $this->load->language('catalog/information');
 

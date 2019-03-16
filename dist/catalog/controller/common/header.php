@@ -10,7 +10,7 @@ class ControllerCommonHeader extends Controller
     {
         // styles (addStylePreload if "preload" or addStyle if not)
         $this->document->addStyle('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css');
-        $this->document->addStyle('/css/general/catalog.css');
+        $this->document->addStyle('/css/catalog/general/styles.css');
         // scripts (addScriptDefer if "defer" or addScriptAsync if "async" or addScript if neither one nor the other)
         $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js');
         $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js');
