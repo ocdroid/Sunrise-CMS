@@ -61,7 +61,7 @@ RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
 * *Current main developer:* Mykola Burakov burakov.work@gmail.com
 
 ## Join the development
-See [CONTRIBUTING](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/CONTRIBUTING.md)
+See [CONTRIBUTING](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/CONTRIBUTING.md) and [pull_request_template](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/pull_request_template.md)
 
 ## License
 [GNU General Public License v3.0](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/LICENSE)
