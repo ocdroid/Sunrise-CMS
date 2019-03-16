@@ -72,4 +72,5 @@ RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
 See [CONTRIBUTING](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/CONTRIBUTING.md) and [pull_request_template](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/pull_request_template.md)
 
 ## License
+![GNU GPLv3 Logo](git-res/GPLv3_Logo.png)  
 [GNU General Public License v3.0](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/LICENSE)
