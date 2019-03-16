@@ -4,7 +4,7 @@
 
 ![GitHub All Releases](https://img.shields.io/github/downloads/Nickbur/Sunrise-CMS/total.svg)
 [![Build Status](https://travis-ci.com/Nickbur/Sunrise-CMS.svg?branch=master)](https://travis-ci.com/Nickbur/Sunrise-CMS)
-![Scrutinizer build](https://img.shields.io/scrutinizer/build/g/Nickbur/Sunrise-CMS.svg)
+[![Build Status](https://scrutinizer-ci.com/g/Nickbur/Sunrise-CMS/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Nickbur/Sunrise-CMS/build-status/master)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 > **Warning!**
