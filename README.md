@@ -19,13 +19,15 @@ The project is based on the Opencart code base and its custom builds, but there 
 * [Backend](https://sunrise-cms.freelance-team.su/admin/) (login: ```admin```, password: ```dev```)
 
 ## Screenshots
-Main page | Catalog page | Product page | Checkout page
+Main page* | Catalog page* | Product page* | Checkout page*
 --- | --- | --- | ---
 ![Sunrise CMS Demo main](git-res/screenshot-main.jpg) | ![Sunrise CMS Demo catalog](git-res/screenshot-catalog.jpg) | ![Sunrise CMS Demo product](git-res/screenshot-product.png) | ![Sunrise CMS Demo checkout](git-res/screenshot-checkout.png)
 
-Cart | Menu
+Cart* | Menu*
 --- | ---
 ![Sunrise CMS Demo cart](git-res/screenshot-cart.png) | ![Sunrise CMS Demo menu](git-res/screenshot-menu.jpg)
+
+> *Work in progress is shown. Images will be updated periodically.
 
 ## Speed test and page analysis
 
