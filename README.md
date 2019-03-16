@@ -2,9 +2,9 @@
 
 # Sunrise CMS
 
-![GitHub All Releases](https://img.shields.io/github/downloads/Nickbur/Sunrise_CMS_Project/total.svg)
-[![Build Status](https://travis-ci.com/Nickbur/Sunrise_CMS_Project.svg?branch=master)](https://travis-ci.com/Nickbur/Sunrise_CMS_Project)
-![Scrutinizer build](https://img.shields.io/scrutinizer/build/g/Nickbur/Sunrise_CMS_Project.svg)
+![GitHub All Releases](https://img.shields.io/github/downloads/Nickbur/Sunrise-CMS/total.svg)
+[![Build Status](https://travis-ci.com/Nickbur/Sunrise-CMS.svg?branch=master)](https://travis-ci.com/Nickbur/Sunrise-CMS)
+![Scrutinizer build](https://img.shields.io/scrutinizer/build/g/Nickbur/Sunrise-CMS.svg)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 > **Warning!**
@@ -37,10 +37,11 @@ Catalog ([mobile](https://developers.google.com/speed/pagespeed/insights/?hl=en&
 Product ([mobile](https://developers.google.com/speed/pagespeed/insights/?hl=en&url=https%3A%2F%2Fsunrise-cms.freelance-team.su%2Fproduct-1.html&tab=mobile), [desktop](https://developers.google.com/speed/pagespeed/insights/?hl=en&url=https%3A%2F%2Fsunrise-cms.freelance-team.su%2Fproduct-1.html&tab=desktop))  | [Product](https://gtmetrix.com/reports/sunrise-cms.freelance-team.su/XP1FZEqj)  | [Product](https://tools.pingdom.com/#5a61794635c00000)
 
 ## Support and discussion
-* [Issue Tracker](https://github.com/Nickbur/Sunrise_CMS_Project/issues)  
-  * [Report a bug](https://github.com/Nickbur/Sunrise_CMS_Project/issues/new?assignees=&labels=bug%2C+help+wanted%2C+invalid&template=bug_report.md&title=%5BBUG%5D+...)  
-  * [Feature request](https://github.com/Nickbur/Sunrise_CMS_Project/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=)  
+* [Issue Tracker](https://github.com/Nickbur/Sunrise-CMS/issues)  
+  * [Report a bug](https://github.com/Nickbur/Sunrise-CMS/issues/new?assignees=&labels=bug%2C+help+wanted%2C+invalid&template=bug_report.md&title=%5BBUG%5D+...)  
+  * [Feature request](https://github.com/Nickbur/Sunrise-CMS/issues/new?assignees=&labels=enhancement&template=feature_request.md&title=)  
 * [Official forum](https://freelance-team.su/forum/2-sunrise-cms/)
+* [Wiki](https://github.com/Nickbur/Sunrise-CMS/wiki)
 
 ## Install
 1. Move ```/dist/``` contents to your webroot
@@ -70,8 +71,8 @@ RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
 * *Current main developer:* Mykola Burakov burakov.work@gmail.com
 
 ## Join the development
-Feel free to join the project, we need your help! See [CONTRIBUTING](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/CONTRIBUTING.md) and [pull_request_template](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/pull_request_template.md) for more information.
+Feel free to join the project, we need your help! See [CONTRIBUTING](https://github.com/Nickbur/Sunrise-CMS/blob/master/CONTRIBUTING.md) and [pull_request_template](https://github.com/Nickbur/Sunrise-CMS/blob/master/pull_request_template.md) for more information.
 
 ## License
 ![GNU GPLv3 Logo](git-res/GPLv3_Logo.png)  
-[GNU General Public License v3.0](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/LICENSE)
+[GNU General Public License v3.0](https://github.com/Nickbur/Sunrise-CMS/blob/master/LICENSE)
