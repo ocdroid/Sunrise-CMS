@@ -12,7 +12,7 @@
 > This is **not a release** or even a test build. The project is **in development** and sooner or later it will be ready.
 
 This is a free open source solution for creating online stores, blogs, informational sites, one-page sites or landing pages.
-The project is based on the Opencart code base and its custom builds, but there are no plans to follow their roadmap, maintain backward compatibility, or even the internal structure. Sunrise CMS provides lightning-fast response and speed even when working with large amounts of information.
+The project is based on the Opencart code base and its custom builds, but there are no plans to follow their roadmap, maintain backward compatibility, or even the internal structure. Sunrise CMS provides lightning-fast response and speed even when working with large amounts of data.
 
 ## Demo
 * [Frontend](https://sunrise-cms.freelance-team.su/)   
