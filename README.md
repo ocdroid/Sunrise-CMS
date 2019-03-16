@@ -27,6 +27,14 @@ Cart | Menu
 --- | ---
 ![Sunrise CMS Demo cart](git-res/screenshot-cart.png) | ![Sunrise CMS Demo menu](git-res/screenshot-menu.jpg)
 
+## Speed test and page analysis
+
+PageSpeed Insights | GTmetrix | Pingdom
+--- | --- | ---
+Main ([mobile](https://developers.google.com/speed/pagespeed/insights/?hl=en&url=https%3A%2F%2Fsunrise-cms.freelance-team.su%2F&tab=mobile), [desktop](https://developers.google.com/speed/pagespeed/insights/?hl=en&url=https%3A%2F%2Fsunrise-cms.freelance-team.su%2F&tab=desktop))  | [Main](https://gtmetrix.com/reports/sunrise-cms.freelance-team.su/iCjNMebl)  | [Main](https://tools.pingdom.com/#5a6179a502400000)  
+Catalog ([mobile](https://developers.google.com/speed/pagespeed/insights/?hl=en&url=https%3A%2F%2Fsunrise-cms.freelance-team.su%2Fnulla-deleniti%2F), [desktop](https://developers.google.com/speed/pagespeed/insights/?hl=en&url=https%3A%2F%2Fsunrise-cms.freelance-team.su%2Fnulla-deleniti%2F&tab=desktop))  | [Catalog](https://gtmetrix.com/reports/sunrise-cms.freelance-team.su/AOuGvyme)  | [Catalog](https://tools.pingdom.com/#5a617990d5000000)  
+Product ([mobile](https://developers.google.com/speed/pagespeed/insights/?hl=en&url=https%3A%2F%2Fsunrise-cms.freelance-team.su%2Fproduct-1.html&tab=mobile), [desktop](https://developers.google.com/speed/pagespeed/insights/?hl=en&url=https%3A%2F%2Fsunrise-cms.freelance-team.su%2Fproduct-1.html&tab=desktop))  | [Product](https://gtmetrix.com/reports/sunrise-cms.freelance-team.su/XP1FZEqj)  | [Product](https://tools.pingdom.com/#5a61794635c00000)
+
 ## Support and discussion
 * [Issue Tracker](https://github.com/Nickbur/Sunrise_CMS_Project/issues)  
   * [Report a bug](https://github.com/Nickbur/Sunrise_CMS_Project/issues/new?assignees=&labels=bug%2C+help+wanted%2C+invalid&template=bug_report.md&title=%5BBUG%5D+...)  
@@ -61,7 +69,7 @@ RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
 * *Current main developer:* Mykola Burakov burakov.work@gmail.com
 
 ## Join the development
-See [CONTRIBUTING](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/CONTRIBUTING.md)
+See [CONTRIBUTING](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/CONTRIBUTING.md) and [pull_request_template](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/pull_request_template.md)
 
 ## License
 [GNU General Public License v3.0](https://github.com/Nickbur/Sunrise_CMS_Project/blob/master/LICENSE)
