@@ -78,13 +78,8 @@ class ControllerDesignCustomMenu extends Controller
 
         $this->load->model('design/custommenu');
 
-        $this->document->addStyle('view/javascript/jquery/layout/jquery-ui.css');
-        $this->document->addStyle('view/stylesheet/custommenu.css');
-        $this->document->addStyle('view/stylesheet/layout.css');
-
-        $this->document->addScript('view/javascript/jquery/layout/jquery-ui.js');
-        $this->document->addScript('view/javascript/jquery/layout/jquery-lockfixed.js');
-        $this->document->addScript('view/javascript/custommenu/custommenu.js');
+        $this->document->addStyle('/css/admin/general/custommenu.css');
+        $this->document->addScript('/js/admin/general/custommenu.js');
 
         $data['changecustommenuPosition'] = $this->url->link('design/custommenu/changecustommenuPosition', 'token=' . $this->session->data['token'], 'SSL');
 
