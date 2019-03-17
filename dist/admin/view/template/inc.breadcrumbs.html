@@ -1,0 +1,25 @@
+<!-- inc.breadcrumbs.html -->
+<div class="uk-section uk-padding-small uk-background-muted">
+	<div class="uk-container">
+
+		<ul class="uk-breadcrumb">
+
+			<?php foreach ($breadcrumbs as $breadcrumb) { ?>
+				<li>
+					<a href="<?php echo $breadcrumb['href']; ?>">
+						<?php echo $breadcrumb['text']; ?>
+					</a>
+				</li>
+			<?php } ?>
+
+			<!-- heading in breadcrumbs -->
+			<li class="uk-text-bold">
+				<?php echo $heading_title; ?>
+			</li>
+			<!-- /heading in breadcrumbs -->
+
+		</ul>
+
+	</div>
+</div>
+<!-- /inc.breadcrumbs.html -->

@@ -92,7 +92,7 @@ final class Loader
                 $template->set($key, $value);
             }
         
-            $output = $template->render($route . '.tpl');
+            $output = $template->render($route . '.html');
 
             // template paths
             // if (!empty($_SESSION[$_COOKIE['default']]['user_id']) && basename(DIR_APPLICATION) == 'catalog') {

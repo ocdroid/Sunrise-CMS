@@ -642,7 +642,7 @@ class ControllerProductProduct extends Controller
                                 $category_id = explode('_', $this->request->get['path']);
                                 $category_id = (int)end($category_id);
                                 if (in_array($category_id, $module['product_categories'])) {
-                                    if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.tpl')) {
+                                    if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
                                         $template = $module['template_name'];
                                     }
                                 }
@@ -656,7 +656,7 @@ class ControllerProductProduct extends Controller
                         if ((isset($module['customer_groups']) && in_array($customer_group_id, $module['customer_groups'])) || !isset($module['customer_groups']) || empty($module['customer_groups'])) {
                             $manufacturer_id = $product_info['manufacturer_id'];
                             if (in_array($manufacturer_id, $module['product_manufacturers'])) {
-                                if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.tpl')) {
+                                if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
                                     $template = $module['template_name'];
                                 }
                             }
@@ -669,7 +669,7 @@ class ControllerProductProduct extends Controller
                         if ((isset($module['customer_groups']) && in_array($customer_group_id, $module['customer_groups'])) || !isset($module['customer_groups']) || empty($module['customer_groups'])) {
                             $products = explode(',', $module['products']);
                             if (in_array($product_id, $products)) {
-                                if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.tpl')) {
+                                if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
                                     $template = $module['template_name'];
                                 }
                             }

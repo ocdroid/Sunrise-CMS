@@ -422,7 +422,7 @@ class ControllerProductManufacturer extends Controller {
                         if ((isset($module['customer_groups']) && in_array($customer_group_id, $module['customer_groups'])) || !isset($module['customer_groups']) || empty($module['customer_groups'])){
 
                             if (in_array($manufacturer_id, $module['manufacturers'])) {
-                                if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.tpl')) {
+                                if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
                                     $template = $this->config->get('config_theme') .DIRECTORY_SEPARATOR. $module['template_name'];
                                 }
                             }
