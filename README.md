@@ -70,7 +70,8 @@ RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
 * *Current main developer:* Mykola Burakov burakov.work@gmail.com
 
 ## Join the development
-Feel free to join the project, we need your help! See [CONTRIBUTING](https://github.com/Nickbur/Sunrise-CMS/blob/master/CONTRIBUTING.md) and [pull_request_template](https://github.com/Nickbur/Sunrise-CMS/blob/master/pull_request_template.md) for more information.
+Feel free to join the project, we need your help! See [CONTRIBUTING](https://github.com/Nickbur/Sunrise-CMS/blob/master/CONTRIBUTING.md) and [pull_request_template](https://github.com/Nickbur/Sunrise-CMS/blob/master/pull_request_template.md) for more information.  
+> Note that you need to follow the [GitFlow](https://datasift.github.io/gitflow/IntroducingGitFlow.html) branching model.
 
 ## License
 ![GNU GPLv3 Logo](git-res/GPLv3_Logo.png)  
