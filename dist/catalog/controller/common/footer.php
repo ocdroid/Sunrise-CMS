@@ -24,6 +24,22 @@ class ControllerCommonFooter extends Controller
         $data['text_account'] = $this->language->get('text_account');
         $data['text_order'] = $this->language->get('text_order');
         $data['text_newsletter'] = $this->language->get('text_newsletter');
+        $data['text_powered'] = $this->language->get('text_powered');
+        
+        $data['store_name'] = $this->config->get('config_name');
+        $data['store_year'] = date('Y', time());
+
+        if ($this->request->server['HTTPS']) {
+            $server = $this->config->get('config_ssl');
+        } else {
+            $server = $this->config->get('config_url');
+        }
+
+        if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+            $data['logo'] = $server . 'images/' . $this->config->get('config_logo');
+        } else {
+            $data['logo'] = '';
+        }
 
         $this->load->model('catalog/information');
 
@@ -47,8 +63,6 @@ class ControllerCommonFooter extends Controller
         $data['account'] = $this->url->link('account/account', '', true);
         $data['order'] = $this->url->link('account/order', '', true);
         $data['newsletter'] = $this->url->link('account/newsletter', '', true);
-
-        $data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
 
         return $this->load->view('common/footer', $data);
     }

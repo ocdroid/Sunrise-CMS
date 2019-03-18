@@ -17,4 +17,4 @@ $_['text_mostviewed']   = 'Mostviewed';
 $_['text_account']      = 'My Account';
 $_['text_order']        = 'Order History';
 $_['text_newsletter']   = 'Newsletter';
-$_['text_powered']      = '%s - Powered by Sunrise CMS &copy; %s';
+$_['text_powered']      = 'Powered by Sunrise CMS';

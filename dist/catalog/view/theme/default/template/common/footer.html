@@ -10,108 +10,174 @@
 					
 				<div class="uk-margin uk-margin-medium-top uk-margin-medium-bottom uk-flex uk-flex-center" uk-grid>
 
-					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-6@m">
-						...
-					</div>
-
-					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-6@m">
-						...
-					</div>
-
-					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-6@m">
+					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-4@m">
 						
-						<?php if ($informations) { ?>
+						<h4 class="uk-text-bold">
+							Sunrise CMS Demo
+						</h4>
 
-							<h4>
-								<?php echo $text_information; ?>
-							</h4>
-			
-							<ul class="uk-list uk-list-bullet">
-			
-								<?php foreach ($informations as $information) { ?>
-									<li>
-										<a href="<?php echo $information['href']; ?>">
-											<?php echo $information['title']; ?>
+						<div>
+							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima sint voluptates nostrum et quibusdam doloremque numquam totam eveniet culpa saepe explicabo enim, delectus deserunt aut tempore molestias exercitationem officiis obcaecati.
+						</div>
+
+						<hr>
+
+						<img src="<?php echo $logo; ?>" alt="">
+
+					</div>
+
+					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-4@m">
+						
+						<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+							Our location
+						</h4>
+
+						<iframe width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=30.49787521362305%2C50.44487954020851%2C30.547442436218265%2C50.457463037299085&amp;layer=mapnik&amp;marker=50.45117170709597%2C30.522658824920654"></iframe>
+		
+					</div>
+
+					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-2@m uk-flex uk-flex-center uk-grid-collapse" uk-grid>
+
+						<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-3@m">
+							
+							<?php if ($informations) { ?>
+
+								<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+									<?php echo $text_information; ?>
+								</h4>
+				
+								<ul class="uk-list">
+				
+									<?php foreach ($informations as $information) { ?>
+										<li>
+											<a 
+												href="<?php echo $information['href']; ?>"
+												class="uk-text-muted"
+											>
+												<?php echo $information['title']; ?>
+											</a>
+										</li>
+									<?php } ?>
+				
+								</ul>
+										
+								<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+									<?php echo $text_service; ?>
+								</h4>
+					
+								<ul class="uk-list">
+	
+									<li class="uk-margin-medium-bottom">
+										<a 
+											href="<?php echo $contact; ?>" 
+											class="uk-text-muted"
+										>
+											<?php echo $text_contact; ?>
 										</a>
 									</li>
-								<?php } ?>
-			
-							</ul>
-									
-						<?php } ?>
+	
+								</ul>
 
-					</div>
+							<?php } ?>
+
+						</div>
 		
-					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-6@m">
-						<h4>
-							<?php echo $text_service; ?>
-						</h4>
-			
-						<ul class="uk-list uk-list-bullet">
-							<li>
-								<a href="<?php echo $contact; ?>">
-									<?php echo $text_contact; ?>
-								</a>
-							</li>
-						</ul>
-					</div>
-		
-					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-6@m">
-						<h4>
-							<?php echo $text_extra; ?>
-						</h4>
-			
-						<ul class="uk-list uk-list-bullet">
-							<li>
-								<a href="<?php echo $manufacturer; ?>">
-									<?php echo $text_manufacturer; ?>
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo $special; ?>">
-									<?php echo $text_special; ?>
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo $mostviewed; ?>">
-									<?php echo $text_mostviewed; ?>
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo $bestseller; ?>">
-									<?php echo $text_bestseller; ?>
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo $latest; ?>">
-									<?php echo $text_latest; ?>
-								</a>
-							</li>
-						</ul>
-					</div>
-		
-					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-6@m">
-						<h4>
-							<?php echo $text_account; ?>
-						</h4>
-			
-						<ul class="uk-list uk-list-bullet">
-							<li>
-								<a href="<?php echo $account; ?>">
-									<?php echo $text_account; ?>
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo $order; ?>">
-									<?php echo $text_order; ?>
-								</a>
-							</li>
-							<li>
-								<a href="<?php echo $newsletter; ?>">
-									<?php echo $text_newsletter; ?>
-								</a>
-							</li>
-						</ul>
+						<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-3@m">
+							
+							<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+								<?php echo $text_extra; ?>
+							</h4>
+				
+							<ul class="uk-list">
+								
+								<li>
+									<a 
+										href="<?php echo $manufacturer; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_manufacturer; ?>
+									</a>
+								</li>
+
+								<li>
+									<a 
+										href="<?php echo $special; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_special; ?>
+									</a>
+								</li>
+
+								<li>
+									<a 
+										href="<?php echo $mostviewed; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_mostviewed; ?>
+									</a>
+								</li>
+
+								<li>
+									<a 
+										href="<?php echo $bestseller; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_bestseller; ?>
+									</a>
+								</li>
+
+								<li class="uk-margin-medium-bottom">
+									<a 
+										href="<?php echo $latest; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_latest; ?>
+									</a>
+								</li>
+
+							</ul>
+
+						</div>
+
+						<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-3@m">
+							
+							<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+								<?php echo $text_account; ?>
+							</h4>
+				
+							<ul class="uk-list">
+
+								<li>
+									<a 
+										href="<?php echo $account; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_account; ?>
+									</a>
+								</li>
+
+								<li>
+									<a 
+										href="<?php echo $order; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_order; ?>
+									</a>
+								</li>
+
+								<li class="uk-margin-medium-bottom">
+									<a 
+										href="<?php echo $newsletter; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_newsletter; ?>
+									</a>
+								</li>
+
+							</ul>
+
+						</div>
+
 					</div>
 
 				</div>
@@ -127,7 +193,7 @@
 			<div class="uk-margin uk-padding-remove uk-grid-collapse" uk-grid>
 
 				<div class="uk-width-1-1 uk-width-2-3@s uk-width-3-4@m uk-width-4-5@l uk-width-5-6@xl uk-text-left@s uk-text-center">
-					<?php echo $powered; ?>
+					<?php echo $store_name; ?> <span class="uk-text-muted">- <?php echo $text_powered; ?> &copy; <?php echo $store_year; ?></span>
 				</div>
 			
 				<div class="uk-width-1-1 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l uk-width-1-6@xl uk-text-right@s uk-text-center">

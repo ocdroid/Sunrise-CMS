@@ -2,6 +2,10 @@ body {
 	overflow-y: scroll;
 }
 
+.uk-text-bold {
+	font-weight: bold;
+}
+
 /* css-fr fix */
 .uk-container:not(.uk-container-expand) {
 	max-width: 1600px;
