@@ -1046,7 +1046,7 @@
 	<script src="view/javascript/summernote/summernote.js"></script>
 	<link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
 	<script src="view/javascript/summernote/opencart.js"></script>
-	<script><!--
+	<script>
 // Manufacturer
 $('input[name=\'manufacturer\']').autocomplete({
 	'source': function(request, response) {
@@ -1218,8 +1218,8 @@ $('input[name=\'product_related_article_input\']').autocomplete({
 $('#article-related').delegate('.fa-minus-circle', 'click', function() {
 	$(this).parent().remove();
 });
-//--></script>
-	<script><!--
+</script>
+	<script>
 var attribute_row = <?php echo $attribute_row; ?>;
 
 function addAttribute() {
@@ -1267,8 +1267,8 @@ function attributeautocomplete(attribute_row) {
 $('#attribute tbody tr').each(function(index, element) {
 	attributeautocomplete(index);
 });
-//--></script>
-	<script><!--
+</script>
+	<script>
 var option_row = <?php echo $option_row; ?>;
 
 $('input[name=\'option\']').autocomplete({
@@ -1407,8 +1407,8 @@ $('input[name=\'option\']').autocomplete({
 		option_row++;
 	}
 });
-//--></script>
-	<script><!--
+</script>
+	<script>
 var option_value_row = <?php echo $option_value_row; ?>;
 
 function addOptionValue(option_row) {
@@ -1439,8 +1439,8 @@ function addOptionValue(option_row) {
 
 	option_value_row++;
 }
-//--></script>
-	<script><!--
+</script>
+	<script>
 var discount_row = <?php echo $discount_row; ?>;
 
 function addDiscount() {
@@ -1466,8 +1466,8 @@ function addDiscount() {
 
 	discount_row++;
 }
-//--></script>
-	<script><!--
+</script>
+	<script>
 var special_row = <?php echo $special_row; ?>;
 
 function addSpecial() {
@@ -1492,8 +1492,8 @@ function addSpecial() {
 
 	special_row++;
 }
-//--></script>
-	<script><!--
+</script>
+	<script>
 var image_row = <?php echo $image_row; ?>;
 
 function addImage() {

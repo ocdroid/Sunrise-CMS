@@ -90,7 +90,7 @@
 			</div>
 		</div>
 	</div>
-	<script><!--
+	<script>
 $('input[name=\'article\']').autocomplete({
 	source: function(request, response) {
 		$.ajax({
@@ -118,6 +118,6 @@ $('input[name=\'article\']').autocomplete({
 $('#featured-article').delegate('.fa-minus-circle', 'click', function() {
 	$(this).parent().remove();
 });
-//--></script></div>
+</script></div>
 <?php echo $footer; ?>
 <!-- /blog_featured.html -->

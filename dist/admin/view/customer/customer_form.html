@@ -658,7 +658,7 @@
 			</div>
 		</div>
 	</div>
-	<script><!--
+	<script>
 $('select[name=\'customer_group_id\']').on('change', function() {
 	$.ajax({
 		url: 'index.php?route=customer/customer/customfield&token=<?php echo $token; ?>&customer_group_id=' + this.value,
@@ -684,8 +684,8 @@ $('select[name=\'customer_group_id\']').on('change', function() {
 });
 
 $('select[name=\'customer_group_id\']').trigger('change');
-//--></script>
-	<script><!--
+</script>
+	<script>
 var address_row = <?php echo $address_row; ?>;
 
 function addAddress() {
@@ -896,8 +896,8 @@ function addAddress() {
 
 	address_row++;
 }
-//--></script>
-	<script><!--
+</script>
+	<script>
 function country(element, index, zone_id) {
 	$.ajax({
 		url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + element.value,
@@ -940,8 +940,8 @@ function country(element, index, zone_id) {
 }
 
 $('select[name$=\'[country_id]\']').trigger('change');
-//--></script>
-	<script><!--
+</script>
+	<script>
 $('#history').delegate('.pagination a', 'click', function(e) {
 	e.preventDefault();
 
@@ -981,8 +981,8 @@ $('#button-history').on('click', function(e) {
 		}
 	});
 });
-//--></script>
-	<script><!--
+</script>
+	<script>
 $('#transaction').delegate('.pagination a', 'click', function(e) {
 	e.preventDefault();
 
@@ -1023,8 +1023,8 @@ $('#button-transaction').on('click', function(e) {
 		}
 	});
 });
-//--></script>
-	<script><!--
+</script>
+	<script>
 $('#reward').delegate('.pagination a', 'click', function(e) {
 	e.preventDefault();
 
@@ -1176,6 +1176,6 @@ $('#tab-customer .form-group[data-sort]').detach().each(function() {
 	}
 });
 <?php } ?>
-//--></script></div>
+</script></div>
 <?php echo $footer; ?>
 <!-- /custom_form.html -->

@@ -144,7 +144,7 @@
 			</div>
 		</div>
 	</div>
-	<script><!--
+	<script>
 $('#button-filter').on('click', function() {
 	var url = 'index.php?route=blog/article&token=<?php echo $token; ?>';
 
@@ -168,8 +168,8 @@ $('#button-filter').on('click', function() {
 
 	location = url;
 });
-//--></script>
-	<script><!--
+</script>
+	<script>
 $('input[name=\'filter_name\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
@@ -189,6 +189,6 @@ $('input[name=\'filter_name\']').autocomplete({
 		$('input[name=\'filter_name\']').val(item['label']);
 	}
 });
-//--></script></div>
+</script></div>
 <?php echo $footer; ?>
 <!-- /article_list.html -->
