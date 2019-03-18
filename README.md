@@ -1,6 +1,6 @@
-![Sunrise CMS Logo](git-res/logo.png)
+<h1 align="center">Sunrise CMS</h1>
 
-# Sunrise CMS
+<img src="git-res/logo.png" align="right" />
 
 ![GitHub All Releases](https://img.shields.io/github/downloads/Nickbur/Sunrise-CMS/total.svg)
 [![Build Status](https://scrutinizer-ci.com/g/Nickbur/Sunrise-CMS/badges/build.png?b=master)](https://scrutinizer-ci.com/g/Nickbur/Sunrise-CMS/build-status/master)
