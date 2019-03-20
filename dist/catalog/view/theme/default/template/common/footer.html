@@ -55,7 +55,7 @@
 				
 							<ul class="uk-list">
 	
-								<li class="uk-margin-medium-bottom">
+								<li>
 									<a 
 										href="<?php echo $contact; ?>" 
 										class="uk-text-muted"
@@ -65,6 +65,25 @@
 								</li>
 	
 							</ul>
+
+							<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+								We accept
+							</h4>
+
+							<div class="cc_footer_payments_icons uk-flex uk-margin-medium-bottom">
+								<img src="/images/catalog/peyments/bank.png" alt="">
+								<img src="/images/catalog/peyments/card.png" alt="">
+								<img src="/images/catalog/peyments/cash.png" alt="">
+								<img src="/images/catalog/peyments/mobile.png" alt="">
+								<img src="/images/catalog/peyments/terminal.png" alt="">
+							</div>
+	
+							<style>
+								.cc_footer_payments_icons img {
+									height: 20px;
+									margin-right: 10px;
+								}
+							</style>
 
 						</div>
 
@@ -152,24 +171,6 @@
 
 						</div>
 
-						<div class="uk-width-1-1 uk-width-1-1@s uk-width-1-1@m uk-width-3-5@l uk-width-3-5@xl uk-text-center uk-text-left@l uk-margin-medium-bottom">
-
-							<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
-								Subscribe to newsletter
-							</h4>
-
-							<div class="uk-button-group">
-
-								<input class="uk-input" type="text" placeholder="Subscribe">
-
-								<button class="uk-button uk-button-secondary">
-									Subscribe
-								</button>
-
-							</div>
-
-						</div>
-
 					</div>
 
 					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-2@m uk-width-1-4@l uk-width-1-4@xl uk-text-center uk-text-left@l">
@@ -178,23 +179,9 @@
 							Our location and contacts
 						</h4>
 
-						<div class="cc_footer_show_map">
-							<!-- https://javascript.ru/forum/dom-window/65695-zagruzka-iframe-po-kliku-v-knopke.html -->
-							<div data='<iframe width="100%" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=30.49787521362305%2C50.44487954020851%2C30.547442436218265%2C50.457463037299085&amp;layer=mapnik&amp;marker=50.45117170709597%2C30.522658824920654"></iframe>'></div><button class="uk-button uk-button-default uk-button-small uk-margin-small-top uk-margin-small-bottom uk-text-small" type="button" onclick="LoadMap(this)">Show map</button>
-							
-							<script>
-								function LoadMap(map) {
-									var div = document.querySelector('.cc_footer_show_map > div');
-									div.innerHTML = div.getAttribute('data');
-									map.style.display = 'none';
-								}
-							</script>
-						
-						</div>
-		
 						<div class="uk-margin uk-flex uk-flex-center uk-grid-small" uk-grid>
 						
-							<div class="uk-width-1-2">
+							<div class="uk-width-1-1">
 
 								<span class="uk-text-small uk-text-bold">
 									Address:
@@ -202,6 +189,20 @@
 
 								<div class="uk-text-muted">
 									01234, Україна, м.Петропавлівська Борщагівка, б.13, оф.666
+								</div>
+
+								<div class="cc_footer_show_map uk-margin">
+									<!-- https://javascript.ru/forum/dom-window/65695-zagruzka-iframe-po-kliku-v-knopke.html -->
+									<div data='<iframe width="100%" height="150" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=30.49787521362305%2C50.44487954020851%2C30.547442436218265%2C50.457463037299085&amp;layer=mapnik&amp;marker=50.45117170709597%2C30.522658824920654"></iframe>'></div><button class="uk-button uk-button-default uk-button-small uk-margin-small-top uk-margin-small-bottom uk-text-small" type="button" onclick="LoadMap(this)">Show on map</button>
+									
+									<script>
+										function LoadMap(map) {
+											var div = document.querySelector('.cc_footer_show_map > div');
+											div.innerHTML = div.getAttribute('data');
+											map.style.display = 'none';
+										}
+									</script>
+								
 								</div>
 
 							</div>
@@ -246,7 +247,7 @@
 
 							</div>
 
-							<div class="uk-width-1-2">
+							<div class="uk-width-1-1">
 
 								<span class="uk-text-small uk-text-bold">
 									E-mail:
@@ -281,23 +282,18 @@
 						</div>
 
 						<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
-							We accept
+							Subscribe to newsletter
 						</h4>
 
-						<div class="cc_footer_payments_icons uk-flex">
-							<img src="/images/catalog/peyments/bank.png" alt="">
-							<img src="/images/catalog/peyments/card.png" alt="">
-							<img src="/images/catalog/peyments/cash.png" alt="">
-							<img src="/images/catalog/peyments/mobile.png" alt="">
-							<img src="/images/catalog/peyments/terminal.png" alt="">
-						</div>
+						<div class="uk-button-group">
 
-						<style>
-							.cc_footer_payments_icons img {
-								height: 20px;
-								margin-right: 10px;
-							}
-						</style>
+							<input class="uk-input" type="text" placeholder="Subscribe">
+
+							<button class="uk-button uk-button-secondary">
+								Subscribe
+							</button>
+
+						</div>
 
 					</div>
 

@@ -1,6 +1,4 @@
 <?php
-
-
 // *	@source		See SOURCE.txt for source and other copyright.
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
@@ -17,6 +15,7 @@ class ControllerCommonHeader extends Controller
         $this->document->addScriptDefer('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js');
 
         $this->document->addScript('https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js');
+        $this->document->addScriptAsync('/js/catalog/general/common/cart.js');
         
         //
         if ($this->request->server['HTTPS']) {
