@@ -15,6 +15,8 @@ class ControllerCommonHeader extends Controller
         $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js');
         $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js');
         $this->document->addScriptDefer('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js');
+
+        $this->document->addScript('https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js');
         
         //
         if ($this->request->server['HTTPS']) {
