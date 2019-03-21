@@ -26,7 +26,7 @@
 			<link rel="<?php echo $link['rel']; ?>" href="<?php echo $link['href']; ?>">
 		<?php } ?>
 
-		<!-- stelysheets -->
+		<!-- stylesheets -->
 		<?php foreach ($stylespreload as $stylepreload) { ?>
 			<link rel="<?php echo $stylepreload['rel']; ?>" href="<?php echo $stylepreload['href']; ?>" as="style">
 		<?php } ?>
@@ -69,8 +69,24 @@
 			<!-- inc.main_menu.html -->
 			<?php require_once(DIR_TEMPLATE.'/default/template/inc.main_menu.html'); ?>
 
-			<!-- inc.header.html -->
-			<?php require_once(DIR_TEMPLATE.'/default/template/inc.header.html'); ?>
+			<header>
+
+				<?php if(isMobile || isTablet) { ?>
+
+					<!-- inc.header_upper_mobile.html -->
+					<?php require_once(DIR_TEMPLATE.'/default/template/inc.header_upper_mobile.html'); ?>
+
+				<?php } else { ?>
+
+					<!-- inc.header_upper_desktop.html -->
+					<?php require_once(DIR_TEMPLATE.'/default/template/inc.header_upper_desktop.html'); ?>
+
+				<?php } ?>
+
+				<!-- inc.header_lower.html -->
+				<?php require_once(DIR_TEMPLATE.'/default/template/inc.header_lower.html'); ?>
+
+			</header>
 
 			<!-- inc.adminbar.html -->
 			<?php require_once(DIR_TEMPLATE.'/default/template/inc.adminbar.html'); ?>
