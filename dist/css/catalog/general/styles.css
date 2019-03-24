@@ -2,9 +2,27 @@ body {
 	overflow-y: scroll;
 }
 
-.uk-text-bold {
-	font-weight: bold;
+
+
+.cc_header_upper_desktop {
+	
 }
+
+	.uk-logo img {
+		max-height: 40px;
+	}
+
+	.cc_header_upper_desktop_phones {
+
+	}
+		.cc_header_upper_desktop_phones > div {
+
+		}
+			.cc_header_upper_desktop_phones img {
+				width: 26px;
+				height: 26px;
+				margin-right: 5px;
+			}
 
 /* css-fr fix */
 .uk-container:not(.uk-container-expand) {
