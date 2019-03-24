@@ -1029,18 +1029,11 @@ class ControllerSettingSetting extends Controller
         } else {
             $server = HTTP_CATALOG;
         }
-        
-        // This is only here for compatibility with old themes.
-        if ($this->request->get['theme'] == 'theme_default') {
-            $theme = $this->config->get('theme_default_directory');
+
+        if ($this->config->get('theme_default_directory') != 'default') {
+            $this->response->setOutput($server . 'images/theme/' . $this->request->get['theme'] . '.png');
         } else {
-            $theme = basename($this->request->get['theme']);
-        }
-        
-        if (is_file(DIR_CATALOG . 'view/theme/' . $theme . '/image/' . $theme . '.png')) {
-            $this->response->setOutput($server . 'catalog/view/theme/' . $theme . '/image/' . $theme . '.png');
-        } else {
-            $this->response->setOutput($server . 'image/no_image.png');
+            $this->response->setOutput($server . 'images/theme/theme_default.png');
         }
     }
 }

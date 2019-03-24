@@ -1,0 +1,300 @@
+<!-- inc.header_upper.html -->
+<div class="uk-section uk-padding-remove">
+				
+	<nav class="uk-navbar-container uk-navbar-transparent uk-container" uk-navbar>
+
+		<div class="uk-navbar-left">
+	
+			<ul class="uk-navbar-nav">
+
+				<style>
+					/* more contacts */
+					.cc_header_contacts_more:hover a span {
+						background: rgb(228, 228, 228);
+						transition: .15s;
+					}
+						.uk-navbar-nav > li.cc_header_contacts_more > a {
+							padding: 0;
+						}
+							.cc_header_contacts_more span {
+								padding: 10px;
+							}
+							.cc_header_contacts_more_content {
+								padding: 0;
+								max-width: 250px;
+								font-size: 14px;
+								text-transform: initial;
+								border: 1px solid rgb(212, 212, 212);
+								border-top: 1px solid rgb(228, 228, 228);
+							}
+								.cc_header_contacts_more_content_phone {
+									margin-top: 10px;
+								}
+								.cc_header_contacts_more_content_phone,
+								.cc_header_contacts_more_content_time,
+								.cc_header_contacts_more_content_map {
+									border-bottom: 1px solid rgb(229, 229, 229);
+								}
+									.cc_header_contacts_more_content_map button {
+										margin-left: 50px;
+									}
+								.cc_header_contacts_more_content_soc {
+									margin: 10px 0;
+								}
+								.cc_header_contacts_more_content_time,
+								.cc_header_contacts_more_content_place {
+									cursor: default;
+								}
+									.cc_header_contacts_more_content span {
+										position: absolute;
+										left: 5px;
+										margin-top: 2px;
+									}
+									.cc_header_contacts_more:hover.cc_header_contacts_more:hover .cc_header_contacts_more_content span {
+										background: transparent;
+									}
+										.cc_header_contacts_more_content .cc_header_contacts_more_content_soc span {
+											margin-top: -3px;
+										}
+									.cc_header_contacts_more_content_soc > div {
+										padding: 5px 10px 5px 50px;
+									}
+									.cc_header_contacts_more_content_phone > div,
+									.cc_header_contacts_more_content_time > div,
+									.cc_header_contacts_more_content_place > div {
+										padding: 10px 10px 10px 50px;
+									}
+									.cc_header_contacts_more_content_phone > div:hover,
+									.cc_header_contacts_more_content_soc > div:hover {
+										background: rgb(228, 228, 228);
+										transition: .15s;
+									}
+										.cc_header_contacts_more_content_phone a,
+										.cc_header_contacts_more_content_soc a {
+											color: rgb(102, 102, 102);
+										}
+											.cc_header_contacts_more_content_phone a:hover,
+											.cc_header_contacts_more_content_soc a:hover {
+												text-decoration: none;
+											}
+					/* phone */
+					.cc_header_contacts_phone {
+						font-size: 18px;
+						margin-left: 5px;
+						position: relative;
+						top: 1px;
+					}
+				</style>
+
+				<li class="cc_header_contacts_more">
+
+					<a href="#">
+						<span uk-icon="more-vertical"></span>
+					</a>
+					
+					<div class="cc_header_contacts_more_content uk-box-shadow-xlarge" uk-dropdown="mode: click; offset: -20">
+
+						<div class="cc_header_contacts_more_content_phone">
+							
+							<span uk-icon="receiver"></span>
+
+							<div>
+								<a href="tel:#">
+									+380 (12) 345-67-89
+								</a>
+							</div>
+
+							<div>
+								<a href="tel:#">
+									+380 (98) 765-43-21
+								</a>
+							</div>
+
+						</div>
+
+						<div class="cc_header_contacts_more_content_time">
+							
+							<span uk-icon="clock"></span>
+
+							<div>
+								Пн.-Пт.: 09:00-22:00 <br>
+								Сб.-Нд.: Вихідні
+							</div>
+
+						</div>
+
+						<div class="cc_header_contacts_more_content_place">
+
+							<span uk-icon="location"></span>
+
+							<div>
+								01234, Україна, м.Петропавлівська Борщагівка, б.13, оф.666
+							</div>
+
+						</div>
+
+						<div class="cc_header_contacts_more_content_map">
+							<!-- https://javascript.ru/forum/dom-window/65695-zagruzka-iframe-po-kliku-v-knopke.html -->
+							<div data='<iframe width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=30.516436100006107%2C50.44645778445593%2C30.53435325622559%2C50.45274974148767&amp;layer=mapnik&amp;marker=50.44960386755845%2C30.525394678115845"></iframe>'></div><button class="uk-button uk-button-default uk-button-small uk-margin-small-top uk-margin-small-bottom uk-text-small" type="button" onclick="LoadMap(this)"><?php echo $text_look_at_map; ?></button>
+
+							<script>
+								function LoadMap(map) {
+									var div = document.querySelector('.cc_header_contacts_more_content_map > div');
+									div.innerHTML = div.getAttribute('data');
+									map.style.display = 'none';
+								}
+							</script>
+
+						</div>
+
+						<div class="cc_header_contacts_more_content_soc">
+							
+							<span uk-icon="comment"></span>
+
+							<div>
+								<a href="#">
+									twitter
+								</a>
+							</div>
+
+							<div>
+								<a href="#">
+									facebook
+								</a>
+							</div>
+
+							<div>
+								<a href="#">
+									skype
+								</a>
+							</div>
+
+							<div>
+								<a href="#">
+									email
+								</a>
+							</div>
+
+						</div>
+
+					</div>
+
+				</li>
+
+				<li>
+					<a href="tel:<?php echo $telephone; ?>">
+						<span uk-icon="receiver"></span>
+						<span class="cc_header_contacts_phone uk-visible@s">
+							<?php echo $telephone; ?>
+						</span>
+					</a>
+				</li>
+
+			</ul>
+	
+		</div>
+	
+		<div class="uk-navbar-center">
+
+			<style>
+				.uk-logo img {
+					max-height: 40px;
+				}
+			</style>
+
+			<a class="uk-logo uk-text-center" href="<?php echo $home; ?>">
+
+				<?php if ($logo) { ?>
+
+					<img data-src="<?php echo $logo; ?>" width="" height="" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" uk-img>
+
+					<div class="uk-text-small uk-visible@s">
+						<?php echo $name; ?>
+					</div>
+
+				<?php } else { ?>
+
+					<div class="uk-text-large">
+						<?php echo $name; ?>
+					</div>
+
+				<?php } ?>
+
+			</a>
+			
+		</div>
+
+		<div class="uk-navbar-right">
+	
+			<ul class="uk-navbar-nav">
+
+				<li class="cc_header_account">
+					<a class="uk-text-capitalize uk-text-small" href="<?php echo $account; ?>">
+						<span uk-icon="user"></span>
+						<span class="uk-visible@s">
+							<?php echo $text_account; ?>
+						</span>
+					</a>
+					<div uk-dropdown="mode: click; offset: -25; pos: top-right;">
+						<ul class="uk-nav uk-dropdown-nav uk-text-right">
+
+							<?php if ($logged) { ?>
+
+								<li>
+									<a href="<?php echo $account; ?>">
+										<?php echo $text_account; ?>
+									</a>
+								</li>
+						
+								<li>
+									<a href="<?php echo $order; ?>">
+										<?php echo $text_order; ?>
+									</a>
+								</li>
+								
+								<li>
+									<a href="<?php echo $transaction; ?>">
+										<?php echo $text_transaction; ?>
+									</a>
+								</li>
+								
+								<li>
+									<a href="<?php echo $download; ?>">
+										<?php echo $text_download; ?>
+									</a>
+								</li>
+								
+								<li>
+									<a href="<?php echo $logout; ?>">
+										<?php echo $text_logout; ?>
+									</a>
+								</li>
+						
+							<?php } else { ?>
+								
+								<li>
+									<a href="<?php echo $register; ?>">
+										<?php echo $text_register; ?>
+									</a>
+								</li>
+								
+								<li>
+									<a href="<?php echo $login; ?>">
+										<?php echo $text_login; ?>
+									</a>
+								</li>
+						
+							<?php } ?>
+
+						</ul>
+					</div>
+				</li>
+					
+			</ul>
+	
+		</div>
+	
+	</nav>
+
+</div>
+<!-- /inc.header_upper.html -->

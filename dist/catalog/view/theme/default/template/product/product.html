@@ -68,7 +68,7 @@
 	
 		</ul>
 		
-		<ul class="uk-switcher uk-margin">
+		<ul class="cc_product_tabs uk-switcher uk-margin">
 	
 			<li>
 
@@ -393,6 +393,77 @@
 											<?php echo $text_option; ?>:
 											<span uk-icon="icon: question; ratio: 0.65;" uk-tooltip="title: <?php echo $text_help_options; ?>; pos: top-right;"></span>
 										</span>
+
+
+
+
+										
+										<?php foreach ($options as $option) { ?>
+
+											<?php if ($option['type'] == 'select') { ?>
+												
+												<button 
+													class="uk-button uk-button-default uk-button-small" 
+													href="#cc_option_select" 
+													uk-toggle
+												>
+													<?php echo $option['name']; ?><?php echo ($option['required'] ? ' *' : ''); ?>
+												</button>
+												
+												<div id="cc_option_select" uk-modal>
+													<div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+														
+														<button 
+															class="uk-modal-close-default" 
+															type="button" 
+															uk-close
+														></button>
+												
+														<span class="uk-modal-title <?php echo ($option['required'] ? 'uk-text-bold' : ''); ?>">
+															<?php echo $option['name']; ?><?php echo ($option['required'] ? ' *' : ''); ?>
+														</span>
+														
+														<div>
+													
+															<div class="uk-form-controls uk-accordion-content">
+													
+																<select class="uk-select" id="input-option<?php echo $option['product_option_id']; ?>" name="option[<?php echo $option['product_option_id']; ?>]">
+													
+																	<option value="">
+																		<?php echo $text_select; ?>
+																	</option>
+													
+																	<?php foreach ($option['product_option_value'] as $option_value) { ?>
+																		
+																		<option value="<?php echo $option_value['product_option_value_id']; ?>">
+																			
+																			<?php echo $option_value['name']; ?>
+													
+																			<?php if ($option_value['price']) { ?>
+																				<span class="uk-text-small">
+																					(<?php echo $option_value['price_prefix']; ?><?php echo $option_value['price']; ?>)
+																				</span>
+																			<?php } ?>
+													
+																		</option>
+													
+																	<?php } ?>
+													
+																</select>
+													
+															</div>
+														</div>
+												
+													</div>
+												</div>
+										
+											<?php } ?>
+										
+										<?php } ?>
+
+
+
+
 
 										<ul class="cc_product_options uk-margin-remove-bottom" uk-accordion="multiple: true">
 

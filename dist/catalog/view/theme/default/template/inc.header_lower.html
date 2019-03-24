@@ -1,0 +1,30 @@
+<!-- inc.header_lower.html -->
+<div class="uk-section uk-section-muted uk-padding-small uk-padding-remove-left uk-padding-remove-right">
+	<div class="uk-container">
+
+		<div class="uk-flex" uk-grid>
+
+			<div class="cc_main_menu uk-width-1-2 uk-width-1-4@s uk-width-1-5@m uk-width-1-6@l uk-width-1-6@xl">
+				<?php if ($categories) { ?>
+					<button class="uk-button uk-button-primary uk-text-capitalize" uk-toggle="target: #cc_main_menu" type="button">
+						<span uk-icon="menu"></span>
+						<span>
+							<?php echo $text_main_menu; ?>
+						</span>
+					</button>
+				<?php } ?>
+			</div>
+
+			<div class="uk-width-1-2 uk-width-1-4@s uk-width-1-5@m uk-width-1-6@l uk-width-1-6@xl uk-flex-last@s">
+				<?php echo $cart; ?>
+			</div>
+
+			<div class="uk-width-1-1 uk-width-1-2@s uk-width-3-5@m uk-width-2-3@l uk-width-2-3@xl">
+				<?php echo $search; ?>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+<!-- /inc.header_lower.html -->

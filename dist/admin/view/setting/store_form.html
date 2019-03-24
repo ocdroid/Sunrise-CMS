@@ -616,7 +616,7 @@ $('select[name=\'config_theme\']').on('change', function() {
 });
 
 $('select[name=\'config_theme\']').trigger('change');
-//--></script>   <script><!--
+</script>   <script>
 $('select[name=\'config_country_id\']').on('change', function() {
 	$.ajax({
 		url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
