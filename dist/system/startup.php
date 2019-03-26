@@ -29,7 +29,7 @@ require(DIR_SYSTEM . 'helper/general.php');
 require(DIR_SYSTEM . 'helper/utf8.php');
 require(DIR_SYSTEM . 'helper/json.php');
 
-// Libraries
+// Libraries (autoload, including subfolders)
 spl_autoload_register('library');
 spl_autoload_extensions('.php');
 
@@ -37,17 +37,10 @@ function library($class)
 {
     $file = DIR_SYSTEM . 'library/' . str_replace('\\', '/', strtolower($class)) . '.php';
 
-    if (is_file($file)) {
-        include_once(($file));
-
-        return true;
-    } else {
-        return false;
-    }
+    require(($file));
 }
 
-// Mobile Detect - http://mobiledetect.net/
-require(DIR_SYSTEM . 'library/Mobile_Detect.php');
+// Mobile Detect (global)
 $detect = new Mobile_Detect();
 define('isMobile', $detect->isMobile(), false);
 define('isTablet', $detect->isTablet(), false);
