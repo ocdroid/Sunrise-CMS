@@ -32,7 +32,6 @@ $_['action_pre_action'] = array(
     'startup/startup',
     'startup/error',
     'startup/event',
-    'startup/maintenance',
     'startup/seo_pro'
 );
 

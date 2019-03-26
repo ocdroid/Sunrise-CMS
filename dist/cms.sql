@@ -4960,7 +4960,6 @@ INSERT INTO `setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serial
 (3019, 0, 'config', 'config_mail_smtp_timeout', '5', 0),
 (3020, 0, 'config', 'config_mail_alert', '[\"order\"]', 1),
 (3021, 0, 'config', 'config_alert_email', '', 0),
-(3022, 0, 'config', 'config_maintenance', '0', 0),
 (3023, 0, 'config', 'config_seo_url', '1', 0),
 (3024, 0, 'config', 'config_seo_url_include_path', '0', 0),
 (3025, 0, 'config', 'config_seo_url_postfix', '.html', 0),

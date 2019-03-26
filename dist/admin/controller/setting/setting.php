@@ -127,7 +127,6 @@ class ControllerSettingSetting extends Controller
         $data['entry_file_max_size'] = $this->language->get('entry_file_max_size');
         $data['entry_file_ext_allowed'] = $this->language->get('entry_file_ext_allowed');
         $data['entry_file_mime_allowed'] = $this->language->get('entry_file_mime_allowed');
-        $data['entry_maintenance'] = $this->language->get('entry_maintenance');
         $data['entry_password'] = $this->language->get('entry_password');
         $data['entry_encryption'] = $this->language->get('entry_encryption');
         $data['entry_seo_url'] = $this->language->get('entry_seo_url');
@@ -183,7 +182,6 @@ class ControllerSettingSetting extends Controller
         $data['help_file_max_size'] = $this->language->get('help_file_max_size');
         $data['help_file_ext_allowed'] = $this->language->get('help_file_ext_allowed');
         $data['help_file_mime_allowed'] = $this->language->get('help_file_mime_allowed');
-        $data['help_maintenance'] = $this->language->get('help_maintenance');
         $data['help_password'] = $this->language->get('help_password');
         $data['help_encryption'] = $this->language->get('help_encryption');
 
@@ -890,12 +888,6 @@ class ControllerSettingSetting extends Controller
             $data['config_file_mime_allowed'] = $this->request->post['config_file_mime_allowed'];
         } else {
             $data['config_file_mime_allowed'] = $this->config->get('config_file_mime_allowed');
-        }
-
-        if (isset($this->request->post['config_maintenance'])) {
-            $data['config_maintenance'] = $this->request->post['config_maintenance'];
-        } else {
-            $data['config_maintenance'] = $this->config->get('config_maintenance');
         }
 
         if (isset($this->request->post['config_password'])) {

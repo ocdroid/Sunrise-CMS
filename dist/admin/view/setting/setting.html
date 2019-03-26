@@ -1005,29 +1005,6 @@
 								<fieldset class="uk-fieldset">
 									<legend class="uk-legend"><?php echo $text_general; ?></legend>
 									<div class="uk-margin">
-										<label class="uk-form-label"><span data-toggle="tooltip" title="<?php echo $help_maintenance; ?>"><?php echo $entry_maintenance; ?></span></label>
-										<div class="uk-form-controls">
-											<label class="radio-inline">
-												<?php if ($config_maintenance) { ?>
-												<input type="radio" name="config_maintenance" value="1" checked="checked">
-												<?php echo $text_yes; ?>
-												<?php } else { ?>
-												<input type="radio" name="config_maintenance" value="1">
-												<?php echo $text_yes; ?>
-												<?php } ?>
-											</label>
-											<label class="radio-inline">
-												<?php if (!$config_maintenance) { ?>
-												<input type="radio" name="config_maintenance" value="0" checked="checked">
-												<?php echo $text_no; ?>
-												<?php } else { ?>
-												<input type="radio" name="config_maintenance" value="0">
-												<?php echo $text_no; ?>
-												<?php } ?>
-											</label>
-										</div>
-									</div>
-									<div class="uk-margin">
 										<label class="uk-form-label"><span data-toggle="tooltip" title="<?php echo $help_seo_url; ?>"><?php echo $entry_seo_url; ?></span></label>
 										<div class="uk-form-controls">
 											<label class="radio-inline">
