@@ -15,7 +15,6 @@ class ControllerExtensionModuleFeatured extends Controller
         $data['heading_title'] = $this->language->get('heading_title');
 
         $data['button_buy_it'] = $this->language->get('button_buy_it');
-        $data['text_benefits'] = $this->language->get('text_benefits');
 
         $this->load->model('catalog/product');
 
@@ -58,30 +57,6 @@ class ControllerExtensionModuleFeatured extends Controller
                         $yousave_percent = false;
                     }
 
-                    $productbenefits = $this->model_catalog_product->getProductBenefitsbyProductId($product_info['product_id']);
-                
-                    $benefits = array();
-                    
-                    foreach ($productbenefits as $benefit) {
-                        if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
-                            $bimage = $benefit['image'];
-                            if ($benefit['type']) {
-                                $bimage = $this->model_tool_image->resize($bimage, 25, 25);
-                            } else {
-                                $bimage = $this->model_tool_image->resize($bimage, 120, 60);
-                            }
-                        } else {
-                            $bimage = 'no_image.jpg';
-                        }
-                        $benefits[] = array(
-                            'benefit_id'      	=> $benefit['benefit_id'],
-                            'name'      		=> $benefit['name'],
-                            'description'      	=> strip_tags(html_entity_decode($benefit['description'])),
-                            'thumb'      		=> $bimage,
-                            'link'      		=> $benefit['link'],
-                            'type'      		=> $benefit['type']
-                        );
-                    }
 
                     $stickers = $this->getStickers($product_info['product_id']);
 
@@ -94,7 +69,6 @@ class ControllerExtensionModuleFeatured extends Controller
                         'special'     => $special,
                         'yousave_percent' => $yousave_percent,
                         'sticker'     => $stickers,
-                        'benefits'    => $benefits,
                         'href'        => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
                     );
                 }

@@ -14,6 +14,8 @@ class ControllerProductProduct extends Controller
         // scripts & styles
         $this->document->addStyle('/css/catalog/page/product/product.css');
         $this->document->addStyle('/css/catalog/page/product/drift-basic.min.css');
+        // временно, зависимость для дрифта
+        $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js');
         $this->document->addScript('/js/catalog/page/product/Drift.min.js');
         //
 

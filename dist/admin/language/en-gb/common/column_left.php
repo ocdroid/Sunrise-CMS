@@ -11,7 +11,6 @@ $_['text_attribute_group']           = 'Attribute Groups';
 $_['text_backup']                    = 'Backup / Restore';
 $_['text_banner']                    = 'Banners';
 $_['text_sticker']                   = 'Promo Stickers';
-$_['text_benefit']                   = 'Product Benefits';
 $_['text_custommenu']                = 'Custom Menus';
 $_['text_catalog']                   = 'Catalog';
 $_['text_category']                  = 'Categories';

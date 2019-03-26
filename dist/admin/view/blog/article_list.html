@@ -1,49 +1,73 @@
 <!-- article_list.html -->
-<?php echo $header; ?><?php echo $column; ?>
-<div id="content">
-	<div class="page-header">
-		<div class="container-fluid">
-			<div class="pull-right"><a href="<?php echo $add; ?>" data-toggle="tooltip"
-					title="<?php echo $button_add; ?>" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-				<button type="button" data-toggle="tooltip" title="<?php echo $button_copy; ?>" class="btn btn-default"
-					onclick="$('#form-article').attr('action', '<?php echo $copy; ?>').submit()"><i
-						class="fa fa-copy"></i></button>
-				<button type="button" data-toggle="tooltip" title="<?php echo $button_enable; ?>"
-					class="btn btn-default"
-					onclick="$('#form-article').attr('action', '<?php echo $enabled; ?>').submit()"><i
-						class="fa fa-play"></i></button>
-				<button type="button" data-toggle="tooltip" title="<?php echo $button_disable; ?>"
-					class="btn btn-default"
-					onclick="$('#form-article').attr('action', '<?php echo $disabled; ?>').submit()"><i
-						class="fa fa-pause"></i></button>
-				<button type="button" data-toggle="tooltip" title="<?php echo $button_delete; ?>" class="btn btn-danger"
-					onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-article').submit() : false;"><i
-						class="fa fa-trash-o"></i></button>
-			</div>
-			<h1><?php echo $heading_title; ?></h1>
-			<ul class="breadcrumb">
-				<?php foreach ($breadcrumbs as $breadcrumb) { ?>
-				<li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
-				<?php } ?>
-			</ul>
-		</div>
+<?php echo $header; ?>
+
+<?php echo $column; ?>
+
+<!-- breadcrumbs -->
+<?php require(DIR_TEMPLATE.'./inc.breadcrumbs.html'); ?>
+
+<!-- alerts -->
+<?php require(DIR_TEMPLATE.'./inc.alert_success.html'); ?>
+<?php require(DIR_TEMPLATE.'./inc.alert_warning.html'); ?>
+
+<div class="uk-section uk-padding-remove uk-margin-small uk-margin-medium-bottom">
+	<div class="uk-container">
+
+		<a 
+			href="<?php echo $add; ?>" 
+			title="<?php echo $button_add; ?>" 
+			class="uk-button uk-button-default"
+		>
+			<span uk-icon="plus"></span>
+		</a>
+
+		<button 
+			type="submit" 
+			form="form-article" 
+			formaction="<?php echo $copy; ?>" 
+			title="<?php echo $button_copy; ?>" 
+			class="uk-button uk-button-default"
+		>
+			<span uk-icon="copy"></span>
+		</button>
+
+		<button 
+			type="button" 
+			title="<?php echo $button_enable; ?>" 
+			class="uk-button uk-button-default" 
+			onclick="$('#form-article').attr('action', '<?php echo $enabled; ?>').submit()"
+		>
+			<span uk-icon="play"></span>
+		</button>
+
+		<button 
+			type="button" 
+			title="<?php echo $button_disable; ?>" 
+			class="uk-button uk-button-default" 
+			onclick="$('#form-article').attr('action', '<?php echo $disabled; ?>').submit()"
+		>
+			<span uk-icon="ban"></span>
+		</button>
+
+		<button 
+			type="button" 
+			title="<?php echo $button_delete; ?>" 
+			class="uk-button uk-button-default" 
+			onclick="confirm('<?php echo $text_confirm; ?>') ? $('#form-article').submit() : false;"
+		>
+			<span uk-icon="trash"></span>
+		</button>
+
 	</div>
-	<div class="container-fluid">
-		<?php if ($error_warning) { ?>
-		<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> <?php echo $error_warning; ?>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-		<?php } ?>
-		<?php if ($success) { ?>
-		<div class="alert alert-success"><i class="fa fa-check-circle"></i> <?php echo $success; ?>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-		<?php } ?>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title"><i class="fa fa-list"></i> <?php echo $text_list; ?></h3>
-			</div>
-			<div class="panel-body">
+</div>
+
+<div class="uk-section uk-padding-remove uk-margin-small uk-margin-medium-bottom">
+	<div class="uk-container">
+
+
+
+
+
 				<div class="well">
 					<div class="row">
 						<div class="col-sm-4">
@@ -93,6 +117,19 @@
 						</div>
 					</div>
 				</div>
+
+
+
+
+	</div>
+</div>
+
+<div class="uk-section uk-padding-remove uk-margin-small uk-margin-medium-bottom">
+	<div class="uk-container">
+		
+
+
+
 				<form action="<?php echo $delete; ?>" method="post" enctype="multipart/form-data" id="form-article">
 					<div class="table-responsive">
 						<table class="table table-bordered table-hover">
@@ -162,62 +199,84 @@
 						</table>
 					</div>
 				</form>
-				<div class="row">
-					<div class="col-sm-6 text-left"><?php echo $pagination; ?></div>
-					<div class="col-sm-6 text-right"><?php echo $results; ?></div>
-				</div>
-			</div>
-		</div>
+
+
+
+
 	</div>
-	<script>
-		$('#button-filter').on('click', function () {
-			var url = 'index.php?route=blog/article&token=<?php echo $token; ?>';
-
-			var filter_name = $('input[name=\'filter_name\']').val();
-
-			if (filter_name) {
-				url += '&filter_name=' + encodeURIComponent(filter_name);
-			}
-
-			var filter_status = $('select[name=\'filter_status\']').val();
-
-			if (filter_status != '*') {
-				url += '&filter_status=' + encodeURIComponent(filter_status);
-			}
-
-			var filter_noindex = $('select[name=\'filter_noindex\']').val();
-
-			if (filter_noindex != '*') {
-				url += '&filter_noindex=' + encodeURIComponent(filter_noindex);
-			}
-
-			location = url;
-		});
-
-	</script>
-	<script>
-		$('input[name=\'filter_name\']').autocomplete({
-			'source': function (request, response) {
-				$.ajax({
-					url: 'index.php?route=blog/article/autocomplete&token=<?php echo $token; ?>&filter_name=' +
-						encodeURIComponent(request),
-					dataType: 'json',
-					success: function (json) {
-						response($.map(json, function (item) {
-							return {
-								label: item['name'],
-								value: item['article_id']
-							}
-						}));
-					}
-				});
-			},
-			'select': function (item) {
-				$('input[name=\'filter_name\']').val(item['label']);
-			}
-		});
-
-	</script>
 </div>
+
+<div uk-height-viewport="expand: true"></div>
+
+<!-- pagination -->
+<div class="uk-section uk-section-muted uk-padding-small uk-margin-small uk-margin-large-top uk-margin-remove-bottom">
+	<div class="uk-container uk-text-center">
+
+		<?php echo $pagination; ?>
+		
+		<span class="uk-text-small">
+			<?php echo $results; ?>
+		</span>
+
+	</div>
+</div>
+<!-- /pagination -->
+
+
+
+
+<script>
+	$('#button-filter').on('click', function () {
+		var url = 'index.php?route=blog/article&token=<?php echo $token; ?>';
+
+		var filter_name = $('input[name=\'filter_name\']').val();
+
+		if (filter_name) {
+			url += '&filter_name=' + encodeURIComponent(filter_name);
+		}
+
+		var filter_status = $('select[name=\'filter_status\']').val();
+
+		if (filter_status != '*') {
+			url += '&filter_status=' + encodeURIComponent(filter_status);
+		}
+
+		var filter_noindex = $('select[name=\'filter_noindex\']').val();
+
+		if (filter_noindex != '*') {
+			url += '&filter_noindex=' + encodeURIComponent(filter_noindex);
+		}
+
+		location = url;
+	});
+
+</script>
+<script>
+	$('input[name=\'filter_name\']').autocomplete({
+		'source': function (request, response) {
+			$.ajax({
+				url: 'index.php?route=blog/article/autocomplete&token=<?php echo $token; ?>&filter_name=' +
+					encodeURIComponent(request),
+				dataType: 'json',
+				success: function (json) {
+					response($.map(json, function (item) {
+						return {
+							label: item['name'],
+							value: item['article_id']
+						}
+					}));
+				}
+			});
+		},
+		'select': function (item) {
+			$('input[name=\'filter_name\']').val(item['label']);
+		}
+	});
+
+</script>
+
+
+
+
 <?php echo $footer; ?>
 <!-- /article_list.html -->

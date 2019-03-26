@@ -13,8 +13,6 @@ class ControllerCommonHome extends Controller
             $this->document->addLink($this->config->get('config_url'), 'canonical');
         }
 
-        $data['column'] = $this->load->controller('common/column');
-        
         $data['content_top'] = $this->load->controller('common/content_top');
         $data['content_bottom'] = $this->load->controller('common/content_bottom');
         $data['footer'] = $this->load->controller('common/footer');

@@ -55,12 +55,6 @@
 										<img data-src="<?php echo $product['thumb']; ?>" width="" height="" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" uk-img>
 									</a>
 
-									<?php if ($product['benefits']) { ?>
-
-										<a class="cc_product_benefits_open uk-position-top-left" href="#cc_product_benefits_open_<?php echo $product['product_id']; ?>" uk-icon="info" uk-tooltip="title: <?php echo $text_benefits; ?>; pos: top-left" uk-toggle></a>
-
-									<?php } ?>
-
 								</div>
 					
 								<div class="uk-card-body uk-padding-small uk-text-left">
@@ -74,55 +68,6 @@
 									<div class="uk-text-meta uk-text-truncate">
 										<?php echo $product['description']; ?>
 									</div>
-
-									<?php if ($product['benefits']) { ?>
-
-										<div id="cc_product_benefits_open_<?php echo $product['product_id']; ?>" uk-modal>
-											<div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
-												<button class="uk-modal-close-default" type="button" uk-close></button>
-												<p>
-
-													<?php echo $text_benefits; ?>
-											
-													<?php foreach ($product['benefits'] as $benefit) { ?>	
-														
-														<?php if ($benefit['type'] == 1) { ?>
-											
-																<?php if (!$benefit['link']) { ?>
-																	<img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>">
-																<?php } else { ?> 
-																	<a href="<?php echo $benefit['link']; ?>" target="_blank" rel="noopener" title="<?php echo $benefit['name']; ?>">
-																		<img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>">
-																	</a>
-																<?php } ?>
-											
-																<?php if ($benefit['description']) { ?>
-																	<?php echo $benefit['description']; ?>
-																<?php } ?>
-											
-														<?php } ?>
-											
-													<?php } ?>
-											
-													<?php foreach ($product['benefits'] as $benefit) { ?>	
-														<?php if ($benefit['type'] == 0) { ?>
-											
-																<?php if (!$benefit['link']) { ?>
-																	<img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>">
-																<?php } else { ?> 
-																	<a href="<?php echo $benefit['link']; ?>" target="_blank" rel="noopener" title="<?php echo $benefit['name']; ?>">
-																		<img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>">
-																	</a>
-																<?php } ?>
-											
-														<?php } ?> 
-													<?php } ?>
-											
-												</p>
-											</div>
-										</div>
-									
-									<?php } ?>
 
 									<div class="uk-text-left">
 				

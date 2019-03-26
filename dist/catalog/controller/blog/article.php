@@ -138,8 +138,6 @@ class ControllerBlogArticle extends Controller
                 $data['heading_title'] = $article_info['name'];
             }
 
-            $data['text_benefits'] = $this->language->get('text_benefits');
-            
             $data['text_select'] = $this->language->get('text_select');
             $data['text_write'] = $this->language->get('text_write');
             $data['text_login'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', true), $this->url->link('account/register', '', true));
@@ -240,31 +238,6 @@ class ControllerBlogArticle extends Controller
                     $yousave_percent = false;
                 }
                 
-                $productbenefits = $this->model_catalog_product->getProductBenefitsbyProductId($result['product_id']);
-                
-                $benefits = array();
-                
-                foreach ($productbenefits as $benefit) {
-                    if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
-                        $bimage = $benefit['image'];
-                        if ($benefit['type']) {
-                            $bimage = $this->model_tool_image->resize($bimage, 25, 25);
-                        } else {
-                            $bimage = $this->model_tool_image->resize($bimage, 120, 60);
-                        }
-                    } else {
-                        $bimage = 'no_image.jpg';
-                    }
-                    $benefits[] = array(
-                        'benefit_id'      	=> $benefit['benefit_id'],
-                        'name'      		=> $benefit['name'],
-                        'description'      	=> strip_tags(html_entity_decode($benefit['description'])),
-                        'thumb'      		=> $bimage,
-                        'link'      		=> $benefit['link'],
-                        'type'      		=> $benefit['type']
-                    );
-                }
-
                 $stickers = $this->getStickers($result['product_id']) ;
                             
                 $data['products'][] = array(
@@ -276,7 +249,6 @@ class ControllerBlogArticle extends Controller
                     'special' 	 => $special,
                     'yousave_percent' => $yousave_percent,
                     'sticker'     => $stickers,
-                    'benefits'    => $benefits,
                     'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
                     'reviews'    => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
                     'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id']),
