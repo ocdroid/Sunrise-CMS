@@ -12,7 +12,6 @@ class ControllerEventCompatibility extends Controller
 
     Compatiblity for:
 
-    credit_card
     feed
     module
     payment
