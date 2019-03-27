@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 02, 2019 at 11:35 AM
--- Server version: 5.7.23
+-- Generation Time: Mar 27, 2019 at 03:51 PM
+-- Server version: 8.0.12
 -- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -41,7 +41,7 @@ CREATE TABLE `address` (
   `country_id` int(11) NOT NULL DEFAULT '0',
   `zone_id` int(11) NOT NULL DEFAULT '0',
   `custom_field` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -56,7 +56,7 @@ CREATE TABLE `api` (
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `api`
@@ -75,7 +75,7 @@ CREATE TABLE `api_ip` (
   `api_ip_id` int(11) NOT NULL,
   `api_id` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -92,7 +92,7 @@ CREATE TABLE `api_session` (
   `ip` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -112,17 +112,17 @@ CREATE TABLE `article` (
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `viewed` int(5) NOT NULL DEFAULT '0',
   `gstatus` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `article`
 --
 
 INSERT INTO `article` (`article_id`, `image`, `date_available`, `sort_order`, `article_review`, `status`, `noindex`, `date_added`, `date_modified`, `viewed`, `gstatus`) VALUES
-(120, 'catalog/demo_categories/3.jpg', '0000-00-00', 1, 1, 1, 1, '2014-04-08 04:26:00', '2018-11-16 13:27:29', 46, 0),
-(123, 'catalog/demo_categories/2.jpg', '0000-00-00', 1, 1, 1, 1, '2014-03-31 06:55:15', '2018-11-16 13:28:17', 178, 1),
-(124, 'catalog/demo_categories/7.jpg', '0000-00-00', 1, 0, 1, 1, '2015-06-29 09:05:38', '2018-11-16 13:28:53', 40, 0),
-(125, 'catalog/demo_categories/8.jpg', '0000-00-00', 1, 0, 1, 1, '2015-06-29 09:09:03', '2018-12-19 00:16:10', 175, 0);
+(120, 'catalog/demo_categories/3.jpg', '0000-00-00', 1, 1, 1, 1, '2014-04-08 04:26:00', '2018-11-16 13:27:29', 52, 0),
+(123, 'catalog/demo_categories/2.jpg', '0000-00-00', 1, 1, 1, 1, '2014-03-31 06:55:15', '2018-11-16 13:28:17', 183, 1),
+(124, 'catalog/demo_categories/7.jpg', '0000-00-00', 1, 0, 1, 1, '2015-06-29 09:05:38', '2018-11-16 13:28:53', 45, 0),
+(125, 'catalog/demo_categories/8.jpg', '0000-00-00', 1, 0, 1, 1, '2015-06-29 09:09:03', '2019-03-26 13:57:37', 199, 0);
 
 -- --------------------------------------------------------
 
@@ -139,7 +139,7 @@ CREATE TABLE `article_description` (
   `meta_title` varchar(255) NOT NULL,
   `meta_h1` varchar(255) NOT NULL,
   `tag` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `article_description`
@@ -162,7 +162,7 @@ CREATE TABLE `article_image` (
   `article_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -173,7 +173,7 @@ CREATE TABLE `article_image` (
 CREATE TABLE `article_related` (
   `article_id` int(11) NOT NULL,
   `related_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `article_related`
@@ -202,7 +202,7 @@ INSERT INTO `article_related` (`article_id`, `related_id`) VALUES
 CREATE TABLE `article_related_mn` (
   `article_id` int(11) NOT NULL,
   `manufacturer_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -213,7 +213,7 @@ CREATE TABLE `article_related_mn` (
 CREATE TABLE `article_related_product` (
   `article_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `article_related_product`
@@ -250,7 +250,7 @@ INSERT INTO `article_related_product` (`article_id`, `product_id`) VALUES
 CREATE TABLE `article_related_wb` (
   `article_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -262,7 +262,7 @@ CREATE TABLE `article_to_blog_category` (
   `article_id` int(11) NOT NULL,
   `blog_category_id` int(11) NOT NULL,
   `main_blog_category` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `article_to_blog_category`
@@ -284,7 +284,7 @@ INSERT INTO `article_to_blog_category` (`article_id`, `blog_category_id`, `main_
 CREATE TABLE `article_to_download` (
   `article_id` int(11) NOT NULL,
   `download_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `article_to_download`
@@ -303,7 +303,7 @@ CREATE TABLE `article_to_layout` (
   `article_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `article_to_layout`
@@ -324,7 +324,7 @@ INSERT INTO `article_to_layout` (`article_id`, `store_id`, `layout_id`) VALUES
 CREATE TABLE `article_to_store` (
   `article_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `article_to_store`
@@ -346,7 +346,7 @@ CREATE TABLE `attribute` (
   `attribute_id` int(11) NOT NULL,
   `attribute_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `attribute`
@@ -394,7 +394,7 @@ CREATE TABLE `attribute_description` (
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `attribute_description`
@@ -430,7 +430,7 @@ INSERT INTO `attribute_description` (`attribute_id`, `language_id`, `name`) VALU
 CREATE TABLE `attribute_group` (
   `attribute_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `attribute_group`
@@ -462,7 +462,7 @@ CREATE TABLE `attribute_group_description` (
   `attribute_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `attribute_group_description`
@@ -490,7 +490,7 @@ CREATE TABLE `banner` (
   `banner_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `banner`
@@ -513,7 +513,7 @@ CREATE TABLE `banner_image` (
   `link` varchar(255) NOT NULL,
   `image` varchar(255) NOT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `banner_image`
@@ -537,7 +537,7 @@ CREATE TABLE `benefit` (
   `type` tinyint(1) NOT NULL,
   `image` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `benefit`
@@ -561,7 +561,7 @@ CREATE TABLE `benefit_description` (
   `benefit_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `benefit_description`
@@ -592,7 +592,7 @@ CREATE TABLE `blog_category` (
   `noindex` tinyint(1) NOT NULL DEFAULT '1',
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `blog_category`
@@ -617,7 +617,7 @@ CREATE TABLE `blog_category_description` (
   `meta_description` varchar(255) NOT NULL,
   `meta_title` varchar(255) NOT NULL,
   `meta_h1` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `blog_category_description`
@@ -638,7 +638,7 @@ CREATE TABLE `blog_category_path` (
   `blog_category_id` int(11) NOT NULL,
   `path_id` int(11) NOT NULL,
   `level` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `blog_category_path`
@@ -660,7 +660,7 @@ CREATE TABLE `blog_category_to_layout` (
   `blog_category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `blog_category_to_layout`
@@ -680,7 +680,7 @@ INSERT INTO `blog_category_to_layout` (`blog_category_id`, `store_id`, `layout_i
 CREATE TABLE `blog_category_to_store` (
   `blog_category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `blog_category_to_store`
@@ -706,7 +706,7 @@ CREATE TABLE `cart` (
   `option` text NOT NULL,
   `quantity` int(5) NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -725,7 +725,7 @@ CREATE TABLE `category` (
   `noindex` tinyint(1) NOT NULL DEFAULT '1',
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category`
@@ -758,7 +758,7 @@ CREATE TABLE `category_description` (
   `meta_title` varchar(255) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
   `meta_h1` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category_description`
@@ -785,7 +785,7 @@ INSERT INTO `category_description` (`category_id`, `language_id`, `name`, `descr
 CREATE TABLE `category_filter` (
   `category_id` int(11) NOT NULL,
   `filter_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -797,7 +797,7 @@ CREATE TABLE `category_path` (
   `category_id` int(11) NOT NULL,
   `path_id` int(11) NOT NULL,
   `level` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category_path`
@@ -827,7 +827,7 @@ CREATE TABLE `category_to_layout` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category_to_layout`
@@ -854,7 +854,7 @@ INSERT INTO `category_to_layout` (`category_id`, `store_id`, `layout_id`) VALUES
 CREATE TABLE `category_to_store` (
   `category_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category_to_store`
@@ -886,7 +886,7 @@ CREATE TABLE `country` (
   `address_format` text NOT NULL,
   `postcode_required` tinyint(1) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `country`
@@ -1163,7 +1163,7 @@ CREATE TABLE `currency` (
   `value` float(15,8) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `currency`
@@ -1205,7 +1205,7 @@ CREATE TABLE `customer` (
   `token` text NOT NULL,
   `code` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1217,7 +1217,7 @@ CREATE TABLE `customer_group` (
   `customer_group_id` int(11) NOT NULL,
   `approval` int(1) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customer_group`
@@ -1238,7 +1238,7 @@ CREATE TABLE `customer_group_description` (
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `customer_group_description`
@@ -1258,7 +1258,7 @@ CREATE TABLE `customer_history` (
   `customer_id` int(11) NOT NULL,
   `comment` text NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1271,7 +1271,7 @@ CREATE TABLE `customer_ip` (
   `customer_id` int(11) NOT NULL,
   `ip` varchar(40) NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1286,7 +1286,7 @@ CREATE TABLE `customer_login` (
   `total` int(4) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1301,7 +1301,7 @@ CREATE TABLE `customer_reward` (
   `description` text NOT NULL,
   `points` int(8) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1316,7 +1316,7 @@ CREATE TABLE `customer_transaction` (
   `description` text NOT NULL,
   `amount` decimal(15,4) NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1330,7 +1330,7 @@ CREATE TABLE `custommenu` (
   `columns` int(3) NOT NULL,
   `custommenu_type` varchar(20) NOT NULL,
   `status` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `custommenu`
@@ -1373,7 +1373,7 @@ CREATE TABLE `custommenu_child` (
   `sort_order` int(3) NOT NULL,
   `custommenu_type` varchar(20) NOT NULL,
   `status` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `custommenu_child`
@@ -1455,7 +1455,7 @@ CREATE TABLE `custommenu_child_description` (
   `name` varchar(64) NOT NULL,
   `link` varchar(255) NOT NULL DEFAULT '',
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `custommenu_child_description`
@@ -1483,7 +1483,7 @@ INSERT INTO `custommenu_child_description` (`custommenu_child_id`, `custommenu_i
 CREATE TABLE `custommenu_child_to_store` (
   `custommenu_child_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `custommenu_child_to_store`
@@ -1536,7 +1536,7 @@ CREATE TABLE `custommenu_description` (
   `name` varchar(64) NOT NULL,
   `link` varchar(255) NOT NULL DEFAULT '',
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `custommenu_description`
@@ -1569,7 +1569,7 @@ INSERT INTO `custommenu_description` (`custommenu_id`, `name`, `link`, `language
 CREATE TABLE `custommenu_to_store` (
   `custommenu_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `custommenu_to_store`
@@ -1613,7 +1613,7 @@ CREATE TABLE `custom_field` (
   `location` varchar(7) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1625,7 +1625,7 @@ CREATE TABLE `custom_field_customer_group` (
   `custom_field_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL,
   `required` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1637,7 +1637,7 @@ CREATE TABLE `custom_field_description` (
   `custom_field_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1649,7 +1649,7 @@ CREATE TABLE `custom_field_value` (
   `custom_field_value_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1662,7 +1662,7 @@ CREATE TABLE `custom_field_value_description` (
   `language_id` int(11) NOT NULL,
   `custom_field_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1675,7 +1675,7 @@ CREATE TABLE `download` (
   `filename` varchar(160) NOT NULL,
   `mask` varchar(128) NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `download`
@@ -1694,7 +1694,7 @@ CREATE TABLE `download_description` (
   `download_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `download_description`
@@ -1716,7 +1716,7 @@ CREATE TABLE `event` (
   `action` text NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1728,7 +1728,7 @@ CREATE TABLE `extension` (
   `extension_id` int(11) NOT NULL,
   `type` varchar(32) NOT NULL,
   `code` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `extension`
@@ -1758,6 +1758,7 @@ INSERT INTO `extension` (`extension_id`, `type`, `code`) VALUES
 (34, 'module', 'cachemanager'),
 (42, 'module', 'blocksforallcategories'),
 (44, 'module', 'random'),
+(46, 'captcha', 'basic_captcha'),
 (48, 'module', 'popular'),
 (49, 'module', 'html'),
 (50, 'module', 'blog_latest'),
@@ -1767,7 +1768,8 @@ INSERT INTO `extension` (`extension_id`, `type`, `code`) VALUES
 (55, 'total', 'reward'),
 (57, 'module', 'featured'),
 (58, 'module', 'latestpercategory'),
-(59, 'module', 'custom_template');
+(59, 'module', 'custom_template'),
+(60, 'module', 'blog_featured');
 
 -- --------------------------------------------------------
 
@@ -1779,7 +1781,7 @@ CREATE TABLE `filter` (
   `filter_id` int(11) NOT NULL,
   `filter_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1792,7 +1794,7 @@ CREATE TABLE `filter_description` (
   `language_id` int(11) NOT NULL,
   `filter_group_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1803,7 +1805,7 @@ CREATE TABLE `filter_description` (
 CREATE TABLE `filter_group` (
   `filter_group_id` int(11) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1815,7 +1817,7 @@ CREATE TABLE `filter_group_description` (
   `filter_group_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1829,7 +1831,7 @@ CREATE TABLE `geo_zone` (
   `description` varchar(255) NOT NULL,
   `date_modified` datetime NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `geo_zone`
@@ -1851,7 +1853,7 @@ CREATE TABLE `information` (
   `sort_order` int(3) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `noindex` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `information`
@@ -1878,7 +1880,7 @@ CREATE TABLE `information_description` (
   `meta_title` varchar(255) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
   `meta_h1` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `information_description`
@@ -1886,7 +1888,7 @@ CREATE TABLE `information_description` (
 
 INSERT INTO `information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_h1`) VALUES
 (3, 2, 'Privacy Policy', '&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta rem aut laborum perferendis, in voluptate molestiae, repudiandae corrupti aperiam eos fuga similique magnam. Possimus illo quos sit ipsum quia quod?&lt;/span&gt;&lt;br&gt;Ipsa et voluptatum at veniam doloremque delectus explicabo. Dolores aliquam non mollitia hic earum enim similique expedita atque vel, molestiae sit voluptate accusantium natus quasi vitae, labore deserunt modi itaque.&lt;br&gt;Aspernatur excepturi voluptates unde officiis repudiandae at voluptatum libero, ex labore. Ipsum, quos velit? A suscipit consequuntur debitis, quia accusantium ratione eius quo, architecto, molestiae at eligendi dolorum voluptatum quidem?&lt;br&gt;Minima dolore velit pariatur voluptas deleniti qui quis dolores ipsam cupiditate hic nam similique, laudantium ullam asperiores ut? Saepe corporis ipsam provident nihil tenetur deleniti iste consequatur optio id. Consequuntur!&lt;br&gt;Veritatis libero aperiam ullam dolore eveniet labore delectus porro! Possimus vero provident ea libero officiis ut consequatur illo quidem in a, magnam obcaecati sunt commodi iure. Consectetur velit aperiam ullam!&lt;br&gt;Quaerat magni vitae reprehenderit placeat doloremque similique iusto aliquam, necessitatibus deleniti debitis! Provident repudiandae accusantium at nemo, nisi magnam labore cum hic ipsa iusto voluptates inventore temporibus dolor ratione sapiente.&lt;br&gt;Dolore nesciunt placeat repellat! Animi quos pariatur asperiores impedit necessitatibus sunt quasi cupiditate corrupti sapiente, nobis cumque rem inventore vero perspiciatis dolorem minima iure illum? Nulla possimus quo expedita rem.&lt;br&gt;Voluptates quia voluptatem eum maxime totam doloribus, quasi error? Itaque dolor suscipit sit soluta quas omnis, quasi harum veritatis magnam. Error delectus suscipit rem ut voluptates? Quae eveniet rem quas.&lt;br&gt;Vero fugit veritatis similique fugiat quod, culpa sapiente tempore beatae at? Omnis nisi tempore, officiis quis soluta iste. Omnis voluptates deleniti veniam voluptate soluta? At eum deleniti similique distinctio quibusdam?&lt;br&gt;Nam ducimus rerum corrupti cum et deleniti sint quod culpa magnam non eum, amet sit at numquam accusantium voluptatum quam explicabo pariatur. Facilis inventore delectus corrupti assumenda amet autem dicta.&lt;br&gt;Culpa doloremque accusantium iste ratione iusto voluptates, consequuntur tempore fuga. Reprehenderit magnam nihil ipsam vel libero facilis porro commodi, laboriosam totam molestias officiis sit dicta optio tempora magni soluta assumenda.&lt;br&gt;Aliquid atque eos, sint amet quis blanditiis distinctio ea veritatis porro ut aspernatur quas, suscipit quidem recusandae, sed praesentium adipisci minus tempore saepe facere. Fugit error fugiat soluta quam necessitatibus.&lt;br&gt;Ullam quisquam amet ad eligendi ducimus eveniet ipsa eum natus reiciendis praesentium voluptas laudantium culpa, dolorum explicabo aliquid, doloremque quas optio facere unde est? Voluptas error vitae soluta accusantium ab.&lt;br&gt;Consequuntur reprehenderit ab qui facilis facere rerum minima alias libero magnam! Molestiae, porro! Ipsum alias consequatur cumque officia. Et perspiciatis, numquam nulla corporis laboriosam nemo eos quia magnam vitae aliquam?&lt;br&gt;Consequatur cumque voluptatibus porro eligendi, sed magnam quia quidem, temporibus sint exercitationem reprehenderit illo recusandae eius ut magni ullam odit, libero molestias cum. Fugit dignissimos praesentium ex illum quod architecto.&lt;br&gt;Facilis iste ab sequi mollitia quasi necessitatibus repellendus provident magni id facere quis magnam pariatur, ratione porro amet quibusdam eligendi hic tempora nesciunt sapiente minus sed asperiores. Delectus, quasi placeat.&lt;br&gt;Dolor laboriosam molestias eaque commodi nostrum ipsum perspiciatis blanditiis autem reiciendis est nemo libero, eveniet tempore porro sapiente nam laudantium maiores! Laudantium totam earum sit quia exercitationem mollitia omnis praesentium.&lt;br&gt;Placeat, natus odit, quisquam aliquid nemo incidunt nam rerum voluptatem molestias similique cumque deserunt. Libero, esse! Ipsum architecto consequatur sapiente animi tempora, ex quis ipsa eum cupiditate culpa explicabo amet.&lt;br&gt;Quidem nemo architecto corrupti amet commodi id minima quis, ullam placeat suscipit labore odio porro a ut voluptatibus consectetur distinctio repellendus. Quam accusantium ducimus libero repudiandae vel asperiores similique nostrum.&lt;br&gt;Quisquam sequi porro numquam aut, in dolore ut aperiam, ipsam, ea repudiandae quia! Quibusdam deserunt voluptate ex nostrum fuga? Expedita voluptatibus voluptas quis sequi, amet earum eaque mollitia sed laudantium!&lt;/p&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot; sun-editor-selected-cell&quot;&gt;&lt;div&gt;&lt;span style=&quot;background-color: rgb(250, 244, 192);&quot;&gt;​1&lt;/span&gt;&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​2&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​3&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​4&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​5&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​6&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​7&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​8&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;9&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;10​&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​11&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot; sun-editor-selected-cell&quot;&gt;&lt;div&gt;​12&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;​&lt;/p&gt;&lt;p&gt;Laudantium, perferendis molestiae hic adipisci neque repellendus ab a nostrum, mollitia esse blanditiis dolores fugit ea harum temporibus fuga nesciunt. Aliquid dolor praesentium alias accusamus nihil recusandae eius obcaecati nisi?&lt;br&gt;Nihil exercitationem corporis at sunt harum minima aliquam mollitia aspernatur provident nisi quas maiores odio doloremque ipsam totam quasi adipisci molestiae quia, veniam commodi ea optio deleniti molestias. Natus, minima.&lt;br&gt;Tenetur aspernatur necessitatibus quasi commodi enim quaerat debitis repellendus iure in aliquam sint assumenda neque exercitationem dignissimos inventore voluptate optio, ipsum mollitia consequatur suscipit. Magni officiis laboriosam inventore consectetur animi.&lt;br&gt;Exercitationem vitae sunt et accusamus quo, quod, asperiores consectetur inventore obcaecati qui ea sed explicabo eveniet dolorum officiis est earum? Mollitia, quae commodi vitae ducimus quis ab atque minus magni.&lt;br&gt;Quaerat repudiandae voluptas amet ratione voluptatibus? Fuga provident dolor quos deserunt rerum veniam atque voluptas? Non quod voluptate consequuntur. Unde nulla doloremque voluptates culpa corporis quisquam perferendis debitis iure assumenda.&lt;br&gt;Aliquam, veritatis perspiciatis sequi itaque quidem, ipsam, aut quos totam tempora qui exercitationem hic ad recusandae quasi magni amet! Aspernatur at perspiciatis ex facere libero exercitationem corporis delectus repellat reiciendis.&lt;br&gt;Ad aperiam voluptas at voluptatem quae rem, ipsam totam a sed cumque ipsa veritatis impedit soluta autem eos earum veniam, quis eius maiores, eaque ratione necessitatibus. Modi eos minima omnis.&lt;br&gt;Velit tempore soluta facilis tempora vel nam similique incidunt nihil cumque! Quas itaque aut hic fugit! Excepturi provident magnam nam facilis earum doloribus quaerat asperiores minus voluptate. Perferendis, pariatur iure?&lt;br&gt;Nulla inventore est dolore deleniti ad, beatae praesentium ab error nobis voluptatem? Deserunt fuga officia debitis! Ea quam ex itaque quidem cum culpa sed veritatis quaerat debitis excepturi, tenetur odio!&lt;br&gt;Ad repudiandae nihil dolorum blanditiis veritatis, non culpa? Rem aliquam nam itaque eius, molestias odit at possimus quae facilis, vel inventore deserunt dicta quo. Eaque velit inventore facere vero cumque!&lt;br&gt;Dolorem nobis et possimus quod consequatur laudantium fugit officiis, doloremque eum id nulla quas illum magni tempore quisquam sit repellendus nemo iure illo itaque placeat asperiores corrupti assumenda culpa. Similique!&lt;br&gt;Quasi facere repellat delectus ipsam enim reiciendis? Numquam non, velit est, nostrum vero, quas totam unde asperiores laudantium pariatur reiciendis dignissimos ipsum itaque perspiciatis error recusandae eum placeat quasi blanditiis!&lt;br&gt;Sapiente molestias asperiores laudantium, numquam impedit quidem temporibus rerum, aspernatur placeat quae libero sint quisquam porro tempora, possimus inventore assumenda quis! Sed sunt unde facere corrupti nihil doloribus dolorum ab.&lt;br&gt;Ipsam culpa obcaecati atque maxime facere vel beatae quibusdam? Voluptatibus nostrum fugit inventore obcaecati optio alias minus omnis, nisi possimus dolorum cumque quisquam id ipsa adipisci recusandae cupiditate tenetur similique.&lt;br&gt;Iure saepe sapiente facere quas ea facilis porro iusto aperiam quo tempore vitae ducimus eius obcaecati quis itaque error perspiciatis nemo reiciendis sint dicta, culpa ipsum officiis! Voluptatem, assumenda dolore!&lt;br&gt;Provident facere amet nesciunt. Qui a, sunt doloremque inventore, recusandae minus nihil tempore odio fugiat nostrum repudiandae eveniet sint, quod quisquam. Repellendus quis labore quidem natus possimus atque voluptatum facilis.&lt;br&gt;Placeat rerum laboriosam sequi dolorem dolor illum unde, suscipit vitae nam optio iure, autem consequatur, nostrum iusto a explicabo fugiat? Velit laudantium ad suscipit, sunt quam officiis. In, accusamus totam.&lt;br&gt;Voluptatem minima deserunt quasi esse dolores tempore eos iusto quos labore laborum, suscipit sint numquam commodi vero distinctio in modi quaerat pariatur quod saepe molestias. Omnis quis porro culpa esse?&lt;br&gt;Quod facere exercitationem itaque incidunt similique eaque iste, excepturi maxime illo cupiditate iure minus. Consectetur amet deserunt sed alias harum magni maiores ea velit minus eius. Velit voluptas deserunt quo.&lt;br&gt;Suscipit atque temporibus eligendi maiores provident voluptates laborum, assumenda impedit perferendis exercitationem nemo odit in amet neque ipsum doloremque dolor nesciunt commodi! Doloribus suscipit libero ratione! Praesentium repudiandae minus suscipit.&lt;br&gt;&lt;/p&gt;', 'Privacy Policy', 'Privacy Policy', 'Privacy Policy'),
-(4, 2, 'About us', '&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Lorem, ipsum dolor sit amet &lt;a href=&quot;111&quot; target=&quot;_blank&quot;&gt;consectetur adipisicing elit.&lt;/a&gt; Adipisci provident minima enim dignissimos omnis possimus odio quisquam libero sint mollitia rem sed nisi facilis culpa, impedit, fugiat id, sequi doloribus?&lt;/span&gt;&lt;/div&gt;&lt;div&gt;​&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​6&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​5&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​4&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​1&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot; sun-editor-selected-cell&quot;&gt;&lt;div&gt;​2&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​3&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div&gt;​&lt;blockquote&gt;&lt;div align=&quot;justify&quot;&gt;Ea poracere neque aliquam fugiat asperiores quia harum distinctio! Consectetur tempora dolore nulla! Mole 16 stias a liquam, voluptas, nulla aliquid, accusamus ea sapiente dolorum dicta voluptates maiores dolores recusandae sed quibusdam?&lt;/div&gt;&lt;/blockquote&gt;&lt;/div&gt;&lt;pre&gt;&lt;div align=&quot;justify&quot;&gt;Ea porro facere neque aliquam fugiat asperiores quia harum distinctio! Consectetur tempora dolore nulla! Mole 16 stias a liquam, voluptas, nulla aliquid, accusamus ea sapiente dolorum dicta voluptates maiores dolores recusandae sed quibusdam?&lt;/div&gt;&lt;/pre&gt;&lt;pre&gt;&lt;div&gt;​Ea porro facere neque aliquam fugiat asperiores quia harum distinctio! Consectetur tempora do&lt;/div&gt;&lt;/pre&gt;&lt;div&gt;​&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;justify&quot;&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Ea porro f&lt;b&gt;acere neque aliquam &lt;/b&gt;&lt;/span&gt;fugiat&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;b&gt; asperio&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;res quia h&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;u&gt;arum distinctio! Consectetur te&lt;/u&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;mpora do&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;i&gt;lore nulla! Mole &lt;/i&gt;16&lt;i&gt; stias a &lt;/i&gt;&lt;i&gt;liqua&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;m, volu&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;strike&gt;ptas, nulla aliquid, acc&lt;/strike&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;usamus ea sapiente dolorum dicta volu&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;sub&gt;ptates maiores dolore&lt;/sub&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;s recus&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;sup&gt;andae sed quib&lt;/sup&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;usdam?&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;​&lt;/div&gt;&lt;div&gt;1&lt;br&gt;&lt;/div&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;2​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot; sun-editor-selected-cell&quot;&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div&gt;​&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;ol&gt;&lt;li&gt;&lt;div&gt;&lt;span style=&quot;font-family: Tahoma;&quot;&gt;Perferendis dolorum, \r\nconsequatur&lt;/span&gt; co&lt;span style=&quot;font-size: 24px;&quot;&gt;nsequuntur vitae aspernat&lt;/span&gt;ur sint fuga &lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&lt;h2&gt;velit eaque fugiat \r\nsimilique nesciunt ducimus saepe expedita commodi &lt;/h2&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align=&quot;center&quot;&gt;minus hic. Fugiat \r\nimpedit perferendis expedita sint exercitationem &lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&lt;h1&gt;corporis voluptatibus \r\nnulla iste aliquid!&lt;/h1&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;Aperiam\r\n adipisci nostrum &lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;&lt;h4&gt;eos numquam &lt;/h4&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;br&gt;&lt;/li&gt;&lt;hr class=&quot;dotted&quot;&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;ratione, voluptatum quam, &lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;&lt;h5&gt;sapiente vitae \r\ntotam nulla natus labore&lt;/h5&gt;&lt;/div&gt;&lt;/li&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;a eaque amet animi iusto&amp;nbsp;&lt;/div&gt;&lt;/li&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;br&gt;&lt;/li&gt;&lt;hr class=&quot;dashed&quot;&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;dicta perspiciatis, \r\nsunt inventore obcaecati et &lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;molestias similique iure dolor. Voluptate.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;​&lt;/li&gt;&lt;li&gt;&lt;br&gt;&lt;/li&gt;&lt;hr class=&quot;solid&quot;&gt;&lt;li&gt;​&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;​&lt;/li&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Aperia&lt;/span&gt;&lt;span style=&quot;color: rgb(153, 138, 0);&quot;&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;m adipisci error assum&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;enda quod. D&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;b&gt;oloremque, recusandae asperiores laudantium suscipit repudiandae quam impedit reprehenderit at numquam molestias laborum nisi cumq&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;ue earum amet&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt; facere ipsa dolorum ad quos minus ab? Dict&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Dolorum asperiores ullam consectetur sapiente saepe, odi&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;o placeat eius eveniet eum animi nihil distinctio. Magni voluptatum similique officia, exercitationem est at corporis impedit? Harum sapiente, molestiae dolore earum obcaecati in?&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Perferendis dolorum, consequatur consequuntur vitae aspernatur sint fuga velit eaque fugiat similique nesciunt ducimus saepe expedita commodi minus hic. Fugiat impedit perferendis expedita sint exercitationem corporis voluptatibus nulla iste aliquid!&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Aperiam adipisci nostrum eos numquam ratione, voluptatum quam, sapiente vitae totam nulla natus labore a eaque amet animi iusto dicta perspiciatis, sunt inventore obcaecati et molestias similique iure dolor. Voluptate.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Facere et inventore minima temporibus animi ducimus, eos asperiores non exercitationem possimus. At, repellendus molestiae. Adipisci exercitationem fugiat ratione sed mollitia numquam ea accusantium, harum aperiam itaque consequatur, vero dicta.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Deserunt reprehenderit natus vel nobis eligendi placeat? Provident non esse eius obcaecati harum suscipit quis eum nemo neque. Dicta nemo porro consequatur aliquid corporis ratione accusamus, adipisci tenetur ducimus nesciunt.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Excepturi ab cumque, earum dignissimos, quaerat unde alias accusamus, deserunt doloribus ipsam saepe iure nam vero? Nisi quisquam neque enim consequatur eaque eligendi officia, quasi labore. A facere aperiam nam?&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Officiis vitae error reiciendis, saepe quisquam ratione laudantium maxime. Eum nesciunt soluta voluptatibus eaque blanditiis laboriosam aspernatur necessitatibus error repellendus facilis nihil ea asperiores ipsum reiciendis quo sint, dolorem quae.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;sun-editor-id-comp sun-editor-id-image-container float-center&quot; contenteditable=&quot;false&quot;&gt;&lt;figure class=&quot;sun-editor-figure-cover&quot; style=&quot;margin: auto; width: 1339px; height: 866px;&quot;&gt;&lt;img src=&quot;data:image/png;base64,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&quot; data-align=&quot;center&quot; alt=&quot;&quot; data-rotate=&quot;0&quot; style=&quot;width: 1339px; height: 866px; max-width: none; transform: rotate(0deg);&quot; data-proportion=&quot;true&quot; origin-size=&quot;883,573&quot; data-origin=&quot;150,97&quot; data-index=&quot;0&quot; data-file-name=&quot;баланс предложения и спроса.png&quot; data-file-size=&quot;14987&quot;&gt;&lt;/figure&gt;&lt;/div&gt;', 'About Us', 'About us Meta Tag Description ', 'About Us');
+(4, 2, 'About us', '&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Lorem, ipsum dolor sit amet &lt;a href=&quot;111&quot; target=&quot;_blank&quot;&gt;consectetur adipisicing elit.&lt;/a&gt; Adipisci provident minima enim dignissimos omnis possimus odio quisquam libero sint mollitia rem sed nisi facilis culpa, impedit, fugiat id, sequi doloribus?&lt;/span&gt;&lt;/div&gt;&lt;div&gt;​&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​6&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​5&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​4&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot; sun-editor-selected-cell&quot;&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​1&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​2&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;​3&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div&gt;​&lt;blockquote&gt;&lt;div align=&quot;justify&quot;&gt;Ea poracere neque aliquam fugiat asperiores quia harum distinctio! Consectetur tempora dolore nulla! Mole 16 stias a liquam, voluptas, nulla aliquid, accusamus ea sapiente dolorum dicta voluptates maiores dolores recusandae sed quibusdam?&lt;/div&gt;&lt;/blockquote&gt;&lt;/div&gt;&lt;pre&gt;&lt;div align=&quot;justify&quot;&gt;Ea porro facere neque aliquam fugiat asperiores quia harum distinctio! Consectetur tempora dolore nulla! Mole 16 stias a liquam, voluptas, nulla aliquid, accusamus ea sapiente dolorum dicta voluptates maiores dolores recusandae sed quibusdam?&lt;/div&gt;&lt;/pre&gt;&lt;pre&gt;&lt;div&gt;​Ea porro facere neque aliquam fugiat asperiores quia harum distinctio! Consectetur tempora do&lt;/div&gt;&lt;/pre&gt;&lt;div&gt;​&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;justify&quot;&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Ea porro f&lt;b&gt;acere neque aliquam &lt;/b&gt;&lt;/span&gt;fugiat&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;b&gt; asperio&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;res quia h&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;u&gt;arum distinctio! Consectetur te&lt;/u&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;mpora do&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;i&gt;lore nulla! Mole &lt;/i&gt;16&lt;i&gt; stias a &lt;/i&gt;&lt;i&gt;liqua&lt;/i&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;m, volu&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;strike&gt;ptas, nulla aliquid, acc&lt;/strike&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;usamus ea sapiente dolorum dicta volu&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;sub&gt;ptates maiores dolore&lt;/sub&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;s recus&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;sup&gt;andae sed quib&lt;/sup&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;usdam?&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;​&lt;/div&gt;&lt;div&gt;1&lt;br&gt;&lt;/div&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&quot;&quot;&gt;&lt;div&gt;2​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot; sun-editor-selected-cell&quot;&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&lt;div&gt;​&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div&gt;​&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;ol&gt;&lt;li&gt;&lt;div&gt;&lt;span style=&quot;font-family: Tahoma;&quot;&gt;Perferendis dolorum, \r\nconsequatur&lt;/span&gt; co&lt;span style=&quot;font-size: 24px;&quot;&gt;nsequuntur vitae aspernat&lt;/span&gt;ur sint fuga &lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&lt;h2&gt;velit eaque fugiat \r\nsimilique nesciunt ducimus saepe expedita commodi &lt;/h2&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div align=&quot;center&quot;&gt;minus hic. Fugiat \r\nimpedit perferendis expedita sint exercitationem &lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;&lt;h1&gt;corporis voluptatibus \r\nnulla iste aliquid!&lt;/h1&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;div&gt;Aperiam\r\n adipisci nostrum &lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;&lt;h4&gt;eos numquam &lt;/h4&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;br&gt;&lt;/li&gt;&lt;hr class=&quot;dotted&quot;&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;ratione, voluptatum quam, &lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;&lt;h5&gt;sapiente vitae \r\ntotam nulla natus labore&lt;/h5&gt;&lt;/div&gt;&lt;/li&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;a eaque amet animi iusto&amp;nbsp;&lt;/div&gt;&lt;/li&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;br&gt;&lt;/li&gt;&lt;hr class=&quot;dashed&quot;&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;dicta perspiciatis, \r\nsunt inventore obcaecati et &lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;li style=&quot;margin-left: 0px;&quot;&gt;&lt;div style=&quot;margin-left: 0px;&quot;&gt;molestias similique iure dolor. Voluptate.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ul&gt;&lt;li&gt;​&lt;/li&gt;&lt;li&gt;&lt;br&gt;&lt;/li&gt;&lt;hr class=&quot;solid&quot;&gt;&lt;li&gt;​&lt;/li&gt;&lt;/ol&gt;&lt;li&gt;​&lt;/li&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Aperia&lt;/span&gt;&lt;span style=&quot;color: rgb(153, 138, 0);&quot;&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;m adipisci error assum&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;enda quod. D&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;b&gt;oloremque, recusandae asperiores laudantium suscipit repudiandae quam impedit reprehenderit at numquam molestias laborum nisi cumq&lt;/b&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;ue earum amet&lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 0, 0);&quot;&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt; facere ipsa dolorum ad quos minus ab? Dict&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Dolorum asperiores ullam consectetur sapiente saepe, odi&lt;/span&gt;&lt;/span&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;o placeat eius eveniet eum animi nihil distinctio. Magni voluptatum similique officia, exercitationem est at corporis impedit? Harum sapiente, molestiae dolore earum obcaecati in?&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Perferendis dolorum, consequatur consequuntur vitae aspernatur sint fuga velit eaque fugiat similique nesciunt ducimus saepe expedita commodi minus hic. Fugiat impedit perferendis expedita sint exercitationem corporis voluptatibus nulla iste aliquid!&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Aperiam adipisci nostrum eos numquam ratione, voluptatum quam, sapiente vitae totam nulla natus labore a eaque amet animi iusto dicta perspiciatis, sunt inventore obcaecati et molestias similique iure dolor. Voluptate.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Facere et inventore minima temporibus animi ducimus, eos asperiores non exercitationem possimus. At, repellendus molestiae. Adipisci exercitationem fugiat ratione sed mollitia numquam ea accusantium, harum aperiam itaque consequatur, vero dicta.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Deserunt reprehenderit natus vel nobis eligendi placeat? Provident non esse eius obcaecati harum suscipit quis eum nemo neque. Dicta nemo porro consequatur aliquid corporis ratione accusamus, adipisci tenetur ducimus nesciunt.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Excepturi ab cumque, earum dignissimos, quaerat unde alias accusamus, deserunt doloribus ipsam saepe iure nam vero? Nisi quisquam neque enim consequatur eaque eligendi officia, quasi labore. A facere aperiam nam?&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;Officiis vitae error reiciendis, saepe quisquam ratione laudantium maxime. Eum nesciunt soluta voluptatibus eaque blanditiis laboriosam aspernatur necessitatibus error repellendus facilis nihil ea asperiores ipsum reiciendis quo sint, dolorem quae.&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-family: Segoe UI;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;sun-editor-id-comp sun-editor-id-image-container float-center&quot; contenteditable=&quot;false&quot;&gt;&lt;figure class=&quot;sun-editor-figure-cover&quot; style=&quot;margin: auto; width: 1339px; height: 866px;&quot;&gt;&lt;img src=&quot;data:image/png;base64,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&quot; data-align=&quot;center&quot; alt=&quot;&quot; data-rotate=&quot;0&quot; style=&quot;width: 1339px; height: 866px; max-width: none; transform: rotate(0deg);&quot; data-proportion=&quot;true&quot; origin-size=&quot;883,573&quot; data-origin=&quot;150,97&quot; data-index=&quot;0&quot; data-file-name=&quot;баланс предложения и спроса.png&quot; data-file-size=&quot;14987&quot;&gt;&lt;/figure&gt;&lt;/div&gt;', 'About Us', 'About us Meta Tag Description ', 'About Us');
 INSERT INTO `information_description` (`information_id`, `language_id`, `title`, `description`, `meta_title`, `meta_description`, `meta_h1`) VALUES
 (5, 2, 'Terms &amp; Conditions', '&lt;p&gt;Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus soluta perferendis ratione velit voluptatem officia repudiandae itaque perspiciatis quas architecto mollitia amet, dolorum, totam natus ut omnis porro quaerat expedita!&lt;br&gt;Minus ipsam praesentium obcaecati libero, quia, expedita eligendi a, ipsa aliquid cum similique veritatis assumenda animi non? Nemo ullam, quos numquam ea pariatur vel et dolore accusamus harum veniam ducimus.&lt;br&gt;Eius libero numquam molestiae eaque accusamus vitae non minus et, cumque sunt optio quis nulla dolore alias pariatur exercitationem repudiandae amet corrupti ullam ipsam esse cupiditate distinctio eos perferendis! Maxime.&lt;br&gt;Asperiores, ab ut? Ipsum quaerat vitae, facere, in soluta similique asperiores dolor consectetur, quas nesciunt totam! Placeat possimus, id, vitae labore nisi minima quam officia officiis reiciendis soluta recusandae! Ea!&lt;br&gt;Sunt a animi, et similique eius mollitia sint alias debitis amet repellat vitae beatae tempore consequatur. Quod tenetur et, accusantium modi quia suscipit, doloremque maxime hic iusto illo omnis totam!&lt;br&gt;Voluptatibus laboriosam repudiandae deleniti ut deserunt? Ipsam repudiandae at animi eius fugiat, recusandae, numquam blanditiis corrupti laborum praesentium ut tenetur qui quas fugit possimus? Minus cum quae atque quis fugit.&lt;br&gt;Blanditiis inventore fuga, maiores aliquid odio vel! Ipsum perspiciatis, iusto rem vero quas officiis aperiam illum nihil distinctio nulla est, maxime velit laboriosam similique totam nisi perferendis quasi eaque doloribus?&lt;br&gt;Sit totam tempora natus cumque libero rem repudiandae fugiat molestiae ex at sunt impedit, quisquam numquam, quas nesciunt ab facere soluta quaerat ut quidem velit provident vitae! Fugiat, sit tempore!&lt;br&gt;Sint, quidem, quia officiis nemo perferendis dicta quibusdam, a saepe voluptates numquam aperiam dolor amet delectus id? Quos odio possimus officia nesciunt dolor aliquid impedit? Sequi quis quasi ipsam expedita.&lt;br&gt;Excepturi suscipit repellat qui nobis quod consequuntur dolore cumque error provident? Voluptatibus sint culpa excepturi, animi quod eligendi repellendus consequuntur possimus recusandae, temporibus repudiandae unde vitae iure doloremque similique nihil?&lt;br&gt;Autem a nobis iure expedita consectetur officiis libero alias laborum, repellendus necessitatibus! Numquam fugiat officiis corporis! Nemo perferendis animi quo repellat mollitia distinctio consequuntur, voluptatum deleniti esse eligendi corporis molestias.&lt;br&gt;Sint odio corrupti consectetur molestiae odit corporis quas eaque ratione dolores fugiat. Quae tenetur expedita incidunt quaerat voluptate rem suscipit. Et quas culpa cum nulla doloribus, distinctio temporibus! Sint, impedit?&lt;br&gt;Doloribus vel corporis dolorum autem similique perspiciatis aspernatur repudiandae at laborum ducimus rerum vitae iure, temporibus, numquam, quidem aut esse delectus velit iste. Suscipit eius, aspernatur nam necessitatibus in culpa!&lt;br&gt;Quod maiores vel animi! Iste, itaque fuga et atque assumenda accusantium rerum eligendi voluptatem amet tenetur sint natus minus adipisci dicta dolor ea excepturi distinctio dolorem eaque enim omnis quaerat!&lt;br&gt;Cumque aperiam minima dolores veniam! Vero doloremque placeat architecto officia accusantium quaerat, obcaecati itaque veritatis quam odio velit libero at dicta, aliquam a necessitatibus, perspiciatis hic. Magni dolorum consectetur dolores!&lt;br&gt;Provident quis obcaecati unde. Ipsam obcaecati minus incidunt nemo veritatis at reiciendis unde illo asperiores. Rem reprehenderit in, labore aperiam vero ullam voluptatum quos dolor, rerum perferendis, eius nesciunt. Quos!&lt;br&gt;Architecto libero non, quaerat eveniet natus asperiores laborum, nobis velit quam neque, porro debitis aut. Fugiat, autem? Aperiam dolorem recusandae ipsum, non quos quisquam similique molestiae repudiandae a cumque ullam.&lt;br&gt;Eligendi laborum facilis aut, officiis dicta assumenda eius nisi exercitationem doloremque quidem! Nam a voluptatem eos nostrum, ex quam, nobis repellendus quidem dolorem numquam qui est quaerat, accusamus vero quos!&lt;br&gt;Natus fugit nobis delectus aliquam, quasi labore eos totam incidunt eum ducimus libero dolorem expedita dolorum vel dignissimos consequatur assumenda itaque aut unde vitae modi dolores voluptatum, atque odio? Accusantium.&lt;br&gt;Exercitationem beatae rerum facere facilis eum hic, repellat corporis quas sit doloremque molestiae sunt maiores maxime harum odit repellendus, neque architecto recusandae? Illum porro tempore, alias minima neque dolore optio.&lt;br&gt;A deleniti dignissimos consectetur, aspernatur perspiciatis animi nemo cumque ullam incidunt inventore placeat est veritatis fuga, sint alias ipsa. Cumque harum, voluptatem architecto accusamus illum dolor vero optio quasi molestias.&lt;br&gt;Quibusdam cum vitae quae temporibus corporis, neque iusto consectetur asperiores unde exercitationem enim? Quis velit laboriosam pariatur debitis corrupti voluptate consequuntur molestias quaerat tenetur! Voluptates at ex molestiae deleniti sunt.&lt;br&gt;Non error alias fugit facilis magni neque eligendi iure dignissimos nobis. Facilis accusantium quos dolor doloremque nam dignissimos, nihil ducimus porro exercitationem debitis libero dolores accusamus iste, laboriosam autem ad!&lt;br&gt;Beatae iste sint atque natus nisi dolorem inventore obcaecati asperiores dolor consequuntur laboriosam iusto sit labore maxime vero, dolorum ea nemo voluptatum! Magni laborum quis hic earum, qui dolorum quod.&lt;br&gt;Nostrum obcaecati totam fugit est ea! Incidunt reprehenderit sit eum porro! Minus ipsum temporibus sed, repellat quia nulla in nisi qui aut repellendus labore officiis et quod. Eaque, aperiam animi?&lt;br&gt;Et illo cum, consectetur tenetur suscipit ratione enim pariatur, nulla saepe debitis sapiente blanditiis eligendi delectus excepturi molestias ex quae aliquam dolorum magnam, provident laudantium aut voluptate quo? Velit, itaque?&lt;br&gt;Alias atque doloribus, dolores quis similique placeat eius quas omnis adipisci quaerat quasi tempore, vitae ullam, necessitatibus sit doloremque voluptatem possimus facilis aut aliquam veritatis! Cum excepturi necessitatibus tenetur culpa.&lt;br&gt;Autem culpa numquam quasi explicabo tempore doloribus non ab ad, nulla voluptas harum molestiae voluptatem eaque dolore velit temporibus cupiditate consequuntur libero a architecto tempora illo. Enim nulla dolore eveniet?&lt;br&gt;Sit dolores deserunt enim blanditiis aliquid nesciunt incidunt, esse, eos sed cum fuga repudiandae, molestiae veritatis at nemo culpa saepe assumenda ipsam eius labore unde odit? Accusantium explicabo numquam aut?&lt;br&gt;Suscipit, voluptatibus dicta facere esse odio laudantium minima adipisci, reprehenderit nam sit neque atque molestias at beatae ullam voluptatem nulla earum qui cupiditate commodi itaque fuga ipsum incidunt alias. Numquam.&lt;br&gt;Architecto sapiente labore perferendis, delectus ipsum iusto aliquam fugit eum velit, veritatis esse nihil eaque tempore eos excepturi adipisci laboriosam? Vero provident in, recusandae corrupti sunt maiores magni perferendis cupiditate!&lt;br&gt;Suscipit non perspiciatis voluptatum eius, hic possimus tempora deleniti sapiente quibusdam quidem provident asperiores odio maiores est corrupti voluptatibus quos quam totam? Facilis ipsa quibusdam aliquid iusto quisquam quis dignissimos!&lt;br&gt;Aperiam earum iste similique sit possimus atque rerum deserunt commodi eligendi obcaecati quaerat hic quae quis assumenda eaque, repellat vero velit quia molestias nulla! Quia eligendi iste molestias nihil aut!&lt;br&gt;Laborum aliquid quia deleniti atque hic possimus mollitia doloribus, aspernatur debitis. Alias cum, asperiores error quos optio reiciendis voluptatum laborum animi, eum quae, itaque id architecto eaque est ullam commodi?&lt;br&gt;Sapiente accusamus earum, repellat delectus quia mollitia et molestiae veritatis fugiat nesciunt? Corporis voluptatum molestias eligendi ullam eaque deleniti quas, aspernatur praesentium facilis nulla, voluptatibus veritatis fuga, dolor odio laborum?&lt;br&gt;Et laudantium, saepe accusantium amet error doloribus perferendis iste libero obcaecati placeat reiciendis, necessitatibus voluptatum ullam consequatur aliquam neque facere? Ipsa corporis expedita voluptatum rem? Rem placeat aspernatur earum animi?&lt;br&gt;Cupiditate voluptatem quaerat vero nisi illo, consequuntur consequatur, labore soluta facilis repudiandae incidunt fugiat rerum quisquam? Nesciunt, nisi enim, incidunt vitae culpa ratione non nobis vero dolores, doloribus maxime blanditiis.&lt;br&gt;Minus facere praesentium reiciendis. Qui facilis porro voluptatum fugit debitis laboriosam provident voluptatibus ex nesciunt maiores aut quibusdam nobis aliquid consectetur id earum esse velit aliquam quas, consequatur iste. Placeat.&lt;br&gt;Harum velit laborum iste doloremque perferendis fugit placeat blanditiis error atque corporis! Quo officia possimus cumque voluptates quibusdam vel omnis, repellendus sequi, adipisci expedita dolor corrupti eligendi fugiat dicta suscipit.&lt;br&gt;Ducimus sit aspernatur modi eius pariatur placeat ex optio. Et velit quod quisquam aperiam amet voluptates dolores quibusdam quis officiis error ipsum laborum molestias expedita maiores, asperiores harum vero repellendus!&lt;br&gt;Aliquam delectus ut eius quia aperiam minima fugiat ipsum, reprehenderit nihil laborum placeat, tempora reiciendis unde distinctio quasi modi itaque perspiciatis voluptatibus deleniti, praesentium quae accusantium omnis suscipit dolorem? Facere.&lt;br&gt;Cum fugiat, doloribus vel ea quibusdam magnam dolorum, eius illum nam ipsum officia unde ad error numquam autem facere cumque ipsam expedita dolor dolorem reiciendis quam harum modi. Non, eos.&lt;br&gt;Reprehenderit sapiente molestiae repellendus vero necessitatibus rerum corrupti officia porro animi commodi ipsa fuga dolor debitis unde, quis tempora, voluptatem vitae sequi. Laborum eveniet perspiciatis quos laudantium quaerat mollitia nisi!&lt;br&gt;Dignissimos, in suscipit. Provident, ducimus! Adipisci accusamus, aperiam ab, ratione eum rerum est animi perferendis qui ea magni blanditiis illo, minus eaque perspiciatis unde eveniet quisquam alias atque voluptatum incidunt?&lt;br&gt;Iste officiis saepe earum qui itaque sit, molestiae nemo culpa magni doloribus ullam vitae? Sint provident odio facere in eius iure quia, ut nam minima eos numquam tempora, saepe repellendus.&lt;br&gt;Mollitia aliquam labore beatae dolorem itaque reiciendis perferendis fugit quos rem sit quis saepe, consectetur ipsum nulla cupiditate porro officia soluta id hic voluptatibus. Sequi illo deleniti harum placeat accusantium?&lt;br&gt;Numquam, non. Veniam et nisi dolore, laboriosam sit officiis cupiditate explicabo, quisquam iusto inventore perferendis repudiandae exercitationem. Corporis voluptates laboriosam aliquam reprehenderit ratione beatae omnis! Quas ad delectus illo minus!&lt;br&gt;Esse aspernatur, fugiat laboriosam illum eveniet vitae delectus at quaerat autem corrupti consectetur facilis natus molestiae ducimus sint nam quae amet aperiam! Eligendi sunt et quam? Nam placeat sunt odit.&lt;br&gt;Laboriosam illum et accusamus consequatur perferendis magnam excepturi inventore eaque ipsam velit ullam tempora doloremque, saepe, quia tempore numquam deleniti beatae modi non aliquid repudiandae libero! Similique culpa adipisci quam!&lt;br&gt;Mollitia quis quia, vitae tenetur consequatur assumenda natus officia facere consectetur. Qui perspiciatis repellendus cumque rem eos? Sunt, facere corrupti cumque hic ad at quia fugit temporibus soluta, facilis impedit.&lt;br&gt;Iure rerum, quaerat asperiores sequi commodi quidem illum obcaecati praesentium velit maiores reiciendis, eaque eum. At voluptatibus id omnis ad quia repellendus culpa ea fugiat, ab a sint obcaecati veniam.&lt;br&gt;Harum itaque voluptates, illum, iste quidem dolores beatae quos numquam impedit placeat veritatis accusamus quas obcaecati? Ipsum doloribus, vero, magni eaque consectetur esse a debitis, placeat et quae expedita ex.&lt;br&gt;Libero dolorem iste natus fugit repellendus aliquam ipsa cupiditate eos tempore earum magnam doloribus expedita, impedit minus voluptatem omnis neque maiores veritatis ex, culpa reprehenderit enim. Repudiandae saepe et commodi.&lt;br&gt;Perspiciatis, eum? Officia numquam fuga aut unde, quo velit harum exercitationem et laborum necessitatibus repellat id. Quam fuga, eum atque beatae non corrupti a ullam cum, ipsum, totam adipisci sint!&lt;br&gt;Dolores perferendis ut quas tempore fugit! Impedit dignissimos voluptatum voluptas magnam praesentium, eligendi esse harum accusantium reiciendis magni quam minima ratione minus quos fugiat unde corrupti quisquam perspiciatis excepturi id.&lt;br&gt;Nulla quidem optio odio fugiat, saepe aperiam reiciendis commodi tempore nemo sequi, magnam ullam ratione odit, atque reprehenderit cumque vel mollitia inventore beatae iste architecto. Rerum blanditiis hic corporis distinctio!&lt;br&gt;Distinctio dolor harum maxime assumenda maiores voluptatem iure vel suscipit quibusdam saepe, sed asperiores delectus exercitationem amet sit dolorum quia voluptates at voluptatibus. Cumque fugit ab nulla repellendus quo quia?&lt;br&gt;Quas error vel at blanditiis veritatis velit aliquam, modi voluptatum sed distinctio itaque ea quidem minus eveniet quae quis qui? Consequuntur atque natus id autem voluptatem vitae doloribus, deleniti quia!&lt;br&gt;Est rem commodi doloribus repellat voluptatum, libero voluptatibus quibusdam laboriosam minima natus reprehenderit et facere officia iste illum sunt id soluta ratione voluptas. Praesentium, aperiam. Ipsam molestias corrupti assumenda nesciunt!&lt;br&gt;Eum consectetur earum ipsa a nemo soluta assumenda, quis, minus ab praesentium rerum hic, autem eligendi quod itaque sit culpa! Fugiat eum quam aperiam asperiores, blanditiis eveniet inventore voluptates ipsum.&lt;br&gt;Quaerat, hic debitis vitae perspiciatis ipsam, iste rerum voluptatum repellat nam sequi quibusdam inventore quod cupiditate odit facilis rem quo! Dolore pariatur accusamus officiis facere perferendis ex ullam distinctio modi.&lt;br&gt;Accusamus non soluta pariatur similique vitae, enim numquam. Sequi, id? Dolores consectetur, suscipit iure facere doloremque ratione aspernatur tempora? Quo commodi at ad temporibus ipsum a odit neque similique tenetur.&lt;br&gt;Nihil, quae neque unde magnam molestias, necessitatibus ex eveniet quidem rerum, quo quisquam! Consectetur veritatis porro impedit, tenetur fugit expedita odio reprehenderit quidem recusandae laborum quia, temporibus modi at dolores.&lt;br&gt;Vitae aperiam tenetur eligendi qui doloribus aliquid, exercitationem, quis possimus aliquam molestiae dolores? Dolor itaque odit est inventore eos tempore tenetur porro! Nisi tempore placeat repellat eius delectus. Aperiam, aspernatur.&lt;br&gt;Omnis quidem blanditiis debitis ad officiis quaerat ratione laborum nihil, voluptatem laboriosam voluptate animi perferendis doloribus. Obcaecati sapiente quam excepturi dignissimos corrupti temporibus. Vitae quaerat facere, autem adipisci nulla consectetur.&lt;br&gt;Voluptatem excepturi odit ad nobis officiis doloremque nisi maiores cumque inventore explicabo animi ducimus alias, deleniti recusandae, quia odio neque quae officia cum iusto minima! Voluptatum reiciendis soluta tempora sunt.&lt;br&gt;Ullam esse voluptatibus iusto laudantium dolorum, consequatur culpa, eligendi rerum reprehenderit modi accusamus quidem voluptatum perspiciatis sapiente a explicabo impedit omnis, nam ipsa error tempore officiis beatae. Obcaecati, molestias placeat!&lt;br&gt;Incidunt, quaerat corporis? Nobis est exercitationem dicta vitae vero recusandae numquam, ipsam veritatis a minus suscipit illo voluptatem cupiditate voluptate perferendis labore omnis possimus atque porro dolore! Cumque, neque voluptates!&lt;br&gt;Debitis sint, vero quod fugit odit iure doloribus modi, minus ab repudiandae magni aperiam dicta beatae soluta numquam nemo itaque, nihil obcaecati quisquam atque consequatur animi quo dolorem? Eum, error!&lt;br&gt;Fugit optio molestiae itaque eligendi, eius praesentium commodi sint deleniti beatae? Molestias libero incidunt culpa! Quia obcaecati ex iusto, accusantium quisquam et officia fugiat cumque a cupiditate sunt autem eaque.&lt;br&gt;Expedita sit pariatur exercitationem obcaecati officia blanditiis eos reiciendis temporibus ea officiis quis, laboriosam repellat aliquam tenetur consequuntur repellendus nemo quos omnis consectetur ut suscipit vero. Expedita aliquid officiis nesciunt?&lt;br&gt;Alias esse dignissimos autem recusandae fugiat officiis possimus suscipit voluptatibus doloremque fugit sit veritatis blanditiis beatae, iure obcaecati et saepe necessitatibus, ad a vel assumenda, unde tempore. Cupiditate, sapiente in?&lt;br&gt;Consequatur expedita minus quaerat esse, nulla dolores aperiam rerum omnis nihil. Eius quidem illo voluptatibus exercitationem, quos nesciunt culpa doloremque nobis iusto alias accusantium provident ullam at. Quisquam, veniam nam!&lt;br&gt;Quasi voluptate labore inventore magni doloribus dolore nulla molestias blanditiis enim quae facere, praesentium, error omnis voluptas atque tenetur, sit dignissimos sequi. Eaque nesciunt animi blanditiis. Accusamus odio perspiciatis magnam?&lt;br&gt;Sunt dolores, consequatur aut veritatis suscipit nobis ipsam, aliquam eius explicabo iste sequi corporis magni ipsum recusandae quasi ex, modi hic laudantium quos architecto. Ex possimus minima voluptatum saepe totam!&lt;br&gt;Laudantium unde culpa voluptate dolorem voluptates ipsa asperiores consectetur iure quisquam sint illo ullam minima suscipit rem ad, omnis amet illum pariatur vitae vero expedita eveniet accusantium quod repudiandae? Fuga!&lt;br&gt;Velit, perspiciatis. Magni fuga enim eius sunt architecto consectetur ratione consequatur, minus illo quaerat repellat similique inventore beatae eos eligendi molestiae corrupti deleniti facere iure, quas a voluptatum voluptas culpa.&lt;br&gt;Quis, cupiditate! Odio alias ducimus facilis dolorem vitae veritatis voluptas laborum eligendi, culpa blanditiis, sed aperiam enim! Libero delectus ipsam, reprehenderit magni quia eveniet soluta, voluptatibus minus quidem fugit ex.&lt;br&gt;Culpa velit ducimus minima, repellat mollitia, similique modi odio debitis asperiores et magni accusantium vitae, maiores nostrum ea dicta quod harum voluptate earum sapiente esse. Atque quisquam ullam temporibus id?&lt;br&gt;Molestias distinctio beatae aperiam, ad corporis recusandae minima aliquam reiciendis soluta officiis cupiditate odio? Nemo perspiciatis necessitatibus, porro mollitia id possimus odio non dolore. Quae numquam praesentium cumque in sit?&lt;br&gt;Doloribus similique itaque autem. Consequuntur, eius consectetur. Omnis qui alias saepe, ex cupiditate aliquid iste, illo dicta dignissimos facere sapiente nesciunt dolorum blanditiis possimus eveniet nam ipsam porro expedita ducimus!&lt;br&gt;Aliquid impedit, dicta animi architecto id quas dolorum odit expedita adipisci, beatae iusto commodi, dolores distinctio neque sunt nemo quia molestias enim soluta nobis facilis aut asperiores? Minus, tempore sapiente.&lt;br&gt;Repellendus facere porro laudantium dolorem cupiditate soluta, doloremque nisi officiis? Nam saepe quo accusamus, ex maxime fuga, libero ipsam ducimus consequuntur ut aperiam hic ea deserunt fugiat sed dolores in?&lt;br&gt;Voluptates eligendi est possimus asperiores. Inventore reiciendis repellat illo! Nihil, culpa aspernatur dolor nam hic, tempore totam ex recusandae minima asperiores labore nisi cum nobis dolore minus magnam voluptatibus autem.&lt;br&gt;Facilis quaerat doloribus eligendi odio eveniet veritatis, neque mollitia necessitatibus placeat ratione deleniti reiciendis amet cum esse voluptatibus maxime debitis expedita repellat, molestias id repellendus cumque nam? Vitae, porro accusantium.&lt;br&gt;Officiis repellat fugiat ratione atque voluptatum recusandae repellendus at corrupti! Aliquam, ut quaerat. Rerum ipsum eos fugit quia laboriosam quaerat, nisi, adipisci, libero sapiente eaque exercitationem aspernatur! Enim, quod dolor?&lt;br&gt;Maiores quis commodi ducimus provident sapiente rem laborum dolor animi tenetur? Dolores aperiam distinctio harum quidem tenetur, repellat incidunt quaerat. Beatae exercitationem quo a minus est odio explicabo sed laboriosam?&lt;br&gt;Dicta quod ipsa nostrum dolorem ullam? Eum quisquam voluptatem voluptates blanditiis delectus quod, dignissimos cumque aperiam cupiditate mollitia voluptatibus porro dolore reiciendis ad obcaecati. Dolorem nihil non possimus illo reprehenderit.&lt;br&gt;At eum aspernatur accusantium earum delectus odit doloremque commodi. Consequuntur enim accusamus saepe a, modi nisi nulla error provident, expedita sit recusandae necessitatibus voluptatem officia delectus, temporibus voluptate suscipit exercitationem.&lt;br&gt;Soluta consectetur laudantium aliquam mollitia pariatur ipsam maxime id modi animi alias exercitationem vitae voluptates quis, blanditiis sint ducimus corporis officia itaque praesentium tempore nesciunt. Repellendus dignissimos repellat sequi nisi.&lt;br&gt;Voluptates incidunt excepturi placeat nulla voluptas quis quasi unde deserunt sunt fuga laborum repudiandae hic et veritatis quas officiis deleniti quibusdam fugit, odio magni animi rem pariatur quod dolorem? Quam?&lt;br&gt;Ducimus, consectetur sunt itaque placeat at quos eligendi reiciendis quod voluptatibus illo temporibus esse dicta in ipsa corrupti quas quaerat laborum numquam eos libero. Iusto aspernatur consequatur quo error nihil!&lt;br&gt;Cum, facere repellendus! Sapiente, temporibus! Neque modi repellendus at labore! Consequatur quidem blanditiis necessitatibus voluptas quisquam, neque sapiente numquam totam quo, excepturi exercitationem obcaecati quia eligendi facilis veniam minima provident.&lt;br&gt;Saepe corrupti dolorem quam praesentium exercitationem ipsam eum sint sed culpa. Laboriosam quam suscipit id ea perspiciatis neque possimus, impedit eius odit nobis, eaque incidunt necessitatibus, dolorem provident doloremque sunt.&lt;br&gt;Necessitatibus, ducimus! Neque odit adipisci labore cum architecto error enim quisquam ea iure animi ducimus dolorum nam aperiam voluptas tempore, vero nisi ipsum omnis aut, magnam eveniet accusamus laboriosam porro?&lt;br&gt;Consectetur similique ratione impedit soluta omnis nisi provident! Ad blanditiis, asperiores cumque dicta delectus et, harum, velit ratione commodi quo aliquam non animi inventore iste perferendis sint quidem doloribus? Eius.&lt;br&gt;Pariatur ea voluptatem delectus magnam rerum odit dolores inventore eligendi odio corporis, praesentium harum mollitia nostrum sequi maxime iure expedita fuga explicabo ducimus suscipit hic itaque! Quasi numquam vitae dignissimos!&lt;br&gt;Omnis consequatur, molestias, harum perspiciatis ipsum amet hic officia quod fuga quo rerum enim eum veniam minus temporibus quae possimus voluptate! Corporis eum ut perspiciatis, consectetur eaque beatae autem sit?&lt;br&gt;Repellendus alias similique minima nihil? Voluptate harum, accusantium reprehenderit expedita odio, a necessitatibus eius error quod cum doloribus tenetur quo esse unde obcaecati ex maxime perspiciatis nemo sed sapiente aliquid!&lt;br&gt;Aut ad mollitia amet reprehenderit. Ea minus dolores molestiae, culpa modi qui nam quasi earum praesentium tenetur at! Esse mollitia quisquam fugiat dignissimos deleniti omnis quae eos quidem fugit porro.&lt;br&gt;&lt;/p&gt;', 'Terms &amp; Conditions', 'Terms &amp; Conditions', 'Terms &amp; Conditions'),
 (6, 2, 'Delivery Information', '&lt;p&gt;&lt;span style=&quot;color: rgb(0, 0, 0);&quot;&gt;Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae illo inventore laboriosam consequuntur alias atque quas voluptatem voluptatum suscipit tempore officiis dolor eligendi quae earum vero unde eveniet, blanditiis libero.&lt;/span&gt;&lt;br&gt;Alias quam libero dicta quos ut voluptatem assumenda corporis nam, voluptas, accusamus error natus iusto aspernatur vel minima eaque id iure. Praesentium atque architecto dignissimos, doloremque ipsam sed quod ipsa.&lt;br&gt;Quod cum sapiente laudantium veritatis amet aliquam perspiciatis quasi a tempore, ducimus voluptas ratione harum incidunt ullam aliquid veniam fuga cupiditate voluptatum ad nostrum. Fugit reprehenderit dolorum ratione nesciunt temporibus.&lt;br&gt;Odio, placeat! Vero cum corrupti numquam illum blanditiis, dolore magnam nam iusto animi omnis tenetur hic debitis natus non possimus labore sapiente totam perferendis impedit fugiat libero? Nemo, culpa cum?&lt;br&gt;Facilis quos ad molestias mollitia sed? Molestias aut consequatur laudantium similique, possimus inventore tenetur exercitationem earum tempora dolorum quas cum ut, facere minus repellendus vitae rem quae quis suscipit nisi.&lt;br&gt;Animi mollitia molestias maxime quam officia eligendi, illum libero explicabo amet nam, tempore iste veritatis deserunt ad exercitationem minima quo, repellendus est accusantium hic? Possimus eveniet natus officiis vero accusamus?&lt;br&gt;Quam, debitis perferendis placeat accusantium soluta hic error quod aliquam itaque quidem praesentium impedit necessitatibus porro laboriosam assumenda et ea veniam ad corporis esse quasi ducimus rem quis. Totam, officiis?&lt;br&gt;Voluptatibus itaque quae veritatis sapiente, nulla sunt animi facilis labore sit, ab vero voluptatem beatae iste odio earum, alias rerum impedit est. Nisi adipisci magni esse necessitatibus labore! Officia, vitae.&lt;br&gt;Atque expedita dignissimos, placeat esse, perferendis quidem deleniti, praesentium libero ullam nihil impedit temporibus deserunt facere voluptas. Facilis tenetur id voluptatibus, quaerat vel laboriosam velit reprehenderit beatae asperiores sint excepturi.&lt;br&gt;Porro temporibus totam voluptatibus facere doloribus voluptatum delectus, quia mollitia nisi magnam cum hic at dolorem officia veniam, quisquam cumque consequatur tenetur sunt laudantium excepturi. Explicabo voluptatum aliquam officiis quaerat?&lt;br&gt;Quas aliquid obcaecati perspiciatis corrupti voluptate assumenda, nostrum vitae omnis delectus, nobis in commodi quia recusandae veniam error! Sed quod alias officiis esse molestias voluptate ea incidunt enim porro natus.&lt;br&gt;Porro corporis aliquam qui doloribus facilis minima. Unde, corporis veritatis iure, incidunt labore placeat, vel a tempora perferendis nihil alias dolor culpa! Alias maiores sint modi beatae ex facere veniam?&lt;br&gt;Reprehenderit ratione harum perferendis sequi repudiandae voluptatum aut molestiae maxime ipsa excepturi saepe, architecto pariatur rem voluptas quisquam facere, veritatis molestias esse laboriosam. Placeat recusandae pariatur iste nemo sit! Consequuntur!&lt;br&gt;Magni consequuntur eius nostrum placeat harum quaerat tenetur ipsam, tempora, expedita ad pariatur accusantium cum blanditiis iste minus nemo. Illum molestiae facilis est ducimus vero quam itaque officia, sunt consequuntur.&lt;br&gt;Dolorem quidem tempora quis hic autem voluptatum aspernatur dolores, earum est nemo. Nesciunt exercitationem illo, delectus obcaecati dolore quidem provident nihil enim atque, cumque omnis ipsa tempore iste, maxime asperiores?&lt;br&gt;&lt;/p&gt;', 'Delivery Information', 'Delivery Information', 'Delivery Information'),
@@ -1902,7 +1904,7 @@ CREATE TABLE `information_to_layout` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `information_to_layout`
@@ -1924,7 +1926,7 @@ INSERT INTO `information_to_layout` (`information_id`, `store_id`, `layout_id`) 
 CREATE TABLE `information_to_store` (
   `information_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `information_to_store`
@@ -1952,7 +1954,7 @@ CREATE TABLE `language` (
   `directory` varchar(32) NOT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `language`
@@ -1970,7 +1972,7 @@ INSERT INTO `language` (`language_id`, `name`, `code`, `locale`, `image`, `direc
 CREATE TABLE `layout` (
   `layout_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `layout`
@@ -2005,7 +2007,7 @@ CREATE TABLE `layout_module` (
   `code` varchar(64) NOT NULL,
   `position` varchar(14) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `layout_module`
@@ -2038,7 +2040,7 @@ CREATE TABLE `layout_route` (
   `layout_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `route` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `layout_route`
@@ -2077,7 +2079,7 @@ CREATE TABLE `location` (
   `image` varchar(255) DEFAULT NULL,
   `open` text NOT NULL,
   `comment` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `location`
@@ -2099,7 +2101,7 @@ CREATE TABLE `manufacturer` (
   `image` varchar(255) DEFAULT NULL,
   `noindex` tinyint(1) NOT NULL DEFAULT '1',
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `manufacturer`
@@ -2127,7 +2129,7 @@ CREATE TABLE `manufacturer_description` (
   `meta_description` varchar(255) NOT NULL,
   `meta_title` varchar(255) NOT NULL,
   `meta_h1` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `manufacturer_description`
@@ -2174,7 +2176,7 @@ INSERT INTO `manufacturer_to_layout` (`manufacturer_id`, `store_id`, `layout_id`
 CREATE TABLE `manufacturer_to_store` (
   `manufacturer_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `manufacturer_to_store`
@@ -2201,7 +2203,7 @@ CREATE TABLE `marketing` (
   `code` varchar(64) NOT NULL,
   `clicks` int(5) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2216,7 +2218,7 @@ CREATE TABLE `menu` (
   `link` varchar(255) NOT NULL,
   `sort_order` int(3) NOT NULL,
   `status` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2228,7 +2230,7 @@ CREATE TABLE `menu_description` (
   `menu_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2241,7 +2243,7 @@ CREATE TABLE `menu_module` (
   `menu_id` int(11) NOT NULL,
   `code` varchar(64) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2254,7 +2256,7 @@ CREATE TABLE `module` (
   `name` varchar(64) NOT NULL,
   `code` varchar(32) NOT NULL,
   `setting` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `module`
@@ -2283,7 +2285,7 @@ CREATE TABLE `option` (
   `option_id` int(11) NOT NULL,
   `type` varchar(32) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `option`
@@ -2315,7 +2317,7 @@ CREATE TABLE `option_description` (
   `option_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `option_description`
@@ -2337,7 +2339,7 @@ CREATE TABLE `option_value` (
   `option_id` int(11) NOT NULL,
   `image` varchar(255) NOT NULL,
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `option_value`
@@ -2400,7 +2402,7 @@ CREATE TABLE `option_value_description` (
   `language_id` int(11) NOT NULL,
   `option_id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `option_value_description`
@@ -2505,7 +2507,7 @@ CREATE TABLE `order` (
   `accept_language` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2522,7 +2524,7 @@ CREATE TABLE `order_custom_field` (
   `value` text NOT NULL,
   `type` varchar(32) NOT NULL,
   `location` varchar(16) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2537,7 +2539,7 @@ CREATE TABLE `order_history` (
   `notify` tinyint(1) NOT NULL DEFAULT '0',
   `comment` text NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2554,7 +2556,7 @@ CREATE TABLE `order_option` (
   `name` varchar(255) NOT NULL,
   `value` text NOT NULL,
   `type` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2573,7 +2575,7 @@ CREATE TABLE `order_product` (
   `total` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `tax` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `reward` int(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2585,7 +2587,7 @@ CREATE TABLE `order_status` (
   `order_status_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `order_status`
@@ -2620,7 +2622,7 @@ CREATE TABLE `order_total` (
   `title` varchar(255) NOT NULL,
   `value` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `sort_order` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -2658,31 +2660,31 @@ CREATE TABLE `product` (
   `noindex` tinyint(1) NOT NULL DEFAULT '1',
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`product_id`, `model`, `sku`, `upc`, `ean`, `jan`, `isbn`, `mpn`, `location`, `quantity`, `stock_status_id`, `image`, `manufacturer_id`, `shipping`, `price`, `points`, `tax_class_id`, `date_available`, `width`, `height`, `subtract`, `minimum`, `sort_order`, `status`, `marked_product`, `viewed`, `noindex`, `date_added`, `date_modified`) VALUES
-(42, '837463782', 'Product 1 SKU', 'Product 1 UP', 'Product 1 EAN', 'Product 1 JAN', 'Product 1 ISBN', 'Product 1 MNP', 'Product 1 Location', 999, 5, 'catalog/demo_products/product_1/nikolay-tarashchenko-551722-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 2, 1, 1, 0, 1470, 1, '2009-02-03 21:07:37', '2018-12-19 18:07:54'),
-(64, '94387843574', '', '', 'Product 2 EAN', 'Product 2 JAN', 'Product 2 ISBN', 'Product 2 MNP', 'Product 2 Location', 999, 5, 'catalog/demo_products/product_1/goran-ivos-771531-unsplash.jpg', 8, 1, '98123.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 61, 1, '2018-11-16 14:06:22', '2018-11-16 14:13:54'),
-(80, '6-98640594', '', '', 'Product 3 EAN', 'Product 3 JAN', 'Product 3 ISBN', 'Product 3 MNP', 'Product 3 Location', 999, 5, 'catalog/demo_products/product_1/alejandro-escamilla-10-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 4, 1, 1, 0, 66, 1, '2018-11-16 14:15:20', '2018-11-16 14:17:33'),
-(82, '5640-965', '', '', 'Product 4 EAN', 'Product 4 JAN', 'Product 4 ISBN', 'Product 4 MNP', 'Product 4 Location', 999, 5, 'catalog/demo_products/product_1/aidan-hancock-609469-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 70, 1, '2018-11-16 14:15:24', '2018-11-16 14:20:05'),
-(83, '098709865', '', '', 'Product 5 EAN', 'Product 5 JAN', 'Product 5 ISBN', 'Product 5 MNP', 'Product 5 Location', 999, 5, 'catalog/demo_products/product_1/andras-vas-655218-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 47, 1, '2018-11-16 14:15:24', '2018-11-16 14:24:35'),
-(86, '43975943', '', '', 'Product 6 EAN', 'Product 6 JAN', 'Product 6 ISBN', 'Product 6 MNP', 'Product 6 Location', 999, 5, 'catalog/demo_products/product_1/burst-521042-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 49, 1, '2018-11-16 14:15:27', '2018-11-16 14:26:52'),
-(87, '463564564', '', '', 'Product 7 EAN', 'Product 7 JAN', 'Product 7 ISBN', 'Product 7 MNP', 'Product 7 Location', 999, 5, 'catalog/demo_products/product_1/caspar-rubin-224229-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 49, 1, '2018-11-16 14:15:27', '2018-11-16 14:48:17'),
-(88, '409850435', '', '', 'Product 8 EAN', 'Product 8 JAN', 'Product 8 ISBN', 'Product 8 MNP', 'Product 8 Location', 999, 5, 'catalog/demo_products/product_1/charles-deluvio-456792-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 2, 1, 1, 0, 50, 1, '2018-11-16 14:15:27', '2018-11-16 14:40:15'),
-(89, '4534543543', '', '', 'Product 9 EAN', 'Product 9 JAN', 'Product 9 ISBN', 'Product 9 MNP', 'Product 9 Location', 999, 5, 'catalog/demo_products/product_1/evan-gebhart-666379-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 3, 1, 1, 0, 48, 1, '2018-11-16 14:15:27', '2018-11-16 14:41:47'),
-(96, '59798343', '', '', 'Product 10 EAN', 'Product 10 JA', 'Product 10 ISBN', 'Product 10 MNP', 'Product 10 Location', 999, 5, 'catalog/demo_products/product_1/dillon-shook-511764-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 85, 1, '2018-11-16 14:49:44', '2018-11-16 14:55:20'),
-(97, '59798343', '', '', 'Product 11 EAN', 'Product 11 JA', 'Product 11 ISBN', 'Product 11 MNP', 'Product 11 Location', 999, 5, 'catalog/demo_products/product_1/ibrahim-rifath-720971-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 59, 1, '2018-11-16 14:54:27', '2018-11-16 14:56:23'),
-(98, '54465465765', '', '', 'Product 12 EAN', 'Product 12 JA', 'Product 12 ISBN', 'Product 12 MNP', 'Product 12 Location', 999, 5, 'catalog/demo_products/product_1/julian-o-hayon-257567-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 54, 1, '2018-11-16 14:54:31', '2018-11-16 14:57:35'),
-(99, '543085043854', '', '', 'Product 13 EAN', 'Product 13 JA', 'Product 13 ISBN', 'Product 13 MNP', 'Product 13 Location', 999, 5, 'catalog/demo_products/product_1/max-nelson-492729-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 58, 1, '2018-11-16 14:54:31', '2018-11-16 14:58:35'),
-(100, '56546546478', '', '', 'Product 14 EAN', 'Product 14 JA', 'Product 14 ISBN', 'Product 14 MNP', 'Product 14 Location', 999, 5, 'catalog/demo_products/product_1/nikolay-tarashchenko-551717-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 63, 1, '2018-11-16 14:54:36', '2018-11-16 14:59:27'),
-(101, '587643853', '', '', 'Product 15 EAN', 'Product 15 JA', 'Product 15 ISBN', 'Product 15 MNP', 'Product 15 Location', 999, 5, 'catalog/demo_products/product_1/nikolay-tarashchenko-614285-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 102, 1, '2018-11-16 14:54:36', '2018-11-16 15:00:22'),
-(102, '65765765', '', '', 'Product 16 EAN', 'Product 16 JA', 'Product 16 ISBN', 'Product 16 MNP', 'Product 16 Location', 999, 5, 'catalog/demo_products/product_1/realmac-dan-365523-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 64, 1, '2018-11-16 14:54:36', '2018-11-16 15:01:16'),
-(103, '65765765', '', '', 'Product 17 EAN', 'Product 17 JA', 'Product 17 ISBN', 'Product 17 MNP', 'Product 17 Location', 999, 5, 'catalog/demo_products/product_1/vivek-kumar-394543-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 54, 1, '2018-11-16 14:54:36', '2018-11-16 15:02:08'),
-(104, '6765765765', '', '', 'Product 18 EAN', 'Product 18 JA', 'Product 18 ISBN', 'Product 18 MNP', 'Product 18 Location', 999, 5, 'catalog/demo_products/product_1/yu-kato-629650-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 53, 1, '2018-11-16 14:54:43', '2018-11-16 15:02:57');
+(42, '837463782', 'Product 1 SKU', 'Product 1 UP', 'Product 1 EAN', 'Product 1 JAN', 'Product 1 ISBN', 'Product 1 MNP', 'Product 1 Location', 999, 5, 'catalog/demo_products/product_1/nikolay-tarashchenko-551722-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 2, 1, 1, 0, 1598, 1, '2009-02-03 21:07:37', '2018-12-19 18:07:54'),
+(64, '94387843574', '', '', 'Product 2 EAN', 'Product 2 JAN', 'Product 2 ISBN', 'Product 2 MNP', 'Product 2 Location', 999, 5, 'catalog/demo_products/product_1/goran-ivos-771531-unsplash.jpg', 8, 1, '98123.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 75, 1, '2018-11-16 14:06:22', '2018-11-16 14:13:54'),
+(80, '6-98640594', '', '', 'Product 3 EAN', 'Product 3 JAN', 'Product 3 ISBN', 'Product 3 MNP', 'Product 3 Location', 999, 5, 'catalog/demo_products/product_1/alejandro-escamilla-10-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 4, 1, 1, 0, 93, 1, '2018-11-16 14:15:20', '2018-11-16 14:17:33'),
+(82, '5640-965', '', '', 'Product 4 EAN', 'Product 4 JAN', 'Product 4 ISBN', 'Product 4 MNP', 'Product 4 Location', 999, 5, 'catalog/demo_products/product_1/aidan-hancock-609469-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 83, 1, '2018-11-16 14:15:24', '2018-11-16 14:20:05'),
+(83, '098709865', '', '', 'Product 5 EAN', 'Product 5 JAN', 'Product 5 ISBN', 'Product 5 MNP', 'Product 5 Location', 999, 5, 'catalog/demo_products/product_1/andras-vas-655218-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 63, 1, '2018-11-16 14:15:24', '2018-11-16 14:24:35'),
+(86, '43975943', '', '', 'Product 6 EAN', 'Product 6 JAN', 'Product 6 ISBN', 'Product 6 MNP', 'Product 6 Location', 999, 5, 'catalog/demo_products/product_1/burst-521042-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 71, 1, '2018-11-16 14:15:27', '2018-11-16 14:26:52'),
+(87, '463564564', '', '', 'Product 7 EAN', 'Product 7 JAN', 'Product 7 ISBN', 'Product 7 MNP', 'Product 7 Location', 999, 5, 'catalog/demo_products/product_1/caspar-rubin-224229-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 59, 1, '2018-11-16 14:15:27', '2018-11-16 14:48:17'),
+(88, '409850435', '', '', 'Product 8 EAN', 'Product 8 JAN', 'Product 8 ISBN', 'Product 8 MNP', 'Product 8 Location', 999, 5, 'catalog/demo_products/product_1/charles-deluvio-456792-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 2, 1, 1, 0, 60, 1, '2018-11-16 14:15:27', '2018-11-16 14:40:15'),
+(89, '4534543543', '', '', 'Product 9 EAN', 'Product 9 JAN', 'Product 9 ISBN', 'Product 9 MNP', 'Product 9 Location', 999, 5, 'catalog/demo_products/product_1/evan-gebhart-666379-unsplash.jpg', 8, 1, '98765.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 3, 1, 1, 0, 67, 1, '2018-11-16 14:15:27', '2018-11-16 14:41:47'),
+(96, '59798343', '', '', 'Product 10 EAN', 'Product 10 JA', 'Product 10 ISBN', 'Product 10 MNP', 'Product 10 Location', 999, 5, 'catalog/demo_products/product_1/dillon-shook-511764-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 114, 1, '2018-11-16 14:49:44', '2018-11-16 14:55:20'),
+(97, '59798343', '', '', 'Product 11 EAN', 'Product 11 JA', 'Product 11 ISBN', 'Product 11 MNP', 'Product 11 Location', 999, 5, 'catalog/demo_products/product_1/ibrahim-rifath-720971-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 104, 1, '2018-11-16 14:54:27', '2018-11-16 14:56:23'),
+(98, '54465465765', '', '', 'Product 12 EAN', 'Product 12 JA', 'Product 12 ISBN', 'Product 12 MNP', 'Product 12 Location', 999, 5, 'catalog/demo_products/product_1/julian-o-hayon-257567-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 72, 1, '2018-11-16 14:54:31', '2018-11-16 14:57:35'),
+(99, '543085043854', '', '', 'Product 13 EAN', 'Product 13 JA', 'Product 13 ISBN', 'Product 13 MNP', 'Product 13 Location', 999, 5, 'catalog/demo_products/product_1/max-nelson-492729-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 88, 1, '2018-11-16 14:54:31', '2018-11-16 14:58:35'),
+(100, '56546546478', '', '', 'Product 14 EAN', 'Product 14 JA', 'Product 14 ISBN', 'Product 14 MNP', 'Product 14 Location', 999, 5, 'catalog/demo_products/product_1/nikolay-tarashchenko-551717-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 105, 1, '2018-11-16 14:54:36', '2018-11-16 14:59:27'),
+(101, '587643853', '', '', 'Product 15 EAN', 'Product 15 JA', 'Product 15 ISBN', 'Product 15 MNP', 'Product 15 Location', 999, 5, 'catalog/demo_products/product_1/nikolay-tarashchenko-614285-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 113, 1, '2018-11-16 14:54:36', '2018-11-16 15:00:22'),
+(102, '65765765', '', '', 'Product 16 EAN', 'Product 16 JA', 'Product 16 ISBN', 'Product 16 MNP', 'Product 16 Location', 999, 5, 'catalog/demo_products/product_1/realmac-dan-365523-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 91, 1, '2018-11-16 14:54:36', '2018-11-16 15:01:16'),
+(103, '65765765', '', '', 'Product 17 EAN', 'Product 17 JA', 'Product 17 ISBN', 'Product 17 MNP', 'Product 17 Location', 999, 5, 'catalog/demo_products/product_1/vivek-kumar-394543-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 67, 1, '2018-11-16 14:54:36', '2018-11-16 15:02:08'),
+(104, '6765765765', '', '', 'Product 18 EAN', 'Product 18 JA', 'Product 18 ISBN', 'Product 18 MNP', 'Product 18 Location', 999, 5, 'catalog/demo_products/product_1/yu-kato-629650-unsplash.jpg', 8, 1, '99999.0000', 400, 9, '2018-11-02', '0.00000000', '0.00000000', 0, 1, 1, 1, 0, 65, 1, '2018-11-16 14:54:43', '2018-11-16 15:02:57');
 
 -- --------------------------------------------------------
 
@@ -2695,7 +2697,7 @@ CREATE TABLE `product_attribute` (
   `attribute_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `text` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_attribute`
@@ -3043,7 +3045,7 @@ CREATE TABLE `product_description` (
   `meta_title` varchar(255) NOT NULL,
   `meta_description` varchar(255) NOT NULL,
   `meta_h1` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_description`
@@ -3085,7 +3087,7 @@ CREATE TABLE `product_discount` (
   `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `date_start` date NOT NULL DEFAULT '0000-00-00',
   `date_end` date NOT NULL DEFAULT '0000-00-00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_discount`
@@ -3156,7 +3158,7 @@ INSERT INTO `product_discount` (`product_discount_id`, `product_id`, `customer_g
 CREATE TABLE `product_filter` (
   `product_id` int(11) NOT NULL,
   `filter_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -3169,7 +3171,7 @@ CREATE TABLE `product_image` (
   `product_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `sort_order` int(3) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_image`
@@ -3333,7 +3335,7 @@ CREATE TABLE `product_option` (
   `option_id` int(11) NOT NULL,
   `value` text NOT NULL,
   `required` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_option`
@@ -3413,7 +3415,7 @@ CREATE TABLE `product_option_value` (
   `price_prefix` varchar(1) NOT NULL,
   `points` int(8) NOT NULL,
   `points_prefix` varchar(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_option_value`
@@ -3970,7 +3972,7 @@ INSERT INTO `product_option_value` (`product_option_value_id`, `product_option_i
 CREATE TABLE `product_related` (
   `product_id` int(11) NOT NULL,
   `related_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_related`
@@ -4147,7 +4149,7 @@ INSERT INTO `product_related` (`product_id`, `related_id`) VALUES
 CREATE TABLE `product_related_article` (
   `article_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_related_article`
@@ -4204,7 +4206,7 @@ INSERT INTO `product_related_article` (`article_id`, `product_id`) VALUES
 CREATE TABLE `product_related_mn` (
   `product_id` int(11) NOT NULL,
   `manufacturer_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -4215,7 +4217,7 @@ CREATE TABLE `product_related_mn` (
 CREATE TABLE `product_related_wb` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -4228,7 +4230,7 @@ CREATE TABLE `product_reward` (
   `product_id` int(11) NOT NULL DEFAULT '0',
   `customer_group_id` int(11) NOT NULL DEFAULT '0',
   `points` int(8) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_reward`
@@ -4268,7 +4270,7 @@ CREATE TABLE `product_special` (
   `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `date_start` date NOT NULL DEFAULT '0000-00-00',
   `date_end` date NOT NULL DEFAULT '0000-00-00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_special`
@@ -4305,7 +4307,7 @@ CREATE TABLE `product_tab` (
   `product_id` int(11) NOT NULL,
   `sort_order` tinyint(4) NOT NULL,
   `status` tinyint(4) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_tab`
@@ -4330,7 +4332,7 @@ CREATE TABLE `product_tab_desc` (
   `description` text NOT NULL,
   `product_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_tab_desc`
@@ -4352,7 +4354,7 @@ INSERT INTO `product_tab_desc` (`product_tab_id`, `heading`, `description`, `pro
 CREATE TABLE `product_to_benefit` (
   `product_id` int(11) NOT NULL,
   `benefit_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_to_benefit`
@@ -4478,7 +4480,7 @@ CREATE TABLE `product_to_category` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   `main_category` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_to_category`
@@ -4675,7 +4677,7 @@ INSERT INTO `product_to_category` (`product_id`, `category_id`, `main_category`)
 CREATE TABLE `product_to_download` (
   `product_id` int(11) NOT NULL,
   `download_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -4687,7 +4689,7 @@ CREATE TABLE `product_to_layout` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `layout_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_to_layout`
@@ -4723,7 +4725,7 @@ CREATE TABLE `product_to_sticker` (
   `product_id` int(11) NOT NULL,
   `sticker_id` int(11) NOT NULL,
   `position` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_to_sticker`
@@ -4744,7 +4746,7 @@ INSERT INTO `product_to_sticker` (`product_id`, `sticker_id`, `position`) VALUES
 CREATE TABLE `product_to_store` (
   `product_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `product_to_store`
@@ -4786,7 +4788,7 @@ CREATE TABLE `review` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -4804,7 +4806,7 @@ CREATE TABLE `review_article` (
   `status` tinyint(1) NOT NULL DEFAULT '0',
   `date_added` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `date_modified` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `review_article`
@@ -4826,7 +4828,7 @@ CREATE TABLE `setting` (
   `key` varchar(64) NOT NULL,
   `value` text NOT NULL,
   `serialized` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `setting`
@@ -4857,6 +4859,7 @@ INSERT INTO `setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serial
 (118, 0, 'flat', 'flat_cost', '5.00', 0),
 (119, 0, 'credit', 'credit_sort_order', '7', 0),
 (120, 0, 'credit', 'credit_status', '1', 0),
+(1527, 0, 'basic_captcha', 'basic_captcha_status', '1', 0),
 (2054, 0, 'reward', 'reward_status', '1', 0),
 (2055, 0, 'reward', 'reward_sort_order', '2', 0),
 (2568, 0, 'configcustommenu', 'configcustommenu_custommenu', '1', 0),
@@ -4943,6 +4946,8 @@ INSERT INTO `setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serial
 (3000, 0, 'config', 'config_stock_display', '0', 0),
 (3001, 0, 'config', 'config_stock_warning', '1', 0),
 (3002, 0, 'config', 'config_stock_checkout', '0', 0),
+(3003, 0, 'config', 'config_captcha', '', 0),
+(3004, 0, 'config', 'config_captcha_page', '[\"register\",\"guest\",\"review\",\"contact\"]', 1),
 (3005, 0, 'config', 'config_logo', 'catalog/logos/logo-small.png', 0),
 (3006, 0, 'config', 'config_icon', 'catalog/logos/logo-small.png', 0),
 (3007, 0, 'config', 'config_ftp_hostname', 'cms.freelance-team.su.loc', 0),
@@ -4965,6 +4970,7 @@ INSERT INTO `setting` (`setting_id`, `store_id`, `code`, `key`, `value`, `serial
 (3025, 0, 'config', 'config_seo_url_postfix', '.html', 0),
 (3026, 0, 'config', 'config_file_max_size', '300000', 0),
 (3027, 0, 'config', 'config_robots', 'abot\r\ndbot\r\nebot\r\nhbot\r\nkbot\r\nlbot\r\nmbot\r\nnbot\r\nobot\r\npbot\r\nrbot\r\nsbot\r\ntbot\r\nvbot\r\nybot\r\nzbot\r\nbot.\r\nbot/\r\n_bot\r\n.bot\r\n/bot\r\n-bot\r\n:bot\r\n(bot\r\ncrawl\r\nslurp\r\nspider\r\nseek\r\naccoona\r\nacoon\r\nadressendeutschland\r\nah-ha.com\r\nahoy\r\naltavista\r\nananzi\r\nanthill\r\nappie\r\narachnophilia\r\narale\r\naraneo\r\naranha\r\narchitext\r\naretha\r\narks\r\nasterias\r\natlocal\r\natn\r\natomz\r\naugurfind\r\nbackrub\r\nbannana_bot\r\nbaypup\r\nbdfetch\r\nbig brother\r\nbiglotron\r\nbjaaland\r\nblackwidow\r\nblaiz\r\nblog\r\nblo.\r\nbloodhound\r\nboitho\r\nbooch\r\nbradley\r\nbutterfly\r\ncalif\r\ncassandra\r\nccubee\r\ncfetch\r\ncharlotte\r\nchurl\r\ncienciaficcion\r\ncmc\r\ncollective\r\ncomagent\r\ncombine\r\ncomputingsite\r\ncsci\r\ncurl\r\ncusco\r\ndaumoa\r\ndeepindex\r\ndelorie\r\ndepspid\r\ndeweb\r\ndie blinde kuh\r\ndigger\r\nditto\r\ndmoz\r\ndocomo\r\ndownload express\r\ndtaagent\r\ndwcp\r\nebiness\r\nebingbong\r\ne-collector\r\nejupiter\r\nemacs-w3 search engine\r\nesther\r\nevliya celebi\r\nezresult\r\nfalcon\r\nfelix ide\r\nferret\r\nfetchrover\r\nfido\r\nfindlinks\r\nfireball\r\nfish search\r\nfouineur\r\nfunnelweb\r\ngazz\r\ngcreep\r\ngenieknows\r\ngetterroboplus\r\ngeturl\r\nglx\r\ngoforit\r\ngolem\r\ngrabber\r\ngrapnel\r\ngralon\r\ngriffon\r\ngromit\r\ngrub\r\ngulliver\r\nhamahakki\r\nharvest\r\nhavindex\r\nhelix\r\nheritrix\r\nhku www octopus\r\nhomerweb\r\nhtdig\r\nhtml index\r\nhtml_analyzer\r\nhtmlgobble\r\nhubater\r\nhyper-decontextualizer\r\nia_archiver\r\nibm_planetwide\r\nichiro\r\niconsurf\r\niltrovatore\r\nimage.kapsi.net\r\nimagelock\r\nincywincy\r\nindexer\r\ninfobee\r\ninformant\r\ningrid\r\ninktomisearch.com\r\ninspector web\r\nintelliagent\r\ninternet shinchakubin\r\nip3000\r\niron33\r\nisraeli-search\r\nivia\r\njack\r\njakarta\r\njavabee\r\njetbot\r\njumpstation\r\nkatipo\r\nkdd-explorer\r\nkilroy\r\nknowledge\r\nkototoi\r\nkretrieve\r\nlabelgrabber\r\nlachesis\r\nlarbin\r\nlegs\r\nlibwww\r\nlinkalarm\r\nlink validator\r\nlinkscan\r\nlockon\r\nlwp\r\nlycos\r\nmagpie\r\nmantraagent\r\nmapoftheinternet\r\nmarvin/\r\nmattie\r\nmediafox\r\nmediapartners\r\nmercator\r\nmerzscope\r\nmicrosoft url control\r\nminirank\r\nmiva\r\nmj12\r\nmnogosearch\r\nmoget\r\nmonster\r\nmoose\r\nmotor\r\nmultitext\r\nmuncher\r\nmuscatferret\r\nmwd.search\r\nmyweb\r\nnajdi\r\nnameprotect\r\nnationaldirectory\r\nnazilla\r\nncsa beta\r\nnec-meshexplorer\r\nnederland.zoek\r\nnetcarta webmap engine\r\nnetmechanic\r\nnetresearchserver\r\nnetscoop\r\nnewscan-online\r\nnhse\r\nnokia6682/\r\nnomad\r\nnoyona\r\nnutch\r\nnzexplorer\r\nobjectssearch\r\noccam\r\nomni\r\nopen text\r\nopenfind\r\nopenintelligencedata\r\norb search\r\nosis-project\r\npack rat\r\npageboy\r\npagebull\r\npage_verifier\r\npanscient\r\nparasite\r\npartnersite\r\npatric\r\npear.\r\npegasus\r\nperegrinator\r\npgp key agent\r\nphantom\r\nphpdig\r\npicosearch\r\npiltdownman\r\npimptrain\r\npinpoint\r\npioneer\r\npiranha\r\nplumtreewebaccessor\r\npogodak\r\npoirot\r\npompos\r\npoppelsdorf\r\npoppi\r\npopular iconoclast\r\npsycheclone\r\npublisher\r\npython\r\nrambler\r\nraven search\r\nroach\r\nroad runner\r\nroadhouse\r\nrobbie\r\nrobofox\r\nrobozilla\r\nrules\r\nsalty\r\nsbider\r\nscooter\r\nscoutjet\r\nscrubby\r\nsearch.\r\nsearchprocess\r\nsemanticdiscovery\r\nsenrigan\r\nsg-scout\r\nshai\'hulud\r\nshark\r\nshopwiki\r\nsidewinder\r\nsift\r\nsilk\r\nsimmany\r\nsite searcher\r\nsite valet\r\nsitetech-rover\r\nskymob.com\r\nsleek\r\nsmartwit\r\nsna-\r\nsnappy\r\nsnooper\r\nsohu\r\nspeedfind\r\nsphere\r\nsphider\r\nspinner\r\nspyder\r\nsteeler/\r\nsuke\r\nsuntek\r\nsupersnooper\r\nsurfnomore\r\nsven\r\nsygol\r\nszukacz\r\ntach black widow\r\ntarantula\r\ntempleton\r\n/teoma\r\nt-h-u-n-d-e-r-s-t-o-n-e\r\ntheophrastus\r\ntitan\r\ntitin\r\ntkwww\r\ntoutatis\r\nt-rex\r\ntutorgig\r\ntwiceler\r\ntwisted\r\nucsd\r\nudmsearch\r\nurl check\r\nupdated\r\nvagabondo\r\nvalkyrie\r\nverticrawl\r\nvictoria\r\nvision-search\r\nvolcano\r\nvoyager/\r\nvoyager-hc\r\nw3c_validator\r\nw3m2\r\nw3mir\r\nwalker\r\nwallpaper\r\nwanderer\r\nwauuu\r\nwavefire\r\nweb core\r\nweb hopper\r\nweb wombat\r\nwebbandit\r\nwebcatcher\r\nwebcopy\r\nwebfoot\r\nweblayers\r\nweblinker\r\nweblog monitor\r\nwebmirror\r\nwebmonkey\r\nwebquest\r\nwebreaper\r\nwebsitepulse\r\nwebsnarf\r\nwebstolperer\r\nwebvac\r\nwebwalk\r\nwebwatch\r\nwebwombat\r\nwebzinger\r\nwhizbang\r\nwhowhere\r\nwild ferret\r\nworldlight\r\nwwwc\r\nwwwster\r\nxenu\r\nxget\r\nxift\r\nxirq\r\nyandex\r\nyanga\r\nyeti\r\nyodao\r\nzao\r\nzippp\r\nzyborg', 0),
+(3028, 0, 'config', 'config_compression', '0', 0),
 (3029, 0, 'config', 'config_secure', '1', 0),
 (3030, 0, 'config', 'config_password', '1', 0),
 (3031, 0, 'config', 'config_shared', '0', 0),
@@ -4986,7 +4992,7 @@ CREATE TABLE `sticker` (
   `name` varchar(64) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `image` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sticker`
@@ -5009,7 +5015,7 @@ CREATE TABLE `stock_status` (
   `stock_status_id` int(11) NOT NULL,
   `language_id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `stock_status`
@@ -5032,7 +5038,7 @@ CREATE TABLE `store` (
   `name` varchar(64) NOT NULL,
   `url` varchar(255) NOT NULL,
   `ssl` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -5046,7 +5052,7 @@ CREATE TABLE `tax_class` (
   `description` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tax_class`
@@ -5070,7 +5076,7 @@ CREATE TABLE `tax_rate` (
   `type` char(1) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tax_rate`
@@ -5089,7 +5095,7 @@ INSERT INTO `tax_rate` (`tax_rate_id`, `geo_zone_id`, `name`, `rate`, `type`, `d
 CREATE TABLE `tax_rate_to_customer_group` (
   `tax_rate_id` int(11) NOT NULL,
   `customer_group_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tax_rate_to_customer_group`
@@ -5111,7 +5117,7 @@ CREATE TABLE `tax_rule` (
   `tax_rate_id` int(11) NOT NULL,
   `based` varchar(10) NOT NULL,
   `priority` int(5) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `tax_rule`
@@ -5135,7 +5141,7 @@ CREATE TABLE `theme` (
   `theme` varchar(64) NOT NULL,
   `route` varchar(64) NOT NULL,
   `code` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -5150,7 +5156,7 @@ CREATE TABLE `translation` (
   `route` varchar(64) NOT NULL,
   `key` varchar(64) NOT NULL,
   `value` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -5164,7 +5170,7 @@ CREATE TABLE `upload` (
   `filename` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -5177,7 +5183,7 @@ CREATE TABLE `url_alias` (
   `query` varchar(255) NOT NULL,
   `keyword` varchar(255) NOT NULL,
   `seomanager` int(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `url_alias`
@@ -5220,7 +5226,7 @@ INSERT INTO `url_alias` (`url_alias_id`, `query`, `keyword`, `seomanager`) VALUE
 (996, 'information_id=6', 'delivery', 0),
 (1001, 'information_id=3', 'privacy', 0),
 (1023, 'information_id=7', 'test', 0),
-(1050, 'information_id=4', 'about_us', 0);
+(1051, 'information_id=4', 'about_us', 0);
 
 -- --------------------------------------------------------
 
@@ -5242,7 +5248,7 @@ CREATE TABLE `user` (
   `ip` varchar(40) NOT NULL,
   `status` tinyint(1) NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user`
@@ -5261,14 +5267,14 @@ CREATE TABLE `user_group` (
   `user_group_id` int(11) NOT NULL,
   `name` varchar(64) NOT NULL,
   `permission` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `user_group`
 --
 
 INSERT INTO `user_group` (`user_group_id`, `name`, `permission`) VALUES
-(1, 'root', '{\"access\":[\"blog\\/article\",\"blog\\/category\",\"blog\\/review\",\"blog\\/setting\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/benefit\",\"design\\/custommenu\",\"design\\/layout\",\"design\\/sticker\",\"enhancement\\/ea_vqmod_manager\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/blog_sitemap\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/sitemap_pro\",\"extension\\/feed\\/yandex_market\",\"extension\\/installer\",\"extension\\/module\\/account\",\"extension\\/module\\/blocksforallcategories\",\"extension\\/module\\/blog_featured\",\"extension\\/module\\/blog_latest\",\"extension\\/module\\/blog_popular\",\"extension\\/module\\/cachemanager\",\"extension\\/module\\/custom_template\",\"extension\\/module\\/featured\",\"extension\\/module\\/featured_article\",\"extension\\/module\\/filter\",\"extension\\/module\\/html\",\"extension\\/module\\/latest\",\"extension\\/module\\/latestpercategory\",\"extension\\/module\\/popular\",\"extension\\/module\\/random\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/specialpercategory\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/liqpay\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/xshipping\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/zone\",\"marketing\\/contact\",\"marketing\\/marketing\",\"report\\/customer_reward\",\"report\\/marketing\",\"sale\\/order\",\"search\\/search\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/seomanager\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"],\"modify\":[\"blog\\/article\",\"blog\\/category\",\"blog\\/review\",\"blog\\/setting\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/benefit\",\"design\\/custommenu\",\"design\\/layout\",\"design\\/sticker\",\"enhancement\\/ea_vqmod_manager\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/blog_sitemap\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/sitemap_pro\",\"extension\\/feed\\/yandex_market\",\"extension\\/installer\",\"extension\\/module\\/account\",\"extension\\/module\\/blocksforallcategories\",\"extension\\/module\\/blog_featured\",\"extension\\/module\\/blog_latest\",\"extension\\/module\\/blog_popular\",\"extension\\/module\\/cachemanager\",\"extension\\/module\\/custom_template\",\"extension\\/module\\/featured\",\"extension\\/module\\/featured_article\",\"extension\\/module\\/filter\",\"extension\\/module\\/html\",\"extension\\/module\\/latest\",\"extension\\/module\\/latestpercategory\",\"extension\\/module\\/popular\",\"extension\\/module\\/random\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/specialpercategory\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/liqpay\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/xshipping\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/zone\",\"marketing\\/contact\",\"marketing\\/marketing\",\"report\\/customer_reward\",\"report\\/marketing\",\"sale\\/order\",\"search\\/search\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/seomanager\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\"]}');
+(1, 'root', '{\"access\":[\"blog\\/article\",\"blog\\/category\",\"blog\\/review\",\"blog\\/setting\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/benefit\",\"design\\/custommenu\",\"design\\/layout\",\"design\\/sticker\",\"enhancement\\/ea_vqmod_manager\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/blog_sitemap\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/sitemap_pro\",\"extension\\/feed\\/yandex_market\",\"extension\\/installer\",\"extension\\/module\\/account\",\"extension\\/module\\/blocksforallcategories\",\"extension\\/module\\/blog_featured\",\"extension\\/module\\/blog_latest\",\"extension\\/module\\/blog_popular\",\"extension\\/module\\/cachemanager\",\"extension\\/module\\/custom_template\",\"extension\\/module\\/featured\",\"extension\\/module\\/featured_article\",\"extension\\/module\\/filter\",\"extension\\/module\\/html\",\"extension\\/module\\/latest\",\"extension\\/module\\/latestpercategory\",\"extension\\/module\\/popular\",\"extension\\/module\\/random\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/specialpercategory\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/liqpay\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/xshipping\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/zone\",\"marketing\\/contact\",\"marketing\\/marketing\",\"report\\/customer_reward\",\"report\\/marketing\",\"sale\\/order\",\"search\\/search\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/seomanager\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/module\\/blog_featured\",\"extension\\/module\\/blog_featured\"],\"modify\":[\"blog\\/article\",\"blog\\/category\",\"blog\\/review\",\"blog\\/setting\",\"catalog\\/attribute\",\"catalog\\/attribute_group\",\"catalog\\/category\",\"catalog\\/download\",\"catalog\\/filter\",\"catalog\\/information\",\"catalog\\/manufacturer\",\"catalog\\/option\",\"catalog\\/product\",\"catalog\\/review\",\"common\\/column_left\",\"common\\/filemanager\",\"customer\\/custom_field\",\"customer\\/customer\",\"customer\\/customer_group\",\"design\\/banner\",\"design\\/benefit\",\"design\\/custommenu\",\"design\\/layout\",\"design\\/sticker\",\"enhancement\\/ea_vqmod_manager\",\"event\\/compatibility\",\"event\\/theme\",\"extension\\/captcha\\/basic_captcha\",\"extension\\/captcha\\/google_captcha\",\"extension\\/event\",\"extension\\/extension\",\"extension\\/extension\\/captcha\",\"extension\\/extension\\/feed\",\"extension\\/extension\\/module\",\"extension\\/extension\\/payment\",\"extension\\/extension\\/shipping\",\"extension\\/extension\\/theme\",\"extension\\/extension\\/total\",\"extension\\/feed\\/blog_sitemap\",\"extension\\/feed\\/google_base\",\"extension\\/feed\\/google_sitemap\",\"extension\\/feed\\/sitemap_pro\",\"extension\\/feed\\/yandex_market\",\"extension\\/installer\",\"extension\\/module\\/account\",\"extension\\/module\\/blocksforallcategories\",\"extension\\/module\\/blog_featured\",\"extension\\/module\\/blog_latest\",\"extension\\/module\\/blog_popular\",\"extension\\/module\\/cachemanager\",\"extension\\/module\\/custom_template\",\"extension\\/module\\/featured\",\"extension\\/module\\/featured_article\",\"extension\\/module\\/filter\",\"extension\\/module\\/html\",\"extension\\/module\\/latest\",\"extension\\/module\\/latestpercategory\",\"extension\\/module\\/popular\",\"extension\\/module\\/random\",\"extension\\/module\\/slideshow\",\"extension\\/module\\/special\",\"extension\\/module\\/specialpercategory\",\"extension\\/payment\\/bank_transfer\",\"extension\\/payment\\/cheque\",\"extension\\/payment\\/cod\",\"extension\\/payment\\/free_checkout\",\"extension\\/payment\\/liqpay\",\"extension\\/shipping\\/flat\",\"extension\\/shipping\\/free\",\"extension\\/shipping\\/item\",\"extension\\/shipping\\/pickup\",\"extension\\/shipping\\/xshipping\",\"extension\\/theme\\/theme_default\",\"extension\\/total\\/credit\",\"extension\\/total\\/handling\",\"extension\\/total\\/low_order_fee\",\"extension\\/total\\/reward\",\"extension\\/total\\/shipping\",\"extension\\/total\\/sub_total\",\"extension\\/total\\/tax\",\"extension\\/total\\/total\",\"localisation\\/country\",\"localisation\\/currency\",\"localisation\\/geo_zone\",\"localisation\\/language\",\"localisation\\/location\",\"localisation\\/order_status\",\"localisation\\/stock_status\",\"localisation\\/tax_class\",\"localisation\\/tax_rate\",\"localisation\\/zone\",\"marketing\\/contact\",\"marketing\\/marketing\",\"report\\/customer_reward\",\"report\\/marketing\",\"sale\\/order\",\"search\\/search\",\"setting\\/setting\",\"setting\\/store\",\"startup\\/compatibility\",\"startup\\/error\",\"startup\\/event\",\"startup\\/login\",\"startup\\/permission\",\"startup\\/router\",\"startup\\/startup\",\"tool\\/backup\",\"tool\\/log\",\"tool\\/seomanager\",\"tool\\/upload\",\"user\\/api\",\"user\\/user\",\"user\\/user_permission\",\"extension\\/module\\/blog_featured\",\"extension\\/module\\/blog_featured\"]}');
 
 -- --------------------------------------------------------
 
@@ -5282,7 +5288,7 @@ CREATE TABLE `zone` (
   `name` varchar(128) NOT NULL,
   `code` varchar(32) NOT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `zone`
@@ -9408,7 +9414,7 @@ CREATE TABLE `zone_to_geo_zone` (
   `geo_zone_id` int(11) NOT NULL,
   `date_added` datetime NOT NULL,
   `date_modified` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `zone_to_geo_zone`
@@ -10425,7 +10431,7 @@ ALTER TABLE `blog_category`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -10527,7 +10533,7 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `extension`
 --
 ALTER TABLE `extension`
-  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `extension_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `filter`
@@ -10785,7 +10791,7 @@ ALTER TABLE `upload`
 -- AUTO_INCREMENT for table `url_alias`
 --
 ALTER TABLE `url_alias`
-  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1051;
+  MODIFY `url_alias_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1052;
 
 --
 -- AUTO_INCREMENT for table `user`
