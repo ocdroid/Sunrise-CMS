@@ -1,5 +1,6 @@
 .vscode/
 node_modules/
+dist-backup/
 
 dist/images/cache/
 dist/images/.tmb/*
@@ -12,3 +13,4 @@ dist/.htaccess
 
 gulpfile.js
 package-lock.json
+dist.zip
