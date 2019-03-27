@@ -97,11 +97,11 @@
 							</a>
 						</li>
 
-						<li>
+						<!-- <li>
 							<a href="#">
-								<?php echo $tab_ftp; ?>
+								<?php //echo $tab_ftp; ?>
 							</a>
-						</li>
+						</li> -->
 
 						<li>
 							<a href="#">
@@ -832,79 +832,83 @@
 
 
 						</li>
-						<li>
+
+
+						<!-- <li>
 
 						
 
-								<div class="uk-margin">
-									<label class="uk-form-label" for="input-ftp-host"><?php echo $entry_ftp_hostname; ?></label>
-									<div class="uk-form-controls">
-										<input type="text" name="config_ftp_hostname" value="<?php echo $config_ftp_hostname; ?>" placeholder="<?php echo $entry_ftp_hostname; ?>" id="input-ftp-host" class="uk-input">
-										<?php if ($error_ftp_hostname) { ?>
-										<div class="text-danger"><?php echo $error_ftp_hostname; ?></div>
-										<?php } ?>
-									</div>
-								</div>
-								<div class="uk-margin">
-									<label class="uk-form-label" for="input-ftp-port"><?php echo $entry_ftp_port; ?></label>
-									<div class="uk-form-controls">
-										<input type="text" name="config_ftp_port" value="<?php echo $config_ftp_port; ?>" placeholder="<?php echo $entry_ftp_port; ?>" id="input-ftp-port" class="uk-input">
-										<?php if ($error_ftp_port) { ?>
-										<div class="text-danger"><?php echo $error_ftp_port; ?></div>
-										<?php } ?>
-									</div>
-								</div>
-								<div class="uk-margin">
-									<label class="uk-form-label" for="input-ftp-username"><?php echo $entry_ftp_username; ?></label>
-									<div class="uk-form-controls">
-										<input type="text" name="config_ftp_username" value="<?php echo $config_ftp_username; ?>" placeholder="<?php echo $entry_ftp_username; ?>" id="input-ftp-username" class="uk-input">
-										<?php if ($error_ftp_username) { ?>
-										<div class="text-danger"><?php echo $error_ftp_username; ?></div>
-										<?php } ?>
-									</div>
-								</div>
-								<div class="uk-margin">
-									<label class="uk-form-label" for="input-ftp-password"><?php echo $entry_ftp_password; ?></label>
-									<div class="uk-form-controls">
-										<input type="text" name="config_ftp_password" value="<?php echo $config_ftp_password; ?>" placeholder="<?php echo $entry_ftp_password; ?>" id="input-ftp-password" class="uk-input">
-										<?php if ($error_ftp_password) { ?>
-										<div class="text-danger"><?php echo $error_ftp_password; ?></div>
-										<?php } ?>
-									</div>
-								</div>
-								<div class="uk-margin">
-									<label class="uk-form-label" for="input-ftp-root"><span data-toggle="tooltip" data-html="true" title="<?php echo htmlspecialchars($help_ftp_root); ?>"><?php echo $entry_ftp_root; ?></span></label>
-									<div class="uk-form-controls">
-										<input type="text" name="config_ftp_root" value="<?php echo $config_ftp_root; ?>" placeholder="<?php echo $entry_ftp_root; ?>" id="input-ftp-root" class="uk-input">
-									</div>
-								</div>
-								<div class="uk-margin">
-									<label class="uk-form-label"><?php echo $entry_ftp_status; ?></label>
-									<div class="uk-form-controls">
-										<label class="radio-inline">
-											<?php if ($config_ftp_status) { ?>
-											<input type="radio" name="config_ftp_status" value="1" checked="checked">
-											<?php echo $text_yes; ?>
-											<?php } else { ?>
-											<input type="radio" name="config_ftp_status" value="1">
-											<?php echo $text_yes; ?>
-											<?php } ?>
-										</label>
-										<label class="radio-inline">
-											<?php if (!$config_ftp_status) { ?>
-											<input type="radio" name="config_ftp_status" value="0" checked="checked">
-											<?php echo $text_no; ?>
-											<?php } else { ?>
-											<input type="radio" name="config_ftp_status" value="0">
-											<?php echo $text_no; ?>
-											<?php } ?>
-										</label>
-									</div>
-								</div>
+<div class="uk-margin">
+	<label class="uk-form-label" for="input-ftp-host"><?php // echo $entry_ftp_hostname; ?></label>
+	<div class="uk-form-controls">
+		<input type="text" name="config_ftp_hostname" value="<?php // echo $config_ftp_hostname; ?>" placeholder="<?php // echo $entry_ftp_hostname; ?>" id="input-ftp-host" class="uk-input">
+		<?php // if ($error_ftp_hostname) { ?>
+		<div class="text-danger"><?php // echo $error_ftp_hostname; ?></div>
+		<?php // } ?>
+	</div>
+</div>
+<div class="uk-margin">
+	<label class="uk-form-label" for="input-ftp-port"><?php // echo $entry_ftp_port; ?></label>
+	<div class="uk-form-controls">
+		<input type="text" name="config_ftp_port" value="<?php // echo $config_ftp_port; ?>" placeholder="<?php // echo $entry_ftp_port; ?>" id="input-ftp-port" class="uk-input">
+		<?php // if ($error_ftp_port) { ?>
+		<div class="text-danger"><?php // echo $error_ftp_port; ?></div>
+		<?php // } ?>
+	</div>
+</div>
+<div class="uk-margin">
+	<label class="uk-form-label" for="input-ftp-username"><?php // echo $entry_ftp_username; ?></label>
+	<div class="uk-form-controls">
+		<input type="text" name="config_ftp_username" value="<?php // echo $config_ftp_username; ?>" placeholder="<?php // echo $entry_ftp_username; ?>" id="input-ftp-username" class="uk-input">
+		<?php // if ($error_ftp_username) { ?>
+		<div class="text-danger"><?php // echo $error_ftp_username; ?></div>
+		<?php // } ?>
+	</div>
+</div>
+<div class="uk-margin">
+	<label class="uk-form-label" for="input-ftp-password"><?php // echo $entry_ftp_password; ?></label>
+	<div class="uk-form-controls">
+		<input type="text" name="config_ftp_password" value="<?php // echo $config_ftp_password; ?>" placeholder="<?php // echo $entry_ftp_password; ?>" id="input-ftp-password" class="uk-input">
+		<?php // if ($error_ftp_password) { ?>
+		<div class="text-danger"><?php // echo $error_ftp_password; ?></div>
+		<?php // } ?>
+	</div>
+</div>
+<div class="uk-margin">
+	<label class="uk-form-label" for="input-ftp-root"><span data-toggle="tooltip" data-html="true" title="<?php // echo htmlspecialchars($help_ftp_root); ?>"><?php // echo $entry_ftp_root; ?></span></label>
+	<div class="uk-form-controls">
+		<input type="text" name="config_ftp_root" value="<?php // echo $config_ftp_root; ?>" placeholder="<?php // echo $entry_ftp_root; ?>" id="input-ftp-root" class="uk-input">
+	</div>
+</div>
+<div class="uk-margin">
+	<label class="uk-form-label"><?php // echo $entry_ftp_status; ?></label>
+	<div class="uk-form-controls">
+		<label class="radio-inline">
+			<?php // if ($config_ftp_status) { ?>
+			<input type="radio" name="config_ftp_status" value="1" checked="checked">
+			<?php // echo $text_yes; ?>
+			<?php // } else { ?>
+			<input type="radio" name="config_ftp_status" value="1">
+			<?php // echo $text_yes; ?>
+			<?php // } ?>
+		</label>
+		<label class="radio-inline">
+			<?php // if (!$config_ftp_status) { ?>
+			<input type="radio" name="config_ftp_status" value="0" checked="checked">
+			<?php // echo $text_no; ?>
+			<?php // } else { ?>
+			<input type="radio" name="config_ftp_status" value="0">
+			<?php // echo $text_no; ?>
+			<?php // } ?>
+		</label>
+	</div>
+</div>
 
 
 
-						</li>
+						</li> -->
+
+
 						<li>
 
 						
