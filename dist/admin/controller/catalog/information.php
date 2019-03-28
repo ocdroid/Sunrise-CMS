@@ -215,7 +215,7 @@ class ControllerCatalogInformation extends Controller
                 'title'          => $result['title'],
                 'sort_order'     => $result['sort_order'],
                 'noindex'  	  	 => $result['noindex'],
-                'href_shop'  	 => HTTP_CATALOG . 'index.php?route=information/information&information_id=' . ($result['information_id']),
+                'href_shop'  	 => '/index.php?route=information/information&information_id=' . ($result['information_id']),
                 'edit'           => $this->url->link('catalog/information/edit', 'token=' . $this->session->data['token'] . '&information_id=' . $result['information_id'] . $url, true)
             );
         }

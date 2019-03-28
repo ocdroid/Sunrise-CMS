@@ -199,7 +199,7 @@ class ModelCustomerCustomer extends Model
                 $store_url = $store_info['url'] . 'index.php?route=account/login';
             } else {
                 $store_name = $this->config->get('config_name');
-                $store_url = HTTP_CATALOG . 'index.php?route=account/login';
+                $store_url = '/index.php?route=account/login';
             }
 
             $this->load->model('localisation/language');

@@ -333,7 +333,7 @@ class ControllerBlogArticle extends Controller
                 'name'       => $result['name'],
                 'status'     => ($result['status']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
                 'noindex'    => ($result['noindex']) ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-                'href_shop'  => HTTP_CATALOG . 'index.php?route=blog/article&article_id=' . ($result['article_id']),
+                'href_shop'  => '/index.php?route=blog/article&article_id=' . ($result['article_id']),
                 'edit'       => $this->url->link('blog/article/edit', 'token=' . $this->session->data['token'] . '&article_id=' . $result['article_id'] . $url, true)
             );
         }

@@ -65,9 +65,9 @@ class ModelToolImage extends Model
         $image_new = implode('/', array_map('rawurlencode', $imagepath_parts));
 
         if ($this->request->server['HTTPS']) {
-            return HTTPS_CATALOG . 'images/' . $image_new;
+            return '/images/' . $image_new;
         } else {
-            return HTTP_CATALOG . 'images/' . $image_new;
+            return '/images/' . $image_new;
         }
     }
 }

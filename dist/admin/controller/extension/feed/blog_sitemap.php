@@ -88,8 +88,8 @@ class ControllerExtensionFeedBlogSitemap extends Controller
             $data['blog_sitemap_status'] = $this->config->get('blog_sitemap_status');
         }
 
-        $data['data_feed'] = HTTP_CATALOG . 'index.php?route=extension/feed/blog_sitemap';
-        $data['data_yandex_feed'] = HTTP_CATALOG . 'index.php?route=extension/feed/blog_sitemap_yandex';
+        $data['data_feed'] = '/index.php?route=extension/feed/blog_sitemap';
+        $data['data_yandex_feed'] = '/index.php?route=extension/feed/blog_sitemap_yandex';
 
         $data['header'] = $this->load->controller('common/header');
         $data['column'] = $this->load->controller('common/column_left');

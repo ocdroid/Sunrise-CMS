@@ -694,7 +694,7 @@ class ControllerBlogCategory extends Controller
                 'selected'    => $selected,
                 'action'      => $action,
                 'href'        => $href,
-                'href_shop'   => HTTP_CATALOG . 'index.php?route=blog/category&blog_category_id=' . ($result['blog_category_id']),
+                'href_shop'   => '/index.php?route=blog/category&blog_category_id=' . ($result['blog_category_id']),
                 'indent'      => $indent
             );
             if ($blog_category_id == $result['blog_category_id']) {

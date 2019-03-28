@@ -785,7 +785,7 @@ class ControllerCatalogCategory extends Controller
                 'selected'    => $selected,
                 'action'      => $action,
                 'href'        => $href,
-                'href_shop'   => HTTP_CATALOG . 'index.php?route=product/category&path=' . ($result['category_id']),
+                'href_shop'   => '/index.php?route=product/category&path=' . ($result['category_id']),
                 'indent'      => $indent
             );
             if ($category_id == $result['category_id']) {

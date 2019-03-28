@@ -664,7 +664,7 @@ class ControllerCatalogProduct extends Controller
                 'quantity'   => $result['quantity'],
                 'status'     => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
                 'noindex'    => $result['noindex'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-                'href_shop'  => HTTP_CATALOG . 'index.php?route=product/product&product_id=' . $result['product_id'],
+                'href_shop'  => '/index.php?route=product/product&product_id=' . $result['product_id'],
                 'edit'       => $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'] . $url, true)
             );
         }

@@ -89,9 +89,9 @@ class ControllerExtensionFeedSitemapPro extends Controller
             $data['sitemap_pro_status'] = $this->config->get('sitemap_pro_status');
         }
         
-        $data['data_feed'] = HTTP_CATALOG . 'index.php?route=extension/feed/sitemap_pro';
+        $data['data_feed'] = '/index.php?route=extension/feed/sitemap_pro';
         
-        $data['yandex_feed'] = HTTP_CATALOG . 'index.php?route=extension/feed/yandex_feed';
+        $data['yandex_feed'] = '/index.php?route=extension/feed/yandex_feed';
 
         $data['header'] = $this->load->controller('common/header');
         $data['column'] = $this->load->controller('common/column_left');

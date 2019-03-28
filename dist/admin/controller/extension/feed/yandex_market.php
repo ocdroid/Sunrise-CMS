@@ -109,7 +109,7 @@ class ControllerExtensionFeedYandexMarket extends Controller
             $data['yandex_market_status'] = $this->config->get('yandex_market_status');
         }
 
-        $data['data_feed'] = HTTP_CATALOG . 'index.php?route=extension/feed/yandex_market';
+        $data['data_feed'] = '/index.php?route=extension/feed/yandex_market';
 
         if (isset($this->request->post['yandex_market_shopname'])) {
             $data['yandex_market_shopname'] = $this->request->post['yandex_market_shopname'];
