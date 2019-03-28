@@ -20,9 +20,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
-// Debug Panel
-define('IS_DEBUG', true);
-
 // Error Reporting
 // https://www.php.net/manual/en/errorfunc.constants.php
 // 0 - for disable

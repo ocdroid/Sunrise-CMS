@@ -1,24 +1,24 @@
 <?php
 
 /* 	Sunrise CMS - Open source CMS for widespread use.
-	Copyright (C) 2019 Mykola Burakov (burakov.work@gmail.com)
+    Copyright (C) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-	See SOURCE.txt for other and additional information.
+    See SOURCE.txt for other and additional information.
 
-	This file is part of Sunrise CMS.
+    This file is part of Sunrise CMS.
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerCommonHeader extends Controller
 {
@@ -88,7 +88,7 @@ class ControllerCommonHeader extends Controller
         $data['text_main_menu'] = $this->language->get('text_main_menu');
         $data['text_go_to'] = $this->language->get('text_go_to');
         $data['text_look_at_map'] = $this->language->get('text_look_at_map');
-        // 
+        //
 
         // links
         $data['home'] = $this->url->link('common/home');
@@ -105,7 +105,7 @@ class ControllerCommonHeader extends Controller
         $data['checkout'] = $this->url->link('checkout/onepagecheckout', '', true);
         $data['contact'] = $this->url->link('information/contact');
         $data['telephone'] = $this->config->get('config_telephone');
-        // 
+        //
 
         // Menu
         $this->load->model('design/custommenu');
@@ -190,19 +190,19 @@ class ControllerCommonHeader extends Controller
         } else {
             $data['menu'] = '';
         }
-        // 
+        //
 
         // need fix later - https://opencartforum.com/topic/129529-reliz-ocstore-3020/?do=findComment&comment=1313914
         $data['search'] = $this->load->controller('common/search');
         $data['cart'] = $this->load->controller('common/cart');
-        // 
+        //
 
         // adminbar
         if (isset($this->session->data['token'])) {
 
             // token
             $data['token_admin'] = $this->session->data['token'];
-            // 
+            //
 
             // route
             if (isset($this->request->get['route'])) {
@@ -221,7 +221,7 @@ class ControllerCommonHeader extends Controller
             } else {
                 $data['quick_edit_admin'] = '';
             }
-            // 
+            //
             
             // links
             $data['dashboard_admin'] = 'admin/index.php?route=common/dashboard&token=' . $data['token_admin'];
@@ -246,7 +246,7 @@ class ControllerCommonHeader extends Controller
             $data['all_orders_admin'] = 'admin/index.php?route=sale/order&token=' . $data['token_admin'];
             $data['return_admin'] = 'admin/index.php?route=sale/return&token=' . $data['token_admin'];
             $data['adminbar_logout'] = 'admin/index.php?route=common/logout&token=' . $data['token_admin'];
-            // 
+            //
 
             // language
             $data['text_adminbar_edit'] = $this->language->get('text_adminbar_edit');
@@ -275,7 +275,7 @@ class ControllerCommonHeader extends Controller
             $data['text_adminbar_all_orders'] = $this->language->get('text_adminbar_all_orders');
             $data['text_adminbar_return'] = $this->language->get('text_adminbar_return');
             $data['text_adminbar_logout'] = $this->language->get('text_adminbar_logout');
-            // 
+            //
         }
         //
 
@@ -297,7 +297,7 @@ class ControllerCommonHeader extends Controller
         } else {
             $data['class'] = 'common-home';
         }
-        // 
+        //
 
         return $this->load->view('common/header', $data);
     }
