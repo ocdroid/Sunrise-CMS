@@ -2,7 +2,7 @@
 
 
 /* 	Sunrise CMS - Open source CMS for widespread use.
-	Copyright (C) 2019 Mykola Burakov (burakov.work@gmail.com)
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
 	See SOURCE.txt for other and additional information.
 
@@ -15,11 +15,11 @@
 
 	This program is distributed in the hope that it will be useful,
 	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 	GNU General Public License for more details.
 
 	You should have received a copy of the GNU General Public License
-	along with this program.  If not, see <http://www.gnu.org/licenses/>. */
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ModelReportCustomer extends Model {
 	public function getTotalCustomersByDay() {
