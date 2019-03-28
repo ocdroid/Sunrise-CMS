@@ -71,13 +71,12 @@ class ControllerCommonHeader extends Controller
             $data['logo'] = '';
         }
 
+        // language
         $this->load->language('common/header');
 
         $data['text_home'] = $this->language->get('text_home');
-
         $data['text_shopping_cart'] = $this->language->get('text_shopping_cart');
         $data['text_logged'] = sprintf($this->language->get('text_logged'), $this->url->link('account/account', '', true), $this->customer->getFirstName(), $this->url->link('account/logout', '', true));
-
         $data['text_account'] = $this->language->get('text_account');
         $data['text_register'] = $this->language->get('text_register');
         $data['text_login'] = $this->language->get('text_login');
@@ -89,8 +88,9 @@ class ControllerCommonHeader extends Controller
         $data['text_main_menu'] = $this->language->get('text_main_menu');
         $data['text_go_to'] = $this->language->get('text_go_to');
         $data['text_look_at_map'] = $this->language->get('text_look_at_map');
+        // 
 
-
+        // links
         $data['home'] = $this->url->link('common/home');
         $data['logged'] = $this->customer->isLogged();
         $data['account'] = $this->url->link('account/account', '', true);
@@ -101,12 +101,11 @@ class ControllerCommonHeader extends Controller
         $data['download'] = $this->url->link('account/download', '', true);
         $data['logout'] = $this->url->link('account/logout', '', true);
         $data['shopping_cart'] = $this->url->link('checkout/cart');
-        //
         // $data['checkout'] = $this->url->link('checkout/checkout', '', true);
         $data['checkout'] = $this->url->link('checkout/onepagecheckout', '', true);
-        //
         $data['contact'] = $this->url->link('information/contact');
         $data['telephone'] = $this->config->get('config_telephone');
+        // 
 
         // Menu
         $this->load->model('design/custommenu');
@@ -191,14 +190,21 @@ class ControllerCommonHeader extends Controller
         } else {
             $data['menu'] = '';
         }
+        // 
 
+        // need fix later - https://opencartforum.com/topic/129529-reliz-ocstore-3020/?do=findComment&comment=1313914
         $data['search'] = $this->load->controller('common/search');
         $data['cart'] = $this->load->controller('common/cart');
+        // 
 
         // adminbar
         if (isset($this->session->data['token'])) {
-            $data['token_admin'] = $this->session->data['token'];
 
+            // token
+            $data['token_admin'] = $this->session->data['token'];
+            // 
+
+            // route
             if (isset($this->request->get['route'])) {
                 if ($this->request->get['route'] == 'product/product') {
                     $data['quick_edit_admin'] = 'admin/index.php?route=catalog/product/edit&product_id=' . $this->request->get['product_id'] . '&token=' . $data['token_admin'];
@@ -215,7 +221,9 @@ class ControllerCommonHeader extends Controller
             } else {
                 $data['quick_edit_admin'] = '';
             }
+            // 
             
+            // links
             $data['dashboard_admin'] = 'admin/index.php?route=common/dashboard&token=' . $data['token_admin'];
             $data['category_add_admin'] = 'admin/index.php?route=catalog/category/add&token=' . $data['token_admin'];
             $data['product_add_admin'] = 'admin/index.php?route=catalog/product/add&token=' . $data['token_admin'];
@@ -238,7 +246,9 @@ class ControllerCommonHeader extends Controller
             $data['all_orders_admin'] = 'admin/index.php?route=sale/order&token=' . $data['token_admin'];
             $data['return_admin'] = 'admin/index.php?route=sale/return&token=' . $data['token_admin'];
             $data['adminbar_logout'] = 'admin/index.php?route=common/logout&token=' . $data['token_admin'];
-            
+            // 
+
+            // language
             $data['text_adminbar_edit'] = $this->language->get('text_adminbar_edit');
             $data['text_adminbar_dashboard'] = $this->language->get('text_adminbar_dashboard');
             $data['text_adminbar_add'] = $this->language->get('text_adminbar_add');
@@ -265,6 +275,7 @@ class ControllerCommonHeader extends Controller
             $data['text_adminbar_all_orders'] = $this->language->get('text_adminbar_all_orders');
             $data['text_adminbar_return'] = $this->language->get('text_adminbar_return');
             $data['text_adminbar_logout'] = $this->language->get('text_adminbar_logout');
+            // 
         }
         //
 
@@ -286,6 +297,7 @@ class ControllerCommonHeader extends Controller
         } else {
             $data['class'] = 'common-home';
         }
+        // 
 
         return $this->load->view('common/header', $data);
     }
