@@ -487,16 +487,10 @@ class ControllerProductSearch extends Controller
         
         $data['stickers'] = array();
         
-        if ($this->request->server['HTTPS']) {
-            $prot_server = HTTPS_SERVER;
-        } else {
-            $prot_server = HTTP_SERVER;
-        }
-        
         foreach ($stickers as $sticker) {
             $data['stickers'][] = array(
                 'position' => $sticker['position'],
-                'image' => $prot_server . 'images/' . $sticker['image']
+                'image' => '/images/' . $sticker['image']
             );
         }
                 

@@ -31,24 +31,17 @@ class ControllerCommonHeader extends Controller
         $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js');
         $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js');
         $this->document->addScriptDefer('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js');
-
         $this->document->addScript('https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js');
         $this->document->addScriptAsync('/js/catalog/general/common/cart.js');
+        //
         
         //
-        if ($this->request->server['HTTPS']) {
-            $server = $this->config->get('config_ssl');
-        } else {
-            $server = $this->config->get('config_url');
-        }
-
         if (is_file(DIR_IMAGE . $this->config->get('config_icon'))) {
-            $this->document->addLink($server . 'images/' . $this->config->get('config_icon'), 'icon');
+            $this->document->addLink('/images/' . $this->config->get('config_icon'), 'icon');
         }
 
         $data['title'] = $this->document->getTitle();
 
-        $data['base'] = $server;
         $data['description'] = $this->document->getDescription();
         $data['links'] = $this->document->getLinks();
         $data['robots'] = $this->document->getRobots();
@@ -66,7 +59,7 @@ class ControllerCommonHeader extends Controller
         $data['name'] = $this->config->get('config_name');
 
         if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
-            $data['logo'] = $server . 'images/' . $this->config->get('config_logo');
+            $data['logo'] = '/images/' . $this->config->get('config_logo');
         } else {
             $data['logo'] = '';
         }
