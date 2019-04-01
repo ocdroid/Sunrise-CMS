@@ -1,30 +1,37 @@
 <?php
 
 /* 	Sunrise CMS - Open source CMS for widespread use.
-	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-	See SOURCE.txt for other and additional information.
+    See SOURCE.txt for other and additional information.
 
-	This file is part of Sunrise CMS.
+    This file is part of Sunrise CMS.
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program. If not, see <http://www.gnu.org/licenses/>. */
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ModelBlogReview extends Model
 {
     public function addReview($article_id, $data)
     {
-        $this->db->query("INSERT INTO review_article SET author = '" . $this->db->escape($data['name']) . "', customer_id = '" . (int)$this->customer->getId() . "', article_id = '" . (int)$article_id . "', text = '" . $this->db->escape($data['text']) . "', date_added = NOW()");
+        $this->db->query("
+            INSERT INTO review_article 
+            SET author = '" . $this->db->escape($data['name']) . "', 
+                customer_id = '" . (int)$this->customer->getId() . "', 
+                article_id = '" . (int)$article_id . "', 
+                text = '" . $this->db->escape($data['text']) . "', 
+                date_added = NOW()
+        ");
 
         $review_id = $this->db->getLastId();
 
@@ -80,14 +87,34 @@ class ModelBlogReview extends Model
             $limit = 20;
         }
 
-        $query = $this->db->query("SELECT r.review_article_id, r.author, r.text, p.article_id, pd.name, p.image, r.date_added FROM review_article r LEFT JOIN article p ON (r.article_id = p.article_id) LEFT JOIN article_description pd ON (p.article_id = pd.article_id) WHERE p.article_id = '" . (int)$article_id . "' AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY r.date_added DESC LIMIT " . (int)$start . "," . (int)$limit);
+        $query = $this->db->query(
+            "
+            SELECT r.review_article_id, r.author, r.text, p.article_id, pd.name, p.image, r.date_added 
+            FROM review_article r LEFT JOIN article p ON (r.article_id = p.article_id) 
+            LEFT JOIN article_description pd ON (p.article_id = pd.article_id) 
+            WHERE p.article_id = '" . (int)$article_id . "' 
+                AND p.status = '1' 
+                AND r.status = '1' 
+                AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' 
+            ORDER BY r.date_added DESC 
+            LIMIT " . (int)$start . "," . (int)$limit
+        );
 
         return $query->rows;
     }
 
     public function getTotalReviewsByArticleId($article_id)
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM review_article r LEFT JOIN article p ON (r.article_id = p.article_id) LEFT JOIN article_description pd ON (p.article_id = pd.article_id) WHERE p.article_id = '" . (int)$article_id . "' AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+        $query = $this->db->query("
+            SELECT COUNT(*) AS total 
+            FROM review_article r 
+            LEFT JOIN article p ON (r.article_id = p.article_id) 
+            LEFT JOIN article_description pd ON (p.article_id = pd.article_id) 
+            WHERE p.article_id = '" . (int)$article_id . "' 
+                AND p.status = '1' 
+                AND r.status = '1' 
+                AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'
+        ");
 
         return $query->row['total'];
     }

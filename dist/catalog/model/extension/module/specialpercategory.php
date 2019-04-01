@@ -1,24 +1,24 @@
 <?php
 
 /* 	Sunrise CMS - Open source CMS for widespread use.
-	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-	See SOURCE.txt for other and additional information.
+    See SOURCE.txt for other and additional information.
 
-	This file is part of Sunrise CMS.
+    This file is part of Sunrise CMS.
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program. If not, see <http://www.gnu.org/licenses/>. */
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ModelExtensionModuleSpecialpercategory extends Model
 {
@@ -39,7 +39,13 @@ class ModelExtensionModuleSpecialpercategory extends Model
             if (!$product_data) {
                 $product_data = array();
 
-                $sql = "SELECT DISTINCT ps.product_id FROM product_special ps LEFT JOIN product p ON (ps.product_id = p.product_id) LEFT JOIN product_description pd ON (p.product_id = pd.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id)";
+                $sql = "
+                    SELECT DISTINCT ps.product_id 
+                    FROM product_special ps 
+                    LEFT JOIN product p ON (ps.product_id = p.product_id) 
+                    LEFT JOIN product_description pd ON (p.product_id = pd.product_id) 
+                    LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id)
+                ";
             
                 if ($category_id) {
                     $sql .= " LEFT JOIN product_to_category p2c ON (ps.product_id = p2c.product_id) ";
