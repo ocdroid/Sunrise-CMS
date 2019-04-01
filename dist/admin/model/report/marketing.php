@@ -22,7 +22,7 @@
 
 class ModelReportMarketing extends Model {
 	public function getMarketing($data = array()) {
-		$sql = "SELECT m.marketing_id, m.name AS campaign, m.code, m.clicks AS clicks, (SELECT COUNT(DISTINCT order_id) FROM `" . DB_PREFIX . "order` o1 WHERE o1.marketing_id = m.marketing_id";
+		$sql = "SELECT m.marketing_id, m.name AS campaign, m.code, m.clicks AS clicks, (SELECT COUNT(DISTINCT order_id) FROM `order` o1 WHERE o1.marketing_id = m.marketing_id";
 
 		if (!empty($data['filter_order_status_id'])) {
 			$sql .= " AND o1.order_status_id = '" . (int)$data['filter_order_status_id'] . "'";
@@ -38,7 +38,7 @@ class ModelReportMarketing extends Model {
 			$sql .= " AND DATE(o1.date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
-		$sql .= ") AS `orders`, (SELECT SUM(total) FROM `" . DB_PREFIX . "order` o2 WHERE o2.marketing_id = m.marketing_id";
+		$sql .= ") AS `orders`, (SELECT SUM(total) FROM `order` o2 WHERE o2.marketing_id = m.marketing_id";
 
 		if (!empty($data['filter_order_status_id'])) {
 			$sql .= " AND o2.order_status_id = '" . (int)$data['filter_order_status_id'] . "'";
@@ -54,7 +54,7 @@ class ModelReportMarketing extends Model {
 			$sql .= " AND DATE(o2.date_added) <= '" . $this->db->escape($data['filter_date_end']) . "'";
 		}
 
-		$sql .= " GROUP BY o2.marketing_id) AS `total` FROM `" . DB_PREFIX . "marketing` m ORDER BY m.date_added ASC";
+		$sql .= " GROUP BY o2.marketing_id) AS `total` FROM `marketing` m ORDER BY m.date_added ASC";
 
 		if (isset($data['start']) || isset($data['limit'])) {
 			if ($data['start'] < 0) {
@@ -74,7 +74,7 @@ class ModelReportMarketing extends Model {
 	}
 
 	public function getTotalMarketing($data = array()) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "marketing`");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `marketing`");
 
 		return $query->row['total'];
 	}

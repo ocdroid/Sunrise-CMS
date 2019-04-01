@@ -22,48 +22,48 @@
 
 class ModelDesignBenefit extends Model {
 	public function addBenefit($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "benefit SET name = '" . $this->db->escape($data['name']) . "', link = '" . $data['link'] . "', type = '" . (int)$data['type'] . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO benefit SET name = '" . $this->db->escape($data['name']) . "', link = '" . $data['link'] . "', type = '" . (int)$data['type'] . "', status = '" . (int)$data['status'] . "'");
 
 		$benefit_id = $this->db->getLastId();
 
 		if (isset($data['image'])) {
-			$this->db->query("UPDATE " . DB_PREFIX . "benefit SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE benefit_id = '" . (int)$benefit_id . "'");
+			$this->db->query("UPDATE benefit SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE benefit_id = '" . (int)$benefit_id . "'");
 		}
 		
 		foreach ($data['benefit_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "benefit_description SET benefit_id = '" . (int)$benefit_id . "', language_id = '" . (int)$language_id . "', description = '" . $this->db->escape($value['description']) . "'");
+			$this->db->query("INSERT INTO benefit_description SET benefit_id = '" . (int)$benefit_id . "', language_id = '" . (int)$language_id . "', description = '" . $this->db->escape($value['description']) . "'");
 		}
 		
 	}
 
 	public function editBenefit($benefit_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "benefit SET name = '" . $this->db->escape($data['name']) . "', link = '" . $data['link'] . "', type = '" . (int)$data['type'] . "', status = '" . (int)$data['status'] . "' WHERE benefit_id = '" . (int)$benefit_id . "'");	
+		$this->db->query("UPDATE benefit SET name = '" . $this->db->escape($data['name']) . "', link = '" . $data['link'] . "', type = '" . (int)$data['type'] . "', status = '" . (int)$data['status'] . "' WHERE benefit_id = '" . (int)$benefit_id . "'");	
 	
 		if (isset($data['image'])) {
-			$this->db->query("UPDATE " . DB_PREFIX . "benefit SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE benefit_id = '" . (int)$benefit_id . "'");
+			$this->db->query("UPDATE benefit SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE benefit_id = '" . (int)$benefit_id . "'");
 		}
 		
-		$this->db->query("DELETE FROM " . DB_PREFIX . "benefit_description WHERE benefit_id = '" . (int)$benefit_id . "'");
+		$this->db->query("DELETE FROM benefit_description WHERE benefit_id = '" . (int)$benefit_id . "'");
 	
 		foreach ($data['benefit_description'] as $language_id => $value) {
-			$this->db->query("INSERT INTO " . DB_PREFIX . "benefit_description SET benefit_id = '" . (int)$benefit_id . "', language_id = '" . (int)$language_id . "', description = '" . $this->db->escape($value['description']) . "'");
+			$this->db->query("INSERT INTO benefit_description SET benefit_id = '" . (int)$benefit_id . "', language_id = '" . (int)$language_id . "', description = '" . $this->db->escape($value['description']) . "'");
 		}
 	
 	}
 
 	public function deleteBenefit($benefit_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "benefit WHERE benefit_id = '" . (int)$benefit_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "benefit_description WHERE benefit_id = '" . (int)$benefit_id . "'");
+		$this->db->query("DELETE FROM benefit WHERE benefit_id = '" . (int)$benefit_id . "'");
+		$this->db->query("DELETE FROM benefit_description WHERE benefit_id = '" . (int)$benefit_id . "'");
 	}
 
 	public function getBenefit($benefit_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "benefit WHERE benefit_id = '" . (int)$benefit_id . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM benefit WHERE benefit_id = '" . (int)$benefit_id . "'");
 
 		return $query->row;
 	}
 
 	public function getBenefits($data = array()) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "benefit";
+		$sql = "SELECT * FROM benefit";
 
 		$sort_data = array(
 			'name',
@@ -102,7 +102,7 @@ class ModelDesignBenefit extends Model {
 	public function getProductBenefit($product_id) {
 		$benefits = array();
 
-		$query = $this->db->query("SELECT benefit_id, position FROM " . DB_PREFIX . "product_to_benefit WHERE product_id = '" . (int)$product_id . "' GROUP BY position");
+		$query = $this->db->query("SELECT benefit_id, position FROM product_to_benefit WHERE product_id = '" . (int)$product_id . "' GROUP BY position");
 		
 		foreach ($query->rows as $benefit) {
 			$benefits[$benefit['position']] = $benefit['benefit_id'];
@@ -112,14 +112,14 @@ class ModelDesignBenefit extends Model {
 	}
 
 	public function getTotalBenefits() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "benefit");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM benefit");
 
 		return $query->row['total'];
 	}	
 	
 	public function validateDelete($selected) {
 	
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_to_benefit WHERE benefit_id IN (". $selected .")");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM product_to_benefit WHERE benefit_id IN (". $selected .")");
 
 		return $query->row['total'];
 	}
@@ -128,7 +128,7 @@ class ModelDesignBenefit extends Model {
 	public function getBenefitDescriptions($benefit_id) {
 		$benefit_description_data = array();
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "benefit_description WHERE benefit_id = '" . (int)$benefit_id . "'");
+		$query = $this->db->query("SELECT * FROM benefit_description WHERE benefit_id = '" . (int)$benefit_id . "'");
 
 		foreach ($query->rows as $result) {
 			$benefit_description_data[$result['language_id']] = array(

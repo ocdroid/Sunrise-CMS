@@ -23,7 +23,7 @@
 class ModelToolSeoManager extends Model {
 
 	public function deleteUrlAlias($url_alias_id) {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "url_alias` WHERE `url_alias_id` = '" . (int)$url_alias_id . "'");
+		$this->db->query("DELETE FROM `url_alias` WHERE `url_alias_id` = '" . (int)$url_alias_id . "'");
 		$this->cache->delete('seo_pro');
 		$this->cache->delete('seo_url');
 	}
@@ -31,9 +31,9 @@ class ModelToolSeoManager extends Model {
 	public function updateUrlAlias($data) {
 		if($data['query'] == '') return false;
 		if($data['url_alias_id'] != 0 ) {
-			$this->db->query("UPDATE `" . DB_PREFIX . "url_alias` SET `query` = '" . $this->db->escape($data['query']) . "', `keyword` = '" . $data['keyword'] . "' WHERE `url_alias_id` = '" . (int)$data['url_alias_id'] . "'");
+			$this->db->query("UPDATE `url_alias` SET `query` = '" . $this->db->escape($data['query']) . "', `keyword` = '" . $data['keyword'] . "' WHERE `url_alias_id` = '" . (int)$data['url_alias_id'] . "'");
 		} else {
-			$this->db->query("INSERT INTO `" . DB_PREFIX . "url_alias` SET 
+			$this->db->query("INSERT INTO `url_alias` SET 
 				`query` = '" .  $this->db->escape($data['query']) . "', 
 				`keyword` = '" . $this->db->escape($data['keyword']) . "',
 				`seomanager` = 1");
@@ -46,7 +46,7 @@ class ModelToolSeoManager extends Model {
 	// Get List URL Alias
 	public function getUrlAaliases($data = array()) {
 		if ($data) {
-			$sql = "SELECT * FROM `" . DB_PREFIX . "url_alias` ua WHERE ua.seomanager = '1'";
+			$sql = "SELECT * FROM `url_alias` ua WHERE ua.seomanager = '1'";
 
 			$sort_data = array('ua.query', 'ua.keyword');
 
@@ -78,14 +78,14 @@ class ModelToolSeoManager extends Model {
 
 			return  $query->rows;
 		} else {
-			$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "url_alias` ua WHERE ua.seomanager = '1' ORDER BY ua.query");
+			$query = $this->db->query("SELECT * FROM `url_alias` ua WHERE ua.seomanager = '1' ORDER BY ua.query");
 			return $query->rows;
 		}
 	}
 
 	// Total Aliases
 	public function getTotalUrlAalias() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "url_alias` WHERE `seomanager` = '1';");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM `url_alias` WHERE `seomanager` = '1';");
 		return $query->row['total'];
 	}
 

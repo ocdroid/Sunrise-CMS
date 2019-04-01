@@ -1,20 +1,20 @@
 <?php
 class ModelCheckoutOnepagecheckout extends Model {
     public function addOrder($data) {
-        $this->db->query("INSERT INTO `" . DB_PREFIX . "order` SET  store_id = '" . (int)$data['store_id'] . "', store_name = '" . $this->db->escape($data['store_name']) . "', store_url = '" . $this->db->escape($data['store_url']) . "', customer_id = '" . (int)$data['customer_id'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "',  payment_firstname = '" . $this->db->escape($data['firstname']) . "', payment_address_1 = '" . $this->db->escape($data['address_1']) . "',payment_city = '" . $this->db->escape($data['city']) . "', shipping_address_1 = '" . $this->db->escape($data['address_1']) . "', shipping_city = '" . $this->db->escape($data['city']) . "',shipping_method = '" . $this->db->escape($data['shipping_method']['title']) . "', shipping_code = '" . $this->db->escape($data['shipping_method']['code']) . "',payment_method = '" . $this->db->escape($data['payment_method']['title']) . "', payment_code = '" . $this->db->escape($data['payment_method']['code']) . "',payment_country='',payment_country_id = '0' ,payment_zone_id = '0',shipping_country_id = '0' ,shipping_zone_id = '0', comment = '" . $this->db->escape($data['comment']) . "', total = '" . (float)$data['cart_total'] . "',language_id = '" . (int)$data['language_id'] . "', currency_id = '" . (int)$data['currency_id'] . "', currency_code = '" . $this->db->escape($data['currency_code']) . "', currency_value = '" . (float)$data['currency_value'] . "',  order_status_id = '" . (int)$data['order_status_id'] . "', ip = '" . $this->db->escape($data['ip']) . "', forwarded_ip = '" .  $this->db->escape($data['forwarded_ip']) . "', user_agent = '" . $this->db->escape($data['user_agent']) . "', accept_language = '" . $this->db->escape($data['accept_language']) . "', date_added = NOW(), date_modified = NOW()");
+        $this->db->query("INSERT INTO `order` SET  store_id = '" . (int)$data['store_id'] . "', store_name = '" . $this->db->escape($data['store_name']) . "', store_url = '" . $this->db->escape($data['store_url']) . "', customer_id = '" . (int)$data['customer_id'] . "', customer_group_id = '" . (int)$data['customer_group_id'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "',  payment_firstname = '" . $this->db->escape($data['firstname']) . "', payment_address_1 = '" . $this->db->escape($data['address_1']) . "',payment_city = '" . $this->db->escape($data['city']) . "', shipping_address_1 = '" . $this->db->escape($data['address_1']) . "', shipping_city = '" . $this->db->escape($data['city']) . "',shipping_method = '" . $this->db->escape($data['shipping_method']['title']) . "', shipping_code = '" . $this->db->escape($data['shipping_method']['code']) . "',payment_method = '" . $this->db->escape($data['payment_method']['title']) . "', payment_code = '" . $this->db->escape($data['payment_method']['code']) . "',payment_country='',payment_country_id = '0' ,payment_zone_id = '0',shipping_country_id = '0' ,shipping_zone_id = '0', comment = '" . $this->db->escape($data['comment']) . "', total = '" . (float)$data['cart_total'] . "',language_id = '" . (int)$data['language_id'] . "', currency_id = '" . (int)$data['currency_id'] . "', currency_code = '" . $this->db->escape($data['currency_code']) . "', currency_value = '" . (float)$data['currency_value'] . "',  order_status_id = '" . (int)$data['order_status_id'] . "', ip = '" . $this->db->escape($data['ip']) . "', forwarded_ip = '" .  $this->db->escape($data['forwarded_ip']) . "', user_agent = '" . $this->db->escape($data['user_agent']) . "', accept_language = '" . $this->db->escape($data['accept_language']) . "', date_added = NOW(), date_modified = NOW()");
 
         $order_id = $this->db->getLastId();
 
         // Products
         if (isset($data['products'])) {
             foreach ($data['products'] as $product) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "order_product SET order_id = '" . (int)$order_id . "', product_id = '" . (int)$product['product_id'] . "', name = '" . $this->db->escape($product['name']) . "', model = '" . $this->db->escape($product['model']) . "', quantity = '" . (int)$product['quantity'] . "', price = '" . (float)$product['price'] . "', total = '" . (float)$product['total'] . "', tax = '', reward = '" . (int)$product['reward'] . "'");
+                $this->db->query("INSERT INTO order_product SET order_id = '" . (int)$order_id . "', product_id = '" . (int)$product['product_id'] . "', name = '" . $this->db->escape($product['name']) . "', model = '" . $this->db->escape($product['model']) . "', quantity = '" . (int)$product['quantity'] . "', price = '" . (float)$product['price'] . "', total = '" . (float)$product['total'] . "', tax = '', reward = '" . (int)$product['reward'] . "'");
 
                 $order_product_id = $this->db->getLastId();
 
                 foreach ($product['option'] as $option) {
                     $this->db->query("
-                        INSERT INTO " . DB_PREFIX . "order_option 
+                        INSERT INTO order_option 
                         SET order_id = '" . (int)$order_id . "', 
                             order_product_id = '" . (int)$order_product_id . "', 
                             product_option_id = '" . (int)$option['product_option_id'] . "', 
@@ -31,7 +31,7 @@ class ModelCheckoutOnepagecheckout extends Model {
         if (isset($data['cart_total']) && false ) {
 
             $this->db->query("
-                INSERT INTO " . DB_PREFIX . "order_total 
+                INSERT INTO order_total 
                 SET order_id = '" . (int)$order_id . "', 
                     code = 'total', 
                     title = 'Total', 
@@ -39,7 +39,7 @@ class ModelCheckoutOnepagecheckout extends Model {
                     sort_order = ''
             ");
             $this->db->query("
-                INSERT INTO " . DB_PREFIX . "order_total 
+                INSERT INTO order_total 
                 SET order_id = '" . (int)$order_id . "', 
                     code = 'sub_total', 
                     title = 'Total', 
@@ -84,12 +84,12 @@ class ModelCheckoutOnepagecheckout extends Model {
         $i = 10;
         $total_sum = 0;
         foreach ($totals as $total) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "order_total SET order_id = '" . (int)$order_id . "', code = '".$total['code']."', title = '".$total['title']."', `value` = '" . (float)$total['value']."', sort_order = '".$i."'");
+            $this->db->query("INSERT INTO order_total SET order_id = '" . (int)$order_id . "', code = '".$total['code']."', title = '".$total['title']."', `value` = '" . (float)$total['value']."', sort_order = '".$i."'");
             $i += 10;
             $total_sum =  $total['value'];
         }
         // Last row in totals should be final sum...
-        $this->db->query("UPDATE " . DB_PREFIX . "order SET total='".$total_sum."' WHERE order_id = '" . (int)$order_id . "'");
+        $this->db->query("UPDATE order SET total='".$total_sum."' WHERE order_id = '" . (int)$order_id . "'");
 
         return $order_id;
     }

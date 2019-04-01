@@ -26,9 +26,9 @@ class ControllerStartupStartup extends Controller
     {
         // Store
         if ($this->request->server['HTTPS']) {
-            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "store WHERE REPLACE(`ssl`, 'www.', '') = '" . $this->db->escape('https://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
+            $query = $this->db->query("SELECT * FROM store WHERE REPLACE(`ssl`, 'www.', '') = '" . $this->db->escape('https://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
         } else {
-            $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "store WHERE REPLACE(`url`, 'www.', '') = '" . $this->db->escape('http://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
+            $query = $this->db->query("SELECT * FROM store WHERE REPLACE(`url`, 'www.', '') = '" . $this->db->escape('http://' . str_replace('www.', '', $_SERVER['HTTP_HOST']) . rtrim(dirname($_SERVER['PHP_SELF']), '/.\\') . '/') . "'");
         }
         
         if (isset($this->request->get['store_id'])) {
@@ -45,7 +45,7 @@ class ControllerStartupStartup extends Controller
         }
         
         // Settings
-        $query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "setting` WHERE store_id = '0' OR store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY store_id ASC");
+        $query = $this->db->query("SELECT * FROM `setting` WHERE store_id = '0' OR store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY store_id ASC");
         
         foreach ($query->rows as $result) {
             if (!$result['serialized']) {
@@ -146,7 +146,7 @@ class ControllerStartupStartup extends Controller
         if (isset($this->request->get['tracking'])) {
             setcookie('tracking', $this->request->get['tracking'], time() + 3600 * 24 * 1000, '/');
         
-            $this->db->query("UPDATE `" . DB_PREFIX . "marketing` SET clicks = (clicks + 1) WHERE code = '" . $this->db->escape($this->request->get['tracking']) . "'");
+            $this->db->query("UPDATE `marketing` SET clicks = (clicks + 1) WHERE code = '" . $this->db->escape($this->request->get['tracking']) . "'");
         }
         
         // Currency

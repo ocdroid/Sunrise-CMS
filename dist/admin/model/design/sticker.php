@@ -22,37 +22,37 @@
 
 class ModelDesignSticker extends Model {
 	public function addSticker($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "sticker SET name = '" . $this->db->escape($data['name']) . "', status = '" . (int)$data['status'] . "'");
+		$this->db->query("INSERT INTO sticker SET name = '" . $this->db->escape($data['name']) . "', status = '" . (int)$data['status'] . "'");
 
 		$sticker_id = $this->db->getLastId();
 
 	if (isset($data['image'])) {
-			$this->db->query("UPDATE " . DB_PREFIX . "sticker SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE sticker_id = '" . (int)$sticker_id . "'");
+			$this->db->query("UPDATE sticker SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE sticker_id = '" . (int)$sticker_id . "'");
 		}
 		
 	}
 
 	public function editSticker($sticker_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "sticker SET name = '" . $this->db->escape($data['name']) . "', status = '" . (int)$data['status'] . "' WHERE sticker_id = '" . (int)$sticker_id . "'");	
+		$this->db->query("UPDATE sticker SET name = '" . $this->db->escape($data['name']) . "', status = '" . (int)$data['status'] . "' WHERE sticker_id = '" . (int)$sticker_id . "'");	
 	
 	if (isset($data['image'])) {
-			$this->db->query("UPDATE " . DB_PREFIX . "sticker SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE sticker_id = '" . (int)$sticker_id . "'");
+			$this->db->query("UPDATE sticker SET image = '" . $this->db->escape(html_entity_decode($data['image'], ENT_QUOTES, 'UTF-8')) . "' WHERE sticker_id = '" . (int)$sticker_id . "'");
 		}
 	
 	}
 
 	public function deleteSticker($sticker_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "sticker WHERE sticker_id = '" . (int)$sticker_id . "'");
+		$this->db->query("DELETE FROM sticker WHERE sticker_id = '" . (int)$sticker_id . "'");
 	}
 
 	public function getSticker($sticker_id) {
-		$query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "sticker WHERE sticker_id = '" . (int)$sticker_id . "'");
+		$query = $this->db->query("SELECT DISTINCT * FROM sticker WHERE sticker_id = '" . (int)$sticker_id . "'");
 
 		return $query->row;
 	}
 
 	public function getStickers($data = array()) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "sticker";
+		$sql = "SELECT * FROM sticker";
 
 		$sort_data = array(
 			'name',
@@ -90,7 +90,7 @@ class ModelDesignSticker extends Model {
 	
 	public function getStickersProduct($data = array()) {
 
-		$sql = "SELECT * FROM " . DB_PREFIX . "sticker";
+		$sql = "SELECT * FROM sticker";
 			
 		$query = $this->db->query($sql);
 	
@@ -101,7 +101,7 @@ class ModelDesignSticker extends Model {
 	public function getProductSticker($product_id) {
 		$stickers = array();
 
-		$query = $this->db->query("SELECT sticker_id, position FROM " . DB_PREFIX . "product_to_sticker WHERE product_id = '" . (int)$product_id . "' GROUP BY position");
+		$query = $this->db->query("SELECT sticker_id, position FROM product_to_sticker WHERE product_id = '" . (int)$product_id . "' GROUP BY position");
 		
 		foreach ($query->rows as $sticker) {
 			$stickers[$sticker['position']] = $sticker['sticker_id'];
@@ -111,14 +111,14 @@ class ModelDesignSticker extends Model {
 	}
 
 	public function getTotalStickers() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "sticker");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM sticker");
 
 		return $query->row['total'];
 	}	
 	
 	public function validateDelete($selected) {
 	
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "product_to_sticker WHERE sticker_id IN (". $selected .")");
+		$query = $this->db->query("SELECT COUNT(*) AS total FROM product_to_sticker WHERE sticker_id IN (". $selected .")");
 
 		return $query->row['total'];
 	}

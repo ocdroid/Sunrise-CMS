@@ -24,68 +24,68 @@ class ModelBlogArticle extends Model
 {
     public function addArticle($data)
     {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "article SET status = '" . (int)$data['status'] . "', noindex = '" . (int)$data['noindex'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
+        $this->db->query("INSERT INTO article SET status = '" . (int)$data['status'] . "', noindex = '" . (int)$data['noindex'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_added = NOW()");
 
         $article_id = $this->db->getLastId();
 
         if (isset($data['image'])) {
-            $this->db->query("UPDATE " . DB_PREFIX . "article SET image = '" . $this->db->escape($data['image']) . "' WHERE article_id = '" . (int)$article_id . "'");
+            $this->db->query("UPDATE article SET image = '" . $this->db->escape($data['image']) . "' WHERE article_id = '" . (int)$article_id . "'");
         }
 
         foreach ($data['article_description'] as $language_id => $value) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "article_description SET article_id = '" . (int)$article_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_h1 = '" . $this->db->escape($value['meta_h1']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "'");
+            $this->db->query("INSERT INTO article_description SET article_id = '" . (int)$article_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_h1 = '" . $this->db->escape($value['meta_h1']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "'");
         }
 
         if (isset($data['article_store'])) {
             foreach ($data['article_store'] as $store_id) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_to_store SET article_id = '" . (int)$article_id . "', store_id = '" . (int)$store_id . "'");
+                $this->db->query("INSERT INTO article_to_store SET article_id = '" . (int)$article_id . "', store_id = '" . (int)$store_id . "'");
             }
         }
 
         if (isset($data['article_image'])) {
             foreach ($data['article_image'] as $article_image) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_image SET article_id = '" . (int)$article_id . "', image = '" . $this->db->escape($article_image['image']) . "', sort_order = '" . (int)$article_image['sort_order'] . "'");
+                $this->db->query("INSERT INTO article_image SET article_id = '" . (int)$article_id . "', image = '" . $this->db->escape($article_image['image']) . "', sort_order = '" . (int)$article_image['sort_order'] . "'");
             }
         }
 
         if (isset($data['article_download'])) {
             foreach ($data['article_download'] as $download_id) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_to_download SET article_id = '" . (int)$article_id . "', download_id = '" . (int)$download_id . "'");
+                $this->db->query("INSERT INTO article_to_download SET article_id = '" . (int)$article_id . "', download_id = '" . (int)$download_id . "'");
             }
         }
 
         if (isset($data['article_category'])) {
             foreach ($data['article_category'] as $blog_category_id) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_to_blog_category SET article_id = '" . (int)$article_id . "', blog_category_id = '" . (int)$blog_category_id . "'");
+                $this->db->query("INSERT INTO article_to_blog_category SET article_id = '" . (int)$article_id . "', blog_category_id = '" . (int)$blog_category_id . "'");
             }
         }
         
         if (isset($data['main_blog_category_id']) && $data['main_blog_category_id'] > 0) {
-            $this->db->query("DELETE FROM " . DB_PREFIX . "article_to_blog_category WHERE article_id = '" . (int)$article_id . "' AND blog_category_id = '" . (int)$data['main_blog_category_id'] . "'");
-            $this->db->query("INSERT INTO " . DB_PREFIX . "article_to_blog_category SET article_id = '" . (int)$article_id . "', blog_category_id = '" . (int)$data['main_blog_category_id'] . "', main_blog_category = 1");
+            $this->db->query("DELETE FROM article_to_blog_category WHERE article_id = '" . (int)$article_id . "' AND blog_category_id = '" . (int)$data['main_blog_category_id'] . "'");
+            $this->db->query("INSERT INTO article_to_blog_category SET article_id = '" . (int)$article_id . "', blog_category_id = '" . (int)$data['main_blog_category_id'] . "', main_blog_category = 1");
         } elseif (isset($data['article_category'][0])) {
-            $this->db->query("UPDATE " . DB_PREFIX . "article_to_blog_category SET main_blog_category = 1 WHERE article_id = '" . (int)$article_id . "' AND blog_category_id = '" . (int)$data['article_category'][0] . "'");
+            $this->db->query("UPDATE article_to_blog_category SET main_blog_category = 1 WHERE article_id = '" . (int)$article_id . "' AND blog_category_id = '" . (int)$data['article_category'][0] . "'");
         }
 
         if (isset($data['article_related'])) {
             foreach ($data['article_related'] as $related_id) {
-                $this->db->query("DELETE FROM " . DB_PREFIX . "article_related WHERE article_id = '" . (int)$article_id . "' AND related_id = '" . (int)$related_id . "'");
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_related SET article_id = '" . (int)$article_id . "', related_id = '" . (int)$related_id . "'");
-                $this->db->query("DELETE FROM " . DB_PREFIX . "article_related WHERE article_id = '" . (int)$related_id . "' AND related_id = '" . (int)$article_id . "'");
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_related SET article_id = '" . (int)$related_id . "', related_id = '" . (int)$article_id . "'");
+                $this->db->query("DELETE FROM article_related WHERE article_id = '" . (int)$article_id . "' AND related_id = '" . (int)$related_id . "'");
+                $this->db->query("INSERT INTO article_related SET article_id = '" . (int)$article_id . "', related_id = '" . (int)$related_id . "'");
+                $this->db->query("DELETE FROM article_related WHERE article_id = '" . (int)$related_id . "' AND related_id = '" . (int)$article_id . "'");
+                $this->db->query("INSERT INTO article_related SET article_id = '" . (int)$related_id . "', related_id = '" . (int)$article_id . "'");
             }
         }
         
         if (isset($data['product_related'])) {
             foreach ($data['product_related'] as $related_id) {
-                $this->db->query("DELETE FROM " . DB_PREFIX . "article_related_product WHERE article_id = '" . (int)$article_id . "' AND product_id = '" . (int)$related_id . "'");
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_related_product SET article_id = '" . (int)$article_id . "', product_id = '" . (int)$related_id . "'");
+                $this->db->query("DELETE FROM article_related_product WHERE article_id = '" . (int)$article_id . "' AND product_id = '" . (int)$related_id . "'");
+                $this->db->query("INSERT INTO article_related_product SET article_id = '" . (int)$article_id . "', product_id = '" . (int)$related_id . "'");
             }
         }
 
         if (isset($data['article_layout'])) {
             foreach ($data['article_layout'] as $store_id => $layout_id) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_to_layout SET article_id = '" . (int)$article_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
+                $this->db->query("INSERT INTO article_to_layout SET article_id = '" . (int)$article_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
             }
         }
         
@@ -93,7 +93,7 @@ class ModelBlogArticle extends Model
         $this->cache->delete('seo_url');
 
         if (isset($data['keyword']) && !empty($data['keyword'])) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'article_id=" . (int)$article_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+            $this->db->query("INSERT INTO url_alias SET query = 'article_id=" . (int)$article_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
         }
 
         $this->cache->delete('article');
@@ -103,93 +103,93 @@ class ModelBlogArticle extends Model
 
     public function editArticle($article_id, $data)
     {
-        $this->db->query("UPDATE " . DB_PREFIX . "article SET status = '" . (int)$data['status'] . "', noindex = '" . (int)$data['noindex'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("UPDATE article SET status = '" . (int)$data['status'] . "', noindex = '" . (int)$data['noindex'] . "', sort_order = '" . (int)$data['sort_order'] . "', date_modified = NOW() WHERE article_id = '" . (int)$article_id . "'");
 
         if (isset($data['image'])) {
-            $this->db->query("UPDATE " . DB_PREFIX . "article SET image = '" . $this->db->escape($data['image']) . "' WHERE article_id = '" . (int)$article_id . "'");
+            $this->db->query("UPDATE article SET image = '" . $this->db->escape($data['image']) . "' WHERE article_id = '" . (int)$article_id . "'");
         }
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_description WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_description WHERE article_id = '" . (int)$article_id . "'");
 
         foreach ($data['article_description'] as $language_id => $value) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "article_description SET article_id = '" . (int)$article_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_h1 = '" . $this->db->escape($value['meta_h1']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "'");
+            $this->db->query("INSERT INTO article_description SET article_id = '" . (int)$article_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "', description = '" . $this->db->escape($value['description']) . "', tag = '" . $this->db->escape($value['tag']) . "', meta_title = '" . $this->db->escape($value['meta_title']) . "', meta_h1 = '" . $this->db->escape($value['meta_h1']) . "', meta_description = '" . $this->db->escape($value['meta_description']) . "'");
         }
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_to_store WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_to_store WHERE article_id = '" . (int)$article_id . "'");
 
         if (isset($data['article_store'])) {
             foreach ($data['article_store'] as $store_id) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_to_store SET article_id = '" . (int)$article_id . "', store_id = '" . (int)$store_id . "'");
+                $this->db->query("INSERT INTO article_to_store SET article_id = '" . (int)$article_id . "', store_id = '" . (int)$store_id . "'");
             }
         }
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_image WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_image WHERE article_id = '" . (int)$article_id . "'");
 
         if (isset($data['article_image'])) {
             foreach ($data['article_image'] as $article_image) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_image SET article_id = '" . (int)$article_id . "', image = '" . $this->db->escape($article_image['image']) . "', sort_order = '" . (int)$article_image['sort_order'] . "'");
+                $this->db->query("INSERT INTO article_image SET article_id = '" . (int)$article_id . "', image = '" . $this->db->escape($article_image['image']) . "', sort_order = '" . (int)$article_image['sort_order'] . "'");
             }
         }
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_to_download WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_to_download WHERE article_id = '" . (int)$article_id . "'");
 
         if (isset($data['article_download'])) {
             foreach ($data['article_download'] as $download_id) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_to_download SET article_id = '" . (int)$article_id . "', download_id = '" . (int)$download_id . "'");
+                $this->db->query("INSERT INTO article_to_download SET article_id = '" . (int)$article_id . "', download_id = '" . (int)$download_id . "'");
             }
         }
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_to_blog_category WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_to_blog_category WHERE article_id = '" . (int)$article_id . "'");
 
         if (isset($data['article_category'])) {
             foreach ($data['article_category'] as $blog_category_id) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_to_blog_category SET article_id = '" . (int)$article_id . "', blog_category_id = '" . (int)$blog_category_id . "'");
+                $this->db->query("INSERT INTO article_to_blog_category SET article_id = '" . (int)$article_id . "', blog_category_id = '" . (int)$blog_category_id . "'");
             }
         }
         
         if (isset($data['main_blog_category_id']) && $data['main_blog_category_id'] > 0) {
-            $this->db->query("DELETE FROM " . DB_PREFIX . "article_to_blog_category WHERE article_id = '" . (int)$article_id . "' AND blog_category_id = '" . (int)$data['main_blog_category_id'] . "'");
-            $this->db->query("INSERT INTO " . DB_PREFIX . "article_to_blog_category SET article_id = '" . (int)$article_id . "', blog_category_id = '" . (int)$data['main_blog_category_id'] . "', main_blog_category = 1");
+            $this->db->query("DELETE FROM article_to_blog_category WHERE article_id = '" . (int)$article_id . "' AND blog_category_id = '" . (int)$data['main_blog_category_id'] . "'");
+            $this->db->query("INSERT INTO article_to_blog_category SET article_id = '" . (int)$article_id . "', blog_category_id = '" . (int)$data['main_blog_category_id'] . "', main_blog_category = 1");
         } elseif (isset($data['article_category'][0])) {
-            $this->db->query("UPDATE " . DB_PREFIX . "article_to_blog_category SET main_blog_category = 1 WHERE article_id = '" . (int)$article_id . "' AND blog_category_id = '" . (int)$data['article_category'][0] . "'");
+            $this->db->query("UPDATE article_to_blog_category SET main_blog_category = 1 WHERE article_id = '" . (int)$article_id . "' AND blog_category_id = '" . (int)$data['article_category'][0] . "'");
         }
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_related WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_related WHERE related_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_related WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_related WHERE related_id = '" . (int)$article_id . "'");
 
         if (isset($data['article_related'])) {
             foreach ($data['article_related'] as $related_id) {
-                $this->db->query("DELETE FROM " . DB_PREFIX . "article_related WHERE article_id = '" . (int)$article_id . "' AND related_id = '" . (int)$related_id . "'");
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_related SET article_id = '" . (int)$article_id . "', related_id = '" . (int)$related_id . "'");
-                $this->db->query("DELETE FROM " . DB_PREFIX . "article_related WHERE article_id = '" . (int)$related_id . "' AND related_id = '" . (int)$article_id . "'");
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_related SET article_id = '" . (int)$related_id . "', related_id = '" . (int)$article_id . "'");
+                $this->db->query("DELETE FROM article_related WHERE article_id = '" . (int)$article_id . "' AND related_id = '" . (int)$related_id . "'");
+                $this->db->query("INSERT INTO article_related SET article_id = '" . (int)$article_id . "', related_id = '" . (int)$related_id . "'");
+                $this->db->query("DELETE FROM article_related WHERE article_id = '" . (int)$related_id . "' AND related_id = '" . (int)$article_id . "'");
+                $this->db->query("INSERT INTO article_related SET article_id = '" . (int)$related_id . "', related_id = '" . (int)$article_id . "'");
             }
         }
         
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_related_product WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_related_product WHERE article_id = '" . (int)$article_id . "'");
         
         if (isset($data['product_related'])) {
             foreach ($data['product_related'] as $related_id) {
-                $this->db->query("DELETE FROM " . DB_PREFIX . "article_related_product WHERE article_id = '" . (int)$article_id . "' AND product_id = '" . (int)$related_id . "'");
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_related_product SET article_id = '" . (int)$article_id . "', product_id = '" . (int)$related_id . "'");
+                $this->db->query("DELETE FROM article_related_product WHERE article_id = '" . (int)$article_id . "' AND product_id = '" . (int)$related_id . "'");
+                $this->db->query("INSERT INTO article_related_product SET article_id = '" . (int)$article_id . "', product_id = '" . (int)$related_id . "'");
             }
         }
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_to_layout WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_to_layout WHERE article_id = '" . (int)$article_id . "'");
 
         if (isset($data['article_layout'])) {
             foreach ($data['article_layout'] as $store_id => $layout_id) {
-                $this->db->query("INSERT INTO " . DB_PREFIX . "article_to_layout SET article_id = '" . (int)$article_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
+                $this->db->query("INSERT INTO article_to_layout SET article_id = '" . (int)$article_id . "', store_id = '" . (int)$store_id . "', layout_id = '" . (int)$layout_id . "'");
             }
         }
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'article_id=" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM url_alias WHERE query = 'article_id=" . (int)$article_id . "'");
 
         $this->cache->delete('seo_pro');
         $this->cache->delete('seo_url');
         
         if ($data['keyword']) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "url_alias SET query = 'article_id=" . (int)$article_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
+            $this->db->query("INSERT INTO url_alias SET query = 'article_id=" . (int)$article_id . "', keyword = '" . $this->db->escape($data['keyword']) . "'");
         }
 
         $this->cache->delete('article');
@@ -197,7 +197,7 @@ class ModelBlogArticle extends Model
     
     public function editArticleStatus($article_id, $status)
     {
-        $this->db->query("UPDATE " . DB_PREFIX . "article SET status = '" . (int)$status . "', date_modified = NOW() WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("UPDATE article SET status = '" . (int)$status . "', date_modified = NOW() WHERE article_id = '" . (int)$article_id . "'");
         
         $this->cache->delete('article');
         
@@ -206,7 +206,7 @@ class ModelBlogArticle extends Model
 
     public function copyArticle($article_id)
     {
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) WHERE p.article_id = '" . (int)$article_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+        $query = $this->db->query("SELECT DISTINCT * FROM article p LEFT JOIN article_description pd ON (p.article_id = pd.article_id) WHERE p.article_id = '" . (int)$article_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
         if ($query->num_rows) {
             $data = $query->row;
@@ -231,32 +231,32 @@ class ModelBlogArticle extends Model
 
     public function deleteArticle($article_id)
     {
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_description WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_image WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_related WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_related WHERE related_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_related_product WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_to_blog_category WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_to_download WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_to_layout WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "article_to_store WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "review_article WHERE article_id = '" . (int)$article_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "url_alias WHERE query = 'article_id=" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_description WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_image WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_related WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_related WHERE related_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_related_product WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_to_blog_category WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_to_download WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_to_layout WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM article_to_store WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM review_article WHERE article_id = '" . (int)$article_id . "'");
+        $this->db->query("DELETE FROM url_alias WHERE query = 'article_id=" . (int)$article_id . "'");
 
         $this->cache->delete('article');
     }
 
     public function getArticle($article_id)
     {
-        $query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM " . DB_PREFIX . "url_alias WHERE query = 'article_id=" . (int)$article_id . "') AS keyword FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) WHERE p.article_id = '" . (int)$article_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+        $query = $this->db->query("SELECT DISTINCT *, (SELECT keyword FROM url_alias WHERE query = 'article_id=" . (int)$article_id . "') AS keyword FROM article p LEFT JOIN article_description pd ON (p.article_id = pd.article_id) WHERE p.article_id = '" . (int)$article_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
         return $query->row;
     }
 
     public function getArticles($data = array())
     {
-        $sql = "SELECT * FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+        $sql = "SELECT * FROM article p LEFT JOIN article_description pd ON (p.article_id = pd.article_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
         if (!empty($data['filter_name'])) {
             $sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
@@ -310,7 +310,7 @@ class ModelBlogArticle extends Model
 
     public function getArticlesByCategoryId($blog_category_id)
     {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id) LEFT JOIN " . DB_PREFIX . "article_to_blog_category p2c ON (p.article_id = p2c.article_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p2c.blog_category_id = '" . (int)$blog_category_id . "' ORDER BY pd.name ASC");
+        $query = $this->db->query("SELECT * FROM article p LEFT JOIN article_description pd ON (p.article_id = pd.article_id) LEFT JOIN article_to_blog_category p2c ON (p.article_id = p2c.article_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p2c.blog_category_id = '" . (int)$blog_category_id . "' ORDER BY pd.name ASC");
 
         return $query->rows;
     }
@@ -319,7 +319,7 @@ class ModelBlogArticle extends Model
     {
         $article_description_data = array();
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_description WHERE article_id = '" . (int)$article_id . "'");
+        $query = $this->db->query("SELECT * FROM article_description WHERE article_id = '" . (int)$article_id . "'");
 
         foreach ($query->rows as $result) {
             $article_description_data[$result['language_id']] = array(
@@ -339,7 +339,7 @@ class ModelBlogArticle extends Model
     {
         $article_category_data = array();
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_to_blog_category WHERE article_id = '" . (int)$article_id . "'");
+        $query = $this->db->query("SELECT * FROM article_to_blog_category WHERE article_id = '" . (int)$article_id . "'");
 
         foreach ($query->rows as $result) {
             $article_category_data[] = $result['blog_category_id'];
@@ -350,14 +350,14 @@ class ModelBlogArticle extends Model
     
     public function getArticleMainCategoryId($article_id)
     {
-        $query = $this->db->query("SELECT blog_category_id FROM " . DB_PREFIX . "article_to_blog_category WHERE article_id = '" . (int)$article_id . "' AND main_blog_category = '1' LIMIT 1");
+        $query = $this->db->query("SELECT blog_category_id FROM article_to_blog_category WHERE article_id = '" . (int)$article_id . "' AND main_blog_category = '1' LIMIT 1");
         
         return ($query->num_rows ? (int)$query->row['blog_category_id'] : 0);
     }
 
     public function getArticleImages($article_id)
     {
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_image WHERE article_id = '" . (int)$article_id . "' ORDER BY sort_order ASC");
+        $query = $this->db->query("SELECT * FROM article_image WHERE article_id = '" . (int)$article_id . "' ORDER BY sort_order ASC");
 
         return $query->rows;
     }
@@ -366,7 +366,7 @@ class ModelBlogArticle extends Model
     {
         $article_download_data = array();
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_to_download WHERE article_id = '" . (int)$article_id . "'");
+        $query = $this->db->query("SELECT * FROM article_to_download WHERE article_id = '" . (int)$article_id . "'");
 
         foreach ($query->rows as $result) {
             $article_download_data[] = $result['download_id'];
@@ -379,7 +379,7 @@ class ModelBlogArticle extends Model
     {
         $article_store_data = array();
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_to_store WHERE article_id = '" . (int)$article_id . "'");
+        $query = $this->db->query("SELECT * FROM article_to_store WHERE article_id = '" . (int)$article_id . "'");
 
         foreach ($query->rows as $result) {
             $article_store_data[] = $result['store_id'];
@@ -392,7 +392,7 @@ class ModelBlogArticle extends Model
     {
         $article_layout_data = array();
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_to_layout WHERE article_id = '" . (int)$article_id . "'");
+        $query = $this->db->query("SELECT * FROM article_to_layout WHERE article_id = '" . (int)$article_id . "'");
 
         foreach ($query->rows as $result) {
             $article_layout_data[$result['store_id']] = $result['layout_id'];
@@ -405,7 +405,7 @@ class ModelBlogArticle extends Model
     {
         $article_related_data = array();
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_related WHERE article_id = '" . (int)$article_id . "'");
+        $query = $this->db->query("SELECT * FROM article_related WHERE article_id = '" . (int)$article_id . "'");
 
         foreach ($query->rows as $result) {
             $article_related_data[] = $result['related_id'];
@@ -418,7 +418,7 @@ class ModelBlogArticle extends Model
     {
         $article_related_product = array();
         
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "article_related_product WHERE article_id = '" . (int)$article_id . "'");
+        $query = $this->db->query("SELECT * FROM article_related_product WHERE article_id = '" . (int)$article_id . "'");
         
         foreach ($query->rows as $result) {
             $article_related_product[] = $result['product_id'];
@@ -429,7 +429,7 @@ class ModelBlogArticle extends Model
 
     public function getTotalArticles($data = array())
     {
-        $sql = "SELECT COUNT(DISTINCT p.article_id) AS total FROM " . DB_PREFIX . "article p LEFT JOIN " . DB_PREFIX . "article_description pd ON (p.article_id = pd.article_id)";
+        $sql = "SELECT COUNT(DISTINCT p.article_id) AS total FROM article p LEFT JOIN article_description pd ON (p.article_id = pd.article_id)";
 
         $sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
 
@@ -452,14 +452,14 @@ class ModelBlogArticle extends Model
 
     public function getTotalArticlesByDownloadId($download_id)
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "article_to_download WHERE download_id = '" . (int)$download_id . "'");
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM article_to_download WHERE download_id = '" . (int)$download_id . "'");
 
         return $query->row['total'];
     }
 
     public function getTotalArticlesByLayoutId($layout_id)
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "article_to_layout WHERE layout_id = '" . (int)$layout_id . "'");
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM article_to_layout WHERE layout_id = '" . (int)$layout_id . "'");
 
         return $query->row['total'];
     }

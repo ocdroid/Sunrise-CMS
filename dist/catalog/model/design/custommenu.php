@@ -27,7 +27,7 @@ class ModelDesignCustomMenu extends Model {
 
         $store_id = $this->config->get('config_store_id', 0);
 
-        $sql = "SELECT * FROM `" . DB_PREFIX . "custommenu` m LEFT JOIN " . DB_PREFIX . "custommenu_description md ON (m.custommenu_id = md.custommenu_id) LEFT JOIN " . DB_PREFIX . "custommenu_to_store ms ON (m.custommenu_id = ms.custommenu_id) WHERE ms.store_id = '" . $store_id . "' AND md.language_id = '" . (int)$this->config->get('config_language_id') . "' AND m.status = 1 ORDER BY m.sort_order";
+        $sql = "SELECT * FROM `custommenu` m LEFT JOIN custommenu_description md ON (m.custommenu_id = md.custommenu_id) LEFT JOIN custommenu_to_store ms ON (m.custommenu_id = ms.custommenu_id) WHERE ms.store_id = '" . $store_id . "' AND md.language_id = '" . (int)$this->config->get('config_language_id') . "' AND m.status = 1 ORDER BY m.sort_order";
 
         $query = $this->db->query($sql);
 
@@ -45,7 +45,7 @@ class ModelDesignCustomMenu extends Model {
 
         $store_id = $this->config->get('config_store_id', 0);
 
-        $sql = "SELECT * FROM `" . DB_PREFIX . "custommenu_child` mc LEFT JOIN " . DB_PREFIX . "custommenu_child_description mcd ON (mc.custommenu_child_id = mcd.custommenu_child_id) LEFT JOIN " . DB_PREFIX . "custommenu_child_to_store mcs ON (mc.custommenu_child_id = mcs.custommenu_child_id) WHERE mcs.store_id = '" . $store_id . "'AND mcd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND mc.status = 1 ORDER BY mc.sort_order";
+        $sql = "SELECT * FROM `custommenu_child` mc LEFT JOIN custommenu_child_description mcd ON (mc.custommenu_child_id = mcd.custommenu_child_id) LEFT JOIN custommenu_child_to_store mcs ON (mc.custommenu_child_id = mcs.custommenu_child_id) WHERE mcs.store_id = '" . $store_id . "'AND mcd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND mc.status = 1 ORDER BY mc.sort_order";
 
         $query = $this->db->query($sql);
 

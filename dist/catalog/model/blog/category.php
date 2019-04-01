@@ -31,7 +31,7 @@ class ModelBlogCategory extends Model {
 		if ($data === null) {
 			$data = array();
 
-			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "blog_category c LEFT JOIN " . DB_PREFIX . "blog_category_description cd ON (c.blog_category_id = cd.blog_category_id) LEFT JOIN " . DB_PREFIX . "blog_category_to_store c2s ON (c.blog_category_id = c2s.blog_category_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND c.status = '1' ORDER BY c.parent_id, c.sort_order, cd.name");
+			$query = $this->db->query("SELECT * FROM blog_category c LEFT JOIN blog_category_description cd ON (c.blog_category_id = cd.blog_category_id) LEFT JOIN blog_category_to_store c2s ON (c.blog_category_id = c2s.blog_category_id) WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND c.status = '1' ORDER BY c.parent_id, c.sort_order, cd.name");
 
 			foreach ($query->rows as $row) {
 				$data['by_id'][$row['blog_category_id']] = $row;
@@ -61,7 +61,7 @@ class ModelBlogCategory extends Model {
 	}
 
 	public function getCategoryLayoutId($blog_category_id) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "blog_category_to_layout WHERE blog_category_id = '" . (int)$blog_category_id . "' AND store_id = '" . (int)$this->config->get('config_store_id') . "'");
+		$query = $this->db->query("SELECT * FROM blog_category_to_layout WHERE blog_category_id = '" . (int)$blog_category_id . "' AND store_id = '" . (int)$this->config->get('config_store_id') . "'");
 
 		if ($query->num_rows) {
 			return $query->row['layout_id'];

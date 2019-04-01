@@ -78,7 +78,7 @@ class ControllerStartupSeoPro extends Controller
         $this->cache_data = $this->cache->get('seo_pro');
 
         if (!$this->cache_data) {
-            $query = $this->db->query("SELECT LOWER(`keyword`) as 'keyword', `query` FROM " . DB_PREFIX . "url_alias");
+            $query = $this->db->query("SELECT LOWER(`keyword`) as 'keyword', `query` FROM url_alias");
             
             $this->cache_data = array();
 
@@ -96,11 +96,11 @@ class ControllerStartupSeoPro extends Controller
         }
         //
 
-        $query = $this->db->query("SELECT `value` FROM `" . DB_PREFIX . "setting` WHERE `key` = 'config_language'");
+        $query = $this->db->query("SELECT `value` FROM `setting` WHERE `key` = 'config_language'");
 
         $this->config_language = $query->row['value'];
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "language WHERE status = '1'");
+        $query = $this->db->query("SELECT * FROM language WHERE status = '1'");
 
         foreach ($query->rows as $result) {
             $this->languages[$result['code']] = $result;
@@ -451,7 +451,7 @@ class ControllerStartupSeoPro extends Controller
         }
 
         if (!isset($path[$product_id])) {
-            $query = $this->db->query("SELECT category_id FROM " . DB_PREFIX . "product_to_category WHERE product_id = '" . $product_id . "' ORDER BY main_category DESC LIMIT 1");
+            $query = $this->db->query("SELECT category_id FROM product_to_category WHERE product_id = '" . $product_id . "' ORDER BY main_category DESC LIMIT 1");
 
             $path[$product_id] = $this->getPathByCategory($query->num_rows ? (int)$query->row['category_id'] : 0);
 
@@ -488,10 +488,10 @@ class ControllerStartupSeoPro extends Controller
                 $sql .= ",t$i.category_id";
             }
 
-            $sql .= ") AS path FROM " . DB_PREFIX . "category t0";
+            $sql .= ") AS path FROM category t0";
 
             for ($i = 1; $i < $max_level; ++$i) {
-                $sql .= " LEFT JOIN " . DB_PREFIX . "category t$i ON (t$i.category_id = t" . ($i-1) . ".parent_id)";
+                $sql .= " LEFT JOIN category t$i ON (t$i.category_id = t" . ($i-1) . ".parent_id)";
             }
 
             $sql .= " WHERE t0.category_id = '" . $category_id . "'";
@@ -535,10 +535,10 @@ class ControllerStartupSeoPro extends Controller
                 $sql .= ",t$i.blog_category_id";
             }
 
-            $sql .= ") AS path FROM " . DB_PREFIX . "blog_category t0";
+            $sql .= ") AS path FROM blog_category t0";
             
             for ($i = 1; $i < $max_level; ++$i) {
-                $sql .= " LEFT JOIN " . DB_PREFIX . "blog_category t$i ON (t$i.blog_category_id = t" . ($i-1) . ".parent_id)";
+                $sql .= " LEFT JOIN blog_category t$i ON (t$i.blog_category_id = t" . ($i-1) . ".parent_id)";
             }
 
             $sql .= " WHERE t0.blog_category_id = '" . $blog_category_id . "'";
@@ -573,7 +573,7 @@ class ControllerStartupSeoPro extends Controller
         }
 
         if (!isset($path[$article_id])) {
-            $query = $this->db->query("SELECT blog_category_id FROM " . DB_PREFIX . "article_to_blog_category WHERE article_id = '" . $article_id . "' ORDER BY main_blog_category DESC LIMIT 1");
+            $query = $this->db->query("SELECT blog_category_id FROM article_to_blog_category WHERE article_id = '" . $article_id . "' ORDER BY main_blog_category DESC LIMIT 1");
             
             $path[$article_id] = $this->getPathByBlogCategory($query->num_rows ? (int)$query->row['blog_category_id'] : 0);
             

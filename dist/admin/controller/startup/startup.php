@@ -25,7 +25,7 @@ class ControllerStartupStartup extends Controller
     public function index()
     {
         // Settings
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "setting WHERE store_id = '0'");
+        $query = $this->db->query("SELECT * FROM setting WHERE store_id = '0'");
         
         foreach ($query->rows as $setting) {
             if (!$setting['serialized']) {
@@ -36,7 +36,7 @@ class ControllerStartupStartup extends Controller
         }
         
         // Language
-        $query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "language` WHERE code = '" . $this->db->escape($this->config->get('config_admin_language')) . "'");
+        $query = $this->db->query("SELECT * FROM `language` WHERE code = '" . $this->db->escape($this->config->get('config_admin_language')) . "'");
         
         if ($query->num_rows) {
             $this->config->set('config_language_id', $query->row['language_id']);

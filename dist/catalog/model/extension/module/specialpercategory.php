@@ -39,14 +39,14 @@ class ModelExtensionModuleSpecialpercategory extends Model
             if (!$product_data) {
                 $product_data = array();
 
-                $sql = "SELECT DISTINCT ps.product_id FROM " . DB_PREFIX . "product_special ps LEFT JOIN " . DB_PREFIX . "product p ON (ps.product_id = p.product_id) LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id)";
+                $sql = "SELECT DISTINCT ps.product_id FROM product_special ps LEFT JOIN product p ON (ps.product_id = p.product_id) LEFT JOIN product_description pd ON (p.product_id = pd.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id)";
             
                 if ($category_id) {
-                    $sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (ps.product_id = p2c.product_id) ";
+                    $sql .= " LEFT JOIN product_to_category p2c ON (ps.product_id = p2c.product_id) ";
                 }
             
                 if ($manufacturer_id) {
-                    $sql .= " LEFT JOIN " . DB_PREFIX . "product pm ON (ps.product_id = pm.product_id) ";
+                    $sql .= " LEFT JOIN product pm ON (ps.product_id = pm.product_id) ";
                 }
 
                 $sql .= "WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";

@@ -24,9 +24,9 @@ class ModelCatalogCategory extends Model {
 	public function getCategory($category_id) {
 		$query = $this->db->query("
 			SELECT DISTINCT *
-			FROM " . DB_PREFIX . "category c
-			LEFT JOIN " . DB_PREFIX . "category_description cd ON (c.category_id = cd.category_id)
-			LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON (c.category_id = c2s.category_id)
+			FROM category c
+			LEFT JOIN category_description cd ON (c.category_id = cd.category_id)
+			LEFT JOIN category_to_store c2s ON (c.category_id = c2s.category_id)
 			WHERE c.category_id = '" . (int)$category_id . "'
 				AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "'
 				AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "'
@@ -39,9 +39,9 @@ class ModelCatalogCategory extends Model {
 	public function getCategories($parent_id = 0) {
 		$query = $this->db->query("
 			SELECT *
-			FROM " . DB_PREFIX . "category c
-			LEFT JOIN " . DB_PREFIX . "category_description cd ON (c.category_id = cd.category_id)
-			LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON (c.category_id = c2s.category_id)
+			FROM category c
+			LEFT JOIN category_description cd ON (c.category_id = cd.category_id)
+			LEFT JOIN category_to_store c2s ON (c.category_id = c2s.category_id)
 			WHERE c.parent_id = '" . (int)$parent_id . "'
 				AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "'
 				AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "'
@@ -58,7 +58,7 @@ class ModelCatalogCategory extends Model {
 
 		$query = $this->db->query("
 			SELECT filter_id
-			FROM " . DB_PREFIX . "category_filter
+			FROM category_filter
 			WHERE category_id = '" . (int)$category_id . "'
 		");
 
@@ -73,9 +73,9 @@ class ModelCatalogCategory extends Model {
 				SELECT DISTINCT f.filter_group_id,
 								fgd.name,
 								fg.sort_order
-				FROM " . DB_PREFIX . "filter f
-				LEFT JOIN " . DB_PREFIX . "filter_group fg ON (f.filter_group_id = fg.filter_group_id)
-				LEFT JOIN " . DB_PREFIX . "filter_group_description fgd ON (fg.filter_group_id = fgd.filter_group_id)
+				FROM filter f
+				LEFT JOIN filter_group fg ON (f.filter_group_id = fg.filter_group_id)
+				LEFT JOIN filter_group_description fgd ON (fg.filter_group_id = fgd.filter_group_id)
 				WHERE f.filter_id IN (" . implode(',', $implode) . ")
 				AND fgd.language_id = '" . (int)$this->config->get('config_language_id') . "'
 				GROUP BY f.filter_group_id
@@ -89,8 +89,8 @@ class ModelCatalogCategory extends Model {
 				$filter_query = $this->db->query("
 					SELECT DISTINCT f.filter_id,
 									fd.name
-					FROM " . DB_PREFIX . "filter f
-					LEFT JOIN " . DB_PREFIX . "filter_description fd ON (f.filter_id = fd.filter_id)
+					FROM filter f
+					LEFT JOIN filter_description fd ON (f.filter_id = fd.filter_id)
 					WHERE f.filter_id IN (" . implode(',', $implode) . ")
 						AND f.filter_group_id = '" . (int)$filter_group['filter_group_id'] . "'
 						AND fd.language_id = '" . (int)$this->config->get('config_language_id') . "'
@@ -121,7 +121,7 @@ class ModelCatalogCategory extends Model {
 	public function getCategoryLayoutId($category_id) {
 		$query = $this->db->query("
 			SELECT *
-			FROM " . DB_PREFIX . "category_to_layout
+			FROM category_to_layout
 			WHERE category_id = '" . (int)$category_id . "'
 				AND store_id = '" . (int)$this->config->get('config_store_id') . "'
 		");
@@ -136,8 +136,8 @@ class ModelCatalogCategory extends Model {
 	public function getTotalCategoriesByCategoryId($parent_id = 0) {
 		$query = $this->db->query("
 			SELECT COUNT(*) AS total
-			FROM " . DB_PREFIX . "category c
-			LEFT JOIN " . DB_PREFIX . "category_to_store c2s ON (c.category_id = c2s.category_id)
+			FROM category c
+			LEFT JOIN category_to_store c2s ON (c.category_id = c2s.category_id)
 			WHERE c.parent_id = '" . (int)$parent_id . "'
 				AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "'
 				AND c.status = '1'

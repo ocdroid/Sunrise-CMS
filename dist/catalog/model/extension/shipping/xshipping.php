@@ -34,7 +34,7 @@ class ModelExtensionShippingXshipping extends Model {
 				
 				
 				
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('xshipping_geo_zone_id'.$i) . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
+				$query = $this->db->query("SELECT * FROM zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get('xshipping_geo_zone_id'.$i) . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 	
 				if (!$this->config->get('xshipping_geo_zone_id'.$i)) {
 					$status = true;

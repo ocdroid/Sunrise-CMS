@@ -58,11 +58,11 @@ class ModelExtensionModuleLatestpercategory extends Model
                 $product_data = array();
                 
 
-                $sql = "SELECT p.product_id FROM " . DB_PREFIX . "product p LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id)";
+                $sql = "SELECT p.product_id FROM product p LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id)";
                 
 
                 if ($category_id) {
-                    $sql .= " LEFT JOIN " . DB_PREFIX . "product_to_category p2c ON (p.product_id = p2c.product_id) ";
+                    $sql .= " LEFT JOIN product_to_category p2c ON (p.product_id = p2c.product_id) ";
                 }
                 
                 $sql .= "WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";

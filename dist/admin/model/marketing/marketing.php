@@ -24,31 +24,31 @@ class ModelMarketingMarketing extends Model
 {
     public function addMarketing($data)
     {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "marketing SET name = '" . $this->db->escape($data['name']) . "', description = '" . $this->db->escape($data['description']) . "', code = '" . $this->db->escape($data['code']) . "', date_added = NOW()");
+        $this->db->query("INSERT INTO marketing SET name = '" . $this->db->escape($data['name']) . "', description = '" . $this->db->escape($data['description']) . "', code = '" . $this->db->escape($data['code']) . "', date_added = NOW()");
 
         return $this->db->getLastId();
     }
 
     public function editMarketing($marketing_id, $data)
     {
-        $this->db->query("UPDATE " . DB_PREFIX . "marketing SET name = '" . $this->db->escape($data['name']) . "', description = '" . $this->db->escape($data['description']) . "', code = '" . $this->db->escape($data['code']) . "' WHERE marketing_id = '" . (int)$marketing_id . "'");
+        $this->db->query("UPDATE marketing SET name = '" . $this->db->escape($data['name']) . "', description = '" . $this->db->escape($data['description']) . "', code = '" . $this->db->escape($data['code']) . "' WHERE marketing_id = '" . (int)$marketing_id . "'");
     }
 
     public function deleteMarketing($marketing_id)
     {
-        $this->db->query("DELETE FROM " . DB_PREFIX . "marketing WHERE marketing_id = '" . (int)$marketing_id . "'");
+        $this->db->query("DELETE FROM marketing WHERE marketing_id = '" . (int)$marketing_id . "'");
     }
 
     public function getMarketing($marketing_id)
     {
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "marketing WHERE marketing_id = '" . (int)$marketing_id . "'");
+        $query = $this->db->query("SELECT DISTINCT * FROM marketing WHERE marketing_id = '" . (int)$marketing_id . "'");
 
         return $query->row;
     }
 
     public function getMarketingByCode($code)
     {
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "marketing WHERE code = '" . $this->db->escape($code) . "'");
+        $query = $this->db->query("SELECT DISTINCT * FROM marketing WHERE code = '" . $this->db->escape($code) . "'");
 
         return $query->row;
     }
@@ -63,7 +63,7 @@ class ModelMarketingMarketing extends Model
             $implode[] = "o.order_status_id = '" . (int)$order_status_id . "'";
         }
 
-        $sql = "SELECT *, (SELECT COUNT(*) FROM `" . DB_PREFIX . "order` o WHERE (" . implode(" OR ", $implode) . ") AND o.marketing_id = m.marketing_id) AS orders FROM " . DB_PREFIX . "marketing m";
+        $sql = "SELECT *, (SELECT COUNT(*) FROM `order` o WHERE (" . implode(" OR ", $implode) . ") AND o.marketing_id = m.marketing_id) AS orders FROM marketing m";
 
         $implode = array();
 
@@ -120,7 +120,7 @@ class ModelMarketingMarketing extends Model
 
     public function getTotalMarketings($data = array())
     {
-        $sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "marketing";
+        $sql = "SELECT COUNT(*) AS total FROM marketing";
 
         $implode = array();
 
