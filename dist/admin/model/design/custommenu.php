@@ -104,11 +104,11 @@ class ModelDesignCustomMenu extends Model {
             }
 		
 			if ($data['type'] != 'manufacturer') {
-                  $query = $this->db->query("SELECT " . $fields . " FROM " . DB_PREFIX . $data['type'] . "_description WHERE ". $data['type'] ."_id = '" . (int)$data['id'] . "'");
+                  $query = $this->db->query("SELECT " . $fields . " FROM " . $data['type'] . "_description WHERE ". $data['type'] ."_id = '" . (int)$data['id'] . "'");
 				  $data['custommenu_desc'] = $query->rows;
             } else {
 				 $fields = 'name, '.$data['type'].'_id ';
-				 $query = $this->db->query("SELECT " . $fields . " FROM " . DB_PREFIX . $data['type'] . " WHERE ". $data['type'] ."_id = '" . (int)$data['id'] . "'");
+				 $query = $this->db->query("SELECT " . $fields . " FROM " . $data['type'] . " WHERE ". $data['type'] ."_id = '" . (int)$data['id'] . "'");
 				 $result  = array();
 				 foreach ($languages as $language) {
 					$result[] = array('name' => $query->row['name'], 'manufacturer_id' => $query->row['manufacturer_id'], 'language_id' => $language['language_id']);

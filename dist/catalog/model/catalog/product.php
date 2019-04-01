@@ -138,7 +138,7 @@ class ModelCatalogProduct extends Model {
 		$query = $this->db->query("
 			SELECT *
 			FROM product_tab pt
-			LEFT JOIN ".DB_PREFIX. "product_tab_desc ptd ON(pt.product_tab_id = ptd.product_tab_id)
+			LEFT JOIN product_tab_desc ptd ON(pt.product_tab_id = ptd.product_tab_id)
 			WHERE pt.product_id = " . $this->db->escape($product_id) . "
 				AND ptd.language_id = '".$this->config->get('config_language_id')."'
 				AND pt.status = 1

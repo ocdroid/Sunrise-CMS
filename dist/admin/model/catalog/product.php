@@ -30,11 +30,11 @@ class ModelCatalogProduct extends Model
         
         if (isset($data['product_tab'])) {
             foreach ($data['product_tab'] as $tabdata) {
-                $this->db->query("INSERT INTO ". DB_PREFIX ."product_tab SET product_id = '".(int)$product_id."', status = '".(int)$tabdata['status']."',sort_order='".(int)$tabdata['sort_order']."'");
+                $this->db->query("INSERT INTO product_tab SET product_id = '".(int)$product_id."', status = '".(int)$tabdata['status']."',sort_order='".(int)$tabdata['sort_order']."'");
             
                 $product_tab_id = $this->db->getLastId();
                 foreach ($tabdata['description'] as $language_id => $value) {
-                    $this->db->query("INSERT INTO ". DB_PREFIX ."product_tab_desc SET product_tab_id = '".(int)$product_tab_id."', heading = '".$this->db->escape($value['heading'])."', description = '".$this->db->escape($value['description'])."', product_id = '".(int)$product_id."', language_id = '".(int)$language_id."'");
+                    $this->db->query("INSERT INTO product_tab_desc SET product_tab_id = '".(int)$product_tab_id."', heading = '".$this->db->escape($value['heading'])."', description = '".$this->db->escape($value['description'])."', product_id = '".(int)$product_id."', language_id = '".(int)$language_id."'");
                 }
             }
         }
@@ -194,12 +194,12 @@ class ModelCatalogProduct extends Model
         
         if (isset($data['product_tab'])) {
             foreach ($data['product_tab'] as $tabdata) {
-                $this->db->query("INSERT INTO ". DB_PREFIX ."product_tab SET product_id = '".(int)$product_id."', status = '". (int)$tabdata['status']."',sort_order='". (int)$tabdata['sort_order']."'");
+                $this->db->query("INSERT INTO product_tab SET product_id = '".(int)$product_id."', status = '". (int)$tabdata['status']."',sort_order='". (int)$tabdata['sort_order']."'");
         
                 $product_tab_id = $this->db->getLastId();
             
                 foreach ($tabdata['description'] as $language_id => $value) {
-                    $this->db->query("INSERT INTO ". DB_PREFIX ."product_tab_desc SET product_tab_id = '".(int)$product_tab_id."', heading = '".$this->db->escape($value['heading'])."', description = '".$this->db->escape($value['description'])."', product_id = '".(int)$product_id."', language_id = '".(int)$language_id."'");
+                    $this->db->query("INSERT INTO product_tab_desc SET product_tab_id = '".(int)$product_tab_id."', heading = '".$this->db->escape($value['heading'])."', description = '".$this->db->escape($value['description'])."', product_id = '".(int)$product_id."', language_id = '".(int)$language_id."'");
                 }
             }
         }
