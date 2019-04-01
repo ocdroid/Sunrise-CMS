@@ -49,7 +49,7 @@ class ModelExtensionModuleSpecialpercategory extends Model
                     $sql .= " LEFT JOIN product pm ON (ps.product_id = pm.product_id) ";
                 }
 
-                $sql .= "WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
+                $sql .= "WHERE p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
     
 
                 if ($category_id) {
@@ -60,7 +60,7 @@ class ModelExtensionModuleSpecialpercategory extends Model
                     $sql .= " AND pm.manufacturer_id = '" . (int)$manufacturer_id . "' ";
                 }
     
-                $sql .= "AND ps.customer_group_id = '" . (int)$customer_group_id . "' AND ((ps.date_start = '0000-00-00' OR ps.date_start < NOW()) AND (ps.date_end = '0000-00-00' OR ps.date_end > NOW())) GROUP BY ps.product_id";
+                $sql .= "AND ps.customer_group_id = '" . (int)$customer_group_id . "' AND ((ps.date_start = '2000-01-01' OR ps.date_start < NOW()) AND (ps.date_end = '2000-01-01' OR ps.date_end > NOW())) GROUP BY ps.product_id";
             
 
                 $sql .= " ORDER BY p.sort_order ASC  LIMIT " . $limit;

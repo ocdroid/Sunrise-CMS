@@ -80,14 +80,14 @@ class ModelBlogReview extends Model
             $limit = 20;
         }
 
-        $query = $this->db->query("SELECT r.review_article_id, r.author, r.text, p.article_id, pd.name, p.image, r.date_added FROM review_article r LEFT JOIN article p ON (r.article_id = p.article_id) LEFT JOIN article_description pd ON (p.article_id = pd.article_id) WHERE p.article_id = '" . (int)$article_id . "' AND p.date_available <= NOW() AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY r.date_added DESC LIMIT " . (int)$start . "," . (int)$limit);
+        $query = $this->db->query("SELECT r.review_article_id, r.author, r.text, p.article_id, pd.name, p.image, r.date_added FROM review_article r LEFT JOIN article p ON (r.article_id = p.article_id) LEFT JOIN article_description pd ON (p.article_id = pd.article_id) WHERE p.article_id = '" . (int)$article_id . "' AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' ORDER BY r.date_added DESC LIMIT " . (int)$start . "," . (int)$limit);
 
         return $query->rows;
     }
 
     public function getTotalReviewsByArticleId($article_id)
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM review_article r LEFT JOIN article p ON (r.article_id = p.article_id) LEFT JOIN article_description pd ON (p.article_id = pd.article_id) WHERE p.article_id = '" . (int)$article_id . "' AND p.date_available <= NOW() AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM review_article r LEFT JOIN article p ON (r.article_id = p.article_id) LEFT JOIN article_description pd ON (p.article_id = pd.article_id) WHERE p.article_id = '" . (int)$article_id . "' AND p.status = '1' AND r.status = '1' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
 
         return $query->row['total'];
     }

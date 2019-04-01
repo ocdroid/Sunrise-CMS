@@ -1,24 +1,24 @@
 <?php
 
 /* 	Sunrise CMS - Open source CMS for widespread use.
-	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-	See SOURCE.txt for other and additional information.
+    See SOURCE.txt for other and additional information.
 
-	This file is part of Sunrise CMS.
+    This file is part of Sunrise CMS.
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program. If not, see <http://www.gnu.org/licenses/>. */
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ModelBlogArticle extends Model
 {
@@ -35,7 +35,7 @@ class ModelBlogArticle extends Model
             $customer_group_id = $this->config->get('config_customer_group_id');
         }
                 
-        $query = $this->db->query("SELECT DISTINCT *, pd.name AS name, p.image, (SELECT COUNT(*) AS total FROM review_article r2 WHERE r2.article_id = p.article_id AND r2.status = '1' GROUP BY r2.article_id) AS reviews, p.sort_order FROM article p LEFT JOIN article_description pd ON (p.article_id = pd.article_id) LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id)  WHERE p.article_id = '" . (int)$article_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+        $query = $this->db->query("SELECT DISTINCT *, pd.name AS name, p.image, (SELECT COUNT(*) AS total FROM review_article r2 WHERE r2.article_id = p.article_id AND r2.status = '1' GROUP BY r2.article_id) AS reviews, p.sort_order FROM article p LEFT JOIN article_description pd ON (p.article_id = pd.article_id) LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id)  WHERE p.article_id = '" . (int)$article_id . "' AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
         
         if ($query->num_rows) {
             return array(
@@ -80,7 +80,7 @@ class ModelBlogArticle extends Model
                 $sql .= " LEFT JOIN article_to_blog_category p2c ON (p.article_id = p2c.article_id)";
             }
             
-            $sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
+            $sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
             
             if (!empty($data['filter_name']) || !empty($data['filter_tag'])) {
                 $sql .= " AND (";
@@ -214,7 +214,7 @@ class ModelBlogArticle extends Model
         $article_data = $this->cache->get('article.latest.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $customer_group_id . '.' . (int)$limit);
 
         if (!$article_data) {
-            $query = $this->db->query("SELECT p.article_id FROM article p LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY p.date_added DESC LIMIT " . (int)$limit);
+            $query = $this->db->query("SELECT p.article_id FROM article p LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY p.date_added DESC LIMIT " . (int)$limit);
              
             foreach ($query->rows as $result) {
                 $article_data[$result['article_id']] = $this->getArticle($result['article_id']);
@@ -230,7 +230,7 @@ class ModelBlogArticle extends Model
     {
         $article_data = array();
         
-        $query = $this->db->query("SELECT p.article_id FROM article p LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY p.viewed DESC, p.date_added DESC LIMIT " . (int)$limit);
+        $query = $this->db->query("SELECT p.article_id FROM article p LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY p.viewed DESC, p.date_added DESC LIMIT " . (int)$limit);
         
         foreach ($query->rows as $result) {
             $article_data[$result['article_id']] = $this->getArticle($result['article_id']);
@@ -250,7 +250,7 @@ class ModelBlogArticle extends Model
     {
         $article_data = array();
 
-        $query = $this->db->query("SELECT * FROM article_related pr LEFT JOIN article p ON (pr.related_id = p.article_id) LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE pr.article_id = '" . (int)$article_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+        $query = $this->db->query("SELECT * FROM article_related pr LEFT JOIN article p ON (pr.related_id = p.article_id) LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE pr.article_id = '" . (int)$article_id . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
         
         foreach ($query->rows as $result) {
             $article_data[$result['related_id']] = $this->getArticle($result['related_id']);
@@ -265,7 +265,7 @@ class ModelBlogArticle extends Model
         
         $this->load->model('blog/article');
         
-        $sql = "SELECT * FROM product_related_article np LEFT JOIN article p ON (np.article_id = p.article_id) LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE np.product_id = '" . (int)$data['product_id'] . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' LIMIT ". $data['limit'];
+        $sql = "SELECT * FROM product_related_article np LEFT JOIN article p ON (np.article_id = p.article_id) LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE np.product_id = '" . (int)$data['product_id'] . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' LIMIT ". $data['limit'];
 
         $query = $this->db->query($sql);
 
@@ -281,7 +281,7 @@ class ModelBlogArticle extends Model
     {
         $article_data = array();
                 
-        $query = $this->db->query("SELECT * FROM article_related_wb pr LEFT JOIN article p ON (pr.article_id = p.article_id) LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE pr.category_id = '" . (int)$data['category_id'] . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' LIMIT " . (int)$data['limit']);
+        $query = $this->db->query("SELECT * FROM article_related_wb pr LEFT JOIN article p ON (pr.article_id = p.article_id) LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE pr.category_id = '" . (int)$data['category_id'] . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' LIMIT " . (int)$data['limit']);
 
         foreach ($query->rows as $result) {
             $article_data[$result['article_id']] = $this->getArticle($result['article_id']);
@@ -294,7 +294,7 @@ class ModelBlogArticle extends Model
     {
         $article_data = array();
 
-        $query = $this->db->query("SELECT * FROM article_related_mn pr LEFT JOIN article p ON (pr.article_id = p.article_id) LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE pr.manufacturer_id = '" . (int)$data['manufacturer_id'] . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' LIMIT " . (int)$data['limit']);
+        $query = $this->db->query("SELECT * FROM article_related_mn pr LEFT JOIN article p ON (pr.article_id = p.article_id) LEFT JOIN article_to_store p2s ON (p.article_id = p2s.article_id) WHERE pr.manufacturer_id = '" . (int)$data['manufacturer_id'] . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' LIMIT " . (int)$data['limit']);
 
         foreach ($query->rows as $result) {
             $article_data[$result['article_id']] = $this->getArticle($result['article_id']);
@@ -310,7 +310,7 @@ class ModelBlogArticle extends Model
     {
         $product_data = array();
         $this->load->model('catalog/product');
-        $query = $this->db->query("SELECT * FROM article_related_product np LEFT JOIN product p ON (np.product_id = p.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE np.article_id = '" . (int)$article_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+        $query = $this->db->query("SELECT * FROM article_related_product np LEFT JOIN product p ON (np.product_id = p.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE np.article_id = '" . (int)$article_id . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
         
         foreach ($query->rows as $result) {
             $product_data[$result['product_id']] = $this->model_catalog_product->getProduct($result['product_id']);
@@ -374,7 +374,7 @@ class ModelBlogArticle extends Model
                 $sql .= " LEFT JOIN article_to_blog_category p2c ON (p.article_id = p2c.article_id)";
             }
                         
-            $sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
+            $sql .= " WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
             
             if (!empty($data['filter_name']) || !empty($data['filter_tag'])) {
                 $sql .= " AND (";

@@ -43,9 +43,9 @@ class ModelCatalogProduct extends Model {
 				WHERE pd2.product_id = p.product_id
 					AND pd2.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "'
 					AND pd2.quantity = '1'
-					AND ((pd2.date_start = '0000-00-00'
+					AND ((pd2.date_start = '2000-01-01'
 						OR pd2.date_start < NOW())
-						AND (pd2.date_end = '0000-00-00'
+						AND (pd2.date_end = '2000-01-01'
 							OR pd2.date_end > NOW()))
 				ORDER BY pd2.priority ASC, pd2.price ASC
 				LIMIT 1) AS discount,
@@ -54,9 +54,9 @@ class ModelCatalogProduct extends Model {
 				FROM product_special ps
 				WHERE ps.product_id = p.product_id
 					AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "'
-					AND ((ps.date_start = '0000-00-00'
+					AND ((ps.date_start = '2000-01-01'
 						OR ps.date_start < NOW())
-						AND (ps.date_end = '0000-00-00'
+						AND (ps.date_end = '2000-01-01'
 							OR ps.date_end > NOW()))
 				ORDER BY ps.priority ASC, ps.price ASC
 				LIMIT 1) AS special,
@@ -84,7 +84,6 @@ class ModelCatalogProduct extends Model {
 			WHERE p.product_id = '" . (int)$product_id . "'
 				AND pd.language_id = '" . (int)$this->config->get('config_language_id') . "'
 				AND p.status = '1'
-				AND p.date_available <= NOW()
 				AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'
 		");
 
@@ -117,7 +116,6 @@ class ModelCatalogProduct extends Model {
 				'reward'           => $query->row['reward'],
 				'points'           => $query->row['points'],
 				'tax_class_id'     => $query->row['tax_class_id'],
-				'date_available'   => $query->row['date_available'],
 				'width'            => $query->row['width'],
 				'height'           => $query->row['height'],
 				'subtract'         => $query->row['subtract'],
@@ -156,9 +154,9 @@ class ModelCatalogProduct extends Model {
 			WHERE pd2.product_id = p.product_id
 				AND pd2.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "'
 				AND pd2.quantity = '1'
-				AND ((pd2.date_start = '0000-00-00'
+				AND ((pd2.date_start = '2000-01-01'
 					OR pd2.date_start < NOW())
-					AND (pd2.date_end = '0000-00-00'
+					AND (pd2.date_end = '2000-01-01'
 						OR pd2.date_end > NOW()))
 			ORDER BY pd2.priority ASC, pd2.price ASC
 			LIMIT 1) AS discount,
@@ -167,9 +165,9 @@ class ModelCatalogProduct extends Model {
 			FROM product_special ps
 			WHERE ps.product_id = p.product_id
 				AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "'
-				AND ((ps.date_start = '0000-00-00'
+				AND ((ps.date_start = '2000-01-01'
 					OR ps.date_start < NOW())
-					AND (ps.date_end = '0000-00-00'
+					AND (ps.date_end = '2000-01-01'
 						OR ps.date_end > NOW()))
 			ORDER BY ps.priority ASC, ps.price ASC
 			LIMIT 1) AS special
@@ -191,7 +189,7 @@ class ModelCatalogProduct extends Model {
 			$sql .= " FROM product p";
 		}
 
-		$sql .= " LEFT JOIN product_description pd ON (p.product_id = pd.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
+		$sql .= " LEFT JOIN product_description pd ON (p.product_id = pd.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
 		if (!empty($data['filter_category_id'])) {
 			if (!empty($data['filter_sub_category'])) {
@@ -352,7 +350,7 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getProductSpecials($data = array()) {
-		$sql = "SELECT DISTINCT ps.product_id FROM product_special ps LEFT JOIN product p ON (ps.product_id = p.product_id) LEFT JOIN product_description pd ON (p.product_id = pd.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND ((ps.date_start = '0000-00-00' OR ps.date_start < NOW()) AND (ps.date_end = '0000-00-00' OR ps.date_end > NOW())) GROUP BY ps.product_id";
+		$sql = "SELECT DISTINCT ps.product_id FROM product_special ps LEFT JOIN product p ON (ps.product_id = p.product_id) LEFT JOIN product_description pd ON (p.product_id = pd.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND ((ps.date_start = '2000-01-01' OR ps.date_start < NOW()) AND (ps.date_end = '2000-01-01' OR ps.date_end > NOW())) GROUP BY ps.product_id";
 
 		$sort_data = array(
 			'pd.name',
@@ -408,7 +406,7 @@ class ModelCatalogProduct extends Model {
 		$product_data = $this->cache->get('product.latest.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $this->config->get('config_customer_group_id') . '.' . (int)$limit);
 
 		if (!$product_data) {
-			$query = $this->db->query("SELECT p.product_id FROM product p LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY p.date_added DESC LIMIT " . (int)$limit);
+			$query = $this->db->query("SELECT p.product_id FROM product p LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY p.date_added DESC LIMIT " . (int)$limit);
 
 			foreach ($query->rows as $result) {
 				$product_data[$result['product_id']] = $this->getProduct($result['product_id']);
@@ -424,7 +422,7 @@ class ModelCatalogProduct extends Model {
 		$product_data = $this->cache->get('product.popular.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $this->config->get('config_customer_group_id') . '.' . (int)$limit);
 	
 		if (!$product_data) {
-			$query = $this->db->query("SELECT p.product_id FROM product p LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY p.viewed DESC, p.date_added DESC LIMIT " . (int)$limit);
+			$query = $this->db->query("SELECT p.product_id FROM product p LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY p.viewed DESC, p.date_added DESC LIMIT " . (int)$limit);
 	
 			foreach ($query->rows as $result) {
 				$product_data[$result['product_id']] = $this->getProduct($result['product_id']);
@@ -442,7 +440,7 @@ class ModelCatalogProduct extends Model {
 		if (!$product_data) {
 			$product_data = array();
 
-			$query = $this->db->query("SELECT op.product_id, SUM(op.quantity) AS total FROM order_product op LEFT JOIN `order` o ON (op.order_id = o.order_id) LEFT JOIN `product` p ON (op.product_id = p.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE o.order_status_id > '0' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' GROUP BY op.product_id ORDER BY total DESC LIMIT " . (int)$limit);
+			$query = $this->db->query("SELECT op.product_id, SUM(op.quantity) AS total FROM order_product op LEFT JOIN `order` o ON (op.order_id = o.order_id) LEFT JOIN `product` p ON (op.product_id = p.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE o.order_status_id > '0' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' GROUP BY op.product_id ORDER BY total DESC LIMIT " . (int)$limit);
 
 			foreach ($query->rows as $result) {
 				$product_data[$result['product_id']] = $this->getProduct($result['product_id']);
@@ -520,7 +518,7 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getProductDiscounts($product_id) {
-		$query = $this->db->query("SELECT * FROM product_discount WHERE product_id = '" . (int)$product_id . "' AND customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND quantity > 1 AND ((date_start = '0000-00-00' OR date_start < NOW()) AND (date_end = '0000-00-00' OR date_end > NOW())) ORDER BY quantity ASC, priority ASC, price ASC");
+		$query = $this->db->query("SELECT * FROM product_discount WHERE product_id = '" . (int)$product_id . "' AND customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND quantity > 1 AND ((date_start = '2000-01-01' OR date_start < NOW()) AND (date_end = '2000-01-01' OR date_end > NOW())) ORDER BY quantity ASC, priority ASC, price ASC");
 
 		return $query->rows;
 	}
@@ -534,7 +532,7 @@ class ModelCatalogProduct extends Model {
 	public function getProductRelated($product_id) {
 		$product_data = array();
 
-		$query = $this->db->query("SELECT * FROM product_related pr LEFT JOIN product p ON (pr.related_id = p.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.product_id = '" . (int)$product_id . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
+		$query = $this->db->query("SELECT * FROM product_related pr LEFT JOIN product p ON (pr.related_id = p.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pr.product_id = '" . (int)$product_id . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'");
 
 		foreach ($query->rows as $result) {
 			$product_data[$result['related_id']] = $this->getProduct($result['related_id']);
@@ -578,7 +576,7 @@ class ModelCatalogProduct extends Model {
 			$sql .= " FROM product p";
 		}
 
-		$sql .= " LEFT JOIN product_description pd ON (p.product_id = pd.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
+		$sql .= " LEFT JOIN product_description pd ON (p.product_id = pd.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE pd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
 		if (!empty($data['filter_category_id'])) {
 			if (!empty($data['filter_sub_category'])) {
@@ -662,7 +660,7 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function getTotalProductSpecials() {
-		$query = $this->db->query("SELECT COUNT(DISTINCT ps.product_id) AS total FROM product_special ps LEFT JOIN product p ON (ps.product_id = p.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND ((ps.date_start = '0000-00-00' OR ps.date_start < NOW()) AND (ps.date_end = '0000-00-00' OR ps.date_end > NOW()))");
+		$query = $this->db->query("SELECT COUNT(DISTINCT ps.product_id) AS total FROM product_special ps LEFT JOIN product p ON (ps.product_id = p.product_id) LEFT JOIN product_to_store p2s ON (p.product_id = p2s.product_id) WHERE p.status = '1' AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND ((ps.date_start = '2000-01-01' OR ps.date_start < NOW()) AND (ps.date_end = '2000-01-01' OR ps.date_end > NOW()))");
 
 		if (isset($query->row['total'])) {
 			return $query->row['total'];

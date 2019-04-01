@@ -647,7 +647,7 @@ class ControllerCatalogProduct extends Controller
             $product_specials = $this->model_catalog_product->getProductSpecials($result['product_id']);
 
             foreach ($product_specials  as $product_special) {
-                if (($product_special['date_start'] == '0000-00-00' || strtotime($product_special['date_start']) < time()) && ($product_special['date_end'] == '0000-00-00' || strtotime($product_special['date_end']) > time())) {
+                if (($product_special['date_start'] == '2000-01-01' || strtotime($product_special['date_start']) < time()) && ($product_special['date_end'] == '2000-01-01' || strtotime($product_special['date_end']) > time())) {
                     $special = $product_special['price'];
 
                     break;
@@ -949,7 +949,6 @@ class ControllerCatalogProduct extends Controller
         $data['entry_location'] = $this->language->get('entry_location');
         $data['entry_minimum'] = $this->language->get('entry_minimum');
         $data['entry_shipping'] = $this->language->get('entry_shipping');
-        $data['entry_date_available'] = $this->language->get('entry_date_available');
         $data['entry_quantity'] = $this->language->get('entry_quantity');
         $data['entry_stock_status'] = $this->language->get('entry_stock_status');
         $data['entry_price'] = $this->language->get('entry_price');
@@ -1297,14 +1296,6 @@ class ControllerCatalogProduct extends Controller
             $data['tax_class_id'] = 0;
         }
 
-        if (isset($this->request->post['date_available'])) {
-            $data['date_available'] = $this->request->post['date_available'];
-        } elseif (!empty($product_info)) {
-            $data['date_available'] = ($product_info['date_available'] != '0000-00-00') ? $product_info['date_available'] : '';
-        } else {
-            $data['date_available'] = date('Y-m-d');
-        }
-
         if (isset($this->request->post['quantity'])) {
             $data['quantity'] = $this->request->post['quantity'];
         } elseif (!empty($product_info)) {
@@ -1562,8 +1553,8 @@ class ControllerCatalogProduct extends Controller
                 'quantity'          => $product_discount['quantity'],
                 'priority'          => $product_discount['priority'],
                 'price'             => $product_discount['price'],
-                'date_start'        => ($product_discount['date_start'] != '0000-00-00') ? $product_discount['date_start'] : '',
-                'date_end'          => ($product_discount['date_end'] != '0000-00-00') ? $product_discount['date_end'] : ''
+                'date_start'        => ($product_discount['date_start'] != '2000-01-01') ? $product_discount['date_start'] : '',
+                'date_end'          => ($product_discount['date_end'] != '2000-01-01') ? $product_discount['date_end'] : ''
             );
         }
 
@@ -1582,8 +1573,8 @@ class ControllerCatalogProduct extends Controller
                 'customer_group_id' => $product_special['customer_group_id'],
                 'priority'          => $product_special['priority'],
                 'price'             => $product_special['price'],
-                'date_start'        => ($product_special['date_start'] != '0000-00-00') ? $product_special['date_start'] : '',
-                'date_end'          => ($product_special['date_end'] != '0000-00-00') ? $product_special['date_end'] :  ''
+                'date_start'        => ($product_special['date_start'] != '2000-01-01') ? $product_special['date_start'] : '',
+                'date_end'          => ($product_special['date_end'] != '2000-01-01') ? $product_special['date_end'] :  ''
             );
         }
         

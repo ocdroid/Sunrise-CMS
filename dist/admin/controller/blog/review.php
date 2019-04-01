@@ -577,7 +577,7 @@ class ControllerBlogReview extends Controller
         if (isset($this->request->post['date_added'])) {
             $data['date_added'] = $this->request->post['date_added'];
         } elseif (!empty($review_info)) {
-            $data['date_added'] = ($review_info['date_added'] != '0000-00-00 00:00' ? $review_info['date_added'] : '');
+            $data['date_added'] = ($review_info['date_added'] != '2000-01-01 01:01' ? $review_info['date_added'] : '');
         } else {
             $data['date_added'] = '';
         }
