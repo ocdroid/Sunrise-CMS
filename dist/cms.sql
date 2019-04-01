@@ -103,7 +103,6 @@ CREATE TABLE `api_session` (
 CREATE TABLE `article` (
   `article_id` int(11) NOT NULL,
   `image` varchar(255) DEFAULT NULL,
-  `date_available` date NOT NULL,
   `sort_order` int(11) NOT NULL DEFAULT '0',
   `article_review` tinyint(1) NOT NULL DEFAULT '0',
   `status` tinyint(1) NOT NULL DEFAULT '0',
@@ -118,11 +117,11 @@ CREATE TABLE `article` (
 -- Dumping data for table `article`
 --
 
-INSERT INTO `article` (`article_id`, `image`, `date_available`, `sort_order`, `article_review`, `status`, `noindex`, `date_added`, `date_modified`, `viewed`, `gstatus`) VALUES
-(120, 'catalog/demo_categories/3.jpg', '2000-01-01', 1, 1, 1, 1, '2014-04-08 04:26:00', '2018-11-16 13:27:29', 52, 0),
-(123, 'catalog/demo_categories/2.jpg', '2000-01-01', 1, 1, 1, 1, '2014-03-31 06:55:15', '2018-11-16 13:28:17', 183, 1),
-(124, 'catalog/demo_categories/7.jpg', '2000-01-01', 1, 0, 1, 1, '2015-06-29 09:05:38', '2018-11-16 13:28:53', 45, 0),
-(125, 'catalog/demo_categories/8.jpg', '2000-01-01', 1, 0, 1, 1, '2015-06-29 09:09:03', '2019-03-26 13:57:37', 199, 0);
+INSERT INTO `article` (`article_id`, `image`, `sort_order`, `article_review`, `status`, `noindex`, `date_added`, `date_modified`, `viewed`, `gstatus`) VALUES
+(120, 'catalog/demo_categories/3.jpg', 1, 1, 1, 1, '2014-04-08 04:26:00', '2018-11-16 13:27:29', 52, 0),
+(123, 'catalog/demo_categories/2.jpg', 1, 1, 1, 1, '2014-03-31 06:55:15', '2018-11-16 13:28:17', 183, 1),
+(124, 'catalog/demo_categories/7.jpg', 1, 0, 1, 1, '2015-06-29 09:05:38', '2018-11-16 13:28:53', 45, 0),
+(125, 'catalog/demo_categories/8.jpg', 1, 0, 1, 1, '2015-06-29 09:09:03', '2019-03-26 13:57:37', 199, 0);
 
 -- --------------------------------------------------------
 
@@ -2648,7 +2647,6 @@ CREATE TABLE `product` (
   `price` decimal(15,4) NOT NULL DEFAULT '0.0000',
   `points` int(8) NOT NULL DEFAULT '0',
   `tax_class_id` int(11) NOT NULL,
-  `date_available` date NOT NULL DEFAULT '1000-01-01',
   `width` decimal(15,8) NOT NULL DEFAULT '0.00000000',
   `height` decimal(15,8) NOT NULL DEFAULT '0.00000000',
   `subtract` tinyint(1) NOT NULL DEFAULT '1',
