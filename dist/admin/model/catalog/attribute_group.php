@@ -1,35 +1,43 @@
 <?php
 
 /* 	Sunrise CMS - Open source CMS for widespread use.
-	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-	See SOURCE.txt for other and additional information.
+    See SOURCE.txt for other and additional information.
 
-	This file is part of Sunrise CMS.
+    This file is part of Sunrise CMS.
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program. If not, see <http://www.gnu.org/licenses/>. */
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ModelCatalogAttributeGroup extends Model
 {
     public function addAttributeGroup($data)
     {
-        $this->db->query("INSERT INTO attribute_group SET sort_order = '" . (int)$data['sort_order'] . "'");
+        $this->db->query("
+            INSERT INTO attribute_group 
+            SET sort_order = '" . (int)$data['sort_order'] . "'
+        ");
 
         $attribute_group_id = $this->db->getLastId();
 
         foreach ($data['attribute_group_description'] as $language_id => $value) {
-            $this->db->query("INSERT INTO attribute_group_description SET attribute_group_id = '" . (int)$attribute_group_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
+            $this->db->query("
+                INSERT INTO attribute_group_description 
+                SET attribute_group_id = '" . (int)$attribute_group_id . "', 
+                    language_id = '" . (int)$language_id . "', 
+                    name = '" . $this->db->escape($value['name']) . "'
+            ");
         }
 
         return $attribute_group_id;
@@ -37,31 +45,58 @@ class ModelCatalogAttributeGroup extends Model
 
     public function editAttributeGroup($attribute_group_id, $data)
     {
-        $this->db->query("UPDATE attribute_group SET sort_order = '" . (int)$data['sort_order'] . "' WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
+        $this->db->query("
+            UPDATE attribute_group 
+            SET sort_order = '" . (int)$data['sort_order'] . "' 
+            WHERE attribute_group_id = '" . (int)$attribute_group_id . "'
+        ");
 
-        $this->db->query("DELETE FROM attribute_group_description WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
+        $this->db->query("
+            DELETE FROM attribute_group_description 
+            WHERE attribute_group_id = '" . (int)$attribute_group_id . "'
+        ");
 
         foreach ($data['attribute_group_description'] as $language_id => $value) {
-            $this->db->query("INSERT INTO attribute_group_description SET attribute_group_id = '" . (int)$attribute_group_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
+            $this->db->query("
+                INSERT INTO attribute_group_description 
+                SET attribute_group_id = '" . (int)$attribute_group_id . "', 
+                    language_id = '" . (int)$language_id . "', 
+                    name = '" . $this->db->escape($value['name']) . "'
+            ");
         }
     }
 
     public function deleteAttributeGroup($attribute_group_id)
     {
-        $this->db->query("DELETE FROM attribute_group WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
-        $this->db->query("DELETE FROM attribute_group_description WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
+        $this->db->query("
+            DELETE FROM attribute_group 
+            WHERE attribute_group_id = '" . (int)$attribute_group_id . "'
+        ");
+        $this->db->query("
+            DELETE FROM attribute_group_description 
+            WHERE attribute_group_id = '" . (int)$attribute_group_id . "'
+        ");
     }
 
     public function getAttributeGroup($attribute_group_id)
     {
-        $query = $this->db->query("SELECT * FROM attribute_group WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
+        $query = $this->db->query("
+            SELECT * 
+            FROM attribute_group 
+            WHERE attribute_group_id = '" . (int)$attribute_group_id . "'
+        ");
 
         return $query->row;
     }
 
     public function getAttributeGroups($data = array())
     {
-        $sql = "SELECT * FROM attribute_group ag LEFT JOIN attribute_group_description agd ON (ag.attribute_group_id = agd.attribute_group_id) WHERE agd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+        $sql = "
+            SELECT * 
+            FROM attribute_group ag 
+            LEFT JOIN attribute_group_description agd ON (ag.attribute_group_id = agd.attribute_group_id) 
+            WHERE agd.language_id = '" . (int)$this->config->get('config_language_id') . "'
+        ";
 
         $sort_data = array(
             'agd.name',
@@ -101,7 +136,11 @@ class ModelCatalogAttributeGroup extends Model
     {
         $attribute_group_data = array();
 
-        $query = $this->db->query("SELECT * FROM attribute_group_description WHERE attribute_group_id = '" . (int)$attribute_group_id . "'");
+        $query = $this->db->query("
+            SELECT * 
+            FROM attribute_group_description 
+            WHERE attribute_group_id = '" . (int)$attribute_group_id . "'
+        ");
 
         foreach ($query->rows as $result) {
             $attribute_group_data[$result['language_id']] = array('name' => $result['name']);
@@ -112,7 +151,10 @@ class ModelCatalogAttributeGroup extends Model
 
     public function getTotalAttributeGroups()
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM attribute_group");
+        $query = $this->db->query("
+            SELECT COUNT(*) AS total 
+            FROM attribute_group
+        ");
 
         return $query->row['total'];
     }

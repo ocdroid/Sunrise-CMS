@@ -43,13 +43,19 @@ class ModelExtensionFeedGoogleBase extends Model
 
     public function uninstall()
     {
-        $this->db->query("DROP TABLE IF EXISTS `google_base_category`");
-        $this->db->query("DROP TABLE IF EXISTS `google_base_category_to_category`");
+        $this->db->query("
+            DROP TABLE IF EXISTS `google_base_category`
+        ");
+        $this->db->query("
+            DROP TABLE IF EXISTS `google_base_category_to_category`
+        ");
     }
 
     public function import($string)
     {
-        $this->db->query("DELETE FROM google_base_category");
+        $this->db->query("
+            DELETE FROM google_base_category
+        ");
 
         $lines = explode("\n", $string);
 
@@ -58,7 +64,11 @@ class ModelExtensionFeedGoogleBase extends Model
                 $part = explode(' - ', $line, 2);
 
                 if (isset($part[1])) {
-                    $this->db->query("INSERT INTO google_base_category SET google_base_category_id = '" . (int)$part[0] . "', name = '" . $this->db->escape($part[1]) . "'");
+                    $this->db->query("
+                        INSERT INTO google_base_category 
+                        SET google_base_category_id = '" . (int)$part[0] . "', 
+                            name = '" . $this->db->escape($part[1]) . "'
+                    ");
                 }
             }
         }
@@ -66,7 +76,12 @@ class ModelExtensionFeedGoogleBase extends Model
 
     public function getGoogleBaseCategories($data = array())
     {
-        $sql = "SELECT * FROM `google_base_category` WHERE name LIKE '%" . $this->db->escape($data['filter_name']) . "%' ORDER BY name ASC";
+        $sql = "
+            SELECT * 
+            FROM `google_base_category` 
+            WHERE name LIKE '%" . $this->db->escape($data['filter_name']) . "%' 
+            ORDER BY name ASC
+        ";
 
         if (isset($data['start']) || isset($data['limit'])) {
             if ($data['start'] < 0) {
@@ -87,19 +102,42 @@ class ModelExtensionFeedGoogleBase extends Model
 
     public function addCategory($data)
     {
-        $this->db->query("DELETE FROM google_base_category_to_category WHERE category_id = '" . (int)$data['category_id'] . "'");
+        $this->db->query("
+            DELETE FROM google_base_category_to_category 
+            WHERE category_id = '" . (int)$data['category_id'] . "'
+        ");
 
-        $this->db->query("INSERT INTO google_base_category_to_category SET google_base_category_id = '" . (int)$data['google_base_category_id'] . "', category_id = '" . (int)$data['category_id'] . "'");
+        $this->db->query("
+            INSERT INTO google_base_category_to_category 
+            SET google_base_category_id = '" . (int)$data['google_base_category_id'] . "', 
+                category_id = '" . (int)$data['category_id'] . "'
+        ");
     }
 
     public function deleteCategory($category_id)
     {
-        $this->db->query("DELETE FROM google_base_category_to_category WHERE category_id = '" . (int)$category_id . "'");
+        $this->db->query("
+            DELETE FROM google_base_category_to_category WHERE category_id = '" . (int)$category_id . "'
+        ");
     }
 
     public function getCategories($data = array())
     {
-        $sql = "SELECT google_base_category_id, (SELECT name FROM `google_base_category` gbc WHERE gbc.google_base_category_id = gbc2c.google_base_category_id) AS google_base_category, category_id, (SELECT name FROM `category_description` cd WHERE cd.category_id = gbc2c.category_id AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "') AS category FROM `google_base_category_to_category` gbc2c ORDER BY google_base_category ASC";
+        $sql = "
+            SELECT google_base_category_id, 
+                (
+                    SELECT name 
+                    FROM `google_base_category` gbc 
+                    WHERE gbc.google_base_category_id = gbc2c.google_base_category_id) AS google_base_category, 
+                    category_id, 
+                    (
+                        SELECT name 
+                        FROM `category_description` cd 
+                        WHERE cd.category_id = gbc2c.category_id 
+                            AND cd.language_id = '" . (int)$this->config->get('config_language_id') . "') AS category 
+            FROM `google_base_category_to_category` gbc2c 
+            ORDER BY google_base_category ASC
+        ";
 
         if (isset($data['start']) || isset($data['limit'])) {
             if ($data['start'] < 0) {
@@ -120,7 +158,10 @@ class ModelExtensionFeedGoogleBase extends Model
 
     public function getTotalCategories()
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM `google_base_category_to_category`");
+        $query = $this->db->query("
+            SELECT COUNT(*) AS total 
+            FROM `google_base_category_to_category`
+        ");
 
         return $query->row['total'];
     }
