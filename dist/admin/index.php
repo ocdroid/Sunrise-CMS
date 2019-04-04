@@ -9,6 +9,6 @@ require('config/defines.php');
 require('config/domain.php');
 
 // Startup
-require(DIR_SYSTEM . 'startup.php');
+require(SR_SYSTEM . 'startup.php');
 
 start('admin');

@@ -34,7 +34,7 @@ class ControllerEventTheme extends Controller
             $theme = $this->config->get('config_theme');
         }
         
-        if (is_file(DIR_TEMPLATE . $theme . '/template/' . $view . '.html')) {
+        if (is_file(SR_TEMPLATE . $theme . '/template/' . $view . '.html')) {
             $view = $theme . '/template/' . $view;
         } else {
             $view = 'default/template/' . $view;

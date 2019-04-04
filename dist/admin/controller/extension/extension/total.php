@@ -106,7 +106,7 @@ class ControllerExtensionExtensionTotal extends Controller
         $extensions = $this->model_extension_extension->getInstalled('total');
 
         foreach ($extensions as $key => $value) {
-            if (!is_file(DIR_APPLICATION . 'controller/extension/total/' . $value . '.php') && !is_file(DIR_APPLICATION . 'controller/total/' . $value . '.php')) {
+            if (!is_file(SR_APPLICATION . 'controller/extension/total/' . $value . '.php') && !is_file(SR_APPLICATION . 'controller/total/' . $value . '.php')) {
                 $this->model_extension_extension->uninstall('total', $value);
 
                 unset($extensions[$key]);
@@ -116,7 +116,7 @@ class ControllerExtensionExtensionTotal extends Controller
         $data['extensions'] = array();
 
         // Compatibility code for old extension folders
-        $files = glob(DIR_APPLICATION . 'controller/{extension/total,total}/*.php', GLOB_BRACE);
+        $files = glob(SR_APPLICATION . 'controller/{extension/total,total}/*.php', GLOB_BRACE);
 
         if ($files) {
             foreach ($files as $file) {

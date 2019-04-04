@@ -220,7 +220,7 @@ class ControllerCheckoutCart extends Controller
 
             $data['modules'] = array();
             
-            $files = glob(DIR_APPLICATION . '/controller/extension/total/*.php');
+            $files = glob(SR_APPLICATION . '/controller/extension/total/*.php');
 
             if ($files) {
                 foreach ($files as $file) {

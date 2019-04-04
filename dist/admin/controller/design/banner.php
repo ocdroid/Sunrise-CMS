@@ -399,7 +399,7 @@ class ControllerDesignBanner extends Controller
 
         foreach ($banner_images as $key => $value) {
             foreach ($value as $banner_image) {
-                if (is_file(DIR_IMAGE . $banner_image['image'])) {
+                if (is_file(SR_IMAGE . $banner_image['image'])) {
                     $image = $banner_image['image'];
                     $thumb = $banner_image['image'];
                 } else {

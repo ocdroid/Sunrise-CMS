@@ -57,7 +57,7 @@ class ControllerExtensionInstaller extends Controller
 
         $data['token'] = $this->session->data['token'];
 
-        $directories = glob(DIR_UPLOAD . 'temp-*', GLOB_ONLYDIR);
+        $directories = glob(SR_UPLOAD . 'temp-*', GLOB_ONLYDIR);
 
         if ($directories) {
             $data['error_warning'] = $this->language->get('error_temporary');
@@ -101,8 +101,8 @@ class ControllerExtensionInstaller extends Controller
             // If no temp directory exists create it
             $path = 'temp-' . token(32);
 
-            if (!is_dir(DIR_UPLOAD . $path)) {
-                mkdir(DIR_UPLOAD . $path, 0777);
+            if (!is_dir(SR_UPLOAD . $path)) {
+                mkdir(SR_UPLOAD . $path, 0777);
             }
 
             // Set the steps required for installation
@@ -110,7 +110,7 @@ class ControllerExtensionInstaller extends Controller
             $json['overwrite'] = array();
 
             if (strrchr($this->request->files['file']['name'], '.') == '.xml') {
-                $file = DIR_UPLOAD . $path . '/install.xml';
+                $file = SR_UPLOAD . $path . '/install.xml';
 
                 // If xml file copy it to the temporary directory
                 move_uploaded_file($this->request->files['file']['tmp_name'], $file);
@@ -135,7 +135,7 @@ class ControllerExtensionInstaller extends Controller
 
             // If zip file copy it to the temp directory
             if (strrchr($this->request->files['file']['name'], '.') == '.zip') {
-                $file = DIR_UPLOAD . $path . '/upload.zip';
+                $file = SR_UPLOAD . $path . '/upload.zip';
 
                 move_uploaded_file($this->request->files['file']['tmp_name'], $file);
 
@@ -189,28 +189,28 @@ class ControllerExtensionInstaller extends Controller
                             }
 
                             // Compare admin files
-                            $file = DIR_APPLICATION . substr($zip_name, 13);
+                            $file = SR_APPLICATION . substr($zip_name, 13);
 
                             if (is_file($file) && substr($zip_name, 0, 13) == 'upload/admin/') {
                                 $json['overwrite'][] = substr($zip_name, 7);
                             }
 
                             // Compare catalog files
-                            $file = DIR_CATALOG . substr($zip_name, 15);
+                            $file = SR_CATALOG . substr($zip_name, 15);
 
                             if (is_file($file) && substr($zip_name, 0, 15) == 'upload/catalog/') {
                                 $json['overwrite'][] = substr($zip_name, 7);
                             }
 
                             // Compare image files
-                            $file = DIR_IMAGE . substr($zip_name, 13);
+                            $file = SR_IMAGE . substr($zip_name, 13);
 
                             if (is_file($file) && substr($zip_name, 0, 13) == 'upload/image/') {
                                 $json['overwrite'][] = substr($zip_name, 7);
                             }
 
                             // Compare system files
-                            $file = DIR_SYSTEM . substr($zip_name, 14);
+                            $file = SR_SYSTEM . substr($zip_name, 14);
 
                             if (is_file($file) && substr($zip_name, 0, 14) == 'upload/system/') {
                                 $json['overwrite'][] = substr($zip_name, 7);
@@ -249,9 +249,9 @@ class ControllerExtensionInstaller extends Controller
         }
 
         // Sanitize the filename
-        $file = DIR_UPLOAD . $this->request->post['path'] . '/upload.zip';
+        $file = SR_UPLOAD . $this->request->post['path'] . '/upload.zip';
 
-        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
             $json['error'] = $this->language->get('error_file');
         }
 
@@ -260,7 +260,7 @@ class ControllerExtensionInstaller extends Controller
             $zip = new ZipArchive();
 
             if ($zip->open($file)) {
-                $zip->extractTo(DIR_UPLOAD . $this->request->post['path']);
+                $zip->extractTo(SR_UPLOAD . $this->request->post['path']);
                 $zip->close();
             } else {
                 $json['error'] = $this->language->get('error_unzip');
@@ -289,9 +289,9 @@ class ControllerExtensionInstaller extends Controller
     //         $json['error'] = $this->language->get('error_ftp_status');
     //     }
 
-    //     $directory = DIR_UPLOAD . $this->request->post['path'] . '/upload/';
+    //     $directory = SR_UPLOAD . $this->request->post['path'] . '/upload/';
 
-    //     if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+    //     if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
     //         $json['error'] = $this->language->get('error_directory');
     //     }
 
@@ -334,19 +334,19 @@ class ControllerExtensionInstaller extends Controller
     //                         // Many people rename their admin folder for security purposes which I believe should be an option during installation just like setting the db prefix.
     //                         // the following code would allow you to change the name of the following directories and any extensions installed will still go to the right directory.
     //                         if (substr($destination, 0, 5) == 'admin') {
-    //                             $destination = basename(DIR_APPLICATION) . substr($destination, 5);
+    //                             $destination = basename(SR_APPLICATION) . substr($destination, 5);
     //                         }
 
     //                         if (substr($destination, 0, 7) == 'catalog') {
-    //                             $destination = basename(DIR_CATALOG) . substr($destination, 7);
+    //                             $destination = basename(SR_CATALOG) . substr($destination, 7);
     //                         }
 
     //                         if (substr($destination, 0, 5) == 'image') {
-    //                             $destination = basename(DIR_IMAGE) . substr($destination, 5);
+    //                             $destination = basename(SR_IMAGE) . substr($destination, 5);
     //                         }
 
     //                         if (substr($destination, 0, 6) == 'system') {
-    //                             $destination = basename(DIR_SYSTEM) . substr($destination, 6);
+    //                             $destination = basename(SR_SYSTEM) . substr($destination, 6);
     //                         }
 
     //                         if (is_dir($file)) {
@@ -399,9 +399,9 @@ class ControllerExtensionInstaller extends Controller
             $json['error'] = $this->language->get('error_permission');
         }
 
-        $file = DIR_UPLOAD . $this->request->post['path'] . '/install.sql';
+        $file = SR_UPLOAD . $this->request->post['path'] . '/install.sql';
 
-        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
             $json['error'] = $this->language->get('error_file');
         }
 
@@ -445,9 +445,9 @@ class ControllerExtensionInstaller extends Controller
             $json['error'] = $this->language->get('error_permission');
         }
 
-        $file = DIR_UPLOAD . $this->request->post['path'] . '/install.xml';
+        $file = SR_UPLOAD . $this->request->post['path'] . '/install.xml';
 
-        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
             $json['error'] = $this->language->get('error_file');
         }
 
@@ -524,9 +524,9 @@ class ControllerExtensionInstaller extends Controller
             $json['error'] = $this->language->get('error_permission');
         }
 
-        $file = DIR_UPLOAD . $this->request->post['path'] . '/install.php';
+        $file = SR_UPLOAD . $this->request->post['path'] . '/install.php';
 
-        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
             $json['error'] = $this->language->get('error_file');
         }
 
@@ -552,9 +552,9 @@ class ControllerExtensionInstaller extends Controller
             $json['error'] = $this->language->get('error_permission');
         }
 
-        $directory = DIR_UPLOAD . $this->request->post['path'];
+        $directory = SR_UPLOAD . $this->request->post['path'];
         
-        if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+        if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
             $json['error'] = $this->language->get('error_directory');
         }
 
@@ -611,7 +611,7 @@ class ControllerExtensionInstaller extends Controller
         }
 
         if (!$json) {
-            $directories = glob(DIR_UPLOAD . 'temp-*', GLOB_ONLYDIR);
+            $directories = glob(SR_UPLOAD . 'temp-*', GLOB_ONLYDIR);
 
             if ($directories) {
                 foreach ($directories as $directory) {

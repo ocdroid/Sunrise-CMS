@@ -100,7 +100,7 @@ class ControllerExtensionModuleCachemanager extends Controller
     {
         $this->load->language('extension/module/cachemanager');
 
-        $files = glob(DIR_CACHE . 'cache.*');
+        $files = glob(SR_CACHE . 'cache.*');
         if (!empty($files)) {
             foreach ($files as $file) {
                 $this->deldir($file);
@@ -116,7 +116,7 @@ class ControllerExtensionModuleCachemanager extends Controller
     {
         $this->load->language('extension/module/cachemanager');
 
-        $imgfiles = glob(DIR_IMAGE . 'cache/*');
+        $imgfiles = glob(SR_IMAGE . 'cache/*');
         if (!empty($imgfiles)) {
             foreach ($imgfiles as $imgfile) {
                 $this->deldir($imgfile);
@@ -132,13 +132,13 @@ class ControllerExtensionModuleCachemanager extends Controller
     {
         $this->load->language('extension/module/cachemanager');
 
-        $imgfiles = glob(DIR_IMAGE . 'cache/*');
+        $imgfiles = glob(SR_IMAGE . 'cache/*');
         if (!empty($imgfiles)) {
             foreach ($imgfiles as $imgfile) {
                 $this->deldir($imgfile);
             }
         }
-        $files = glob(DIR_CACHE . 'cache.*');
+        $files = glob(SR_CACHE . 'cache.*');
         if (!empty($files)) {
             foreach ($files as $file) {
                 $this->deldir($file);

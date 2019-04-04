@@ -45,7 +45,7 @@ class ControllerCommonFooter extends Controller
         $data['store_name'] = $this->config->get('config_name');
         $data['store_year'] = date('Y', time());
 
-        if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+        if (is_file(SR_IMAGE . $this->config->get('config_logo'))) {
             $data['logo'] = '/images/' . $this->config->get('config_logo');
         } else {
             $data['logo'] = '';

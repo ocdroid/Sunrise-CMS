@@ -203,7 +203,7 @@ class ControllerDesignBenefit extends Controller
         $this->load->model('tool/image');
 
         foreach ($results as $result) {
-            if ($result['image'] && file_exists(DIR_IMAGE . $result['image'])) {
+            if ($result['image'] && file_exists(SR_IMAGE . $result['image'])) {
                 $image = $this->model_tool_image->resize($result['image'], 40, 40);
             } else {
                 $image = $this->model_tool_image->resize('no_image.png', 40, 40);
@@ -437,9 +437,9 @@ class ControllerDesignBenefit extends Controller
         
 
 
-        if (isset($this->request->post['image']) && file_exists(DIR_IMAGE . $this->request->post['image'])) {
+        if (isset($this->request->post['image']) && file_exists(SR_IMAGE . $this->request->post['image'])) {
             $data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
-        } elseif (!empty($benefit_info) && $benefit_info['image'] && file_exists(DIR_IMAGE . $benefit_info['image'])) {
+        } elseif (!empty($benefit_info) && $benefit_info['image'] && file_exists(SR_IMAGE . $benefit_info['image'])) {
             $data['thumb'] = $this->model_tool_image->resize($benefit_info['image'], 100, 100);
         } else {
             $data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);

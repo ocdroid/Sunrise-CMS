@@ -374,7 +374,7 @@ class ControllerUserUserPermission extends Controller
         $files = array();
 
         // Make path into an array
-        $path = array(DIR_APPLICATION . 'controller/*');
+        $path = array(SR_APPLICATION . 'controller/*');
 
         // While the path array is still populated keep looping through
         while (count($path) != 0) {
@@ -397,7 +397,7 @@ class ControllerUserUserPermission extends Controller
         sort($files);
                     
         foreach ($files as $file) {
-            $controller = substr($file, strlen(DIR_APPLICATION . 'controller/'));
+            $controller = substr($file, strlen(SR_APPLICATION . 'controller/'));
 
             $permission = substr($controller, 0, strrpos($controller, '.'));
 

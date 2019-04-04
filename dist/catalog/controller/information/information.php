@@ -101,7 +101,7 @@ class ControllerInformationInformation extends Controller
                     if (($module['type'] == 2) && !empty($module['informations'])) {
                         if ((isset($module['customer_groups']) && in_array($customer_group_id, $module['customer_groups'])) || !isset($module['customer_groups']) || empty($module['customer_groups'])) {
                             if (in_array($information_id, $module['informations'])) {
-                                if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
+                                if (file_exists(SR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
                                     $template = $module['template_name'];
                                 }
                             }

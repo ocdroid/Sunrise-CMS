@@ -28,7 +28,7 @@ class File {
 	public function __construct($expire = 3600) {
 		$this->expire = $expire;
 
-		$files = glob(DIR_CACHE . 'cache.*');
+		$files = glob(SR_CACHE . 'cache.*');
 
 		if ($files) {
 			foreach ($files as $file) {
@@ -44,7 +44,7 @@ class File {
 	}
 
 	public function get($key) {
-		$files = glob(DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.*');
+		$files = glob(SR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.*');
 
 		if ($files) {
 			$handle = fopen($files[0], 'r');
@@ -66,7 +66,7 @@ class File {
 	public function set($key, $value) {
 		$this->delete($key);
 
-		$file = DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.' . (time() + $this->expire);
+		$file = SR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.' . (time() + $this->expire);
 
 		$handle = fopen($file, 'w');
 
@@ -82,7 +82,7 @@ class File {
 	}
 
 	public function delete($key) {
-		$files = glob(DIR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.*');
+		$files = glob(SR_CACHE . 'cache.' . preg_replace('/[^A-Z0-9\._-]/i', '', $key) . '.*');
 
 		if ($files) {
 			foreach ($files as $file) {

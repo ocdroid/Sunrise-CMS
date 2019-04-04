@@ -108,7 +108,7 @@ class ControllerExtensionExtensionShipping extends Controller
         $extensions = $this->model_extension_extension->getInstalled('shipping');
 
         foreach ($extensions as $key => $value) {
-            if (!is_file(DIR_APPLICATION . 'controller/extension/shipping/' . $value . '.php') && !is_file(DIR_APPLICATION . 'controller/shipping/' . $value . '.php')) {
+            if (!is_file(SR_APPLICATION . 'controller/extension/shipping/' . $value . '.php') && !is_file(SR_APPLICATION . 'controller/shipping/' . $value . '.php')) {
                 $this->model_extension_extension->uninstall('shipping', $value);
 
                 unset($extensions[$key]);
@@ -118,7 +118,7 @@ class ControllerExtensionExtensionShipping extends Controller
         $data['extensions'] = array();
 
         // Compatibility code for old extension folders
-        $files = glob(DIR_APPLICATION . 'controller/{extension/shipping,shipping}/*.php', GLOB_BRACE);
+        $files = glob(SR_APPLICATION . 'controller/{extension/shipping,shipping}/*.php', GLOB_BRACE);
 
         if ($files) {
             foreach ($files as $file) {

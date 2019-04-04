@@ -57,19 +57,19 @@ class Language
     {
         $_ = array();
 
-        $file = DIR_LANGUAGE . 'english/' . $filename . '.php';
+        $file = SR_LANGUAGE . 'english/' . $filename . '.php';
         
         if (is_file($file)) {
             require($file);
         }
 
-        $file = DIR_LANGUAGE . $this->default . '/' . $filename . '.php';
+        $file = SR_LANGUAGE . $this->default . '/' . $filename . '.php';
 
         if (is_file($file)) {
             require($file);
         }
 
-        $file = DIR_LANGUAGE . $this->directory . '/' . $filename . '.php';
+        $file = SR_LANGUAGE . $this->directory . '/' . $filename . '.php';
 
         if (is_file($file)) {
             require($file);

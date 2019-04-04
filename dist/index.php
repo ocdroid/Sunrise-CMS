@@ -30,6 +30,6 @@ require('catalog/config/defines.php');
 require('catalog/config/domain.php');
 
 // Startup
-require(DIR_SYSTEM . 'startup.php');
+require(SR_SYSTEM . 'startup.php');
 
 start('catalog');

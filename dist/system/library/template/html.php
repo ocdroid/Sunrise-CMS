@@ -33,7 +33,7 @@ final class HTML
     
     public function render($template)
     {
-        $file = DIR_TEMPLATE . $template;
+        $file = SR_TEMPLATE . $template;
 
         if (is_file($file)) {
             extract($this->data);

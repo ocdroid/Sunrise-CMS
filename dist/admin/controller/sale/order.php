@@ -1264,7 +1264,7 @@ class ControllerSaleOrder extends Controller
             $data['tabs'] = array();
 
             if ($this->user->hasPermission('access', 'extension/payment/' . $order_info['payment_code'])) {
-                if (is_file(DIR_CATALOG . 'controller/extension/payment/' . $order_info['payment_code'] . '.php')) {
+                if (is_file(SR_CATALOG . 'controller/extension/payment/' . $order_info['payment_code'] . '.php')) {
                     $content = $this->load->controller('extension/payment/' . $order_info['payment_code'] . '/order');
                 } else {
                     $content = null;

@@ -278,8 +278,8 @@ class ControllerBlogArticle extends Controller
             $results = $this->model_blog_article->getDownloads($this->request->get['article_id']);
  
             foreach ($results as $result) {
-                if (file_exists(DIR_DOWNLOAD . $result['filename'])) {
-                    $size = filesize(DIR_DOWNLOAD . $result['filename']);
+                if (file_exists(SR_DOWNLOAD . $result['filename'])) {
+                    $size = filesize(SR_DOWNLOAD . $result['filename']);
  
                     $i = 0;
  
@@ -393,7 +393,7 @@ class ControllerBlogArticle extends Controller
         
 
         if ($download_info) {
-            $file = DIR_DOWNLOAD . $download_info['filename'];
+            $file = SR_DOWNLOAD . $download_info['filename'];
             $mask = basename($download_info['mask']);
 
             if (!headers_sent()) {

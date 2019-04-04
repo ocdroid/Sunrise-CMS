@@ -60,7 +60,7 @@ class ControllerExtensionExtension extends Controller
 
         $data['categories'] = array();
         
-        $files = glob(DIR_APPLICATION . 'controller/extension/extension/*.php', GLOB_BRACE);
+        $files = glob(SR_APPLICATION . 'controller/extension/extension/*.php', GLOB_BRACE);
         
         foreach ($files as $file) {
             $extension = basename($file, '.php');
@@ -69,7 +69,7 @@ class ControllerExtensionExtension extends Controller
             $this->load->language('extension/extension/' . $extension);
         
             if ($this->user->hasPermission('access', 'extension/extension/' . $extension)) {
-                $files = glob(DIR_APPLICATION . 'controller/{extension/' . $extension . ',' . $extension . '}/*.php', GLOB_BRACE);
+                $files = glob(SR_APPLICATION . 'controller/{extension/' . $extension . ',' . $extension . '}/*.php', GLOB_BRACE);
         
                 $data['categories'][] = array(
                     'code' => $extension,

@@ -636,7 +636,7 @@ class ControllerCatalogProduct extends Controller
         $results = $this->model_catalog_product->getProducts($filter_data);
 
         foreach ($results as $result) {
-            if (is_file(DIR_IMAGE . $result['image'])) {
+            if (is_file(SR_IMAGE . $result['image'])) {
                 $image = $this->model_tool_image->resize($result['image'], 40, 40);
             } else {
                 $image = $this->model_tool_image->resize('no_image.png', 40, 40);
@@ -1589,9 +1589,9 @@ class ControllerCatalogProduct extends Controller
 
         $this->load->model('tool/image');
 
-        if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
+        if (isset($this->request->post['image']) && is_file(SR_IMAGE . $this->request->post['image'])) {
             $data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
-        } elseif (!empty($product_info) && is_file(DIR_IMAGE . $product_info['image'])) {
+        } elseif (!empty($product_info) && is_file(SR_IMAGE . $product_info['image'])) {
             $data['thumb'] = $this->model_tool_image->resize($product_info['image'], 100, 100);
         } else {
             $data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
@@ -1611,7 +1611,7 @@ class ControllerCatalogProduct extends Controller
         $data['product_images'] = array();
 
         foreach ($product_images as $product_image) {
-            if (is_file(DIR_IMAGE . $product_image['image'])) {
+            if (is_file(SR_IMAGE . $product_image['image'])) {
                 $image = $product_image['image'];
                 $thumb = $product_image['image'];
             } else {
@@ -1739,7 +1739,7 @@ class ControllerCatalogProduct extends Controller
         $data['benefits'] = array();
         
         foreach ($productbenefits as $benefit) {
-            if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
+            if ($benefit['image'] && file_exists(SR_IMAGE . $benefit['image'])) {
                 $image = $benefit['image'];
             } else {
                 $image = 'no_image.jpg';

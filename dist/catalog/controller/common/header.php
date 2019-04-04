@@ -36,7 +36,7 @@ class ControllerCommonHeader extends Controller
         //
         
         //
-        if (is_file(DIR_IMAGE . $this->config->get('config_icon'))) {
+        if (is_file(SR_IMAGE . $this->config->get('config_icon'))) {
             $this->document->addLink('/images/' . $this->config->get('config_icon'), 'icon');
         }
 
@@ -58,7 +58,7 @@ class ControllerCommonHeader extends Controller
 
         $data['name'] = $this->config->get('config_name');
 
-        if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+        if (is_file(SR_IMAGE . $this->config->get('config_logo'))) {
             $data['logo'] = '/images/' . $this->config->get('config_logo');
         } else {
             $data['logo'] = '';

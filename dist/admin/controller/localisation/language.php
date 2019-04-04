@@ -388,7 +388,7 @@ class ControllerLocalisationLanguage extends Controller
         
         $data['languages'] = array();
         
-        $folders = glob(DIR_LANGUAGE . '*', GLOB_ONLYDIR);
+        $folders = glob(SR_LANGUAGE . '*', GLOB_ONLYDIR);
 
         foreach ($folders as $folder) {
             $data['languages'][] = basename($folder);

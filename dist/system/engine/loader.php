@@ -67,7 +67,7 @@ final class Loader
         $this->registry->get('event')->trigger('model/' . $route . '/before', array(&$route));
         
         if (!$this->registry->has('model_' . str_replace(array('/', '-', '.'), array('_', '', ''), $route))) {
-            $file  = DIR_APPLICATION . 'model/' . $route . '.php';
+            $file  = SR_APPLICATION . 'model/' . $route . '.php';
             $class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $route);
             
             if (is_file($file)) {
@@ -113,7 +113,7 @@ final class Loader
             $output = $template->render($route . '.html');
 
             // template paths
-            // if (!empty($_SESSION[$_COOKIE['default']]['user_id']) && basename(DIR_APPLICATION) == 'catalog') {
+            // if (!empty($_SESSION[$_COOKIE['default']]['user_id']) && basename(SR_APPLICATION) == 'catalog') {
             // 	$output = '<span class="cc_template_path uk-label uk-background-secondary" id="cc_template_path">'.$route.'</span>' . $output . '';
             // }
             //
@@ -134,7 +134,7 @@ final class Loader
         // Sanitize the call
         $route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
             
-        $file = DIR_SYSTEM . 'library/' . $route . '.php';
+        $file = SR_SYSTEM . 'library/' . $route . '.php';
         $class = str_replace('/', '\\', $route);
 
         if (is_file($file)) {
@@ -148,7 +148,7 @@ final class Loader
     
     public function helper($route)
     {
-        $file = DIR_SYSTEM . 'helper/' . preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route) . '.php';
+        $file = SR_SYSTEM . 'helper/' . preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route) . '.php';
 
         if (is_file($file)) {
             include_once($file);
@@ -195,7 +195,7 @@ final class Loader
             
             // Store the model object
             if (!isset($model[$route])) {
-                $file = DIR_APPLICATION . 'model/' .  substr($route, 0, strrpos($route, '/')) . '.php';
+                $file = SR_APPLICATION . 'model/' .  substr($route, 0, strrpos($route, '/')) . '.php';
                 $class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', substr($route, 0, strrpos($route, '/')));
 
                 if (is_file($file)) {

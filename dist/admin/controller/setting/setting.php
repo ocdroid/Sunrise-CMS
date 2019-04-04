@@ -463,9 +463,9 @@ class ControllerSettingSetting extends Controller
 
         $this->load->model('tool/image');
 
-        if (isset($this->request->post['config_image']) && is_file(DIR_IMAGE . $this->request->post['config_image'])) {
+        if (isset($this->request->post['config_image']) && is_file(SR_IMAGE . $this->request->post['config_image'])) {
             $data['thumb'] = $this->model_tool_image->resize($this->request->post['config_image'], 100, 100);
-        } elseif ($this->config->get('config_image') && is_file(DIR_IMAGE . $this->config->get('config_image'))) {
+        } elseif ($this->config->get('config_image') && is_file(SR_IMAGE . $this->config->get('config_image'))) {
             $data['thumb'] = $this->model_tool_image->resize($this->config->get('config_image'), 100, 100);
         } else {
             $data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
@@ -711,9 +711,9 @@ class ControllerSettingSetting extends Controller
             $data['config_logo'] = $this->config->get('config_logo');
         }
 
-        if (isset($this->request->post['config_logo']) && is_file(DIR_IMAGE . $this->request->post['config_logo'])) {
+        if (isset($this->request->post['config_logo']) && is_file(SR_IMAGE . $this->request->post['config_logo'])) {
             $data['logo'] = $this->model_tool_image->resize($this->request->post['config_logo'], 100, 100);
-        } elseif ($this->config->get('config_logo') && is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
+        } elseif ($this->config->get('config_logo') && is_file(SR_IMAGE . $this->config->get('config_logo'))) {
             $data['logo'] = $this->model_tool_image->resize($this->config->get('config_logo'), 100, 100);
         } else {
             $data['logo'] = $this->model_tool_image->resize('no_image.png', 100, 100);
@@ -725,9 +725,9 @@ class ControllerSettingSetting extends Controller
             $data['config_icon'] = $this->config->get('config_icon');
         }
 
-        if (isset($this->request->post['config_icon']) && is_file(DIR_IMAGE . $this->request->post['config_icon'])) {
+        if (isset($this->request->post['config_icon']) && is_file(SR_IMAGE . $this->request->post['config_icon'])) {
             $data['icon'] = $this->model_tool_image->resize($this->request->post['config_icon'], 100, 100);
-        } elseif ($this->config->get('config_icon') && is_file(DIR_IMAGE . $this->config->get('config_icon'))) {
+        } elseif ($this->config->get('config_icon') && is_file(SR_IMAGE . $this->config->get('config_icon'))) {
             $data['icon'] = $this->model_tool_image->resize($this->config->get('config_icon'), 100, 100);
         } else {
             $data['icon'] = $this->model_tool_image->resize('no_image.png', 100, 100);

@@ -26,7 +26,7 @@ class Log
 
     public function __construct($filename)
     {
-        $this->handle = fopen(DIR_LOGS . $filename, 'a');
+        $this->handle = fopen(SR_LOGS . $filename, 'a');
     }
 
     public function write($message)
