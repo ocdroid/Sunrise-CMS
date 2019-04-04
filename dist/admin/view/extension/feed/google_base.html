@@ -71,7 +71,7 @@
 $('input[name=\'google_base_category\']').autocomplete({
 		'source': function(request, response) {
 			$.ajax({
-				url: 'index.php?route=extension/feed/google_base/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+				url: '/index.php?route=extension/feed/google_base/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 				dataType: 'json',
 				success: function(json) {
 					response($.map(json, function(item) {
@@ -96,7 +96,7 @@ $('input[name=\'google_base_category\']').autocomplete({
 $('input[name=\'category\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
-			url: 'index.php?route=catalog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+			url: '/index.php?route=catalog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
@@ -127,7 +127,7 @@ $('#category').load('index.php?route=extension/feed/google_base/category&token=<
 
 $('#button-category-add').on('click', function() {
 	$.ajax({
-		url: 'index.php?route=extension/feed/google_base/addcategory&token=<?php echo $token; ?>',
+		url: '/index.php?route=extension/feed/google_base/addcategory&token=<?php echo $token; ?>',
 		type: 'post',
 		dataType: 'json',
 		data: 'google_base_category_id=' + $('input[name=\'google_base_category_id\']').val() + '&category_id=' + $('input[name=\'category_id\']').val(),
@@ -165,7 +165,7 @@ $('#category').delegate('.btn-danger', 'click', function() {
 	var node = this;
 
 	$.ajax({
-		url: 'index.php?route=extension/feed/google_base/removecategory&token=<?php echo $token; ?>',
+		url: '/index.php?route=extension/feed/google_base/removecategory&token=<?php echo $token; ?>',
 		type: 'post',
 		data: 'category_id=' + encodeURIComponent(this.value),
 		dataType: 'json',
@@ -212,7 +212,7 @@ $('#button-import').on('click', function() {
 			clearInterval(timer);
 
 			$.ajax({
-				url: 'index.php?route=extension/feed/google_base/import&token=<?php echo $token; ?>',
+				url: '/index.php?route=extension/feed/google_base/import&token=<?php echo $token; ?>',
 				type: 'post',
 				dataType: 'json',
 				data: new FormData($('#form-upload')[0]),

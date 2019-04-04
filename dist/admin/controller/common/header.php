@@ -85,9 +85,9 @@ class ControllerCommonHeader extends Controller
             $data['logout'] = $this->url->link('common/logout', 'token=' . $this->session->data['token'], true);
             
             //CacheManager
-            $data['clearallcache'] = ('/index.php?route=extension/module/cachemanager/clearallcache&token=' . $this->session->data['token']);
-            $data['clearcache'] = ('/index.php?route=extension/module/cachemanager/clearcache&token=' . $this->session->data['token']);
-            $data['clearsystemcache'] = ('/index.php?route=extension/module/cachemanager/clearsystemcache&token=' . $this->session->data['token']);
+            $data['clearallcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearallcache&token=' . $this->session->data['token']);
+            $data['clearcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearcache&token=' . $this->session->data['token']);
+            $data['clearsystemcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearsystemcache&token=' . $this->session->data['token']);
 
             
             // fast add menu

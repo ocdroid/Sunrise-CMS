@@ -389,8 +389,6 @@ class ControllerBlogArticle extends Controller
         }
 
         $download_info = $this->model_blog_article->getDownload($article_id, $download_id);
-        
-        
 
         if ($download_info) {
             $file = SR_DOWNLOAD . $download_info['filename'];
@@ -409,8 +407,6 @@ class ControllerBlogArticle extends Controller
 
                     readfile($file, 'rb');
 
-                    
-
                     exit;
                 } else {
                     exit('Error: Could not find file ' . $file . '!');
@@ -419,7 +415,7 @@ class ControllerBlogArticle extends Controller
                 exit('Error: Headers already sent out!');
             }
         } else {
-            $this->redirect(HTTP_SERVER . 'index.php?route=account/download');
+            $this->redirect('/index.php?route=account/download');
         }
     }
     

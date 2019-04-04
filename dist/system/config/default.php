@@ -22,7 +22,7 @@
 
 // Site
 $_['site_base']            = '';
-$_['site_ssl']             = false;
+$_['site_ssl']             = true;
 
 // Url
 $_['url_autostart']        = true;

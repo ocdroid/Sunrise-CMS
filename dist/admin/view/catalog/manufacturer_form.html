@@ -239,7 +239,7 @@ $('#language a:first').tab('show');
 $('input[name=\'product_related_input\']').autocomplete({
 	source: function(request, response) {
 		$.ajax({
-			url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+			url: '/index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {
@@ -268,7 +268,7 @@ $('#product-related').delegate('.fa-minus-circle', 'click', function() {
 $('input[name=\'article_related_input\']').autocomplete({
 	source: function(request, response) {
 		$.ajax({
-			url: 'index.php?route=blog/article/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+			url: '/index.php?route=blog/article/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 			dataType: 'json',
 			success: function(json) {
 				response($.map(json, function(item) {

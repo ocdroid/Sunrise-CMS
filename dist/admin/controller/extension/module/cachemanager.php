@@ -68,9 +68,9 @@ class ControllerExtensionModuleCachemanager extends Controller
             'href' => $this->url->link('extension/module/cachemanager', 'token=' . $this->session->data['token'], true)
         );
 
-        $data['clearallcache'] = (HTTPS_SERVER . 'index.php?route=extension/module/cachemanager/clearallcache&token=' . $this->session->data['token']);
-        $data['clearcache'] = (HTTPS_SERVER . 'index.php?route=extension/module/cachemanager/clearcache&token=' . $this->session->data['token']);
-        $data['clearsystemcache'] = (HTTPS_SERVER . 'index.php?route=extension/module/cachemanager/clearsystemcache&token=' . $this->session->data['token']);
+        $data['clearallcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearallcache&token=' . $this->session->data['token']);
+        $data['clearcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearcache&token=' . $this->session->data['token']);
+        $data['clearsystemcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearsystemcache&token=' . $this->session->data['token']);
 
         $data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true);
 
@@ -100,7 +100,7 @@ class ControllerExtensionModuleCachemanager extends Controller
     {
         $this->load->language('extension/module/cachemanager');
 
-        $files = glob(SR_CACHE . 'cache.*');
+        $files = glob(DIR_CACHE . 'cache.*');
         if (!empty($files)) {
             foreach ($files as $file) {
                 $this->deldir($file);
@@ -116,7 +116,7 @@ class ControllerExtensionModuleCachemanager extends Controller
     {
         $this->load->language('extension/module/cachemanager');
 
-        $imgfiles = glob(SR_IMAGE . 'cache/*');
+        $imgfiles = glob(DIR_IMAGE . 'cache/*');
         if (!empty($imgfiles)) {
             foreach ($imgfiles as $imgfile) {
                 $this->deldir($imgfile);
@@ -132,13 +132,13 @@ class ControllerExtensionModuleCachemanager extends Controller
     {
         $this->load->language('extension/module/cachemanager');
 
-        $imgfiles = glob(SR_IMAGE . 'cache/*');
+        $imgfiles = glob(DIR_IMAGE . 'cache/*');
         if (!empty($imgfiles)) {
             foreach ($imgfiles as $imgfile) {
                 $this->deldir($imgfile);
             }
         }
-        $files = glob(SR_CACHE . 'cache.*');
+        $files = glob(DIR_CACHE . 'cache.*');
         if (!empty($files)) {
             foreach ($files as $file) {
                 $this->deldir($file);

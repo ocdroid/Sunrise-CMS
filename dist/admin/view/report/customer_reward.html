@@ -180,7 +180,7 @@
 		$('input[name=\'filter_customer\']').autocomplete({
 			'source': function (request, response) {
 				$.ajax({
-					url: 'index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +
+					url: '/index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +
 						encodeURIComponent(request),
 					dataType: 'json',
 					success: function (json) {

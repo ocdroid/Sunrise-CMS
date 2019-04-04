@@ -95,7 +95,7 @@
 					$('#progress-text').html('');
 
 					$.ajax({
-						url: 'index.php?route=extension/installer/upload&token=<?php echo $token; ?>',
+						url: '/index.php?route=extension/installer/upload&token=<?php echo $token; ?>',
 						type: 'post',
 						dataType: 'json',
 						data: new FormData($('#form-upload')[0]),
@@ -184,7 +184,7 @@
 
 		$('#button-clear').bind('click', function () {
 			$.ajax({
-				url: 'index.php?route=extension/installer/clear&token=<?php echo $token; ?>',
+				url: '/index.php?route=extension/installer/clear&token=<?php echo $token; ?>',
 				dataType: 'json',
 				beforeSend: function () {
 					$('#button-clear').button('loading');
