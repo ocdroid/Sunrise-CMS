@@ -52,7 +52,7 @@ $_['entry_noindex']          = 'Index';
 // Help
 $_['help_keyword']           = 'Do not use spaces, instead replace spaces with - and make sure the SEO URL is globally unique.';
 $_['help_bottom']            = 'Display in the bottom footer.';
-$_['help_noindex']           = 'Indexing in the search engines Google, Yandex, Bing and others';
+$_['help_noindex']           = 'Indexing in the search engines Google, Bing and others';
 
 // Error
 $_['error_warning']          = 'Warning: Please check the form carefully for errors!';

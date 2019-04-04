@@ -594,7 +594,6 @@ class ControllerStartupSeoPro extends Controller
                 'extension/feed/google_sitemap',
                 'extension/feed/google_base',
                 'extension/feed/sitemap_pro',
-                'extension/feed/yandex_feed'
             ];
             
             if (in_array($this->request->get['route'], $break_routes)) {

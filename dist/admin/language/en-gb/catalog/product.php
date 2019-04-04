@@ -118,7 +118,7 @@ $_['help_filter']            = '(Autocomplete)';
 $_['help_download']          = '(Autocomplete)';
 $_['help_related']           = '(Autocomplete)';
 $_['help_tag']               = 'Comma separated';
-$_['help_noindex']           = 'Indexing in the search engines Google, Yandex, Bing and others';
+$_['help_noindex']           = 'Indexing in the search engines Google, Bing and others';
 
 //Stickers
 $_['text_corner0']           = 'Top Left';

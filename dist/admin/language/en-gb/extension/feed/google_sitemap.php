@@ -31,7 +31,6 @@ $_['text_edit']        = 'Edit Sitemap';
 // Entry
 $_['entry_status']     = 'Status';
 $_['entry_data_feed']  = 'Data Feed Url Google';
-$_['entry_data_yandex_feed']  = 'Data Feed Url Yandex';
 
 // Error
 $_['error_permission'] = 'Warning: You do not have permission to modify Sitemap feed!';
