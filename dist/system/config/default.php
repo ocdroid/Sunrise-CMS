@@ -54,12 +54,12 @@ $_['mail_verp']            = false;
 $_['mail_parameter']       = '';
 
 // Cache
-$_['cache_type']           = 'redis'; // file or redis
-$_['cache_expire']         = 3600;
+$_['cache_type']           = '';
+$_['cache_expire']         = '';
 
 // Session
 $_['session_autostart']    = true;
-$_['session_name']         = 'PHPSESSID';
+$_['session_name']         = 'SRSESSID';
 
 // Template
 $_['template_type']        = 'html';
@@ -69,9 +69,8 @@ $_['config_error_display'] = true;
 $_['config_error_log']     = true;
 $_['config_error_filename'] = 'error.log';
 
-// Reponse
+// Response
 $_['response_header']      = array('Content-Type: text/html; charset=utf-8');
-$_['response_compression'] = 0;
 
 // Autoload Configs
 $_['config_autoload']      = array();

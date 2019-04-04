@@ -33,6 +33,10 @@ $_['db_password']      = DB_PASSWORD;
 $_['db_database']      = DB_DATABASE;
 $_['db_port']          = DB_PORT;
 
+// Cache
+$_['cache_type']       = SR_CATALOG_CACHE_TYPE;
+$_['cache_expire']     = SR_CATALOG_CACHE_EXPIRE;
+
 // Session
 $_['session_autostart'] = false;
 

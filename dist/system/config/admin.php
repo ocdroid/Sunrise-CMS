@@ -33,8 +33,15 @@ $_['db_password']      = DB_PASSWORD;
 $_['db_database']      = DB_DATABASE;
 $_['db_port']          = DB_PORT;
 
+// Cache
+$_['cache_type']       = SR_ADMIN_CACHE_TYPE;
+$_['cache_expire']     = SR_ADMIN_CACHE_EXPIRE;
+
 // Session
 $_['session_autostart'] = true;
+
+// Actions
+$_['action_default'] = 'common/dashboard';
 
 // Actions
 $_['action_pre_action'] = array(
@@ -44,9 +51,6 @@ $_['action_pre_action'] = array(
     'startup/login',
     'startup/permission'
 );
-
-// Actions
-$_['action_default'] = 'common/dashboard';
 
 // Action Events
 $_['action_event'] = array(

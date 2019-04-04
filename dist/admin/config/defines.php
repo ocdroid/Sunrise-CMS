@@ -20,6 +20,7 @@
     You should have received a copy of the GNU General Public License
     along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
+// Paths
 define('SR_APPLICATION', $_SERVER['DOCUMENT_ROOT'] . '/admin/');
 define('SR_CACHE', $_SERVER['DOCUMENT_ROOT'] . '/cache/');
 define('SR_CATALOG', $_SERVER['DOCUMENT_ROOT'] . '/catalog/');
@@ -31,3 +32,7 @@ define('SR_LOGS', $_SERVER['DOCUMENT_ROOT'] . '/logs/');
 define('SR_SYSTEM', $_SERVER['DOCUMENT_ROOT'] . '/system/');
 define('SR_TEMPLATE', $_SERVER['DOCUMENT_ROOT'] . '/admin/view/');
 define('SR_UPLOAD', $_SERVER['DOCUMENT_ROOT'] . '/upload/');
+
+// Cache type ( file or redis)
+define('SR_ADMIN_CACHE_TYPE', 'file');
+define('SR_ADMIN_CACHE_EXPIRE', '3600');
