@@ -51,8 +51,8 @@ class ModelCatalogInformation extends Model
             foreach ($data['information_store'] as $store_id) {
                 $this->db->query("
                     INSERT INTO information_to_store 
-                    SET information_id = '" . (int)$information_id . "', 
-                    store_id = '" . (int)$store_id . "'
+                        SET information_id = '" . (int)$information_id . "', 
+                        store_id = '" . (int)$store_id . "'
                 ");
             }
         }
@@ -62,8 +62,8 @@ class ModelCatalogInformation extends Model
                 $this->db->query("
                     INSERT INTO information_to_layout 
                     SET information_id = '" . (int)$information_id . "', 
-                    store_id = '" . (int)$store_id . "', 
-                    layout_id = '" . (int)$layout_id . "'
+                        store_id = '" . (int)$store_id . "', 
+                        layout_id = '" . (int)$layout_id . "'
                 ");
             }
         }
@@ -104,12 +104,12 @@ class ModelCatalogInformation extends Model
             $this->db->query("
                 INSERT INTO information_description 
                 SET information_id = '" . (int)$information_id . "', 
-                language_id = '" . (int)$language_id . "', 
-                title = '" . $this->db->escape($value['title']) . "', 
-                description = '" . $this->db->escape($value['description']) . "', 
-                meta_title = '" . $this->db->escape($value['meta_title']) . "', 
-                meta_h1 = '" . $this->db->escape($value['meta_h1']) . "', 
-                meta_description = '" . $this->db->escape($value['meta_description']) . "'
+                    language_id = '" . (int)$language_id . "', 
+                    title = '" . $this->db->escape($value['title']) . "', 
+                    description = '" . $this->db->escape($value['description']) . "', 
+                    meta_title = '" . $this->db->escape($value['meta_title']) . "', 
+                    meta_h1 = '" . $this->db->escape($value['meta_h1']) . "', 
+                    meta_description = '" . $this->db->escape($value['meta_description']) . "'
             ");
         }
 
