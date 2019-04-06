@@ -1,275 +1,295 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
 
-class ControllerApiShipping extends Controller {
-	public function address() {
-		$this->load->language('api/shipping');
+    This file is part of Sunrise CMS.
 
-		// Delete old shipping address, shipping methods and method so not to cause any issues if there is an error
-		unset($this->session->data['shipping_address']);
-		unset($this->session->data['shipping_methods']);
-		unset($this->session->data['shipping_method']);
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-		$json = array();
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-		if ($this->cart->hasShipping()) {
-			if (!isset($this->session->data['api_id'])) {
-				$json['error']['warning'] = $this->language->get('error_permission');
-			} else {
-				// Add keys for missing post vars
-				$keys = array(
-					'firstname',
-					'lastname',
-					'company',
-					'address_1',
-					'address_2',
-					'postcode',
-					'city',
-					'zone_id',
-					'country_id'
-				);
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-				foreach ($keys as $key) {
-					if (!isset($this->request->post[$key])) {
-						$this->request->post[$key] = '';
-					}
-				}
+class ControllerApiShipping extends Controller
+{
+    public function address()
+    {
+        $this->load->language('api/shipping');
 
-				if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
-					$json['error']['firstname'] = $this->language->get('error_firstname');
-				}
+        // Delete old shipping address, shipping methods and method so not to cause any issues if there is an error
+        unset($this->session->data['shipping_address']);
+        unset($this->session->data['shipping_methods']);
+        unset($this->session->data['shipping_method']);
 
-				if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
-					$json['error']['lastname'] = $this->language->get('error_lastname');
-				}
+        $json = array();
 
-				if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 128)) {
-					$json['error']['address_1'] = $this->language->get('error_address_1');
-				}
+        if ($this->cart->hasShipping()) {
+            if (!isset($this->session->data['api_id'])) {
+                $json['error']['warning'] = $this->language->get('error_permission');
+            } else {
+                // Add keys for missing post vars
+                $keys = array(
+                    'firstname',
+                    'lastname',
+                    'company',
+                    'address_1',
+                    'address_2',
+                    'postcode',
+                    'city',
+                    'zone_id',
+                    'country_id'
+                );
 
-				if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 32)) {
-					$json['error']['city'] = $this->language->get('error_city');
-				}
+                foreach ($keys as $key) {
+                    if (!isset($this->request->post[$key])) {
+                        $this->request->post[$key] = '';
+                    }
+                }
 
-				$this->load->model('localisation/country');
+                if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 32)) {
+                    $json['error']['firstname'] = $this->language->get('error_firstname');
+                }
 
-				$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
+                if ((utf8_strlen(trim($this->request->post['lastname'])) < 1) || (utf8_strlen(trim($this->request->post['lastname'])) > 32)) {
+                    $json['error']['lastname'] = $this->language->get('error_lastname');
+                }
 
-				if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
-					$json['error']['postcode'] = $this->language->get('error_postcode');
-				}
+                if ((utf8_strlen(trim($this->request->post['address_1'])) < 3) || (utf8_strlen(trim($this->request->post['address_1'])) > 128)) {
+                    $json['error']['address_1'] = $this->language->get('error_address_1');
+                }
 
-				if ($this->request->post['country_id'] == '') {
-					$json['error']['country'] = $this->language->get('error_country');
-				}
+                if ((utf8_strlen($this->request->post['city']) < 2) || (utf8_strlen($this->request->post['city']) > 32)) {
+                    $json['error']['city'] = $this->language->get('error_city');
+                }
 
-				if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
-					$json['error']['zone'] = $this->language->get('error_zone');
-				}
+                $this->load->model('localisation/country');
 
-				// Custom field validation
-				$this->load->model('account/custom_field');
+                $country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 
-				$custom_fields = $this->model_account_custom_field->getCustomFields($this->config->get('config_customer_group_id'));
+                if ($country_info && $country_info['postcode_required'] && (utf8_strlen(trim($this->request->post['postcode'])) < 2 || utf8_strlen(trim($this->request->post['postcode'])) > 10)) {
+                    $json['error']['postcode'] = $this->language->get('error_postcode');
+                }
 
-				foreach ($custom_fields as $custom_field) {
-					if (($custom_field['location'] == 'address') && $custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['custom_field_id']])) {
-						$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-					} elseif (($custom_field['location'] == 'address') && ($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
-						$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
-					}
-				}
+                if ($this->request->post['country_id'] == '') {
+                    $json['error']['country'] = $this->language->get('error_country');
+                }
 
-				if (!$json) {
-					$this->load->model('localisation/country');
+                if (!isset($this->request->post['zone_id']) || $this->request->post['zone_id'] == '') {
+                    $json['error']['zone'] = $this->language->get('error_zone');
+                }
 
-					$country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
+                // Custom field validation
+                $this->load->model('account/custom_field');
 
-					if ($country_info) {
-						$country = $country_info['name'];
-						$iso_code_2 = $country_info['iso_code_2'];
-						$iso_code_3 = $country_info['iso_code_3'];
-						$address_format = $country_info['address_format'];
-					} else {
-						$country = '';
-						$iso_code_2 = '';
-						$iso_code_3 = '';
-						$address_format = '';
-					}
+                $custom_fields = $this->model_account_custom_field->getCustomFields($this->config->get('config_customer_group_id'));
 
-					$this->load->model('localisation/zone');
+                foreach ($custom_fields as $custom_field) {
+                    if (($custom_field['location'] == 'address') && $custom_field['required'] && empty($this->request->post['custom_field'][$custom_field['custom_field_id']])) {
+                        $json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
+                    } elseif (($custom_field['location'] == 'address') && ($custom_field['type'] == 'text') && !empty($custom_field['validation']) && !filter_var($this->request->post['custom_field'][$custom_field['custom_field_id']], FILTER_VALIDATE_REGEXP, array('options' => array('regexp' => $custom_field['validation'])))) {
+                        $json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
+                    }
+                }
 
-					$zone_info = $this->model_localisation_zone->getZone($this->request->post['zone_id']);
+                if (!$json) {
+                    $this->load->model('localisation/country');
 
-					if ($zone_info) {
-						$zone = $zone_info['name'];
-						$zone_code = $zone_info['code'];
-					} else {
-						$zone = '';
-						$zone_code = '';
-					}
+                    $country_info = $this->model_localisation_country->getCountry($this->request->post['country_id']);
 
-					$this->session->data['shipping_address'] = array(
-						'firstname'      => $this->request->post['firstname'],
-						'lastname'       => $this->request->post['lastname'],
-						'company'        => $this->request->post['company'],
-						'address_1'      => $this->request->post['address_1'],
-						'address_2'      => $this->request->post['address_2'],
-						'postcode'       => $this->request->post['postcode'],
-						'city'           => $this->request->post['city'],
-						'zone_id'        => $this->request->post['zone_id'],
-						'zone'           => $zone,
-						'zone_code'      => $zone_code,
-						'country_id'     => $this->request->post['country_id'],
-						'country'        => $country,
-						'iso_code_2'     => $iso_code_2,
-						'iso_code_3'     => $iso_code_3,
-						'address_format' => $address_format,
-						'custom_field'   => isset($this->request->post['custom_field']) ? $this->request->post['custom_field'] : array()
-					);
+                    if ($country_info) {
+                        $country = $country_info['name'];
+                        $iso_code_2 = $country_info['iso_code_2'];
+                        $iso_code_3 = $country_info['iso_code_3'];
+                        $address_format = $country_info['address_format'];
+                    } else {
+                        $country = '';
+                        $iso_code_2 = '';
+                        $iso_code_3 = '';
+                        $address_format = '';
+                    }
 
-					$json['success'] = $this->language->get('text_address');
+                    $this->load->model('localisation/zone');
 
-					unset($this->session->data['shipping_method']);
-					unset($this->session->data['shipping_methods']);
-				}
-			}
-		}
+                    $zone_info = $this->model_localisation_zone->getZone($this->request->post['zone_id']);
 
-		if (isset($this->request->server['HTTP_ORIGIN'])) {
-			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
-			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-			$this->response->addHeader('Access-Control-Max-Age: 1000');
-			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
-		}
+                    if ($zone_info) {
+                        $zone = $zone_info['name'];
+                        $zone_code = $zone_info['code'];
+                    } else {
+                        $zone = '';
+                        $zone_code = '';
+                    }
 
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
+                    $this->session->data['shipping_address'] = array(
+                        'firstname'      => $this->request->post['firstname'],
+                        'lastname'       => $this->request->post['lastname'],
+                        'company'        => $this->request->post['company'],
+                        'address_1'      => $this->request->post['address_1'],
+                        'address_2'      => $this->request->post['address_2'],
+                        'postcode'       => $this->request->post['postcode'],
+                        'city'           => $this->request->post['city'],
+                        'zone_id'        => $this->request->post['zone_id'],
+                        'zone'           => $zone,
+                        'zone_code'      => $zone_code,
+                        'country_id'     => $this->request->post['country_id'],
+                        'country'        => $country,
+                        'iso_code_2'     => $iso_code_2,
+                        'iso_code_3'     => $iso_code_3,
+                        'address_format' => $address_format,
+                        'custom_field'   => isset($this->request->post['custom_field']) ? $this->request->post['custom_field'] : array()
+                    );
 
-	public function methods() {
-		$this->load->language('api/shipping');
+                    $json['success'] = $this->language->get('text_address');
 
-		// Delete past shipping methods and method just in case there is an error
-		unset($this->session->data['shipping_methods']);
-		unset($this->session->data['shipping_method']);
+                    unset($this->session->data['shipping_method']);
+                    unset($this->session->data['shipping_methods']);
+                }
+            }
+        }
 
-		$json = array();
+        if (isset($this->request->server['HTTP_ORIGIN'])) {
+            $this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+            $this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+            $this->response->addHeader('Access-Control-Max-Age: 1000');
+            $this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+        }
 
-		if (!isset($this->session->data['api_id'])) {
-			$json['error'] = $this->language->get('error_permission');
-		} elseif ($this->cart->hasShipping()) {
-			if (!isset($this->session->data['shipping_address'])) {
-				$json['error'] = $this->language->get('error_address');
-			}
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
 
-			if (!$json) {
-				// Shipping Methods
-				$json['shipping_methods'] = array();
+    public function methods()
+    {
+        $this->load->language('api/shipping');
 
-				$this->load->model('extension/extension');
+        // Delete past shipping methods and method just in case there is an error
+        unset($this->session->data['shipping_methods']);
+        unset($this->session->data['shipping_method']);
 
-				$results = $this->model_extension_extension->getExtensions('shipping');
+        $json = array();
 
-				foreach ($results as $result) {
-					if ($this->config->get($result['code'] . '_status')) {
-						$this->load->model('extension/shipping/' . $result['code']);
+        if (!isset($this->session->data['api_id'])) {
+            $json['error'] = $this->language->get('error_permission');
+        } elseif ($this->cart->hasShipping()) {
+            if (!isset($this->session->data['shipping_address'])) {
+                $json['error'] = $this->language->get('error_address');
+            }
 
-						$quote = $this->{'model_extension_shipping_' . $result['code']}->getQuote($this->session->data['shipping_address']);
+            if (!$json) {
+                // Shipping Methods
+                $json['shipping_methods'] = array();
 
-						if ($quote) {
-							$json['shipping_methods'][$result['code']] = array(
-								'title'      => $quote['title'],
-								'quote'      => $quote['quote'],
-								'sort_order' => $quote['sort_order'],
-								'error'      => $quote['error']
-							);
-						}
-					}
-				}
+                $this->load->model('extension/extension');
 
-				$sort_order = array();
+                $results = $this->model_extension_extension->getExtensions('shipping');
 
-				foreach ($json['shipping_methods'] as $key => $value) {
-					$sort_order[$key] = $value['sort_order'];
-				}
+                foreach ($results as $result) {
+                    if ($this->config->get($result['code'] . '_status')) {
+                        $this->load->model('extension/shipping/' . $result['code']);
 
-				array_multisort($sort_order, SORT_ASC, $json['shipping_methods']);
+                        $quote = $this->{'model_extension_shipping_' . $result['code']}->getQuote($this->session->data['shipping_address']);
 
-				if ($json['shipping_methods']) {
-					$this->session->data['shipping_methods'] = $json['shipping_methods'];
-				} else {
-					$json['error'] = $this->language->get('error_no_shipping');
-				}
-			}
-		} else {
-			$json['shipping_methods'] = array();
-		}
+                        if ($quote) {
+                            $json['shipping_methods'][$result['code']] = array(
+                                'title'      => $quote['title'],
+                                'quote'      => $quote['quote'],
+                                'sort_order' => $quote['sort_order'],
+                                'error'      => $quote['error']
+                            );
+                        }
+                    }
+                }
 
-		if (isset($this->request->server['HTTP_ORIGIN'])) {
-			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
-			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-			$this->response->addHeader('Access-Control-Max-Age: 1000');
-			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
-		}
+                $sort_order = array();
 
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
+                foreach ($json['shipping_methods'] as $key => $value) {
+                    $sort_order[$key] = $value['sort_order'];
+                }
 
-	public function method() {
-		$this->load->language('api/shipping');
+                array_multisort($sort_order, SORT_ASC, $json['shipping_methods']);
 
-		// Delete old shipping method so not to cause any issues if there is an error
-		unset($this->session->data['shipping_method']);
+                if ($json['shipping_methods']) {
+                    $this->session->data['shipping_methods'] = $json['shipping_methods'];
+                } else {
+                    $json['error'] = $this->language->get('error_no_shipping');
+                }
+            }
+        } else {
+            $json['shipping_methods'] = array();
+        }
 
-		$json = array();
+        if (isset($this->request->server['HTTP_ORIGIN'])) {
+            $this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+            $this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+            $this->response->addHeader('Access-Control-Max-Age: 1000');
+            $this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+        }
 
-		if (!isset($this->session->data['api_id'])) {
-			$json['error'] = $this->language->get('error_permission');
-		} else {
-			if ($this->cart->hasShipping()) {
-				// Shipping Address
-				if (!isset($this->session->data['shipping_address'])) {
-					$json['error'] = $this->language->get('error_address');
-				}
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
 
-				// Shipping Method
-				if (empty($this->session->data['shipping_methods'])) {
-					$json['error'] = $this->language->get('error_no_shipping');
-				} elseif (!isset($this->request->post['shipping_method'])) {
-					$json['error'] = $this->language->get('error_method');
-				} else {
-					$shipping = explode('.', $this->request->post['shipping_method']);
+    public function method()
+    {
+        $this->load->language('api/shipping');
 
-					if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {
-						$json['error'] = $this->language->get('error_method');
-					}
-				}
+        // Delete old shipping method so not to cause any issues if there is an error
+        unset($this->session->data['shipping_method']);
 
-				if (!$json) {
-					$this->session->data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]];
+        $json = array();
 
-					$json['success'] = $this->language->get('text_method');
-				}
-			} else {
-				unset($this->session->data['shipping_address']);
-				unset($this->session->data['shipping_method']);
-				unset($this->session->data['shipping_methods']);
-			}
-		}
+        if (!isset($this->session->data['api_id'])) {
+            $json['error'] = $this->language->get('error_permission');
+        } else {
+            if ($this->cart->hasShipping()) {
+                // Shipping Address
+                if (!isset($this->session->data['shipping_address'])) {
+                    $json['error'] = $this->language->get('error_address');
+                }
 
-		if (isset($this->request->server['HTTP_ORIGIN'])) {
-			$this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
-			$this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
-			$this->response->addHeader('Access-Control-Max-Age: 1000');
-			$this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
-		}
+                // Shipping Method
+                if (empty($this->session->data['shipping_methods'])) {
+                    $json['error'] = $this->language->get('error_no_shipping');
+                } elseif (!isset($this->request->post['shipping_method'])) {
+                    $json['error'] = $this->language->get('error_method');
+                } else {
+                    $shipping = explode('.', $this->request->post['shipping_method']);
 
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
+                    if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {
+                        $json['error'] = $this->language->get('error_method');
+                    }
+                }
+
+                if (!$json) {
+                    $this->session->data['shipping_method'] = $this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]];
+
+                    $json['success'] = $this->language->get('text_method');
+                }
+            } else {
+                unset($this->session->data['shipping_address']);
+                unset($this->session->data['shipping_method']);
+                unset($this->session->data['shipping_methods']);
+            }
+        }
+
+        if (isset($this->request->server['HTTP_ORIGIN'])) {
+            $this->response->addHeader('Access-Control-Allow-Origin: ' . $this->request->server['HTTP_ORIGIN']);
+            $this->response->addHeader('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
+            $this->response->addHeader('Access-Control-Max-Age: 1000');
+            $this->response->addHeader('Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With');
+        }
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
 }

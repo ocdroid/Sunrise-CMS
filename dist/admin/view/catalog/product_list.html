@@ -4,11 +4,11 @@
 <?php echo $column; ?>
 
 <!-- breadcrumbs -->
-<?php require(DIR_TEMPLATE.'./inc.breadcrumbs.html'); ?>
+<?php require(SR_TEMPLATE.'./inc.breadcrumbs.html'); ?>
 
 <!-- alerts -->
-<?php require(DIR_TEMPLATE.'./inc.alert_success.html'); ?>
-<?php require(DIR_TEMPLATE.'./inc.alert_warning.html'); ?>
+<?php require(SR_TEMPLATE.'./inc.alert_success.html'); ?>
+<?php require(SR_TEMPLATE.'./inc.alert_warning.html'); ?>
 
 <div class="uk-section uk-padding-remove uk-margin-small uk-margin-medium-bottom">
 	<div class="uk-container">
@@ -731,7 +731,7 @@
 	$('input[name=\'filter_name\']').autocomplete({
 		'source': function(request, response) {
 			$.ajax({
-				url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+				url: '/index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 				dataType: 'json',
 				success: function(json) {
 					response($.map(json, function(item) {
@@ -755,7 +755,7 @@
 	$('input[name=\'filter_model\']').autocomplete({
 		'source': function(request, response) {
 			$.ajax({
-				url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_model=' +  encodeURIComponent(request),
+				url: '/index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_model=' +  encodeURIComponent(request),
 				dataType: 'json',
 				success: function(json) {
 					response($.map(json, function(item) {
@@ -782,7 +782,7 @@
 				$('input[name=\'filter_category\']').val(null);
 			}
 			$.ajax({
-				url: 'index.php?route=catalog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+				url: '/index.php?route=catalog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 				dataType: 'json',
 				success: function(json) {
 					if (json.length>0) {
@@ -819,7 +819,7 @@
 				$('input[name=\'filter_manufacturer\']').val(null);
 			}
 			$.ajax({
-				url: 'index.php?route=catalog/manufacturer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+				url: '/index.php?route=catalog/manufacturer/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 				dataType: 'json',
 				success: function(json) {
 					if (json.length>0) {

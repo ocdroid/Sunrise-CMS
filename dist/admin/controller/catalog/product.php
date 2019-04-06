@@ -1,8 +1,24 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+	See SOURCE.txt for other and additional information.
+
+	This file is part of Sunrise CMS.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerCatalogProduct extends Controller
 {
@@ -620,7 +636,7 @@ class ControllerCatalogProduct extends Controller
         $results = $this->model_catalog_product->getProducts($filter_data);
 
         foreach ($results as $result) {
-            if (is_file(DIR_IMAGE . $result['image'])) {
+            if (is_file(SR_IMAGE . $result['image'])) {
                 $image = $this->model_tool_image->resize($result['image'], 40, 40);
             } else {
                 $image = $this->model_tool_image->resize('no_image.png', 40, 40);
@@ -631,7 +647,7 @@ class ControllerCatalogProduct extends Controller
             $product_specials = $this->model_catalog_product->getProductSpecials($result['product_id']);
 
             foreach ($product_specials  as $product_special) {
-                if (($product_special['date_start'] == '0000-00-00' || strtotime($product_special['date_start']) < time()) && ($product_special['date_end'] == '0000-00-00' || strtotime($product_special['date_end']) > time())) {
+                if (($product_special['date_start'] == '2000-01-01' || strtotime($product_special['date_start']) < time()) && ($product_special['date_end'] == '2000-01-01' || strtotime($product_special['date_end']) > time())) {
                     $special = $product_special['price'];
 
                     break;
@@ -648,7 +664,7 @@ class ControllerCatalogProduct extends Controller
                 'quantity'   => $result['quantity'],
                 'status'     => $result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
                 'noindex'    => $result['noindex'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled'),
-                'href_shop'  => HTTP_CATALOG . 'index.php?route=product/product&product_id=' . $result['product_id'],
+                'href_shop'  => '/index.php?route=product/product&product_id=' . $result['product_id'],
                 'edit'       => $this->url->link('catalog/product/edit', 'token=' . $this->session->data['token'] . '&product_id=' . $result['product_id'] . $url, true)
             );
         }
@@ -933,7 +949,6 @@ class ControllerCatalogProduct extends Controller
         $data['entry_location'] = $this->language->get('entry_location');
         $data['entry_minimum'] = $this->language->get('entry_minimum');
         $data['entry_shipping'] = $this->language->get('entry_shipping');
-        $data['entry_date_available'] = $this->language->get('entry_date_available');
         $data['entry_quantity'] = $this->language->get('entry_quantity');
         $data['entry_stock_status'] = $this->language->get('entry_stock_status');
         $data['entry_price'] = $this->language->get('entry_price');
@@ -1281,14 +1296,6 @@ class ControllerCatalogProduct extends Controller
             $data['tax_class_id'] = 0;
         }
 
-        if (isset($this->request->post['date_available'])) {
-            $data['date_available'] = $this->request->post['date_available'];
-        } elseif (!empty($product_info)) {
-            $data['date_available'] = ($product_info['date_available'] != '0000-00-00') ? $product_info['date_available'] : '';
-        } else {
-            $data['date_available'] = date('Y-m-d');
-        }
-
         if (isset($this->request->post['quantity'])) {
             $data['quantity'] = $this->request->post['quantity'];
         } elseif (!empty($product_info)) {
@@ -1546,8 +1553,8 @@ class ControllerCatalogProduct extends Controller
                 'quantity'          => $product_discount['quantity'],
                 'priority'          => $product_discount['priority'],
                 'price'             => $product_discount['price'],
-                'date_start'        => ($product_discount['date_start'] != '0000-00-00') ? $product_discount['date_start'] : '',
-                'date_end'          => ($product_discount['date_end'] != '0000-00-00') ? $product_discount['date_end'] : ''
+                'date_start'        => ($product_discount['date_start'] != '2000-01-01') ? $product_discount['date_start'] : '',
+                'date_end'          => ($product_discount['date_end'] != '2000-01-01') ? $product_discount['date_end'] : ''
             );
         }
 
@@ -1566,8 +1573,8 @@ class ControllerCatalogProduct extends Controller
                 'customer_group_id' => $product_special['customer_group_id'],
                 'priority'          => $product_special['priority'],
                 'price'             => $product_special['price'],
-                'date_start'        => ($product_special['date_start'] != '0000-00-00') ? $product_special['date_start'] : '',
-                'date_end'          => ($product_special['date_end'] != '0000-00-00') ? $product_special['date_end'] :  ''
+                'date_start'        => ($product_special['date_start'] != '2000-01-01') ? $product_special['date_start'] : '',
+                'date_end'          => ($product_special['date_end'] != '2000-01-01') ? $product_special['date_end'] :  ''
             );
         }
         
@@ -1582,9 +1589,9 @@ class ControllerCatalogProduct extends Controller
 
         $this->load->model('tool/image');
 
-        if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
+        if (isset($this->request->post['image']) && is_file(SR_IMAGE . $this->request->post['image'])) {
             $data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
-        } elseif (!empty($product_info) && is_file(DIR_IMAGE . $product_info['image'])) {
+        } elseif (!empty($product_info) && is_file(SR_IMAGE . $product_info['image'])) {
             $data['thumb'] = $this->model_tool_image->resize($product_info['image'], 100, 100);
         } else {
             $data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
@@ -1604,7 +1611,7 @@ class ControllerCatalogProduct extends Controller
         $data['product_images'] = array();
 
         foreach ($product_images as $product_image) {
-            if (is_file(DIR_IMAGE . $product_image['image'])) {
+            if (is_file(SR_IMAGE . $product_image['image'])) {
                 $image = $product_image['image'];
                 $thumb = $product_image['image'];
             } else {
@@ -1732,7 +1739,7 @@ class ControllerCatalogProduct extends Controller
         $data['benefits'] = array();
         
         foreach ($productbenefits as $benefit) {
-            if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
+            if ($benefit['image'] && file_exists(SR_IMAGE . $benefit['image'])) {
                 $image = $benefit['image'];
             } else {
                 $image = 'no_image.jpg';

@@ -1,126 +1,145 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
 
-class ControllerAccountForgotten extends Controller {
-	private $error = array();
+    This file is part of Sunrise CMS.
 
-	public function index() {
-		if ($this->customer->isLogged()) {
-			$this->response->redirect($this->url->link('account/account', '', true));
-		}
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-		$this->load->language('account/forgotten');
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-		$this->document->setTitle($this->language->get('heading_title'));
-		$this->document->setRobots('noindex,follow');
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-		$this->load->model('account/customer');
+class ControllerAccountForgotten extends Controller
+{
+    private $error = array();
 
-		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->load->language('mail/forgotten');
+    public function index()
+    {
+        if ($this->customer->isLogged()) {
+            $this->response->redirect($this->url->link('account/account', '', true));
+        }
 
-			$code = token(40);
+        $this->load->language('account/forgotten');
 
-			$this->model_account_customer->editCode($this->request->post['email'], $code);
+        $this->document->setTitle($this->language->get('heading_title'));
+        $this->document->setRobots('noindex,follow');
 
-			$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+        $this->load->model('account/customer');
 
-			$message  = sprintf($this->language->get('text_greeting'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')) . "\n\n";
-			$message .= $this->language->get('text_change') . "\n\n";
-			$message .= $this->url->link('account/reset', 'code=' . $code, true) . "\n\n";
-			$message .= sprintf($this->language->get('text_ip'), $this->request->server['REMOTE_ADDR']) . "\n\n";
+        if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+            $this->load->language('mail/forgotten');
 
-			$mail = new Mail();
-			$mail->protocol = $this->config->get('config_mail_protocol');
-			$mail->parameter = $this->config->get('config_mail_parameter');
-			$mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
-			$mail->smtp_username = $this->config->get('config_mail_smtp_username');
-			$mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
-			$mail->smtp_port = $this->config->get('config_mail_smtp_port');
-			$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
+            $code = token(40);
 
-			$mail->setTo($this->request->post['email']);
-			$mail->setFrom($this->config->get('config_email'));
-			$mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
-			$mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
-			$mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
-			$mail->send();
+            $this->model_account_customer->editCode($this->request->post['email'], $code);
 
-			$this->session->data['success'] = $this->language->get('text_success');
+            $subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
 
-			$this->response->redirect($this->url->link('account/login', '', true));
-		}
+            $message  = sprintf($this->language->get('text_greeting'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8')) . "\n\n";
+            $message .= $this->language->get('text_change') . "\n\n";
+            $message .= $this->url->link('account/reset', 'code=' . $code, true) . "\n\n";
+            $message .= sprintf($this->language->get('text_ip'), $this->request->server['REMOTE_ADDR']) . "\n\n";
 
-		$data['breadcrumbs'] = array();
+            $mail = new Mail();
+            $mail->protocol = $this->config->get('config_mail_protocol');
+            $mail->parameter = $this->config->get('config_mail_parameter');
+            $mail->smtp_hostname = $this->config->get('config_mail_smtp_hostname');
+            $mail->smtp_username = $this->config->get('config_mail_smtp_username');
+            $mail->smtp_password = html_entity_decode($this->config->get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+            $mail->smtp_port = $this->config->get('config_mail_smtp_port');
+            $mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
-		);
+            $mail->setTo($this->request->post['email']);
+            $mail->setFrom($this->config->get('config_email'));
+            $mail->setSender(html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
+            $mail->setSubject(html_entity_decode($subject, ENT_QUOTES, 'UTF-8'));
+            $mail->setText(html_entity_decode($message, ENT_QUOTES, 'UTF-8'));
+            $mail->send();
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_account'),
-			'href' => $this->url->link('account/account', '', true)
-		);
+            $this->session->data['success'] = $this->language->get('text_success');
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_forgotten'),
-			'href' => $this->url->link('account/forgotten', '', true)
-		);
+            $this->response->redirect($this->url->link('account/login', '', true));
+        }
 
-		$data['heading_title'] = $this->language->get('heading_title');
-		$this->document->setRobots('noindex,follow');
+        $data['breadcrumbs'] = array();
 
-		$data['text_your_email'] = $this->language->get('text_your_email');
-		$data['text_email'] = $this->language->get('text_email');
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/home')
+        );
 
-		$data['entry_email'] = $this->language->get('entry_email');
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_account'),
+            'href' => $this->url->link('account/account', '', true)
+        );
 
-		$data['button_continue'] = $this->language->get('button_continue');
-		$data['button_back'] = $this->language->get('button_back');
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_forgotten'),
+            'href' => $this->url->link('account/forgotten', '', true)
+        );
 
-		if (isset($this->error['warning'])) {
-			$data['error_warning'] = $this->error['warning'];
-		} else {
-			$data['error_warning'] = '';
-		}
+        $data['heading_title'] = $this->language->get('heading_title');
+        $this->document->setRobots('noindex,follow');
 
-		$data['action'] = $this->url->link('account/forgotten', '', true);
+        $data['text_your_email'] = $this->language->get('text_your_email');
+        $data['text_email'] = $this->language->get('text_email');
 
-		$data['back'] = $this->url->link('account/login', '', true);
+        $data['entry_email'] = $this->language->get('entry_email');
 
-		if (isset($this->request->post['email'])) {
-			$data['email'] = $this->request->post['email'];
-		} else {
-			$data['email'] = '';
-		}
+        $data['button_continue'] = $this->language->get('button_continue');
+        $data['button_back'] = $this->language->get('button_back');
 
-		$data['column'] = $this->load->controller('common/column');
-		
-		$data['content_top'] = $this->load->controller('common/content_top');
-		$data['content_bottom'] = $this->load->controller('common/content_bottom');
-		$data['footer'] = $this->load->controller('common/footer');
-		$data['header'] = $this->load->controller('common/header');
+        if (isset($this->error['warning'])) {
+            $data['error_warning'] = $this->error['warning'];
+        } else {
+            $data['error_warning'] = '';
+        }
 
-		$this->response->setOutput($this->load->view('account/forgotten', $data));
-	}
+        $data['action'] = $this->url->link('account/forgotten', '', true);
 
-	protected function validate() {
-		if (!isset($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_email');
-		} elseif (!$this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
-			$this->error['warning'] = $this->language->get('error_email');
-		}
+        $data['back'] = $this->url->link('account/login', '', true);
 
-		$customer_info = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
+        if (isset($this->request->post['email'])) {
+            $data['email'] = $this->request->post['email'];
+        } else {
+            $data['email'] = '';
+        }
 
-		if ($customer_info && !$customer_info['approved']) {
-			$this->error['warning'] = $this->language->get('error_approved');
-		}
+        $data['column'] = $this->load->controller('common/column');
+        
+        $data['content_top'] = $this->load->controller('common/content_top');
+        $data['content_bottom'] = $this->load->controller('common/content_bottom');
+        $data['footer'] = $this->load->controller('common/footer');
+        $data['header'] = $this->load->controller('common/header');
 
-		return !$this->error;
-	}
+        $this->response->setOutput($this->load->view('account/forgotten', $data));
+    }
+
+    protected function validate()
+    {
+        if (!isset($this->request->post['email'])) {
+            $this->error['warning'] = $this->language->get('error_email');
+        } elseif (!$this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
+            $this->error['warning'] = $this->language->get('error_email');
+        }
+
+        $customer_info = $this->model_account_customer->getCustomerByEmail($this->request->post['email']);
+
+        if ($customer_info && !$customer_info['approved']) {
+            $this->error['warning'] = $this->language->get('error_approved');
+        }
+
+        return !$this->error;
+    }
 }

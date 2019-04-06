@@ -1,134 +1,119 @@
 <?php
-class ControllerExtensionModuleRandom extends Controller {
-	public function index($setting) {
 
-		static $module_id = 0;
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-		$this->load->language('extension/module/random');
+    See SOURCE.txt for other and additional information.
 
-		$data['heading_title'] = $this->language->get('heading_title');
-		// $data['heading_name'] = $setting['name'];
+    This file is part of Sunrise CMS.
 
-		$data['button_buy_it'] = $this->language->get('button_buy_it');
-		$data['text_benefits'] = $this->language->get('text_benefits');
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-		$this->load->model('catalog/random');
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-		$this->load->model('tool/image');
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-		$data['products'] = array();
+class ControllerExtensionModuleRandom extends Controller
+{
+    public function index($setting)
+    {
+        static $module_id = 0;
 
-		$filter_data = array(
-			'sort'  => 'p.date_added',
-			'order' => 'DESC',
-			'start' => 0,
-			'limit' => $setting['limit']
-		);
+        $this->load->language('extension/module/random');
 
-		$results = $this->model_catalog_random->getRandomProducts($filter_data);
+        $data['heading_title'] = $this->language->get('heading_title');
+        // $data['heading_name'] = $setting['name'];
 
-		if ($results) {
-			foreach ($results as $result) {
+        $data['button_buy_it'] = $this->language->get('button_buy_it');
 
-				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
-				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', $setting['width'], $setting['height']);
-				}
+        $this->load->model('catalog/random');
 
-				if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
-					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
-				} else {
-					$price = false;
-				}
+        $this->load->model('tool/image');
 
-				if ((float)$result['special']) {
-					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
-				} else {
-					$special = false;
-				}
+        $data['products'] = array();
 
-				if ((float)$result['special']) {
-					$yousave_percent = round(((($result['price'] - $result['special']) / $result['price']) * 100), 0);
-				} else {
-					$yousave_percent = false;
-				}
+        $filter_data = array(
+            'sort'  => 'p.date_added',
+            'order' => 'DESC',
+            'start' => 0,
+            'limit' => $setting['limit']
+        );
 
-				$productbenefits = $this->model_catalog_product->getProductBenefitsbyProductId($result['product_id']);
-				
-				$benefits = array();
-				
-				foreach ($productbenefits as $benefit) {
-					if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
-						$bimage = $benefit['image'];
-						if ($benefit['type']) {
-							$bimage = $this->model_tool_image->resize($bimage, 25, 25);
-						} else {
-							$bimage = $this->model_tool_image->resize($bimage, 120, 60);
-						}
-					} else {
-						$bimage = 'no_image.jpg';
-					}
-					$benefits[] = array(
-						'benefit_id'      	=> $benefit['benefit_id'],
-						'name'      		=> $benefit['name'],
-						'description'      	=> strip_tags(html_entity_decode($benefit['description'])),
-						'thumb'      		=> $bimage,
-						'link'      		=> $benefit['link'],
-						'type'      		=> $benefit['type']
-					);
-				}
+        $results = $this->model_catalog_random->getRandomProducts($filter_data);
 
-				$stickers = $this->getStickers($result['product_id']) ;
+        if ($results) {
+            foreach ($results as $result) {
+                if ($result['image']) {
+                    $image = $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height']);
+                } else {
+                    $image = $this->model_tool_image->resize('placeholder.png', $setting['width'], $setting['height']);
+                }
 
-				$data['products'][] = array(
-					'product_id'  => $result['product_id'],
-					'thumb'       => $image,
-					'name'        => $result['name'],
-					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
-					'price'       => $price,
-					'special'     => $special,
-					'yousave_percent' => $yousave_percent,
-					'sticker'     => $stickers,
-					'benefits'    => $benefits,
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
-				);
-			}
+                if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+                    $price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+                } else {
+                    $price = false;
+                }
 
-			$data['module_id'] = $module_id++;
+                if ((float)$result['special']) {
+                    $special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')), $this->session->data['currency']);
+                } else {
+                    $special = false;
+                }
 
-			if ($data['products']) {
-				return $this->load->view('extension/module/random', $data);
-			}
-		}
+                if ((float)$result['special']) {
+                    $yousave_percent = round(((($result['price'] - $result['special']) / $result['price']) * 100), 0);
+                } else {
+                    $yousave_percent = false;
+                }
 
-	}
+                $stickers = $this->getStickers($result['product_id']) ;
 
-	private function getStickers($product_id) {
-		
-		$stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id) ;	
+                $data['products'][] = array(
+                    'product_id'  => $result['product_id'],
+                    'thumb'       => $image,
+                    'name'        => $result['name'],
+                    'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get($this->config->get('config_theme') . '_product_description_length')) . '..',
+                    'price'       => $price,
+                    'special'     => $special,
+                    'yousave_percent' => $yousave_percent,
+                    'sticker'     => $stickers,
+                    'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id']),
+                );
+            }
 
-		if (!$stickers) {
-			return;
-		}
+            $data['module_id'] = $module_id++;
 
-		$data['stickers'] = array();
+            if ($data['products']) {
+                return $this->load->view('extension/module/random', $data);
+            }
+        }
+    }
 
-		if ($this->request->server['HTTPS']) {
-			$prot_server = HTTPS_SERVER;
-		} else {
-			$prot_server = HTTP_SERVER;
-		}
+    private function getStickers($product_id)
+    {
+        $stickers = $this->model_catalog_product->getProductStickerbyProductId($product_id) ;
 
-		foreach ($stickers as $sticker) {
-			$data['stickers'][] = array(
-				'position' => $sticker['position'],
-				'image' => $prot_server . 'images/' . $sticker['image']
-			);		
-		}
+        if (!$stickers) {
+            return;
+        }
 
-		return $this->load->view('product/stickers', $data);
+        $data['stickers'] = array();
 
-	}
+        foreach ($stickers as $sticker) {
+            $data['stickers'][] = array(
+                'position' => $sticker['position'],
+                'image' => '/images/' . $sticker['image']
+            );
+        }
 
+        return $this->load->view('product/stickers', $data);
+    }
 }

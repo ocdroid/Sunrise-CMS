@@ -1,63 +1,81 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
 
-class ControllerAccountLogout extends Controller {
-	public function index() {
-		if ($this->customer->isLogged()) {
-			$this->customer->logout();
+    This file is part of Sunrise CMS.
 
-			unset($this->session->data['shipping_address']);
-			unset($this->session->data['shipping_method']);
-			unset($this->session->data['shipping_methods']);
-			unset($this->session->data['payment_address']);
-			unset($this->session->data['payment_method']);
-			unset($this->session->data['payment_methods']);
-			unset($this->session->data['comment']);
-			unset($this->session->data['order_id']);
-			unset($this->session->data['reward']);
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-			$this->response->redirect($this->url->link('account/logout', '', true));
-		}
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-		$this->load->language('account/logout');
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-		$this->document->setTitle($this->language->get('heading_title'));
+class ControllerAccountLogout extends Controller
+{
+    public function index()
+    {
+        if ($this->customer->isLogged()) {
+            $this->customer->logout();
 
-		$data['breadcrumbs'] = array();
+            unset($this->session->data['shipping_address']);
+            unset($this->session->data['shipping_method']);
+            unset($this->session->data['shipping_methods']);
+            unset($this->session->data['payment_address']);
+            unset($this->session->data['payment_method']);
+            unset($this->session->data['payment_methods']);
+            unset($this->session->data['comment']);
+            unset($this->session->data['order_id']);
+            unset($this->session->data['reward']);
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
-		);
+            $this->response->redirect($this->url->link('account/logout', '', true));
+        }
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_account'),
-			'href' => $this->url->link('account/account', '', true)
-		);
+        $this->load->language('account/logout');
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_logout'),
-			'href' => $this->url->link('account/logout', '', true)
-		);
+        $this->document->setTitle($this->language->get('heading_title'));
 
-		$data['heading_title'] = $this->language->get('heading_title');
+        $data['breadcrumbs'] = array();
 
-		$data['text_message'] = $this->language->get('text_message');
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/home')
+        );
 
-		$data['button_continue'] = $this->language->get('button_continue');
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_account'),
+            'href' => $this->url->link('account/account', '', true)
+        );
 
-		$data['continue'] = $this->url->link('common/home');
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_logout'),
+            'href' => $this->url->link('account/logout', '', true)
+        );
 
-		$data['column'] = $this->load->controller('common/column');
-		
-		$data['content_top'] = $this->load->controller('common/content_top');
-		$data['content_bottom'] = $this->load->controller('common/content_bottom');
-		$data['footer'] = $this->load->controller('common/footer');
-		$data['header'] = $this->load->controller('common/header');
+        $data['heading_title'] = $this->language->get('heading_title');
 
-		$this->response->setOutput($this->load->view('common/success', $data));
-	}
+        $data['text_message'] = $this->language->get('text_message');
+
+        $data['button_continue'] = $this->language->get('button_continue');
+
+        $data['continue'] = $this->url->link('common/home');
+
+        $data['column'] = $this->load->controller('common/column');
+        
+        $data['content_top'] = $this->load->controller('common/content_top');
+        $data['content_bottom'] = $this->load->controller('common/content_bottom');
+        $data['footer'] = $this->load->controller('common/footer');
+        $data['header'] = $this->load->controller('common/header');
+
+        $this->response->setOutput($this->load->view('common/success', $data));
+    }
 }

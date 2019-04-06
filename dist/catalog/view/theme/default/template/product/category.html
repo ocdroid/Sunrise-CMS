@@ -2,7 +2,7 @@
 <?php echo $header; ?>
 
 <!-- breadcrumbs -->
-<?php require_once(DIR_TEMPLATE.'/default/template/inc.breadcrumbs.html'); ?>
+<?php require_once(SR_TEMPLATE.'/default/template/inc.breadcrumbs.html'); ?>
 
 <!-- heading & small description -->
 <div class="uk-section uk-padding-remove uk-margin-small uk-margin-medium-bottom">
@@ -93,7 +93,7 @@
 <?php if ($products) { ?>
 
 	<!-- sort & limit -->
-	<?php require_once(DIR_TEMPLATE.'/default/template/inc.sort_and_limit.html'); ?>
+	<?php require_once(SR_TEMPLATE.'/default/template/inc.sort_and_limit.html'); ?>
 
 	<div class="uk-section uk-padding-remove uk-margin-small">
 		<div class="uk-container">
@@ -127,100 +127,6 @@
 									<a class="cc_product_image_container" href="<?php echo $product['href']; ?>" title="<?php echo $product['name']; ?>">
 										<img data-src="<?php echo $product['thumb']; ?>" width="" height="" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" uk-img="target: .cc_pci_<?php echo $product['product_id']; ?>">
 									</a>
-
-									<?php if ($product['benefits']) { ?>
-
-										<a class="cc_product_benefits_open uk-position-absolute" href="#cc_product_benefits_open_<?php echo $product['product_id']; ?>" uk-icon="info" uk-tooltip="title: <?php echo $text_benefits; ?>; pos: top-left" uk-toggle></a>
-
-										<div id="cc_product_benefits_open_<?php echo $product['product_id']; ?>" uk-modal>
-											<div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical uk-padding-small">
-												
-												<button class="uk-modal-close-default" type="button" uk-close></button>
-												
-												<div>
-
-													<table class="uk-table uk-table-hover uk-table-small">
-
-														<caption class="uk-margin">
-															<?php echo $text_benefits; ?> (<?php echo $product['name']; ?>)
-														</caption>
-
-														<tbody>
-
-															<?php foreach ($product['benefits'] as $benefit) { ?>	
-																
-																<tr>
-
-																	<?php if ($benefit['type'] == 1) { ?>
-														
-																		<td class="cc_benefits_info_image">
-
-																			<?php if (!$benefit['link']) { ?>
-																				
-																				<img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>">
-
-																			<?php } else { ?>
-
-																				<a href="<?php echo $benefit['link']; ?>" target="_blank" rel="noopener" title="<?php echo $benefit['name']; ?>">
-																					<img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>">
-																				</a>
-
-																			<?php } ?>
-														
-																		</td>
-
-																		<td>
-
-																			<?php if ($benefit['description']) { ?>
-																				<?php echo $benefit['description']; ?>
-																			<?php } ?>
-														
-																		</td>
-
-																	<?php } ?>
-
-																</tr>
-													
-															<?php } ?>
-													
-															<?php foreach ($product['benefits'] as $benefit) { ?>	
-																
-																<tr>
-
-																	<?php if ($benefit['type'] == 0) { ?>
-														
-																		<td>
-
-																			<?php if (!$benefit['link']) { ?>
-
-																				<img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>">
-
-																			<?php } else { ?>
-
-																				<a href="<?php echo $benefit['link']; ?>" target="_blank" rel="noopener" title="<?php echo $benefit['name']; ?>">
-																					<img src="<?php echo $benefit['thumb']; ?>" alt="<?php echo $benefit['name']; ?>">
-																				</a>
-
-																			<?php } ?>
-														
-																		</td>
-
-																	<?php } ?>
-
-																</tr>
-
-															<?php } ?>
-											
-														</tbody>
-
-													</table>
-
-												</div>
-
-											</div>
-										</div>
-
-									<?php } ?>
 
 								</div>
 

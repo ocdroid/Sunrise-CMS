@@ -1,8 +1,24 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+	See SOURCE.txt for other and additional information.
+
+	This file is part of Sunrise CMS.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerUserUserPermission extends Controller
 {
@@ -358,7 +374,7 @@ class ControllerUserUserPermission extends Controller
         $files = array();
 
         // Make path into an array
-        $path = array(DIR_APPLICATION . 'controller/*');
+        $path = array(SR_APPLICATION . 'controller/*');
 
         // While the path array is still populated keep looping through
         while (count($path) != 0) {
@@ -381,7 +397,7 @@ class ControllerUserUserPermission extends Controller
         sort($files);
                     
         foreach ($files as $file) {
-            $controller = substr($file, strlen(DIR_APPLICATION . 'controller/'));
+            $controller = substr($file, strlen(SR_APPLICATION . 'controller/'));
 
             $permission = substr($controller, 0, strrpos($controller, '.'));
 

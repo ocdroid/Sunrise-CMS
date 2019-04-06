@@ -1,8 +1,24 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
+
+    This file is part of Sunrise CMS.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerBlogArticle extends Controller
 {
@@ -138,8 +154,6 @@ class ControllerBlogArticle extends Controller
                 $data['heading_title'] = $article_info['name'];
             }
 
-            $data['text_benefits'] = $this->language->get('text_benefits');
-            
             $data['text_select'] = $this->language->get('text_select');
             $data['text_write'] = $this->language->get('text_write');
             $data['text_login'] = sprintf($this->language->get('text_login'), $this->url->link('account/login', '', true), $this->url->link('account/register', '', true));
@@ -240,31 +254,6 @@ class ControllerBlogArticle extends Controller
                     $yousave_percent = false;
                 }
                 
-                $productbenefits = $this->model_catalog_product->getProductBenefitsbyProductId($result['product_id']);
-                
-                $benefits = array();
-                
-                foreach ($productbenefits as $benefit) {
-                    if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
-                        $bimage = $benefit['image'];
-                        if ($benefit['type']) {
-                            $bimage = $this->model_tool_image->resize($bimage, 25, 25);
-                        } else {
-                            $bimage = $this->model_tool_image->resize($bimage, 120, 60);
-                        }
-                    } else {
-                        $bimage = 'no_image.jpg';
-                    }
-                    $benefits[] = array(
-                        'benefit_id'      	=> $benefit['benefit_id'],
-                        'name'      		=> $benefit['name'],
-                        'description'      	=> strip_tags(html_entity_decode($benefit['description'])),
-                        'thumb'      		=> $bimage,
-                        'link'      		=> $benefit['link'],
-                        'type'      		=> $benefit['type']
-                    );
-                }
-
                 $stickers = $this->getStickers($result['product_id']) ;
                             
                 $data['products'][] = array(
@@ -276,7 +265,6 @@ class ControllerBlogArticle extends Controller
                     'special' 	 => $special,
                     'yousave_percent' => $yousave_percent,
                     'sticker'     => $stickers,
-                    'benefits'    => $benefits,
                     'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
                     'reviews'    => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
                     'href'    	 => $this->url->link('product/product', 'product_id=' . $result['product_id']),
@@ -290,8 +278,8 @@ class ControllerBlogArticle extends Controller
             $results = $this->model_blog_article->getDownloads($this->request->get['article_id']);
  
             foreach ($results as $result) {
-                if (file_exists(DIR_DOWNLOAD . $result['filename'])) {
-                    $size = filesize(DIR_DOWNLOAD . $result['filename']);
+                if (file_exists(SR_DOWNLOAD . $result['filename'])) {
+                    $size = filesize(SR_DOWNLOAD . $result['filename']);
  
                     $i = 0;
  
@@ -401,11 +389,9 @@ class ControllerBlogArticle extends Controller
         }
 
         $download_info = $this->model_blog_article->getDownload($article_id, $download_id);
-        
-        
 
         if ($download_info) {
-            $file = DIR_DOWNLOAD . $download_info['filename'];
+            $file = SR_DOWNLOAD . $download_info['filename'];
             $mask = basename($download_info['mask']);
 
             if (!headers_sent()) {
@@ -421,8 +407,6 @@ class ControllerBlogArticle extends Controller
 
                     readfile($file, 'rb');
 
-                    
-
                     exit;
                 } else {
                     exit('Error: Could not find file ' . $file . '!');
@@ -431,7 +415,7 @@ class ControllerBlogArticle extends Controller
                 exit('Error: Headers already sent out!');
             }
         } else {
-            $this->redirect(HTTP_SERVER . 'index.php?route=account/download');
+            $this->redirect('/index.php?route=account/download');
         }
     }
     
@@ -517,16 +501,10 @@ class ControllerBlogArticle extends Controller
         
         $data['stickers'] = array();
         
-        if ($this->request->server['HTTPS']) {
-            $prot_server = HTTPS_SERVER;
-        } else {
-            $prot_server = HTTP_SERVER;
-        }
-        
         foreach ($stickers as $sticker) {
             $data['stickers'][] = array(
                 'position' => $sticker['position'],
-                'image' => $prot_server . 'images/' . $sticker['image']
+                'image' => '/images/' . $sticker['image']
             );
         }
                 

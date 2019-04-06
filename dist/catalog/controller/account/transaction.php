@@ -1,99 +1,117 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
 
-class ControllerAccountTransaction extends Controller {
-	public function index() {
-		if (!$this->customer->isLogged()) {
-			$this->session->data['redirect'] = $this->url->link('account/transaction', '', true);
+    This file is part of Sunrise CMS.
 
-			$this->response->redirect($this->url->link('account/login', '', true));
-		}
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-		$this->load->language('account/transaction');
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-		$this->document->setTitle($this->language->get('heading_title'));
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-		$data['breadcrumbs'] = array();
+class ControllerAccountTransaction extends Controller
+{
+    public function index()
+    {
+        if (!$this->customer->isLogged()) {
+            $this->session->data['redirect'] = $this->url->link('account/transaction', '', true);
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
-		);
+            $this->response->redirect($this->url->link('account/login', '', true));
+        }
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_account'),
-			'href' => $this->url->link('account/account', '', true)
-		);
+        $this->load->language('account/transaction');
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_transaction'),
-			'href' => $this->url->link('account/transaction', '', true)
-		);
+        $this->document->setTitle($this->language->get('heading_title'));
 
-		$this->load->model('account/transaction');
+        $data['breadcrumbs'] = array();
 
-		$data['heading_title'] = $this->language->get('heading_title');
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/home')
+        );
 
-		$data['column_date_added'] = $this->language->get('column_date_added');
-		$data['column_description'] = $this->language->get('column_description');
-		$data['column_amount'] = sprintf($this->language->get('column_amount'), $this->config->get('config_currency'));
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_account'),
+            'href' => $this->url->link('account/account', '', true)
+        );
 
-		$data['text_total'] = $this->language->get('text_total');
-		$data['text_empty'] = $this->language->get('text_empty');
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_transaction'),
+            'href' => $this->url->link('account/transaction', '', true)
+        );
 
-		$data['button_continue'] = $this->language->get('button_continue');
+        $this->load->model('account/transaction');
 
-		if (isset($this->request->get['page'])) {
-			$page = $this->request->get['page'];
-		} else {
-			$page = 1;
-		}
+        $data['heading_title'] = $this->language->get('heading_title');
 
-		$data['transactions'] = array();
+        $data['column_date_added'] = $this->language->get('column_date_added');
+        $data['column_description'] = $this->language->get('column_description');
+        $data['column_amount'] = sprintf($this->language->get('column_amount'), $this->config->get('config_currency'));
 
-		$filter_data = array(
-			'sort'  => 'date_added',
-			'order' => 'DESC',
-			'start' => ($page - 1) * 10,
-			'limit' => 10
-		);
+        $data['text_total'] = $this->language->get('text_total');
+        $data['text_empty'] = $this->language->get('text_empty');
 
-		$transaction_total = $this->model_account_transaction->getTotalTransactions();
+        $data['button_continue'] = $this->language->get('button_continue');
 
-		$results = $this->model_account_transaction->getTransactions($filter_data);
+        if (isset($this->request->get['page'])) {
+            $page = $this->request->get['page'];
+        } else {
+            $page = 1;
+        }
 
-		foreach ($results as $result) {
-			$data['transactions'][] = array(
-				'amount'      => $this->currency->format($result['amount'], $this->config->get('config_currency')),
-				'description' => $result['description'],
-				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
-			);
-		}
+        $data['transactions'] = array();
 
-		$pagination = new Pagination();
-		$pagination->total = $transaction_total;
-		$pagination->page = $page;
-		$pagination->limit = 10;
-		$pagination->url = $this->url->link('account/transaction', 'page={page}', true);
+        $filter_data = array(
+            'sort'  => 'date_added',
+            'order' => 'DESC',
+            'start' => ($page - 1) * 10,
+            'limit' => 10
+        );
 
-		$data['pagination'] = $pagination->render();
+        $transaction_total = $this->model_account_transaction->getTotalTransactions();
 
-		$data['results'] = sprintf($this->language->get('text_pagination'), ($transaction_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($transaction_total - 10)) ? $transaction_total : ((($page - 1) * 10) + 10), $transaction_total, ceil($transaction_total / 10));
+        $results = $this->model_account_transaction->getTransactions($filter_data);
 
-		$data['total'] = $this->currency->format($this->customer->getBalance(), $this->session->data['currency']);
+        foreach ($results as $result) {
+            $data['transactions'][] = array(
+                'amount'      => $this->currency->format($result['amount'], $this->config->get('config_currency')),
+                'description' => $result['description'],
+                'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added']))
+            );
+        }
 
-		$data['continue'] = $this->url->link('account/account', '', true);
+        $pagination = new Pagination();
+        $pagination->total = $transaction_total;
+        $pagination->page = $page;
+        $pagination->limit = 10;
+        $pagination->url = $this->url->link('account/transaction', 'page={page}', true);
 
-		$data['column'] = $this->load->controller('common/column');
-		
-		$data['content_top'] = $this->load->controller('common/content_top');
-		$data['content_bottom'] = $this->load->controller('common/content_bottom');
-		$data['footer'] = $this->load->controller('common/footer');
-		$data['header'] = $this->load->controller('common/header');
+        $data['pagination'] = $pagination->render();
 
-		$this->response->setOutput($this->load->view('account/transaction', $data));
-	}
+        $data['results'] = sprintf($this->language->get('text_pagination'), ($transaction_total) ? (($page - 1) * 10) + 1 : 0, ((($page - 1) * 10) > ($transaction_total - 10)) ? $transaction_total : ((($page - 1) * 10) + 10), $transaction_total, ceil($transaction_total / 10));
+
+        $data['total'] = $this->currency->format($this->customer->getBalance(), $this->session->data['currency']);
+
+        $data['continue'] = $this->url->link('account/account', '', true);
+
+        $data['column'] = $this->load->controller('common/column');
+        
+        $data['content_top'] = $this->load->controller('common/content_top');
+        $data['content_bottom'] = $this->load->controller('common/content_bottom');
+        $data['footer'] = $this->load->controller('common/footer');
+        $data['header'] = $this->load->controller('common/header');
+
+        $this->response->setOutput($this->load->view('account/transaction', $data));
+    }
 }

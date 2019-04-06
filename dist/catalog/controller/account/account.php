@@ -1,123 +1,124 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+	See SOURCE.txt for other and additional information.
 
-class ControllerAccountAccount extends Controller {
-	public function index() {
-		if (!$this->customer->isLogged()) {
-			$this->session->data['redirect'] = $this->url->link('account/account', '', true);
+	This file is part of Sunrise CMS.
 
-			$this->response->redirect($this->url->link('account/login', '', true));
-		}
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-		$this->load->language('account/account');
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
 
-		$this->document->setTitle($this->language->get('heading_title'));
-		$this->document->setRobots('noindex,follow');
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-		$data['breadcrumbs'] = array();
+class ControllerAccountAccount extends Controller
+{
+    public function index()
+    {
+        if (!$this->customer->isLogged()) {
+            $this->session->data['redirect'] = $this->url->link('account/account', '', true);
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
-		);
+            $this->response->redirect($this->url->link('account/login', '', true));
+        }
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_account'),
-			'href' => $this->url->link('account/account', '', true)
-		);
+        $this->load->language('account/account');
 
-		if (isset($this->session->data['success'])) {
-			$data['success'] = $this->session->data['success'];
+        $this->document->setTitle($this->language->get('heading_title'));
+        $this->document->setRobots('noindex,follow');
 
-			unset($this->session->data['success']);
-		} else {
-			$data['success'] = '';
-		} 
+        $data['breadcrumbs'] = array();
 
-		$data['heading_title'] = $this->language->get('heading_title');
-		$this->document->setRobots('noindex,follow');
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/home')
+        );
 
-		$data['text_my_account'] = $this->language->get('text_my_account');
-		$data['text_my_orders'] = $this->language->get('text_my_orders');
-		$data['text_my_newsletter'] = $this->language->get('text_my_newsletter');
-		$data['text_edit'] = $this->language->get('text_edit');
-		$data['text_password'] = $this->language->get('text_password');
-		$data['text_address'] = $this->language->get('text_address');
-		$data['text_credit_card'] = $this->language->get('text_credit_card');
-		$data['text_order'] = $this->language->get('text_order');
-		$data['text_download'] = $this->language->get('text_download');
-		$data['text_reward'] = $this->language->get('text_reward');
-		$data['text_transaction'] = $this->language->get('text_transaction');
-		$data['text_newsletter'] = $this->language->get('text_newsletter');
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_account'),
+            'href' => $this->url->link('account/account', '', true)
+        );
 
-		$data['edit'] = $this->url->link('account/edit', '', true);
-		$data['password'] = $this->url->link('account/password', '', true);
-		$data['address'] = $this->url->link('account/address', '', true);
-		
-		$data['credit_cards'] = array();
-		
-		$files = glob(DIR_APPLICATION . 'controller/extension/credit_card/*.php');
-		
-		foreach ($files as $file) {
-			$code = basename($file, '.php');
-			
-			if ($this->config->get($code . '_status') && $this->config->get($code . '_card')) {
-				$this->load->language('extension/credit_card/' . $code);
+        if (isset($this->session->data['success'])) {
+            $data['success'] = $this->session->data['success'];
 
-				$data['credit_cards'][] = array(
-					'name' => $this->language->get('heading_title'),
-					'href' => $this->url->link('extension/credit_card/' . $code, '', true)
-				);
-			}
-		}
-		
-		$data['order'] = $this->url->link('account/order', '', true);
-		$data['download'] = $this->url->link('account/download', '', true);
-		
-		if ($this->config->get('reward_status')) {
-			$data['reward'] = $this->url->link('account/reward', '', true);
-		} else {
-			$data['reward'] = '';
-		}		
-		
-		$data['transaction'] = $this->url->link('account/transaction', '', true);
-		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
-		
-		$data['column'] = $this->load->controller('common/column');
-		$data['content_top'] = $this->load->controller('common/content_top');
-		$data['content_bottom'] = $this->load->controller('common/content_bottom');
-		$data['footer'] = $this->load->controller('common/footer');
-		$data['header'] = $this->load->controller('common/header');
-		
-		$this->response->setOutput($this->load->view('account/account', $data));
-	}
+            unset($this->session->data['success']);
+        } else {
+            $data['success'] = '';
+        }
 
-	public function country() {
-		$json = array();
+        $data['heading_title'] = $this->language->get('heading_title');
+        $this->document->setRobots('noindex,follow');
 
-		$this->load->model('localisation/country');
+        $data['text_my_account'] = $this->language->get('text_my_account');
+        $data['text_my_orders'] = $this->language->get('text_my_orders');
+        $data['text_my_newsletter'] = $this->language->get('text_my_newsletter');
+        $data['text_edit'] = $this->language->get('text_edit');
+        $data['text_password'] = $this->language->get('text_password');
+        $data['text_address'] = $this->language->get('text_address');
+        $data['text_order'] = $this->language->get('text_order');
+        $data['text_download'] = $this->language->get('text_download');
+        $data['text_reward'] = $this->language->get('text_reward');
+        $data['text_transaction'] = $this->language->get('text_transaction');
+        $data['text_newsletter'] = $this->language->get('text_newsletter');
 
-		$country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
+        $data['edit'] = $this->url->link('account/edit', '', true);
+        $data['password'] = $this->url->link('account/password', '', true);
+        $data['address'] = $this->url->link('account/address', '', true);
+        
+        $data['order'] = $this->url->link('account/order', '', true);
+        $data['download'] = $this->url->link('account/download', '', true);
+        
+        if ($this->config->get('reward_status')) {
+            $data['reward'] = $this->url->link('account/reward', '', true);
+        } else {
+            $data['reward'] = '';
+        }
+        
+        $data['transaction'] = $this->url->link('account/transaction', '', true);
+        $data['newsletter'] = $this->url->link('account/newsletter', '', true);
+        
+        $data['column'] = $this->load->controller('common/column');
+        $data['content_top'] = $this->load->controller('common/content_top');
+        $data['content_bottom'] = $this->load->controller('common/content_bottom');
+        $data['footer'] = $this->load->controller('common/footer');
+        $data['header'] = $this->load->controller('common/header');
+        
+        $this->response->setOutput($this->load->view('account/account', $data));
+    }
 
-		if ($country_info) {
-			$this->load->model('localisation/zone');
+    public function country()
+    {
+        $json = array();
 
-			$json = array(
-				'country_id'        => $country_info['country_id'],
-				'name'              => $country_info['name'],
-				'iso_code_2'        => $country_info['iso_code_2'],
-				'iso_code_3'        => $country_info['iso_code_3'],
-				'address_format'    => $country_info['address_format'],
-				'postcode_required' => $country_info['postcode_required'],
-				'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
-				'status'            => $country_info['status']
-			);
-		}
+        $this->load->model('localisation/country');
 
-		$this->response->addHeader('Content-Type: application/json');
-		$this->response->setOutput(json_encode($json));
-	}
+        $country_info = $this->model_localisation_country->getCountry($this->request->get['country_id']);
+
+        if ($country_info) {
+            $this->load->model('localisation/zone');
+
+            $json = array(
+                'country_id'        => $country_info['country_id'],
+                'name'              => $country_info['name'],
+                'iso_code_2'        => $country_info['iso_code_2'],
+                'iso_code_3'        => $country_info['iso_code_3'],
+                'address_format'    => $country_info['address_format'],
+                'postcode_required' => $country_info['postcode_required'],
+                'zone'              => $this->model_localisation_zone->getZonesByCountryId($this->request->get['country_id']),
+                'status'            => $country_info['status']
+            );
+        }
+
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($json));
+    }
 }

@@ -1,69 +1,117 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
 
-class ModelAccountDownload extends Model {
-	public function getDownload($download_id) {
-		$implode = array();
+    This file is part of Sunrise CMS.
 
-		$order_statuses = $this->config->get('config_complete_status');
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-		foreach ($order_statuses as $order_status_id) {
-			$implode[] = "o.order_status_id = '" . (int)$order_status_id . "'";
-		}
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-		if ($implode) {
-			$query = $this->db->query("SELECT d.filename, d.mask FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_product op ON (o.order_id = op.order_id) LEFT JOIN " . DB_PREFIX . "product_to_download p2d ON (op.product_id = p2d.product_id) LEFT JOIN " . DB_PREFIX . "download d ON (p2d.download_id = d.download_id) WHERE o.customer_id = '" . (int)$this->customer->getId() . "' AND (" . implode(" OR ", $implode) . ") AND d.download_id = '" . (int)$download_id . "'");
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-			return $query->row;
-		} else {
-			return;
-		}
-	}
+class ModelAccountDownload extends Model
+{
+    public function getDownload($download_id)
+    {
+        $implode = array();
 
-	public function getDownloads($start = 0, $limit = 20) {
-		if ($start < 0) {
-			$start = 0;
-		}
+        $order_statuses = $this->config->get('config_complete_status');
 
-		if ($limit < 1) {
-			$limit = 20;
-		}
+        foreach ($order_statuses as $order_status_id) {
+            $implode[] = "o.order_status_id = '" . (int)$order_status_id . "'";
+        }
 
-		$implode = array();
+        if ($implode) {
+            $query = $this->db->query("
+                SELECT d.filename, d.mask 
+                FROM `order` o 
+				LEFT JOIN order_product op ON (o.order_id = op.order_id) 
+				LEFT JOIN product_to_download p2d ON (op.product_id = p2d.product_id) 
+				LEFT JOIN download d ON (p2d.download_id = d.download_id) 
+				WHERE o.customer_id = '" . (int)$this->customer->getId() . "' 
+				    AND (" . implode(" OR ", $implode) . ") 
+				    AND d.download_id = '" . (int)$download_id . "'
+			");
 
-		$order_statuses = $this->config->get('config_complete_status');
+            return $query->row;
+        } else {
+            return;
+        }
+    }
 
-		foreach ($order_statuses as $order_status_id) {
-			$implode[] = "o.order_status_id = '" . (int)$order_status_id . "'";
-		}
+    public function getDownloads($start = 0, $limit = 20)
+    {
+        if ($start < 0) {
+            $start = 0;
+        }
 
-		if ($implode) {
-			$query = $this->db->query("SELECT DISTINCT d.download_id, o.order_id, o.date_added, dd.name, d.filename FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_product op ON (o.order_id = op.order_id) LEFT JOIN " . DB_PREFIX . "product_to_download p2d ON (op.product_id = p2d.product_id) LEFT JOIN " . DB_PREFIX . "download d ON (p2d.download_id = d.download_id) LEFT JOIN " . DB_PREFIX . "download_description dd ON (d.download_id = dd.download_id) WHERE o.customer_id = '" . (int)$this->customer->getId() . "' AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "' AND (" . implode(" OR ", $implode) . ") ORDER BY o.date_added DESC LIMIT " . (int)$start . "," . (int)$limit);
+        if ($limit < 1) {
+            $limit = 20;
+        }
 
-			return $query->rows;
-		} else {
-			return array();
-		}
-	}
+        $implode = array();
 
-	public function getTotalDownloads() {
-		$implode = array();
+        $order_statuses = $this->config->get('config_complete_status');
 
-		$order_statuses = $this->config->get('config_complete_status');
+        foreach ($order_statuses as $order_status_id) {
+            $implode[] = "o.order_status_id = '" . (int)$order_status_id . "'";
+        }
 
-		foreach ($order_statuses as $order_status_id) {
-			$implode[] = "o.order_status_id = '" . (int)$order_status_id . "'";
-		}
+        if ($implode) {
+            $query = $this->db->query(
+                "
+				SELECT DISTINCT d.download_id, o.order_id, o.date_added, dd.name, d.filename FROM `order` o 
+				LEFT JOIN order_product op ON (o.order_id = op.order_id) 
+				LEFT JOIN product_to_download p2d ON (op.product_id = p2d.product_id) 
+				LEFT JOIN download d ON (p2d.download_id = d.download_id) 
+				LEFT JOIN download_description dd ON (d.download_id = dd.download_id) 
+				WHERE o.customer_id = '" . (int)$this->customer->getId() . "' 
+				    AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "' 
+				    AND (" . implode(" OR ", $implode) . ") 
+				ORDER BY o.date_added DESC 
+				LIMIT " . (int)$start . "," . (int)$limit
+            );
 
-		if ($implode) {
-			$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order` o LEFT JOIN " . DB_PREFIX . "order_product op ON (o.order_id = op.order_id) LEFT JOIN " . DB_PREFIX . "product_to_download p2d ON (op.product_id = p2d.product_id) WHERE o.customer_id = '" . (int)$this->customer->getId() . "' AND (" . implode(" OR ", $implode) . ")");
+            return $query->rows;
+        } else {
+            return array();
+        }
+    }
 
-			return $query->row['total'];
-		} else {
-			return 0;
-		}
-	}
+    public function getTotalDownloads()
+    {
+        $implode = array();
+
+        $order_statuses = $this->config->get('config_complete_status');
+
+        foreach ($order_statuses as $order_status_id) {
+            $implode[] = "o.order_status_id = '" . (int)$order_status_id . "'";
+        }
+
+        if ($implode) {
+            $query = $this->db->query("
+                SELECT COUNT(*) AS total 
+                FROM `order` o 
+				LEFT JOIN order_product op ON (o.order_id = op.order_id) 
+				LEFT JOIN product_to_download p2d ON (op.product_id = p2d.product_id) 
+				WHERE o.customer_id = '" . (int)$this->customer->getId() . "' 
+				    AND (" . implode(" OR ", $implode) . ")
+			");
+
+            return $query->row['total'];
+        } else {
+            return 0;
+        }
+    }
 }

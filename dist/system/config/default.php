@@ -1,10 +1,28 @@
 <?php
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
+
+	See SOURCE.txt for other and additional information.
+
+	This file is part of Sunrise CMS.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 // Site
 $_['site_base']            = '';
-$_['site_ssl']             = false;
+$_['site_ssl']             = true;
 
 // Url
 $_['url_autostart']        = true;
@@ -36,24 +54,23 @@ $_['mail_verp']            = false;
 $_['mail_parameter']       = '';
 
 // Cache
-$_['cache_type']           = 'redis'; // file or redis
-$_['cache_expire']         = 3600;
+$_['cache_type']           = '';
+$_['cache_expire']         = '';
 
 // Session
 $_['session_autostart']    = true;
-$_['session_name']         = 'PHPSESSID';
+$_['session_name']         = 'SRSESSID';
 
 // Template
-$_['template_type']        = 'php';
+$_['template_type']        = 'html';
 
 // Error
 $_['config_error_display'] = true;
 $_['config_error_log']     = true;
 $_['config_error_filename'] = 'error.log';
 
-// Reponse
+// Response
 $_['response_header']      = array('Content-Type: text/html; charset=utf-8');
-$_['response_compression'] = 0;
 
 // Autoload Configs
 $_['config_autoload']      = array();
@@ -61,7 +78,7 @@ $_['config_autoload']      = array();
 // Autoload Libraries
 $_['library_autoload']     = array();
 
-// Autoload Libraries
+// Autoload Models
 $_['model_autoload']       = array();
 
 // Actions

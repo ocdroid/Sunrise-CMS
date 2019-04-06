@@ -236,7 +236,7 @@ $(document).ready(function(){
 	$('.product_autocomplete').autocomplete({
 		'source': function(request, response) {
 			$.ajax({
-				url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+				url: '/index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 				dataType: 'json',
 				success: function(json) {
 					response($.map(json, function(item) {
@@ -294,7 +294,7 @@ function empty( mixed_var ) {
 function checkFile(module_id){
 	console.log($('#custom_template_module_' + module_id + '_template_name').val());
 	$.ajax({
-		url: 'index.php?route=extension/module/custom_template/check_file&token=<?php echo $token ?>',
+		url: '/index.php?route=extension/module/custom_template/check_file&token=<?php echo $token ?>',
 		type: 'POST',
 		dataType: 'json',
 		data: {path: $('#custom_template_module_' + module_id + '_template_name').val()},
@@ -523,7 +523,7 @@ function addModule(){
 	$('.product_autocomplete').autocomplete({
 		'source': function(request, response) {
 			$.ajax({
-				url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+				url: '/index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 				dataType: 'json',
 				success: function(json) {
 					response($.map(json, function(item) {

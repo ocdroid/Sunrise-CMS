@@ -1,6 +1,24 @@
 <?php
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
+
+	See SOURCE.txt for other and additional information.
+
+	This file is part of Sunrise CMS.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 final class Loader
 {
@@ -49,7 +67,7 @@ final class Loader
         $this->registry->get('event')->trigger('model/' . $route . '/before', array(&$route));
         
         if (!$this->registry->has('model_' . str_replace(array('/', '-', '.'), array('_', '', ''), $route))) {
-            $file  = DIR_APPLICATION . 'model/' . $route . '.php';
+            $file  = SR_APPLICATION . 'model/' . $route . '.php';
             $class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', $route);
             
             if (is_file($file)) {
@@ -95,7 +113,7 @@ final class Loader
             $output = $template->render($route . '.html');
 
             // template paths
-            // if (!empty($_SESSION[$_COOKIE['default']]['user_id']) && basename(DIR_APPLICATION) == 'catalog') {
+            // if (!empty($_SESSION[$_COOKIE['default']]['user_id']) && basename(SR_APPLICATION) == 'catalog') {
             // 	$output = '<span class="cc_template_path uk-label uk-background-secondary" id="cc_template_path">'.$route.'</span>' . $output . '';
             // }
             //
@@ -116,7 +134,7 @@ final class Loader
         // Sanitize the call
         $route = preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route);
             
-        $file = DIR_SYSTEM . 'library/' . $route . '.php';
+        $file = SR_SYSTEM . 'library/' . $route . '.php';
         $class = str_replace('/', '\\', $route);
 
         if (is_file($file)) {
@@ -130,7 +148,7 @@ final class Loader
     
     public function helper($route)
     {
-        $file = DIR_SYSTEM . 'helper/' . preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route) . '.php';
+        $file = SR_SYSTEM . 'helper/' . preg_replace('/[^a-zA-Z0-9_\/]/', '', (string)$route) . '.php';
 
         if (is_file($file)) {
             include_once($file);
@@ -177,7 +195,7 @@ final class Loader
             
             // Store the model object
             if (!isset($model[$route])) {
-                $file = DIR_APPLICATION . 'model/' .  substr($route, 0, strrpos($route, '/')) . '.php';
+                $file = SR_APPLICATION . 'model/' .  substr($route, 0, strrpos($route, '/')) . '.php';
                 $class = 'Model' . preg_replace('/[^a-zA-Z0-9]/', '', substr($route, 0, strrpos($route, '/')));
 
                 if (is_file($file)) {

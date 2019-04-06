@@ -1,116 +1,203 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
 
-class ModelUserApi extends Model {
-	public function addApi($data) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "api` SET name = '" . $this->db->escape($data['name']) . "', `key` = '" . $this->db->escape($data['key']) . "', status = '" . (int)$data['status'] . "', date_added = NOW(), date_modified = NOW()");
+    This file is part of Sunrise CMS.
 
-		$api_id = $this->db->getLastId();
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-		if (isset($data['api_ip'])) {
-			foreach ($data['api_ip'] as $ip) {
-				if ($ip) {
-					$this->db->query("INSERT INTO `" . DB_PREFIX . "api_ip` SET api_id = '" . (int)$api_id . "', ip = '" . $this->db->escape($ip) . "'");
-				}
-			}
-		}
-		
-		return $api_id;
-	}
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-	public function editApi($api_id, $data) {
-		$this->db->query("UPDATE `" . DB_PREFIX . "api` SET name = '" . $this->db->escape($data['name']) . "', `key` = '" . $this->db->escape($data['key']) . "', status = '" . (int)$data['status'] . "', date_modified = NOW() WHERE api_id = '" . (int)$api_id . "'");
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "api_ip WHERE api_id = '" . (int)$api_id . "'");
+class ModelUserApi extends Model
+{
+    public function addApi($data)
+    {
+        $this->db->query("
+			INSERT INTO `api` 
+			SET name = '" . $this->db->escape($data['name']) . "', 
+				`key` = '" . $this->db->escape($data['key']) . "', 
+				status = '" . (int)$data['status'] . "', 
+				date_added = NOW(), 
+				date_modified = NOW()
+		");
 
-		if (isset($data['api_ip'])) {
-			foreach ($data['api_ip'] as $ip) {
-				if ($ip) {
-					$this->db->query("INSERT INTO `" . DB_PREFIX . "api_ip` SET api_id = '" . (int)$api_id . "', ip = '" . $this->db->escape($ip) . "'");
-				}
-			}
-		}
-	}
+        $api_id = $this->db->getLastId();
 
-	public function deleteApi($api_id) {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "api` WHERE api_id = '" . (int)$api_id . "'");
-	}
+        if (isset($data['api_ip'])) {
+            foreach ($data['api_ip'] as $ip) {
+                if ($ip) {
+                    $this->db->query("
+						INSERT INTO `api_ip` 
+						SET api_id = '" . (int)$api_id . "', 
+							ip = '" . $this->db->escape($ip) . "'
+					");
+                }
+            }
+        }
+        
+        return $api_id;
+    }
 
-	public function getApi($api_id) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "api` WHERE api_id = '" . (int)$api_id . "'");
+    public function editApi($api_id, $data)
+    {
+        $this->db->query("
+			UPDATE `api` 
+			SET name = '" . $this->db->escape($data['name']) . "', 
+				`key` = '" . $this->db->escape($data['key']) . "', 
+				status = '" . (int)$data['status'] . "', 
+				date_modified = NOW() 
+			WHERE api_id = '" . (int)$api_id . "'
+		");
 
-		return $query->row;
-	}
+        $this->db->query("
+			DELETE FROM api_ip 
+			WHERE api_id = '" . (int)$api_id . "'
+		");
 
-	public function getApis($data = array()) {
-		$sql = "SELECT * FROM `" . DB_PREFIX . "api`";
+        if (isset($data['api_ip'])) {
+            foreach ($data['api_ip'] as $ip) {
+                if ($ip) {
+                    $this->db->query("
+						INSERT INTO `api_ip` 
+						SET api_id = '" . (int)$api_id . "', 
+							ip = '" . $this->db->escape($ip) . "'
+					");
+                }
+            }
+        }
+    }
 
-		$sort_data = array(
-			'name',
-			'status',
-			'date_added',
-			'date_modified'
-		);
+    public function deleteApi($api_id)
+    {
+        $this->db->query("
+			DELETE FROM `api` 
+			WHERE api_id = '" . (int)$api_id . "'
+		");
+    }
 
-		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-			$sql .= " ORDER BY " . $data['sort'];
-		} else {
-			$sql .= " ORDER BY name";
-		}
+    public function getApi($api_id)
+    {
+        $query = $this->db->query("
+			SELECT * 
+			FROM `api` 
+			WHERE api_id = '" . (int)$api_id . "'
+		");
 
-		if (isset($data['order']) && ($data['order'] == 'DESC')) {
-			$sql .= " DESC";
-		} else {
-			$sql .= " ASC";
-		}
+        return $query->row;
+    }
 
-		if (isset($data['start']) || isset($data['limit'])) {
-			if ($data['start'] < 0) {
-				$data['start'] = 0;
-			}
+    public function getApis($data = array())
+    {
+        $sql = "
+			SELECT * 
+			FROM `api`
+		";
 
-			if ($data['limit'] < 1) {
-				$data['limit'] = 20;
-			}
+        $sort_data = array(
+            'name',
+            'status',
+            'date_added',
+            'date_modified'
+        );
 
-			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
-		}
+        if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+            $sql .= " ORDER BY " . $data['sort'];
+        } else {
+            $sql .= " ORDER BY name";
+        }
 
-		$query = $this->db->query($sql);
+        if (isset($data['order']) && ($data['order'] == 'DESC')) {
+            $sql .= " DESC";
+        } else {
+            $sql .= " ASC";
+        }
 
-		return $query->rows;
-	}
+        if (isset($data['start']) || isset($data['limit'])) {
+            if ($data['start'] < 0) {
+                $data['start'] = 0;
+            }
 
-	public function getTotalApis() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "api`");
+            if ($data['limit'] < 1) {
+                $data['limit'] = 20;
+            }
 
-		return $query->row['total'];
-	}
+            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+        }
 
-	public function addApiIp($api_id, $ip) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "api_ip` SET api_id = '" . (int)$api_id . "', ip = '" . $this->db->escape($ip) . "'");
-	}
+        $query = $this->db->query($sql);
 
-	public function getApiIps($api_id) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "api_ip` WHERE api_id = '" . (int)$api_id . "'");
+        return $query->rows;
+    }
 
-		return $query->rows;
-	}
+    public function getTotalApis()
+    {
+        $query = $this->db->query("
+			SELECT COUNT(*) AS total 
+			FROM `api`
+		");
 
-	public function getApiSessions($api_id) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "api_session` WHERE api_id = '" . (int)$api_id . "'");
+        return $query->row['total'];
+    }
 
-		return $query->rows;
-	}
+    public function addApiIp($api_id, $ip)
+    {
+        $this->db->query("
+			INSERT INTO `api_ip` 
+			SET api_id = '" . (int)$api_id . "', 
+				ip = '" . $this->db->escape($ip) . "'
+			");
+    }
 
-	public function addApiSession($api_id, $data) {
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "api_session` SET api_id = '" . (int)$api_id . "', token = '" . $this->db->escape($data['token']) . "', date_added = NOW(), date_modified = NOW()");
-	}
+    public function getApiIps($api_id)
+    {
+        $query = $this->db->query("
+			SELECT * 
+			FROM `api_ip` 
+			WHERE api_id = '" . (int)$api_id . "'
+		");
 
-	public function deleteApiSession($api_session_id) {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "api_session` WHERE api_session_id = '" . (int)$api_session_id . "'");
-	}
+        return $query->rows;
+    }
+
+    public function getApiSessions($api_id)
+    {
+        $query = $this->db->query("
+			SELECT * 
+			FROM `api_session` 
+			WHERE api_id = '" . (int)$api_id . "'
+		");
+
+        return $query->rows;
+    }
+
+    public function addApiSession($api_id, $data)
+    {
+        $this->db->query("
+			INSERT INTO `api_session` 
+			SET api_id = '" . (int)$api_id . "', 
+				token = '" . $this->db->escape($data['token']) . "', 
+				date_added = NOW(), 
+				date_modified = NOW()
+		");
+    }
+
+    public function deleteApiSession($api_session_id)
+    {
+        $this->db->query("
+			DELETE FROM `api_session` 
+			WHERE api_session_id = '" . (int)$api_session_id . "'
+		");
+    }
 }

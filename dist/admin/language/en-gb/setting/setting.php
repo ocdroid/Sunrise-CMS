@@ -1,8 +1,24 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+	See SOURCE.txt for other and additional information.
+
+	This file is part of Sunrise CMS.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 // Heading
 $_['heading_title']                = 'Settings';
@@ -79,12 +95,12 @@ $_['entry_stock_warning']          = 'Show Out Of Stock Warning';
 $_['entry_stock_checkout']         = 'Stock Checkout';
 $_['entry_logo']                   = 'Store Logo';
 $_['entry_icon']                   = 'Icon';
-$_['entry_ftp_hostname']           = 'FTP Host';
-$_['entry_ftp_port']               = 'FTP Port';
-$_['entry_ftp_username']           = 'FTP Username';
-$_['entry_ftp_password']           = 'FTP Password';
-$_['entry_ftp_root']               = 'FTP Root';
-$_['entry_ftp_status']             = 'Enable FTP';
+// $_['entry_ftp_hostname']           = 'FTP Host';
+// $_['entry_ftp_port']               = 'FTP Port';
+// $_['entry_ftp_username']           = 'FTP Username';
+// $_['entry_ftp_password']           = 'FTP Password';
+// $_['entry_ftp_root']               = 'FTP Root';
+// $_['entry_ftp_status']             = 'Enable FTP';
 $_['entry_mail_protocol']          = 'Mail Protocol';
 $_['entry_mail_parameter']         = 'Mail Parameters';
 $_['entry_mail_smtp_hostname']     = 'SMTP Hostname';
@@ -103,7 +119,6 @@ $_['entry_seo_url_postfix']        = 'End Friendly URL';
 $_['entry_file_max_size']	       = 'Max File Size';
 $_['entry_file_ext_allowed']       = 'Allowed File Extensions';
 $_['entry_file_mime_allowed']      = 'Allowed File Mime Types';
-$_['entry_maintenance']            = 'Maintenance Mode';
 $_['entry_password']               = 'Allow Forgotten Password';
 $_['entry_encryption']             = 'Encryption Key';
 $_['entry_error_display']          = 'Display Errors';
@@ -140,7 +155,7 @@ $_['help_stock_display']           = 'Display stock quantity on the product page
 $_['help_stock_warning']           = 'Display out of stock message on the shopping cart page if a product is out of stock but stock checkout is yes. (Warning always shows if stock checkout is no)';
 $_['help_stock_checkout']          = 'Allow customers to still checkout if the products they are ordering are not in stock.';
 $_['help_icon']                    = 'The icon should be a PNG that is 16px x 16px.';
-$_['help_ftp_root']                = 'The directory your OpenCart installation is stored in. Normally \'public_html/\'.';
+$_['help_ftp_root']                = 'The directory your Sunrise CMS installation is stored in. Normally \'public_html/\'.';
 $_['help_mail_protocol']           = 'Only choose \'Mail\' unless your host has disabled the php mail function.';
 $_['help_mail_parameter']          = 'When using \'Mail\', additional mail parameters can be added here (e.g. -f email@storeaddress.com).';
 $_['help_mail_smtp_hostname']      = 'Add \'tls://\' or \'ssl://\' prefix if security connection is required. (e.g. tls://smtp.gmail.com, ssl://smtp.gmail.com).';
@@ -156,7 +171,6 @@ $_['help_seo_url_postfix'] 		   = 'For example. html';
 $_['help_file_max_size']		   = 'The maximum image file size you can upload in Image Manager. Enter as byte.';
 $_['help_file_ext_allowed']        = 'Add which file extensions are allowed to be uploaded. Use a new line for each value.';
 $_['help_file_mime_allowed']       = 'Add which file mime types are allowed to be uploaded. Use a new line for each value.';
-$_['help_maintenance']             = 'Prevents customers from browsing your store. They will instead see a maintenance message. If logged in as admin, you will see the store as normal.';
 $_['help_password']                = 'Allow forgotten password to be used for the admin. This will be disabled automatically if the system detects a hack attempt.';
 $_['help_encryption']              = 'Please provide a secret key that will be used to encrypt private information when processing orders.';
 

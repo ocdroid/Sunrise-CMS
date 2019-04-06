@@ -1,273 +1,288 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
 
-class ControllerBlogLatest extends Controller { 	
-	public function index() { 
-	
-		$this->document->addStyle('/css/catalog/page/blog/latest.css');
+    This file is part of Sunrise CMS.
 
-		$this->load->language('blog/latest');
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-		$this->load->model('blog/article');
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-		$this->load->model('tool/image'); 
-		
-		if (isset($this->request->get['sort'])) {
-			$sort = $this->request->get['sort'];
-			$this->document->setRobots('noindex,follow');
-		} else {
-			$sort = 'p.date_added';
-		}
-		
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-		if (isset($this->request->get['order'])) {
-			$order = $this->request->get['order'];
-		} else {
-			$order = 'DESC';
-		}
-		
-		if (isset($this->request->get['page'])) {
-			$page = $this->request->get['page'];
-			$this->document->setRobots('noindex,follow');
-		} else { 
-			$page = 1;
-		}	
-							
-		if (isset($this->request->get['limit'])) {
-			$limit = $this->request->get['limit'];
-			$this->document->setRobots('noindex,follow');
-		} else {
-			$limit = $this->config->get('configblog_article_limit');
-		}
-		
-		$configblog_html_h1 = $this->config->get('configblog_html_h1');
-		
-		if (!empty($configblog_html_h1)) {
-			$data['heading_title'] = $this->config->get('configblog_html_h1');
-		} else {
-			$data['heading_title'] = $this->language->get('heading_title');
-		}
-		
-		$configblog_meta_title = $this->config->get('configblog_meta_title');
-		
-		if (!empty($configblog_meta_title)) {
-			$this->document->setTitle($this->config->get('configblog_meta_title'));
-		} else {
-			$this->document->setTitle($this->language->get('heading_title'));
-		}
-		
-		$this->document->setDescription($this->config->get('configblog_meta_description'));
+class ControllerBlogLatest extends Controller
+{
+    public function index()
+    {
+        $this->document->addStyle('/css/catalog/page/blog/latest.css');
 
-		$data['breadcrumbs'] = array();
+        $this->load->language('blog/latest');
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
-		);
-		
-		$configblog_name = $this->config->get('configblog_name');
-		
-		if (!empty($configblog_name)) {
-			$name = $this->config->get('configblog_name');
-		} else {
-			$name = $this->language->get('heading_title');
-		}
-		
-		$data['breadcrumbs'][] = array(
-			'text' => $name,
-			'href' => $this->url->link('blog/latest')
-		);
+        $this->load->model('blog/article');
 
-		$url = '';
+        $this->load->model('tool/image');
+        
+        if (isset($this->request->get['sort'])) {
+            $sort = $this->request->get['sort'];
+            $this->document->setRobots('noindex,follow');
+        } else {
+            $sort = 'p.date_added';
+        }
+        
 
-		if (isset($this->request->get['sort'])) {
-			$url .= '&sort=' . $this->request->get['sort'];
-		}	
+        if (isset($this->request->get['order'])) {
+            $order = $this->request->get['order'];
+        } else {
+            $order = 'DESC';
+        }
+        
+        if (isset($this->request->get['page'])) {
+            $page = $this->request->get['page'];
+            $this->document->setRobots('noindex,follow');
+        } else {
+            $page = 1;
+        }
+                            
+        if (isset($this->request->get['limit'])) {
+            $limit = $this->request->get['limit'];
+            $this->document->setRobots('noindex,follow');
+        } else {
+            $limit = $this->config->get('configblog_article_limit');
+        }
+        
+        $configblog_html_h1 = $this->config->get('configblog_html_h1');
+        
+        if (!empty($configblog_html_h1)) {
+            $data['heading_title'] = $this->config->get('configblog_html_h1');
+        } else {
+            $data['heading_title'] = $this->language->get('heading_title');
+        }
+        
+        $configblog_meta_title = $this->config->get('configblog_meta_title');
+        
+        if (!empty($configblog_meta_title)) {
+            $this->document->setTitle($this->config->get('configblog_meta_title'));
+        } else {
+            $this->document->setTitle($this->language->get('heading_title'));
+        }
+        
+        $this->document->setDescription($this->config->get('configblog_meta_description'));
 
-		if (isset($this->request->get['order'])) {
-			$url .= '&order=' . $this->request->get['order'];
-		}
+        $data['breadcrumbs'] = array();
 
-		if (isset($this->request->get['page'])) {
-			$url .= '&page=' . $this->request->get['page'];
-		}	
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/home')
+        );
+        
+        $configblog_name = $this->config->get('configblog_name');
+        
+        if (!empty($configblog_name)) {
+            $name = $this->config->get('configblog_name');
+        } else {
+            $name = $this->language->get('heading_title');
+        }
+        
+        $data['breadcrumbs'][] = array(
+            'text' => $name,
+            'href' => $this->url->link('blog/latest')
+        );
 
-		if (isset($this->request->get['limit'])) {
-			$url .= '&limit=' . $this->request->get['limit'];
-		}
+        $url = '';
 
-		$data['text_refine'] = $this->language->get('text_refine');
-		$data['text_views'] = $this->language->get('text_views');
-		$data['text_empty'] = $this->language->get('text_empty');			
-		$data['text_display'] = $this->language->get('text_display');
-		$data['text_list'] = $this->language->get('text_list');
-		$data['text_grid'] = $this->language->get('text_grid');
-		$data['text_sort'] = $this->language->get('text_sort');
-		$data['text_limit'] = $this->language->get('text_limit');
-			
-		$data['text_sort_by'] = $this->language->get('text_sort_by');
-		$data['text_sort_name'] = $this->language->get('text_sort_name');
-		$data['text_sort_date'] = $this->language->get('text_sort_date');
-		$data['text_sort_rated'] = $this->language->get('text_sort_rated');
-		$data['text_sort_viewed'] = $this->language->get('text_sort_viewed');
-		
-		$data['text_go_back'] = $this->language->get('text_go_back');
-					
-		$data['button_more'] = $this->language->get('button_more');
-		$data['button_continue'] = $this->language->get('button_continue');
-			
-		$data['configblog_review_status'] = $this->config->get('configblog_review_status');
+        if (isset($this->request->get['sort'])) {
+            $url .= '&sort=' . $this->request->get['sort'];
+        }
 
-		$data['articles'] = array();
-			
-			$article_data = array(
-				'sort'               => $sort,
-				'order'              => $order,
-				'start'              => ($page - 1) * $limit,
-				'limit'              => $limit
-			);
-					
-			$article_total = $this->model_blog_article->getTotalArticles($article_data); 
-			
-			$results = $this->model_blog_article->getArticles($article_data);
-			
+        if (isset($this->request->get['order'])) {
+            $url .= '&order=' . $this->request->get['order'];
+        }
 
-		foreach ($results as $result) {
-			if ($result['image']) {
-				$image = $this->model_tool_image->resize($result['image'], $this->config->get('configblog_image_article_width'), $this->config->get('configblog_image_article_height'));
-			} else {
-				$image = false;
-			}
-		
-			$data['articles'][] = array(
-				'article_id'  => $result['article_id'],
-				'thumb'       => $image,
-				'name'        => $result['name'],
-				'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('configblog_article_description_length')) . '..',
-				'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'viewed'      => $result['viewed'],
-				'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
-				'href'        => $this->url->link('blog/article',  '&article_id=' . $result['article_id'])
-			);
-		}
+        if (isset($this->request->get['page'])) {
+            $url .= '&page=' . $this->request->get['page'];
+        }
 
-		$url = '';
+        if (isset($this->request->get['limit'])) {
+            $url .= '&limit=' . $this->request->get['limit'];
+        }
 
-		if (isset($this->request->get['limit'])) {
-			$url .= '&limit=' . $this->request->get['limit'];
-		}
+        $data['text_refine'] = $this->language->get('text_refine');
+        $data['text_views'] = $this->language->get('text_views');
+        $data['text_empty'] = $this->language->get('text_empty');
+        $data['text_display'] = $this->language->get('text_display');
+        $data['text_list'] = $this->language->get('text_list');
+        $data['text_grid'] = $this->language->get('text_grid');
+        $data['text_sort'] = $this->language->get('text_sort');
+        $data['text_limit'] = $this->language->get('text_limit');
+            
+        $data['text_sort_by'] = $this->language->get('text_sort_by');
+        $data['text_sort_name'] = $this->language->get('text_sort_name');
+        $data['text_sort_date'] = $this->language->get('text_sort_date');
+        $data['text_sort_rated'] = $this->language->get('text_sort_rated');
+        $data['text_sort_viewed'] = $this->language->get('text_sort_viewed');
+        
+        $data['text_go_back'] = $this->language->get('text_go_back');
+                    
+        $data['button_more'] = $this->language->get('button_more');
+        $data['button_continue'] = $this->language->get('button_continue');
+            
+        $data['configblog_review_status'] = $this->config->get('configblog_review_status');
 
-		$data['sorts'] = array();
-			
-			$data['sorts'][] = array(
-				'text'  => $this->language->get('text_default'),
-				'value' => 'p.sort_order-ASC',
-				'href'  => $this->url->link('blog/latest', 'blog_category_id=' . '&sort=p.sort_order&order=ASC' . $url)
-			);
-			
-			$data['sorts'][] = array(
-				'text'  => $this->language->get('text_name_asc'),
-				'value' => 'pd.name-ASC',
-				'href'  => $this->url->link('blog/latest', 'blog_category_id=' . '&sort=pd.name&order=ASC' . $url)
-			);
+        $data['articles'] = array();
+            
+        $article_data = array(
+                'sort'               => $sort,
+                'order'              => $order,
+                'start'              => ($page - 1) * $limit,
+                'limit'              => $limit
+            );
+                    
+        $article_total = $this->model_blog_article->getTotalArticles($article_data);
+            
+        $results = $this->model_blog_article->getArticles($article_data);
+            
 
-			$data['sorts'][] = array(
-				'text'  => $this->language->get('text_name_desc'),
-				'value' => 'pd.name-DESC',
-				'href'  => $this->url->link('blog/latest', 'blog_category_id=' . '&sort=pd.name&order=DESC' . $url)
-			);
+        foreach ($results as $result) {
+            if ($result['image']) {
+                $image = $this->model_tool_image->resize($result['image'], $this->config->get('configblog_image_article_width'), $this->config->get('configblog_image_article_height'));
+            } else {
+                $image = false;
+            }
+        
+            $data['articles'][] = array(
+                'article_id'  => $result['article_id'],
+                'thumb'       => $image,
+                'name'        => $result['name'],
+                'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('configblog_article_description_length')) . '..',
+                'date_added'  => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+                'viewed'      => $result['viewed'],
+                'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+                'href'        => $this->url->link('blog/article', '&article_id=' . $result['article_id'])
+            );
+        }
 
-			$data['sorts'][] = array(
-				'text'  => $this->language->get('text_date_asc'),
-				'value' => 'p.date_added-ASC',
-				'href'  => $this->url->link('blog/latest',  '&sort=p.date_added&order=ASC' . $url)
-			); 
+        $url = '';
 
-			$data['sorts'][] = array(
-				'text'  => $this->language->get('text_date_desc'),
-				'value' => 'p.date_added-DESC',
-				'href'  => $this->url->link('blog/latest', '&sort=p.date_added&order=DESC' . $url)
-			); 
-			
-			$data['sorts'][] = array(
-				'text'  => $this->language->get('text_viewed_desc'),
-				'value' => 'p.viewed-DESC',
-				'href'  => $this->url->link('blog/latest',  '&sort=p.viewed&order=DESC' . $url)
-			);
+        if (isset($this->request->get['limit'])) {
+            $url .= '&limit=' . $this->request->get['limit'];
+        }
 
-			$data['sorts'][] = array(
-				'text'  => $this->language->get('text_viewed_asc'),
-				'value' => 'p.viewed-ASC',
-				'href'  => $this->url->link('blog/latest',  '&sort=p.viewed&order=ASC' . $url)
-			); 
-			
-			$url = '';
+        $data['sorts'] = array();
+            
+        $data['sorts'][] = array(
+                'text'  => $this->language->get('text_default'),
+                'value' => 'p.sort_order-ASC',
+                'href'  => $this->url->link('blog/latest', 'blog_category_id=' . '&sort=p.sort_order&order=ASC' . $url)
+            );
+            
+        $data['sorts'][] = array(
+                'text'  => $this->language->get('text_name_asc'),
+                'value' => 'pd.name-ASC',
+                'href'  => $this->url->link('blog/latest', 'blog_category_id=' . '&sort=pd.name&order=ASC' . $url)
+            );
 
-		if (isset($this->request->get['sort'])) {
-			$url .= '&sort=' . $this->request->get['sort'];
-		}	
+        $data['sorts'][] = array(
+                'text'  => $this->language->get('text_name_desc'),
+                'value' => 'pd.name-DESC',
+                'href'  => $this->url->link('blog/latest', 'blog_category_id=' . '&sort=pd.name&order=DESC' . $url)
+            );
 
-		if (isset($this->request->get['order'])) {
-			$url .= '&order=' . $this->request->get['order'];
-		}
+        $data['sorts'][] = array(
+                'text'  => $this->language->get('text_date_asc'),
+                'value' => 'p.date_added-ASC',
+                'href'  => $this->url->link('blog/latest', '&sort=p.date_added&order=ASC' . $url)
+            );
 
-		$data['limits'] = array();
+        $data['sorts'][] = array(
+                'text'  => $this->language->get('text_date_desc'),
+                'value' => 'p.date_added-DESC',
+                'href'  => $this->url->link('blog/latest', '&sort=p.date_added&order=DESC' . $url)
+            );
+            
+        $data['sorts'][] = array(
+                'text'  => $this->language->get('text_viewed_desc'),
+                'value' => 'p.viewed-DESC',
+                'href'  => $this->url->link('blog/latest', '&sort=p.viewed&order=DESC' . $url)
+            );
 
-		$limits = array_unique(array($this->config->get('configblog_article_limit'), 25, 50, 75, 100));
+        $data['sorts'][] = array(
+                'text'  => $this->language->get('text_viewed_asc'),
+                'value' => 'p.viewed-ASC',
+                'href'  => $this->url->link('blog/latest', '&sort=p.viewed&order=ASC' . $url)
+            );
+            
+        $url = '';
 
-		sort($limits);
+        if (isset($this->request->get['sort'])) {
+            $url .= '&sort=' . $this->request->get['sort'];
+        }
 
-		foreach($limits as $value){
-			$data['limits'][] = array(
-				'text'  => $value,
-				'value' => $value,
-				'href'  => $this->url->link('blog/latest', $url . '&limit=' . $value)
-			);
-		}
+        if (isset($this->request->get['order'])) {
+            $url .= '&order=' . $this->request->get['order'];
+        }
 
-		$url = '';
+        $data['limits'] = array();
 
-		if (isset($this->request->get['sort'])) {
-			$url .= '&sort=' . $this->request->get['sort'];
-		}	
+        $limits = array_unique(array($this->config->get('configblog_article_limit'), 25, 50, 75, 100));
 
-		if (isset($this->request->get['order'])) {
-			$url .= '&order=' . $this->request->get['order'];
-		}
+        sort($limits);
 
-		if (isset($this->request->get['limit'])) {
-			$url .= '&limit=' . $this->request->get['limit'];
-		}
+        foreach ($limits as $value) {
+            $data['limits'][] = array(
+                'text'  => $value,
+                'value' => $value,
+                'href'  => $this->url->link('blog/latest', $url . '&limit=' . $value)
+            );
+        }
 
-		$pagination = new Pagination();
-		$pagination->total = $article_total;
-		$pagination->page = $page;
-		$pagination->limit = $limit;
-		$pagination->text = $this->language->get('text_pagination');
-		$pagination->url = $this->url->link('blog/latest', $url . '&page={page}');
+        $url = '';
 
-		$data['pagination'] = $pagination->render();
-		
-		$data['article_total'] = $article_total;
-		
-		$data['continue'] = $this->url->link('common/home');
+        if (isset($this->request->get['sort'])) {
+            $url .= '&sort=' . $this->request->get['sort'];
+        }
 
-		$data['sort'] = $sort;
-		$data['order'] = $order;
-		$data['limit'] = $limit;
+        if (isset($this->request->get['order'])) {
+            $url .= '&order=' . $this->request->get['order'];
+        }
 
-		$data['column'] = $this->load->controller('common/column');
-		
-		$data['content_top'] = $this->load->controller('common/content_top');
-		$data['content_bottom'] = $this->load->controller('common/content_bottom');
-		$data['footer'] = $this->load->controller('common/footer');
-		$data['header'] = $this->load->controller('common/header');
-		
-		$this->response->setOutput($this->load->view('blog/latest', $data));
+        if (isset($this->request->get['limit'])) {
+            $url .= '&limit=' . $this->request->get['limit'];
+        }
 
-	}
+        $pagination = new Pagination();
+        $pagination->total = $article_total;
+        $pagination->page = $page;
+        $pagination->limit = $limit;
+        $pagination->text = $this->language->get('text_pagination');
+        $pagination->url = $this->url->link('blog/latest', $url . '&page={page}');
+
+        $data['pagination'] = $pagination->render();
+        
+        $data['article_total'] = $article_total;
+        
+        $data['continue'] = $this->url->link('common/home');
+
+        $data['sort'] = $sort;
+        $data['order'] = $order;
+        $data['limit'] = $limit;
+
+        $data['column'] = $this->load->controller('common/column');
+        
+        $data['content_top'] = $this->load->controller('common/content_top');
+        $data['content_bottom'] = $this->load->controller('common/content_bottom');
+        $data['footer'] = $this->load->controller('common/footer');
+        $data['header'] = $this->load->controller('common/header');
+        
+        $this->response->setOutput($this->load->view('blog/latest', $data));
+    }
 }
-?>

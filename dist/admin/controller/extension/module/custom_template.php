@@ -290,7 +290,7 @@ class ControllerExtensionModuleCustomTemplate extends Controller
                 $directory = 'default';
             }
 
-            $path = DIR_CATALOG . 'view/theme/' . $directory . '/template/' . $this->request->post['path'] . '.html';
+            $path = SR_CATALOG . 'view/theme/' . $directory . '/template/' . $this->request->post['path'] . '.html';
 
             if (is_file($path)) {
                 $result['success'] = sprintf($this->language->get('ajax_success'), $path);

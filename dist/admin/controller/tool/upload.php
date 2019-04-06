@@ -1,8 +1,24 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+	See SOURCE.txt for other and additional information.
+
+	This file is part of Sunrise CMS.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerToolUpload extends Controller
 {
@@ -32,8 +48,8 @@ class ControllerToolUpload extends Controller
                 // Remove file before deleting DB record.
                 $upload_info = $this->model_tool_upload->getUpload($upload_id);
 
-                if ($upload_info && is_file(DIR_UPLOAD . $upload_info['filename'])) {
-                    unlink(DIR_UPLOAD . $upload_info['filename']);
+                if ($upload_info && is_file(SR_UPLOAD . $upload_info['filename'])) {
+                    unlink(SR_UPLOAD . $upload_info['filename']);
                 }
 
                 $this->model_tool_upload->deleteUpload($upload_id);
@@ -289,7 +305,7 @@ class ControllerToolUpload extends Controller
         $upload_info = $this->model_tool_upload->getUploadByCode($code);
 
         if ($upload_info) {
-            $file = DIR_UPLOAD . $upload_info['filename'];
+            $file = SR_UPLOAD . $upload_info['filename'];
             $mask = basename($upload_info['name']);
 
             if (!headers_sent()) {
@@ -409,7 +425,7 @@ class ControllerToolUpload extends Controller
         if (!$json) {
             $file = $filename . '.' . token(32);
 
-            move_uploaded_file($this->request->files['file']['tmp_name'], DIR_UPLOAD . $file);
+            move_uploaded_file($this->request->files['file']['tmp_name'], SR_UPLOAD . $file);
 
             // Hide the uploaded file name so people can not link to it directly.
             $this->load->model('tool/upload');

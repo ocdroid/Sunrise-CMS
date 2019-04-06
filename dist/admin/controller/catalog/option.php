@@ -1,8 +1,24 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+	See SOURCE.txt for other and additional information.
+
+	This file is part of Sunrise CMS.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerCatalogOption extends Controller
 {
@@ -390,7 +406,7 @@ class ControllerCatalogOption extends Controller
         $data['option_values'] = array();
 
         foreach ($option_values as $option_value) {
-            if (is_file(DIR_IMAGE . $option_value['image'])) {
+            if (is_file(SR_IMAGE . $option_value['image'])) {
                 $image = $option_value['image'];
                 $thumb = $option_value['image'];
             } else {
@@ -490,7 +506,7 @@ class ControllerCatalogOption extends Controller
                     $option_values = $this->model_catalog_option->getOptionValues($option['option_id']);
 
                     foreach ($option_values as $option_value) {
-                        if (is_file(DIR_IMAGE . $option_value['image'])) {
+                        if (is_file(SR_IMAGE . $option_value['image'])) {
                             $image = $this->model_tool_image->resize($option_value['image'], 50, 50);
                         } else {
                             $image = $this->model_tool_image->resize('no_image.png', 50, 50);

@@ -234,7 +234,7 @@
 				var node = this;
 
 				$.ajax({
-					url: 'index.php?route=user/api/deletesession&token=<?php echo $token; ?>&api_session_id=' + $(node).val(),
+					url: '/index.php?route=user/api/deletesession&token=<?php echo $token; ?>&api_session_id=' + $(node).val(),
 					type: 'post',
 					dataType: 'json',
 					beforeSend: function () {

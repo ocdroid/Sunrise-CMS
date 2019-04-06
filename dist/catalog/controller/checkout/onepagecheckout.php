@@ -1,9 +1,11 @@
 <?php
 
-class ControllerCheckoutOnepagecheckout extends Controller {
+class ControllerCheckoutOnepagecheckout extends Controller
+{
     public $errors = array();
 
-    public function index() {
+    public function index()
+    {
         // Validate cart has products and has stock.
         if (!$this->cart->hasProducts() || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
             $this->response->redirect($this->url->link('checkout/cart'));
@@ -72,18 +74,18 @@ class ControllerCheckoutOnepagecheckout extends Controller {
 
 
         foreach ($products as $i => $product) {
-
-            if(!empty($product['image'])){
+            if (!empty($product['image'])) {
                 $products[$i]['thumb'] = $this->model_tool_image->resize($product['image'], $this->config->get($this->config->get('config_theme') . '_image_category_width'), $this->config->get($this->config->get('config_theme') . '_image_category_height'));
             } else {
                 $products[$i]['thumb'] = '';
             }
 
 
-            if($this->request->server['REQUEST_METHOD'] != 'POST')
+            if ($this->request->server['REQUEST_METHOD'] != 'POST') {
                 $products[$i]['price'] = $this->currency->format($product['price'], $this->session->data['currency']);
-            else
+            } else {
                 $products[$i]['price'] = $product['price'];
+            }
             $product_total = 0;
             $data['cart_total'] += $product['total'];
             $option_data = array();
@@ -200,7 +202,7 @@ class ControllerCheckoutOnepagecheckout extends Controller {
             $data['error_warning'] = '';
         }
 
-        if ( $this->customer->isLogged()) {
+        if ($this->customer->isLogged()) {
             $this->load->model('account/address');
             $addr = $this->model_account_address->getAddress($this->customer->getAddressId());
             $data['c_logged'] = true;
@@ -209,8 +211,7 @@ class ControllerCheckoutOnepagecheckout extends Controller {
             $data['address_1'] = $addr['address_1'];
             $data['email'] = $this->customer->getEmail();
             $data['telephone'] = $this->customer->getTelephone();
-        }
-        else {
+        } else {
             $data['c_logged'] = false;
             $data['c_name'] = '';
             $data['city'] = '';
@@ -259,14 +260,12 @@ class ControllerCheckoutOnepagecheckout extends Controller {
         //    var_dump(json_decode('{"type": "page", "id": 1, "color": "#69F"}',true));exit;
         $this->errors = [];
         if (($this->request->server['REQUEST_METHOD'] == 'POST')) {
-
             if ($this->validate_form()) {
                 $order_data = array();
                 if ($this->affiliate->isLogged()) {
                     $order_data['affiliate_id'] = $this->affiliate->getId();
                 } else {
                     $order_data['affiliate_id'] = '';
-
                 }
                 $order_data['invoice_prefix'] = $this->config->get('config_invoice_prefix');
                 $order_data['store_id'] = $this->config->get('config_store_id');
@@ -294,10 +293,11 @@ class ControllerCheckoutOnepagecheckout extends Controller {
                 if (isset($this->request->post['email'])) {
                     $this->session->data['payment_address']['email'] = $this->request->post['email'];
                     $order_data['email'] = $this->request->post['email'];
-                    if(!empty(trim($this->request->post['email'])))
+                    if (!empty(trim($this->request->post['email']))) {
                         $order_data['order_status_id'] =0 ;
-                    else
+                    } else {
                         $order_data['order_status_id'] = $this->config->get('config_order_status_id');
+                    }
                 }
                 if (isset($this->request->post['city'])) {
                     $this->session->data['payment_address']['city'] = $this->request->post['city'];
@@ -384,15 +384,16 @@ class ControllerCheckoutOnepagecheckout extends Controller {
                 // var_dump($this->session->data['payment_method']);exit;
 
                 $json['payment'] = $this->load->controller('extension/payment/' . $this->session->data['payment_method']['code']);
-                if($this->session->data['payment_method']['code']=='cod')
+                if ($this->session->data['payment_method']['code']=='cod') {
                     $json['cod'] = 1;
-            } else
+                }
+            } else {
                 $json['error'] = $this->errors;
+            }
 
             $this->response->addHeader('Content-Type: application/json');
             $this->response->setOutput(json_encode($json));
         } else {
-
             $this->session->data['shipping_address']['country_id'] = 0;
             $this->session->data['shipping_address']['zone_id'] = 0;
             /*get shippings methods*/
@@ -433,16 +434,17 @@ class ControllerCheckoutOnepagecheckout extends Controller {
             $this->session->data['shipping_methods'] = $method_data;
 
 
-            foreach ($method_data as $i => $shipping_method)
+            foreach ($method_data as $i => $shipping_method) {
                 foreach ($shipping_method['quote'] as $shipping_method2) {
                     $data['shippig_methods'][$i]['value'] = $shipping_method2['code'];
                     $data['shippig_methods'][$i]['title'] = $shipping_method2['title'];
-                    if (isset($shipping_method2['cost']))
+                    if (isset($shipping_method2['cost'])) {
                         $data['shippig_methods'][$i]['cost'] = $shipping_method2['cost'];
-                    else
+                    } else {
                         $data['shippig_methods'][$i]['cost']='';
-
+                    }
                 }
+            }
             //var_dump( $data['shippig_methods']);exit;
 
 
@@ -484,7 +486,7 @@ class ControllerCheckoutOnepagecheckout extends Controller {
 
             $data['modules'] = array();
 
-            $files = glob(DIR_APPLICATION . '/controller/extension/total/*.php');
+            $files = glob(SR_APPLICATION . '/controller/extension/total/*.php');
 
             if ($files) {
                 foreach ($files as $file) {
@@ -538,7 +540,6 @@ class ControllerCheckoutOnepagecheckout extends Controller {
 
             $this->response->setOutput($this->load->view('checkout/onepagecheckout', $data));
         }
-
     }
 
 
@@ -547,17 +548,14 @@ class ControllerCheckoutOnepagecheckout extends Controller {
 
     public function validate_form()
     {
-
         $this->error = [];
         if ((utf8_strlen(trim($this->request->post['firstname'])) < 1) || (utf8_strlen(trim($this->request->post['firstname'])) > 42)) {
-
             $data['error']['firstname'] = $this->language->get('error_firstname');
         }
 
         if ((utf8_strlen(trim($this->request->post['telephone'])) < 5) || (utf8_strlen(trim($this->request->post['telephone'])) > 16)) {
             //var_dump($this->request->post['telephone']);exit;
             $data['error']['telephone'] = $this->language->get('error_telephone');
-
         }
 
         if ((utf8_strlen(trim($this->request->post['address_1'])) < 1) || (utf8_strlen(trim($this->request->post['address_1'])) > 92)) {
@@ -569,12 +567,14 @@ class ControllerCheckoutOnepagecheckout extends Controller {
         if (!empty($data['error'])) {
             $this->errors = $data['error'];
             return false;
-        } else
+        } else {
             return true;
+        }
     }
 
 
-    public function AjaxLogin(){
+    public function AjaxLogin()
+    {
         if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateLogin()) {
             $this->load->model('account/address');
             $addr = $this->model_account_address->getAddress($this->customer->getAddressId());
@@ -597,16 +597,17 @@ class ControllerCheckoutOnepagecheckout extends Controller {
             if ($this->config->get('config_tax_customer') == 'shipping') {
                 $this->session->data['shipping_address'] = $this->model_account_address->getAddress($this->customer->getAddressId());
             }
-
         }
-        if( $this->errors)
+        if ($this->errors) {
             $loginData['errors'] = $this->errors;
-        else
+        } else {
             $loginData['errors']=0;
+        }
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($loginData));
     }
-    protected function validateLogin() {
+    protected function validateLogin()
+    {
         // Check how many login attempts have been made.
         $this->load->model('account/customer');
         $this->load->language('account/login');
@@ -631,17 +632,18 @@ class ControllerCheckoutOnepagecheckout extends Controller {
             } else {
                 $this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
             }
-        } 
+        }
         return  !$this->errors;
     }
-    public function totals() {
+    public function totals()
+    {
         $this->load->model('extension/extension');
 
         $totals = array();
         $taxes = $this->cart->getTaxes();
         $total = 0;
         $total_val = 0;
-        // Because __call can not keep var references so we put them into an array. 			
+        // Because __call can not keep var references so we put them into an array.
         $total_data = array(
             'totals' => &$totals,
             'taxes'  => &$taxes,
@@ -687,7 +689,5 @@ class ControllerCheckoutOnepagecheckout extends Controller {
         }
         $this->response->addHeader('Content-Type: application/json');
         $this->response->setOutput(json_encode($data));
-
     }
-
 }

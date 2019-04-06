@@ -1,58 +1,76 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
 
-class ControllerErrorNotFound extends Controller {
-	public function index() {
-		$this->load->language('error/not_found');
+    This file is part of Sunrise CMS.
 
-		$this->document->setTitle($this->language->get('heading_title'));
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-		$data['breadcrumbs'] = array();
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-		$data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home')
-		);
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-		if (isset($this->request->get['route'])) {
-			$url_data = $this->request->get;
+class ControllerErrorNotFound extends Controller
+{
+    public function index()
+    {
+        $this->load->language('error/not_found');
 
-			unset($url_data['_route_']);
+        $this->document->setTitle($this->language->get('heading_title'));
 
-			$route = $url_data['route'];
+        $data['breadcrumbs'] = array();
 
-			unset($url_data['route']);
+        $data['breadcrumbs'][] = array(
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/home')
+        );
 
-			$url = '';
+        if (isset($this->request->get['route'])) {
+            $url_data = $this->request->get;
 
-			if ($url_data) {
-				$url = '&' . urldecode(http_build_query($url_data, '', '&'));
-			}
+            unset($url_data['_route_']);
 
-			$data['breadcrumbs'][] = array(
-				'text' => $this->language->get('text_404'),
-				'href' => $this->url->link($route, $url, $this->request->server['HTTPS'])
-			);
-		}
+            $route = $url_data['route'];
 
-		$data['heading_title'] = $this->language->get('heading_title');
+            unset($url_data['route']);
 
-		$data['text_error'] = $this->language->get('text_error');
-		$data['text_go_back'] = $this->language->get('text_go_back');
-		$data['text_get_back'] = $this->language->get('text_get_back');
+            $url = '';
 
-		$data['continue'] = $this->url->link('common/home');
+            if ($url_data) {
+                $url = '&' . urldecode(http_build_query($url_data, '', '&'));
+            }
 
-		$data['content_top'] = $this->load->controller('common/content_top');
-		$data['content_bottom'] = $this->load->controller('common/content_bottom');
-		$data['footer'] = $this->load->controller('common/footer');
-		$data['header'] = $this->load->controller('common/header');
+            $data['breadcrumbs'][] = array(
+                'text' => $this->language->get('text_404'),
+                'href' => $this->url->link($route, $url, $this->request->server['HTTPS'])
+            );
+        }
 
-		$this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+        $data['heading_title'] = $this->language->get('heading_title');
 
-		$this->response->setOutput($this->load->view('error/not_found', $data));
-	}
+        $data['text_error'] = $this->language->get('text_error');
+        $data['text_go_back'] = $this->language->get('text_go_back');
+        $data['text_get_back'] = $this->language->get('text_get_back');
+
+        $data['continue'] = $this->url->link('common/home');
+
+        $data['content_top'] = $this->load->controller('common/content_top');
+        $data['content_bottom'] = $this->load->controller('common/content_bottom');
+        $data['footer'] = $this->load->controller('common/footer');
+        $data['header'] = $this->load->controller('common/header');
+
+        $this->response->addHeader($this->request->server['SERVER_PROTOCOL'] . ' 404 Not Found');
+
+        $this->response->setOutput($this->load->view('error/not_found', $data));
+    }
 }

@@ -1,6 +1,24 @@
 <?php
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
+
+    See SOURCE.txt for other and additional information.
+
+    This file is part of Sunrise CMS.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerCommonHeader extends Controller
 {
@@ -13,24 +31,17 @@ class ControllerCommonHeader extends Controller
         $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js');
         $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js');
         $this->document->addScriptDefer('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js');
-
         $this->document->addScript('https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js');
         $this->document->addScriptAsync('/js/catalog/general/common/cart.js');
+        //
         
         //
-        if ($this->request->server['HTTPS']) {
-            $server = $this->config->get('config_ssl');
-        } else {
-            $server = $this->config->get('config_url');
-        }
-
-        if (is_file(DIR_IMAGE . $this->config->get('config_icon'))) {
-            $this->document->addLink($server . 'images/' . $this->config->get('config_icon'), 'icon');
+        if (is_file(SR_IMAGE . $this->config->get('config_icon'))) {
+            $this->document->addLink('/images/' . $this->config->get('config_icon'), 'icon');
         }
 
         $data['title'] = $this->document->getTitle();
 
-        $data['base'] = $server;
         $data['description'] = $this->document->getDescription();
         $data['links'] = $this->document->getLinks();
         $data['robots'] = $this->document->getRobots();
@@ -47,19 +58,18 @@ class ControllerCommonHeader extends Controller
 
         $data['name'] = $this->config->get('config_name');
 
-        if (is_file(DIR_IMAGE . $this->config->get('config_logo'))) {
-            $data['logo'] = $server . 'images/' . $this->config->get('config_logo');
+        if (is_file(SR_IMAGE . $this->config->get('config_logo'))) {
+            $data['logo'] = '/images/' . $this->config->get('config_logo');
         } else {
             $data['logo'] = '';
         }
 
+        // language
         $this->load->language('common/header');
 
         $data['text_home'] = $this->language->get('text_home');
-
         $data['text_shopping_cart'] = $this->language->get('text_shopping_cart');
         $data['text_logged'] = sprintf($this->language->get('text_logged'), $this->url->link('account/account', '', true), $this->customer->getFirstName(), $this->url->link('account/logout', '', true));
-
         $data['text_account'] = $this->language->get('text_account');
         $data['text_register'] = $this->language->get('text_register');
         $data['text_login'] = $this->language->get('text_login');
@@ -71,8 +81,9 @@ class ControllerCommonHeader extends Controller
         $data['text_main_menu'] = $this->language->get('text_main_menu');
         $data['text_go_to'] = $this->language->get('text_go_to');
         $data['text_look_at_map'] = $this->language->get('text_look_at_map');
+        //
 
-
+        // links
         $data['home'] = $this->url->link('common/home');
         $data['logged'] = $this->customer->isLogged();
         $data['account'] = $this->url->link('account/account', '', true);
@@ -83,12 +94,11 @@ class ControllerCommonHeader extends Controller
         $data['download'] = $this->url->link('account/download', '', true);
         $data['logout'] = $this->url->link('account/logout', '', true);
         $data['shopping_cart'] = $this->url->link('checkout/cart');
-        //
         // $data['checkout'] = $this->url->link('checkout/checkout', '', true);
         $data['checkout'] = $this->url->link('checkout/onepagecheckout', '', true);
-        //
         $data['contact'] = $this->url->link('information/contact');
         $data['telephone'] = $this->config->get('config_telephone');
+        //
 
         // Menu
         $this->load->model('design/custommenu');
@@ -173,14 +183,21 @@ class ControllerCommonHeader extends Controller
         } else {
             $data['menu'] = '';
         }
+        //
 
+        // need fix later - https://opencartforum.com/topic/129529-reliz-ocstore-3020/?do=findComment&comment=1313914
         $data['search'] = $this->load->controller('common/search');
         $data['cart'] = $this->load->controller('common/cart');
+        //
 
         // adminbar
         if (isset($this->session->data['token'])) {
-            $data['token_admin'] = $this->session->data['token'];
 
+            // token
+            $data['token_admin'] = $this->session->data['token'];
+            //
+
+            // route
             if (isset($this->request->get['route'])) {
                 if ($this->request->get['route'] == 'product/product') {
                     $data['quick_edit_admin'] = 'admin/index.php?route=catalog/product/edit&product_id=' . $this->request->get['product_id'] . '&token=' . $data['token_admin'];
@@ -197,7 +214,9 @@ class ControllerCommonHeader extends Controller
             } else {
                 $data['quick_edit_admin'] = '';
             }
+            //
             
+            // links
             $data['dashboard_admin'] = 'admin/index.php?route=common/dashboard&token=' . $data['token_admin'];
             $data['category_add_admin'] = 'admin/index.php?route=catalog/category/add&token=' . $data['token_admin'];
             $data['product_add_admin'] = 'admin/index.php?route=catalog/product/add&token=' . $data['token_admin'];
@@ -220,7 +239,9 @@ class ControllerCommonHeader extends Controller
             $data['all_orders_admin'] = 'admin/index.php?route=sale/order&token=' . $data['token_admin'];
             $data['return_admin'] = 'admin/index.php?route=sale/return&token=' . $data['token_admin'];
             $data['adminbar_logout'] = 'admin/index.php?route=common/logout&token=' . $data['token_admin'];
-            
+            //
+
+            // language
             $data['text_adminbar_edit'] = $this->language->get('text_adminbar_edit');
             $data['text_adminbar_dashboard'] = $this->language->get('text_adminbar_dashboard');
             $data['text_adminbar_add'] = $this->language->get('text_adminbar_add');
@@ -247,6 +268,7 @@ class ControllerCommonHeader extends Controller
             $data['text_adminbar_all_orders'] = $this->language->get('text_adminbar_all_orders');
             $data['text_adminbar_return'] = $this->language->get('text_adminbar_return');
             $data['text_adminbar_logout'] = $this->language->get('text_adminbar_logout');
+            //
         }
         //
 
@@ -268,6 +290,7 @@ class ControllerCommonHeader extends Controller
         } else {
             $data['class'] = 'common-home';
         }
+        //
 
         return $this->load->view('common/header', $data);
     }

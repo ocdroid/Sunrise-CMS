@@ -1,8 +1,25 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+	See SOURCE.txt for other and additional information.
+
+	This file is part of Sunrise CMS.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
+
 /*
 CREATE TABLE IF NOT EXISTS `session` (
   `session_id` varchar(32) NOT NULL,
@@ -37,7 +54,7 @@ final class DB {
 	}
 	
 	public function read($session_id) {
-		$query = $this->db->query("SELECT `data` FROM `" . DB_PREFIX . "session` WHERE session_id = '" . $this->db->escape($session_id) . "' AND expire > " . (int)time());
+		$query = $this->db->query("SELECT `data` FROM `session` WHERE session_id = '" . $this->db->escape($session_id) . "' AND expire > " . (int)time());
 		
 		if ($query->num_rows) {
 			return $query->row['data'];
@@ -47,19 +64,19 @@ final class DB {
 	}
 	
 	public function write($session_id, $data) {
-		$this->db->query("REPLACE INTO SET `data` = '" . $this->db->escape($data) . "', expire = '" . $this->db->escape(date('Y-m-d H:i:s', time() + $this->expire)) . "' FROM `" . DB_PREFIX . "session` WHERE session_id = '" . $this->db->escape($session_id) . "' AND expire > " . (int)time());
+		$this->db->query("REPLACE INTO SET `data` = '" . $this->db->escape($data) . "', expire = '" . $this->db->escape(date('Y-m-d H:i:s', time() + $this->expire)) . "' FROM `session` WHERE session_id = '" . $this->db->escape($session_id) . "' AND expire > " . (int)time());
 		
 		return true;
 	}
 	
 	public function destroy($session_id) {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "session` WHERE session_id = '" . $this->db->escape($session_id) . "'");
+		$this->db->query("DELETE FROM `session` WHERE session_id = '" . $this->db->escape($session_id) . "'");
 		
 		return true;
 	}
 	
 	public function gc($expire) {
-		$this->db->query("DELETE FROM `" . DB_PREFIX . "session` WHERE expire < " . ((int)time() + $expire));
+		$this->db->query("DELETE FROM `session` WHERE expire < " . ((int)time() + $expire));
 		
 		return true;
 	}

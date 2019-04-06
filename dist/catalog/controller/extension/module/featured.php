@@ -1,8 +1,24 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
+
+    This file is part of Sunrise CMS.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerExtensionModuleFeatured extends Controller
 {
@@ -15,7 +31,6 @@ class ControllerExtensionModuleFeatured extends Controller
         $data['heading_title'] = $this->language->get('heading_title');
 
         $data['button_buy_it'] = $this->language->get('button_buy_it');
-        $data['text_benefits'] = $this->language->get('text_benefits');
 
         $this->load->model('catalog/product');
 
@@ -58,30 +73,6 @@ class ControllerExtensionModuleFeatured extends Controller
                         $yousave_percent = false;
                     }
 
-                    $productbenefits = $this->model_catalog_product->getProductBenefitsbyProductId($product_info['product_id']);
-                
-                    $benefits = array();
-                    
-                    foreach ($productbenefits as $benefit) {
-                        if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
-                            $bimage = $benefit['image'];
-                            if ($benefit['type']) {
-                                $bimage = $this->model_tool_image->resize($bimage, 25, 25);
-                            } else {
-                                $bimage = $this->model_tool_image->resize($bimage, 120, 60);
-                            }
-                        } else {
-                            $bimage = 'no_image.jpg';
-                        }
-                        $benefits[] = array(
-                            'benefit_id'      	=> $benefit['benefit_id'],
-                            'name'      		=> $benefit['name'],
-                            'description'      	=> strip_tags(html_entity_decode($benefit['description'])),
-                            'thumb'      		=> $bimage,
-                            'link'      		=> $benefit['link'],
-                            'type'      		=> $benefit['type']
-                        );
-                    }
 
                     $stickers = $this->getStickers($product_info['product_id']);
 
@@ -94,7 +85,6 @@ class ControllerExtensionModuleFeatured extends Controller
                         'special'     => $special,
                         'yousave_percent' => $yousave_percent,
                         'sticker'     => $stickers,
-                        'benefits'    => $benefits,
                         'href'        => $this->url->link('product/product', 'product_id=' . $product_info['product_id'])
                     );
                 }
@@ -118,16 +108,10 @@ class ControllerExtensionModuleFeatured extends Controller
         
         $data['stickers'] = array();
         
-        if ($this->request->server['HTTPS']) {
-            $prot_server = HTTPS_SERVER;
-        } else {
-            $prot_server = HTTP_SERVER;
-        }
-        
         foreach ($stickers as $sticker) {
             $data['stickers'][] = array(
                 'position' => $sticker['position'],
-                'image' => $prot_server . 'images/' . $sticker['image']
+                'image' => '/images/' . $sticker['image']
             );
         }
                 

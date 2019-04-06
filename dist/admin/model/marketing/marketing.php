@@ -1,38 +1,77 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
+
+    This file is part of Sunrise CMS.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ModelMarketingMarketing extends Model
 {
     public function addMarketing($data)
     {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "marketing SET name = '" . $this->db->escape($data['name']) . "', description = '" . $this->db->escape($data['description']) . "', code = '" . $this->db->escape($data['code']) . "', date_added = NOW()");
+        $this->db->query("
+            INSERT INTO marketing 
+            SET name = '" . $this->db->escape($data['name']) . "', 
+                description = '" . $this->db->escape($data['description']) . "', 
+                code = '" . $this->db->escape($data['code']) . "', 
+                date_added = NOW()
+        ");
 
         return $this->db->getLastId();
     }
 
     public function editMarketing($marketing_id, $data)
     {
-        $this->db->query("UPDATE " . DB_PREFIX . "marketing SET name = '" . $this->db->escape($data['name']) . "', description = '" . $this->db->escape($data['description']) . "', code = '" . $this->db->escape($data['code']) . "' WHERE marketing_id = '" . (int)$marketing_id . "'");
+        $this->db->query("
+            UPDATE marketing 
+            SET name = '" . $this->db->escape($data['name']) . "', 
+                description = '" . $this->db->escape($data['description']) . "', 
+                code = '" . $this->db->escape($data['code']) . "' 
+            WHERE marketing_id = '" . (int)$marketing_id . "'
+        ");
     }
 
     public function deleteMarketing($marketing_id)
     {
-        $this->db->query("DELETE FROM " . DB_PREFIX . "marketing WHERE marketing_id = '" . (int)$marketing_id . "'");
+        $this->db->query("
+            DELETE FROM marketing 
+            WHERE marketing_id = '" . (int)$marketing_id . "'
+        ");
     }
 
     public function getMarketing($marketing_id)
     {
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "marketing WHERE marketing_id = '" . (int)$marketing_id . "'");
+        $query = $this->db->query("
+            SELECT DISTINCT * 
+            FROM marketing 
+            WHERE marketing_id = '" . (int)$marketing_id . "'
+        ");
 
         return $query->row;
     }
 
     public function getMarketingByCode($code)
     {
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "marketing WHERE code = '" . $this->db->escape($code) . "'");
+        $query = $this->db->query("
+            SELECT DISTINCT * 
+            FROM marketing 
+            WHERE code = '" . $this->db->escape($code) . "'
+        ");
 
         return $query->row;
     }
@@ -47,7 +86,15 @@ class ModelMarketingMarketing extends Model
             $implode[] = "o.order_status_id = '" . (int)$order_status_id . "'";
         }
 
-        $sql = "SELECT *, (SELECT COUNT(*) FROM `" . DB_PREFIX . "order` o WHERE (" . implode(" OR ", $implode) . ") AND o.marketing_id = m.marketing_id) AS orders FROM " . DB_PREFIX . "marketing m";
+        $sql = "
+            SELECT *, 
+                (
+                    SELECT COUNT(*) 
+                    FROM `order` o 
+                    WHERE (" . implode(" OR ", $implode) . ") 
+                        AND o.marketing_id = m.marketing_id) AS orders 
+            FROM marketing m
+        ";
 
         $implode = array();
 
@@ -104,7 +151,10 @@ class ModelMarketingMarketing extends Model
 
     public function getTotalMarketings($data = array())
     {
-        $sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "marketing";
+        $sql = "
+            SELECT COUNT(*) AS total 
+            FROM marketing
+        ";
 
         $implode = array();
 

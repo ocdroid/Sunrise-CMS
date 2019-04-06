@@ -1,113 +1,159 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
 
-class ModelToolUpload extends Model {
-	public function addUpload($name, $filename) {
-		$code = sha1(uniqid(mt_rand(), true));
+    This file is part of Sunrise CMS.
 
-		$this->db->query("INSERT INTO `" . DB_PREFIX . "upload` SET `name` = '" . $this->db->escape($name) . "', `filename` = '" . $this->db->escape($filename) . "', `code` = '" . $this->db->escape($code) . "', `date_added` = NOW()");
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-		return $code;
-	}
-		
-	public function deleteUpload($upload_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "upload WHERE upload_id = '" . (int)$upload_id . "'");
-	}
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-	public function getUpload($upload_id) {
-		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "upload` WHERE upload_id = '" . (int)$upload_id . "'");
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-		return $query->row;
-	}
+class ModelToolUpload extends Model
+{
+    public function addUpload($name, $filename)
+    {
+        $code = sha1(uniqid(mt_rand(), true));
 
-	public function getUploadByCode($code) {
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "upload WHERE code = '" . $this->db->escape($code) . "'");
+        $this->db->query("
+			INSERT INTO `upload` 
+			SET `name` = '" . $this->db->escape($name) . "', 
+				`filename` = '" . $this->db->escape($filename) . "', 
+				`code` = '" . $this->db->escape($code) . "', 
+				`date_added` = NOW()
+		");
 
-		return $query->row;
-	}
+        return $code;
+    }
+        
+    public function deleteUpload($upload_id)
+    {
+        $this->db->query("
+			DELETE FROM upload 
+			WHERE upload_id = '" . (int)$upload_id . "'
+		");
+    }
 
-	public function getUploads($data = array()) {
-		$sql = "SELECT * FROM " . DB_PREFIX . "upload";
+    public function getUpload($upload_id)
+    {
+        $query = $this->db->query("
+			SELECT * 
+			FROM `upload` 
+			WHERE upload_id = '" . (int)$upload_id . "'
+		");
 
-		$implode = array();
+        return $query->row;
+    }
 
-		if (!empty($data['filter_name'])) {
-			$implode[] = "name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
-		}
+    public function getUploadByCode($code)
+    {
+        $query = $this->db->query("
+			SELECT * 
+			FROM upload 
+			WHERE code = '" . $this->db->escape($code) . "'
+		");
 
-		if (!empty($data['filter_filename'])) {
-			$implode[] = "filename LIKE '" . $this->db->escape($data['filter_filename']) . "%'";
-		}
+        return $query->row;
+    }
 
-		if (!empty($data['filter_date_added'])) {
-			$implode[] = "date_added = '" . $this->db->escape($data['filter_date_added']) . "%'";
-		}
+    public function getUploads($data = array())
+    {
+        $sql = "
+			SELECT * 
+			FROM upload
+		";
 
-		if ($implode) {
-			$sql .= " WHERE " . implode(" AND ", $implode);
-		}
+        $implode = array();
 
-		$sort_data = array(
-			'name',
-			'filename',
-			'date_added'
-		);
+        if (!empty($data['filter_name'])) {
+            $implode[] = "name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+        }
 
-		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-			$sql .= " ORDER BY " . $data['sort'];
-		} else {
-			$sql .= " ORDER BY date_added";
-		}
+        if (!empty($data['filter_filename'])) {
+            $implode[] = "filename LIKE '" . $this->db->escape($data['filter_filename']) . "%'";
+        }
 
-		if (isset($data['order']) && ($data['order'] == 'DESC')) {
-			$sql .= " DESC";
-		} else {
-			$sql .= " ASC";
-		}
+        if (!empty($data['filter_date_added'])) {
+            $implode[] = "date_added = '" . $this->db->escape($data['filter_date_added']) . "%'";
+        }
 
-		if (isset($data['start']) || isset($data['limit'])) {
-			if ($data['start'] < 0) {
-				$data['start'] = 0;
-			}
+        if ($implode) {
+            $sql .= " WHERE " . implode(" AND ", $implode);
+        }
 
-			if ($data['limit'] < 1) {
-				$data['limit'] = 20;
-			}
+        $sort_data = array(
+            'name',
+            'filename',
+            'date_added'
+        );
 
-			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
-		}
+        if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+            $sql .= " ORDER BY " . $data['sort'];
+        } else {
+            $sql .= " ORDER BY date_added";
+        }
 
-		$query = $this->db->query($sql);
+        if (isset($data['order']) && ($data['order'] == 'DESC')) {
+            $sql .= " DESC";
+        } else {
+            $sql .= " ASC";
+        }
 
-		return $query->rows;
-	}
+        if (isset($data['start']) || isset($data['limit'])) {
+            if ($data['start'] < 0) {
+                $data['start'] = 0;
+            }
 
-	public function getTotalUploads() {
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "upload";
+            if ($data['limit'] < 1) {
+                $data['limit'] = 20;
+            }
 
-		$implode = array();
+            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+        }
 
-		if (!empty($data['filter_name'])) {
-			$implode[] = "name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
-		}
+        $query = $this->db->query($sql);
 
-		if (!empty($data['filter_filename'])) {
-			$implode[] = "filename LIKE '" . $this->db->escape($data['filter_filename']) . "%'";
-		}
+        return $query->rows;
+    }
 
-		if (!empty($data['filter_date_added'])) {
-			$implode[] = "date_added = '" . $this->db->escape($data['filter_date_added']) . "'";
-		}
+    public function getTotalUploads()
+    {
+        $sql = "
+			SELECT COUNT(*) AS total 
+			FROM upload
+		";
 
-		if ($implode) {
-			$sql .= " WHERE " . implode(" AND ", $implode);
-		}
+        $implode = array();
 
-		$query = $this->db->query($sql);
+        if (!empty($data['filter_name'])) {
+            $implode[] = "name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
+        }
 
-		return $query->row['total'];
-	}
+        if (!empty($data['filter_filename'])) {
+            $implode[] = "filename LIKE '" . $this->db->escape($data['filter_filename']) . "%'";
+        }
+
+        if (!empty($data['filter_date_added'])) {
+            $implode[] = "date_added = '" . $this->db->escape($data['filter_date_added']) . "'";
+        }
+
+        if ($implode) {
+            $sql .= " WHERE " . implode(" AND ", $implode);
+        }
+
+        $query = $this->db->query($sql);
+
+        return $query->row['total'];
+    }
 }

@@ -117,9 +117,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="view/javascript/summernote/summernote.js"></script>
-	<link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
-	<script src="view/javascript/summernote/opencart.js"></script>
+
 	<script>
 		<!--
 		$('select[name=\'to\']').on('change', function () {
@@ -138,7 +136,7 @@
 		$('input[name=\'customers\']').autocomplete({
 			'source': function (request, response) {
 				$.ajax({
-					url: 'index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +
+					url: '/index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +
 						encodeURIComponent(request),
 					dataType: 'json',
 					success: function (json) {
@@ -170,7 +168,7 @@
 		$('input[name=\'products\']').autocomplete({
 			'source': function (request, response) {
 				$.ajax({
-					url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +
+					url: '/index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +
 						encodeURIComponent(request),
 					dataType: 'json',
 					success: function (json) {

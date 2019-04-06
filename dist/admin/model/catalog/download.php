@@ -1,19 +1,45 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
+
+    This file is part of Sunrise CMS.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ModelCatalogDownload extends Model
 {
     public function addDownload($data)
     {
-        $this->db->query("INSERT INTO " . DB_PREFIX . "download SET filename = '" . $this->db->escape($data['filename']) . "', mask = '" . $this->db->escape($data['mask']) . "', date_added = NOW()");
+        $this->db->query("
+            INSERT INTO download 
+            SET filename = '" . $this->db->escape($data['filename']) . "', 
+                mask = '" . $this->db->escape($data['mask']) . "', 
+                date_added = NOW()
+        ");
 
         $download_id = $this->db->getLastId();
 
         foreach ($data['download_description'] as $language_id => $value) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "download_description SET download_id = '" . (int)$download_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
+            $this->db->query("
+                INSERT INTO download_description 
+                SET download_id = '" . (int)$download_id . "', 
+                    language_id = '" . (int)$language_id . "', 
+                    name = '" . $this->db->escape($value['name']) . "'
+            ");
         }
 
         return $download_id;
@@ -21,31 +47,61 @@ class ModelCatalogDownload extends Model
 
     public function editDownload($download_id, $data)
     {
-        $this->db->query("UPDATE " . DB_PREFIX . "download SET filename = '" . $this->db->escape($data['filename']) . "', mask = '" . $this->db->escape($data['mask']) . "' WHERE download_id = '" . (int)$download_id . "'");
+        $this->db->query("
+            UPDATE download 
+            SET filename = '" . $this->db->escape($data['filename']) . "', 
+                mask = '" . $this->db->escape($data['mask']) . "' 
+            WHERE download_id = '" . (int)$download_id . "'
+        ");
 
-        $this->db->query("DELETE FROM " . DB_PREFIX . "download_description WHERE download_id = '" . (int)$download_id . "'");
+        $this->db->query("
+            DELETE FROM download_description 
+            WHERE download_id = '" . (int)$download_id . "'
+        ");
 
         foreach ($data['download_description'] as $language_id => $value) {
-            $this->db->query("INSERT INTO " . DB_PREFIX . "download_description SET download_id = '" . (int)$download_id . "', language_id = '" . (int)$language_id . "', name = '" . $this->db->escape($value['name']) . "'");
+            $this->db->query("
+                INSERT INTO download_description 
+                SET download_id = '" . (int)$download_id . "', 
+                    language_id = '" . (int)$language_id . "', 
+                    name = '" . $this->db->escape($value['name']) . "'
+            ");
         }
     }
 
     public function deleteDownload($download_id)
     {
-        $this->db->query("DELETE FROM " . DB_PREFIX . "download WHERE download_id = '" . (int)$download_id . "'");
-        $this->db->query("DELETE FROM " . DB_PREFIX . "download_description WHERE download_id = '" . (int)$download_id . "'");
+        $this->db->query("
+            DELETE FROM download 
+            WHERE download_id = '" . (int)$download_id . "'
+        ");
+        $this->db->query("
+            DELETE FROM download_description 
+            WHERE download_id = '" . (int)$download_id . "'
+        ");
     }
 
     public function getDownload($download_id)
     {
-        $query = $this->db->query("SELECT DISTINCT * FROM " . DB_PREFIX . "download d LEFT JOIN " . DB_PREFIX . "download_description dd ON (d.download_id = dd.download_id) WHERE d.download_id = '" . (int)$download_id . "' AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "'");
+        $query = $this->db->query("
+            SELECT DISTINCT * 
+            FROM download d 
+            LEFT JOIN download_description dd ON (d.download_id = dd.download_id) 
+            WHERE d.download_id = '" . (int)$download_id . "' 
+                AND dd.language_id = '" . (int)$this->config->get('config_language_id') . "'
+        ");
 
         return $query->row;
     }
 
     public function getDownloads($data = array())
     {
-        $sql = "SELECT * FROM " . DB_PREFIX . "download d LEFT JOIN " . DB_PREFIX . "download_description dd ON (d.download_id = dd.download_id) WHERE dd.language_id = '" . (int)$this->config->get('config_language_id') . "'";
+        $sql = "
+            SELECT * 
+            FROM download d 
+            LEFT JOIN download_description dd ON (d.download_id = dd.download_id) 
+            WHERE dd.language_id = '" . (int)$this->config->get('config_language_id') . "'
+        ";
 
         if (!empty($data['filter_name'])) {
             $sql .= " AND dd.name LIKE '" . $this->db->escape($data['filter_name']) . "%'";
@@ -89,7 +145,11 @@ class ModelCatalogDownload extends Model
     {
         $download_description_data = array();
 
-        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "download_description WHERE download_id = '" . (int)$download_id . "'");
+        $query = $this->db->query("
+            SELECT * 
+            FROM download_description 
+            WHERE download_id = '" . (int)$download_id . "'
+        ");
 
         foreach ($query->rows as $result) {
             $download_description_data[$result['language_id']] = array('name' => $result['name']);
@@ -100,7 +160,10 @@ class ModelCatalogDownload extends Model
 
     public function getTotalDownloads()
     {
-        $query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "download");
+        $query = $this->db->query("
+            SELECT COUNT(*) AS total 
+            FROM download
+        ");
 
         return $query->row['total'];
     }

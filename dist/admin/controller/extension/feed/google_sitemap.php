@@ -1,8 +1,24 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
+
+    This file is part of Sunrise CMS.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerExtensionFeedGoogleSitemap extends Controller
 {
@@ -32,8 +48,6 @@ class ControllerExtensionFeedGoogleSitemap extends Controller
 
         $data['entry_status'] = $this->language->get('entry_status');
         $data['entry_data_feed'] = $this->language->get('entry_data_feed');
-        $data['entry_data_yandex_feed'] = $this->language->get('entry_data_yandex_feed');
- 
 
         $data['button_save'] = $this->language->get('button_save');
         $data['button_cancel'] = $this->language->get('button_cancel');
@@ -73,8 +87,7 @@ class ControllerExtensionFeedGoogleSitemap extends Controller
             $data['google_sitemap_status'] = $this->config->get('google_sitemap_status');
         }
 
-        $data['data_feed'] = HTTP_CATALOG . 'index.php?route=extension/feed/google_sitemap';
-        $data['data_yandex_feed'] = HTTP_CATALOG . 'index.php?route=extension/feed/yandex_sitemap';
+        $data['data_feed'] = '/index.php?route=extension/feed/google_sitemap';
 
         $data['header'] = $this->load->controller('common/header');
         $data['column'] = $this->load->controller('common/column_left');

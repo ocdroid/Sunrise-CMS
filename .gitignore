@@ -1,14 +1,16 @@
 .vscode/
 node_modules/
+dist-backup/
 
 dist/images/cache/
 dist/images/.tmb/*
 dist/images/.trash/*
 dist/images/.quarantine/*
-dist/system/storage/cache/
+dist/cache/
 *.log
 
 dist/.htaccess
 
 gulpfile.js
 package-lock.json
+dist.zip

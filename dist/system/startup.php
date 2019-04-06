@@ -1,9 +1,24 @@
 <?php
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
 
-// Error Reporting
-error_reporting(E_ALL);
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
+
+    See SOURCE.txt for other and additional information.
+
+    This file is part of Sunrise CMS.
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 // Check if SSL
 if ((isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTPS'] == '1'))) || $_SERVER['SERVER_PORT'] == 443) {
@@ -15,39 +30,33 @@ if ((isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTP
 }
 
 // Engine
-require(DIR_SYSTEM . 'engine/action.php');
-require(DIR_SYSTEM . 'engine/controller.php');
-require(DIR_SYSTEM . 'engine/event.php');
-require(DIR_SYSTEM . 'engine/front.php');
-require(DIR_SYSTEM . 'engine/loader.php');
-require(DIR_SYSTEM . 'engine/model.php');
-require(DIR_SYSTEM . 'engine/registry.php');
-require(DIR_SYSTEM . 'engine/proxy.php');
+require(SR_SYSTEM . 'engine/action.php');
+require(SR_SYSTEM . 'engine/controller.php');
+require(SR_SYSTEM . 'engine/event.php');
+require(SR_SYSTEM . 'engine/front.php');
+require(SR_SYSTEM . 'engine/loader.php');
+require(SR_SYSTEM . 'engine/model.php');
+require(SR_SYSTEM . 'engine/registry.php');
+require(SR_SYSTEM . 'engine/proxy.php');
 
 // Helpers
-require(DIR_SYSTEM . 'helper/general.php');
-require(DIR_SYSTEM . 'helper/utf8.php');
-require(DIR_SYSTEM . 'helper/json.php');
+require(SR_SYSTEM . 'helper/general.php');
+require(SR_SYSTEM . 'helper/utf8.php');
+require(SR_SYSTEM . 'helper/json.php');
 
-// Libraries
+// Libraries (autoload, including subfolders)
+function library($class)
+{
+    $file = SR_SYSTEM . 'library/' . str_replace('\\', '/', strtolower($class)) . '.php';
+
+    include_once(($file));
+}
+
 spl_autoload_register('library');
 spl_autoload_extensions('.php');
 
-function library($class)
-{
-    $file = DIR_SYSTEM . 'library/' . str_replace('\\', '/', strtolower($class)) . '.php';
-
-    if (is_file($file)) {
-        include_once(($file));
-
-        return true;
-    } else {
-        return false;
-    }
-}
-
-// Mobile Detect - http://mobiledetect.net/
-require(DIR_SYSTEM . 'library/Mobile_Detect.php');
+// Mobile Detect (global)
+require(SR_SYSTEM . 'library/Mobile_Detect.php');
 $detect = new Mobile_Detect();
 define('isMobile', $detect->isMobile(), false);
 define('isTablet', $detect->isTablet(), false);
@@ -55,5 +64,5 @@ define('isTablet', $detect->isTablet(), false);
 // start
 function start($application_config)
 {
-    require(DIR_SYSTEM . 'framework.php');
+    require(SR_SYSTEM . 'framework.php');
 }

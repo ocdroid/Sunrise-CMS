@@ -1,8 +1,24 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+	See SOURCE.txt for other and additional information.
+
+	This file is part of Sunrise CMS.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerProductProduct extends Controller
 {
@@ -14,6 +30,8 @@ class ControllerProductProduct extends Controller
         // scripts & styles
         $this->document->addStyle('/css/catalog/page/product/product.css');
         $this->document->addStyle('/css/catalog/page/product/drift-basic.min.css');
+        // временно, зависимость для дрифта
+        $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js');
         $this->document->addScript('/js/catalog/page/product/Drift.min.js');
         //
 
@@ -426,7 +444,7 @@ class ControllerProductProduct extends Controller
             $data['benefits'] = array();
                 
             foreach ($productbenefits as $benefit) {
-                if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
+                if ($benefit['image'] && file_exists(SR_IMAGE . $benefit['image'])) {
                     $bimage = $benefit['image'];
                     if ($benefit['type']) {
                         $bimage = $this->model_tool_image->resize($bimage, 25, 25);
@@ -544,7 +562,7 @@ class ControllerProductProduct extends Controller
                 $benefits = array();
                 
                 foreach ($productbenefits as $benefit) {
-                    if ($benefit['image'] && file_exists(DIR_IMAGE . $benefit['image'])) {
+                    if ($benefit['image'] && file_exists(SR_IMAGE . $benefit['image'])) {
                         $bimage = $benefit['image'];
                         if ($benefit['type']) {
                             $bimage = $this->model_tool_image->resize($bimage, 25, 25);
@@ -642,7 +660,7 @@ class ControllerProductProduct extends Controller
                                 $category_id = explode('_', $this->request->get['path']);
                                 $category_id = (int)end($category_id);
                                 if (in_array($category_id, $module['product_categories'])) {
-                                    if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
+                                    if (file_exists(SR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
                                         $template = $module['template_name'];
                                     }
                                 }
@@ -656,7 +674,7 @@ class ControllerProductProduct extends Controller
                         if ((isset($module['customer_groups']) && in_array($customer_group_id, $module['customer_groups'])) || !isset($module['customer_groups']) || empty($module['customer_groups'])) {
                             $manufacturer_id = $product_info['manufacturer_id'];
                             if (in_array($manufacturer_id, $module['product_manufacturers'])) {
-                                if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
+                                if (file_exists(SR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
                                     $template = $module['template_name'];
                                 }
                             }
@@ -669,7 +687,7 @@ class ControllerProductProduct extends Controller
                         if ((isset($module['customer_groups']) && in_array($customer_group_id, $module['customer_groups'])) || !isset($module['customer_groups']) || empty($module['customer_groups'])) {
                             $products = explode(',', $module['products']);
                             if (in_array($product_id, $products)) {
-                                if (file_exists(DIR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
+                                if (file_exists(SR_TEMPLATE . $directory . DIRECTORY_SEPARATOR . 'template' . DIRECTORY_SEPARATOR . $module['template_name'] . '.html')) {
                                     $template = $module['template_name'];
                                 }
                             }
@@ -840,16 +858,10 @@ class ControllerProductProduct extends Controller
         
         $data['stickers'] = array();
         
-        if ($this->request->server['HTTPS']) {
-            $prot_server = HTTPS_SERVER;
-        } else {
-            $prot_server = HTTP_SERVER;
-        }
-        
         foreach ($stickers as $sticker) {
             $data['stickers'][] = array(
                 'position' => $sticker['position'],
-                'image' => $prot_server . 'images/' . $sticker['image']
+                'image' => '/images/' . $sticker['image']
             );
         }
         

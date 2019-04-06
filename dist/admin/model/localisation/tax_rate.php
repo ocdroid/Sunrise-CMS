@@ -1,109 +1,201 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+    See SOURCE.txt for other and additional information.
 
-class ModelLocalisationTaxRate extends Model {
-	public function addTaxRate($data) {
-		$this->db->query("INSERT INTO " . DB_PREFIX . "tax_rate SET name = '" . $this->db->escape($data['name']) . "', rate = '" . (float)$data['rate'] . "', `type` = '" . $this->db->escape($data['type']) . "', geo_zone_id = '" . (int)$data['geo_zone_id'] . "', date_added = NOW(), date_modified = NOW()");
+    This file is part of Sunrise CMS.
 
-		$tax_rate_id = $this->db->getLastId();
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-		if (isset($data['tax_rate_customer_group'])) {
-			foreach ($data['tax_rate_customer_group'] as $customer_group_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "tax_rate_to_customer_group SET tax_rate_id = '" . (int)$tax_rate_id . "', customer_group_id = '" . (int)$customer_group_id . "'");
-			}
-		}
-		
-		return $tax_rate_id;
-	}
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-	public function editTaxRate($tax_rate_id, $data) {
-		$this->db->query("UPDATE " . DB_PREFIX . "tax_rate SET name = '" . $this->db->escape($data['name']) . "', rate = '" . (float)$data['rate'] . "', `type` = '" . $this->db->escape($data['type']) . "', geo_zone_id = '" . (int)$data['geo_zone_id'] . "', date_modified = NOW() WHERE tax_rate_id = '" . (int)$tax_rate_id . "'");
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
-		$this->db->query("DELETE FROM " . DB_PREFIX . "tax_rate_to_customer_group WHERE tax_rate_id = '" . (int)$tax_rate_id . "'");
+class ModelLocalisationTaxRate extends Model
+{
+    public function addTaxRate($data)
+    {
+        $this->db->query("
+			INSERT INTO tax_rate 
+			SET name = '" . $this->db->escape($data['name']) . "', 
+				rate = '" . (float)$data['rate'] . "', 
+				`type` = '" . $this->db->escape($data['type']) . "', 
+				geo_zone_id = '" . (int)$data['geo_zone_id'] . "', 
+				date_added = NOW(), 
+				date_modified = NOW()
+		");
 
-		if (isset($data['tax_rate_customer_group'])) {
-			foreach ($data['tax_rate_customer_group'] as $customer_group_id) {
-				$this->db->query("INSERT INTO " . DB_PREFIX . "tax_rate_to_customer_group SET tax_rate_id = '" . (int)$tax_rate_id . "', customer_group_id = '" . (int)$customer_group_id . "'");
-			}
-		}
-	}
+        $tax_rate_id = $this->db->getLastId();
 
-	public function deleteTaxRate($tax_rate_id) {
-		$this->db->query("DELETE FROM " . DB_PREFIX . "tax_rate WHERE tax_rate_id = '" . (int)$tax_rate_id . "'");
-		$this->db->query("DELETE FROM " . DB_PREFIX . "tax_rate_to_customer_group WHERE tax_rate_id = '" . (int)$tax_rate_id . "'");
-	}
+        if (isset($data['tax_rate_customer_group'])) {
+            foreach ($data['tax_rate_customer_group'] as $customer_group_id) {
+                $this->db->query("
+					INSERT INTO tax_rate_to_customer_group 
+					SET tax_rate_id = '" . (int)$tax_rate_id . "', 
+						customer_group_id = '" . (int)$customer_group_id . "'
+				");
+            }
+        }
+        
+        return $tax_rate_id;
+    }
 
-	public function getTaxRate($tax_rate_id) {
-		$query = $this->db->query("SELECT tr.tax_rate_id, tr.name AS name, tr.rate, tr.type, tr.geo_zone_id, gz.name AS geo_zone, tr.date_added, tr.date_modified FROM " . DB_PREFIX . "tax_rate tr LEFT JOIN " . DB_PREFIX . "geo_zone gz ON (tr.geo_zone_id = gz.geo_zone_id) WHERE tr.tax_rate_id = '" . (int)$tax_rate_id . "'");
+    public function editTaxRate($tax_rate_id, $data)
+    {
+        $this->db->query("
+			UPDATE tax_rate 
+			SET name = '" . $this->db->escape($data['name']) . "', 
+				rate = '" . (float)$data['rate'] . "', 
+				`type` = '" . $this->db->escape($data['type']) . "', 
+				geo_zone_id = '" . (int)$data['geo_zone_id'] . "', 
+				date_modified = NOW() 
+			WHERE tax_rate_id = '" . (int)$tax_rate_id . "'
+		");
 
-		return $query->row;
-	}
+        $this->db->query("
+			DELETE FROM tax_rate_to_customer_group 
+			WHERE tax_rate_id = '" . (int)$tax_rate_id . "'
+		");
 
-	public function getTaxRates($data = array()) {
-		$sql = "SELECT tr.tax_rate_id, tr.name AS name, tr.rate, tr.type, gz.name AS geo_zone, tr.date_added, tr.date_modified FROM " . DB_PREFIX . "tax_rate tr LEFT JOIN " . DB_PREFIX . "geo_zone gz ON (tr.geo_zone_id = gz.geo_zone_id)";
+        if (isset($data['tax_rate_customer_group'])) {
+            foreach ($data['tax_rate_customer_group'] as $customer_group_id) {
+                $this->db->query("
+					INSERT INTO tax_rate_to_customer_group 
+					SET tax_rate_id = '" . (int)$tax_rate_id . "', 
+						customer_group_id = '" . (int)$customer_group_id . "'
+				");
+            }
+        }
+    }
 
-		$sort_data = array(
-			'tr.name',
-			'tr.rate',
-			'tr.type',
-			'gz.name',
-			'tr.date_added',
-			'tr.date_modified'
-		);
+    public function deleteTaxRate($tax_rate_id)
+    {
+        $this->db->query("
+			DELETE FROM tax_rate 
+			WHERE tax_rate_id = '" . (int)$tax_rate_id . "'
+		");
+        $this->db->query("
+			DELETE FROM tax_rate_to_customer_group 
+			WHERE tax_rate_id = '" . (int)$tax_rate_id . "'
+		");
+    }
 
-		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
-			$sql .= " ORDER BY " . $data['sort'];
-		} else {
-			$sql .= " ORDER BY tr.name";
-		}
+    public function getTaxRate($tax_rate_id)
+    {
+        $query = $this->db->query("
+			SELECT tr.tax_rate_id, 
+				tr.name AS name, 
+				tr.rate, 
+				tr.type, 
+				tr.geo_zone_id, 
+				gz.name AS geo_zone, 
+				tr.date_added, 
+				tr.date_modified 
+			FROM tax_rate tr 
+			LEFT JOIN geo_zone gz ON (tr.geo_zone_id = gz.geo_zone_id) 
+			WHERE tr.tax_rate_id = '" . (int)$tax_rate_id . "'
+		");
 
-		if (isset($data['order']) && ($data['order'] == 'DESC')) {
-			$sql .= " DESC";
-		} else {
-			$sql .= " ASC";
-		}
+        return $query->row;
+    }
 
-		if (isset($data['start']) || isset($data['limit'])) {
-			if ($data['start'] < 0) {
-				$data['start'] = 0;
-			}
+    public function getTaxRates($data = array())
+    {
+        $sql = "
+			SELECT tr.tax_rate_id, 
+				tr.name AS name, 
+				tr.rate, 
+				tr.type, 
+				gz.name AS 
+				geo_zone, 
+				tr.date_added, 
+				tr.date_modified 
+			FROM tax_rate tr 
+			LEFT JOIN geo_zone gz ON (tr.geo_zone_id = gz.geo_zone_id)
+		";
 
-			if ($data['limit'] < 1) {
-				$data['limit'] = 20;
-			}
+        $sort_data = array(
+            'tr.name',
+            'tr.rate',
+            'tr.type',
+            'gz.name',
+            'tr.date_added',
+            'tr.date_modified'
+        );
 
-			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
-		}
+        if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+            $sql .= " ORDER BY " . $data['sort'];
+        } else {
+            $sql .= " ORDER BY tr.name";
+        }
 
-		$query = $this->db->query($sql);
+        if (isset($data['order']) && ($data['order'] == 'DESC')) {
+            $sql .= " DESC";
+        } else {
+            $sql .= " ASC";
+        }
 
-		return $query->rows;
-	}
+        if (isset($data['start']) || isset($data['limit'])) {
+            if ($data['start'] < 0) {
+                $data['start'] = 0;
+            }
 
-	public function getTaxRateCustomerGroups($tax_rate_id) {
-		$tax_customer_group_data = array();
+            if ($data['limit'] < 1) {
+                $data['limit'] = 20;
+            }
 
-		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "tax_rate_to_customer_group WHERE tax_rate_id = '" . (int)$tax_rate_id . "'");
+            $sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+        }
 
-		foreach ($query->rows as $result) {
-			$tax_customer_group_data[] = $result['customer_group_id'];
-		}
+        $query = $this->db->query($sql);
 
-		return $tax_customer_group_data;
-	}
+        return $query->rows;
+    }
 
-	public function getTotalTaxRates() {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "tax_rate");
+    public function getTaxRateCustomerGroups($tax_rate_id)
+    {
+        $tax_customer_group_data = array();
 
-		return $query->row['total'];
-	}
+        $query = $this->db->query("
+			SELECT * 
+			FROM tax_rate_to_customer_group 
+			WHERE tax_rate_id = '" . (int)$tax_rate_id . "'
+		");
 
-	public function getTotalTaxRatesByGeoZoneId($geo_zone_id) {
-		$query = $this->db->query("SELECT COUNT(*) AS total FROM " . DB_PREFIX . "tax_rate WHERE geo_zone_id = '" . (int)$geo_zone_id . "'");
+        foreach ($query->rows as $result) {
+            $tax_customer_group_data[] = $result['customer_group_id'];
+        }
 
-		return $query->row['total'];
-	}
+        return $tax_customer_group_data;
+    }
+
+    public function getTotalTaxRates()
+    {
+        $query = $this->db->query("
+			SELECT COUNT(*) AS total 
+			FROM tax_rate
+		");
+
+        return $query->row['total'];
+    }
+
+    public function getTotalTaxRatesByGeoZoneId($geo_zone_id)
+    {
+        $query = $this->db->query("
+			SELECT COUNT(*) AS total 
+			FROM tax_rate 
+			WHERE geo_zone_id = '" . (int)$geo_zone_id . "'
+		");
+
+        return $query->row['total'];
+    }
 }

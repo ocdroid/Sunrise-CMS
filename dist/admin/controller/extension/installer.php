@@ -1,8 +1,24 @@
 <?php
 
+/* 	Sunrise CMS - Open source CMS for widespread use.
+	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-// *	@source		See SOURCE.txt for source and other copyright.
-// *	@license	GNU General Public License version 3; see LICENSE.txt
+	See SOURCE.txt for other and additional information.
+
+	This file is part of Sunrise CMS.
+
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	GNU General Public License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerExtensionInstaller extends Controller
 {
@@ -41,7 +57,7 @@ class ControllerExtensionInstaller extends Controller
 
         $data['token'] = $this->session->data['token'];
 
-        $directories = glob(DIR_UPLOAD . 'temp-*', GLOB_ONLYDIR);
+        $directories = glob(SR_UPLOAD . 'temp-*', GLOB_ONLYDIR);
 
         if ($directories) {
             $data['error_warning'] = $this->language->get('error_temporary');
@@ -85,8 +101,8 @@ class ControllerExtensionInstaller extends Controller
             // If no temp directory exists create it
             $path = 'temp-' . token(32);
 
-            if (!is_dir(DIR_UPLOAD . $path)) {
-                mkdir(DIR_UPLOAD . $path, 0777);
+            if (!is_dir(SR_UPLOAD . $path)) {
+                mkdir(SR_UPLOAD . $path, 0777);
             }
 
             // Set the steps required for installation
@@ -94,7 +110,7 @@ class ControllerExtensionInstaller extends Controller
             $json['overwrite'] = array();
 
             if (strrchr($this->request->files['file']['name'], '.') == '.xml') {
-                $file = DIR_UPLOAD . $path . '/install.xml';
+                $file = SR_UPLOAD . $path . '/install.xml';
 
                 // If xml file copy it to the temporary directory
                 move_uploaded_file($this->request->files['file']['tmp_name'], $file);
@@ -119,7 +135,7 @@ class ControllerExtensionInstaller extends Controller
 
             // If zip file copy it to the temp directory
             if (strrchr($this->request->files['file']['name'], '.') == '.zip') {
-                $file = DIR_UPLOAD . $path . '/upload.zip';
+                $file = SR_UPLOAD . $path . '/upload.zip';
 
                 move_uploaded_file($this->request->files['file']['tmp_name'], $file);
 
@@ -173,28 +189,28 @@ class ControllerExtensionInstaller extends Controller
                             }
 
                             // Compare admin files
-                            $file = DIR_APPLICATION . substr($zip_name, 13);
+                            $file = SR_APPLICATION . substr($zip_name, 13);
 
                             if (is_file($file) && substr($zip_name, 0, 13) == 'upload/admin/') {
                                 $json['overwrite'][] = substr($zip_name, 7);
                             }
 
                             // Compare catalog files
-                            $file = DIR_CATALOG . substr($zip_name, 15);
+                            $file = SR_CATALOG . substr($zip_name, 15);
 
                             if (is_file($file) && substr($zip_name, 0, 15) == 'upload/catalog/') {
                                 $json['overwrite'][] = substr($zip_name, 7);
                             }
 
                             // Compare image files
-                            $file = DIR_IMAGE . substr($zip_name, 13);
+                            $file = SR_IMAGE . substr($zip_name, 13);
 
                             if (is_file($file) && substr($zip_name, 0, 13) == 'upload/image/') {
                                 $json['overwrite'][] = substr($zip_name, 7);
                             }
 
                             // Compare system files
-                            $file = DIR_SYSTEM . substr($zip_name, 14);
+                            $file = SR_SYSTEM . substr($zip_name, 14);
 
                             if (is_file($file) && substr($zip_name, 0, 14) == 'upload/system/') {
                                 $json['overwrite'][] = substr($zip_name, 7);
@@ -233,9 +249,9 @@ class ControllerExtensionInstaller extends Controller
         }
 
         // Sanitize the filename
-        $file = DIR_UPLOAD . $this->request->post['path'] . '/upload.zip';
+        $file = SR_UPLOAD . $this->request->post['path'] . '/upload.zip';
 
-        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
             $json['error'] = $this->language->get('error_file');
         }
 
@@ -244,7 +260,7 @@ class ControllerExtensionInstaller extends Controller
             $zip = new ZipArchive();
 
             if ($zip->open($file)) {
-                $zip->extractTo(DIR_UPLOAD . $this->request->post['path']);
+                $zip->extractTo(SR_UPLOAD . $this->request->post['path']);
                 $zip->close();
             } else {
                 $json['error'] = $this->language->get('error_unzip');
@@ -258,120 +274,120 @@ class ControllerExtensionInstaller extends Controller
         $this->response->setOutput(json_encode($json));
     }
 
-    public function ftp()
-    {
-        $this->load->language('extension/installer');
+    // public function ftp()
+    // {
+    //     $this->load->language('extension/installer');
 
-        $json = array();
+    //     $json = array();
 
-        if (!$this->user->hasPermission('modify', 'extension/installer')) {
-            $json['error'] = $this->language->get('error_permission');
-        }
+    //     if (!$this->user->hasPermission('modify', 'extension/installer')) {
+    //         $json['error'] = $this->language->get('error_permission');
+    //     }
 
-        // Check FTP status
-        if (!$this->config->get('config_ftp_status')) {
-            $json['error'] = $this->language->get('error_ftp_status');
-        }
+    //     // Check FTP status
+    //     if (!$this->config->get('config_ftp_status')) {
+    //         $json['error'] = $this->language->get('error_ftp_status');
+    //     }
 
-        $directory = DIR_UPLOAD . $this->request->post['path'] . '/upload/';
+    //     $directory = SR_UPLOAD . $this->request->post['path'] . '/upload/';
 
-        if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
-            $json['error'] = $this->language->get('error_directory');
-        }
+    //     if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
+    //         $json['error'] = $this->language->get('error_directory');
+    //     }
 
-        if (!$json) {
-            // Get a list of files ready to upload
-            $files = array();
+    //     if (!$json) {
+    //         // Get a list of files ready to upload
+    //         $files = array();
 
-            $path = array($directory . '*');
+    //         $path = array($directory . '*');
 
-            while (count($path) != 0) {
-                $next = array_shift($path);
+    //         while (count($path) != 0) {
+    //             $next = array_shift($path);
 
-                foreach ((array)glob($next) as $file) {
-                    if (is_dir($file)) {
-                        $path[] = $file . '/*';
-                    }
+    //             foreach ((array)glob($next) as $file) {
+    //                 if (is_dir($file)) {
+    //                     $path[] = $file . '/*';
+    //                 }
 
-                    $files[] = $file;
-                }
-            }
+    //                 $files[] = $file;
+    //             }
+    //         }
 
-            // Connect to the site via FTP
-            $connection = ftp_connect($this->config->get('config_ftp_hostname'), $this->config->get('config_ftp_port'));
+    //         // Connect to the site via FTP
+    //         $connection = ftp_connect($this->config->get('config_ftp_hostname'), $this->config->get('config_ftp_port'));
 
-            if ($connection) {
-                $login = ftp_login($connection, $this->config->get('config_ftp_username'), $this->config->get('config_ftp_password'));
+    //         if ($connection) {
+    //             $login = ftp_login($connection, $this->config->get('config_ftp_username'), $this->config->get('config_ftp_password'));
 
-                if ($login) {
-                    if ($this->config->get('config_ftp_root')) {
-                        $root = ftp_chdir($connection, $this->config->get('config_ftp_root'));
-                    } else {
-                        $root = ftp_chdir($connection, '/');
-                    }
+    //             if ($login) {
+    //                 if ($this->config->get('config_ftp_root')) {
+    //                     $root = ftp_chdir($connection, $this->config->get('config_ftp_root'));
+    //                 } else {
+    //                     $root = ftp_chdir($connection, '/');
+    //                 }
 
-                    if ($root) {
-                        foreach ($files as $file) {
-                            $destination = substr($file, strlen($directory));
+    //                 if ($root) {
+    //                     foreach ($files as $file) {
+    //                         $destination = substr($file, strlen($directory));
 
-                            // Upload everything in the upload directory
-                            // Many people rename their admin folder for security purposes which I believe should be an option during installation just like setting the db prefix.
-                            // the following code would allow you to change the name of the following directories and any extensions installed will still go to the right directory.
-                            if (substr($destination, 0, 5) == 'admin') {
-                                $destination = basename(DIR_APPLICATION) . substr($destination, 5);
-                            }
+    //                         // Upload everything in the upload directory
+    //                         // Many people rename their admin folder for security purposes which I believe should be an option during installation just like setting the db prefix.
+    //                         // the following code would allow you to change the name of the following directories and any extensions installed will still go to the right directory.
+    //                         if (substr($destination, 0, 5) == 'admin') {
+    //                             $destination = basename(SR_APPLICATION) . substr($destination, 5);
+    //                         }
 
-                            if (substr($destination, 0, 7) == 'catalog') {
-                                $destination = basename(DIR_CATALOG) . substr($destination, 7);
-                            }
+    //                         if (substr($destination, 0, 7) == 'catalog') {
+    //                             $destination = basename(SR_CATALOG) . substr($destination, 7);
+    //                         }
 
-                            if (substr($destination, 0, 5) == 'image') {
-                                $destination = basename(DIR_IMAGE) . substr($destination, 5);
-                            }
+    //                         if (substr($destination, 0, 5) == 'image') {
+    //                             $destination = basename(SR_IMAGE) . substr($destination, 5);
+    //                         }
 
-                            if (substr($destination, 0, 6) == 'system') {
-                                $destination = basename(DIR_SYSTEM) . substr($destination, 6);
-                            }
+    //                         if (substr($destination, 0, 6) == 'system') {
+    //                             $destination = basename(SR_SYSTEM) . substr($destination, 6);
+    //                         }
 
-                            if (is_dir($file)) {
-                                $lists = ftp_nlist($connection, substr($destination, 0, strrpos($destination, '/')));
+    //                         if (is_dir($file)) {
+    //                             $lists = ftp_nlist($connection, substr($destination, 0, strrpos($destination, '/')));
 
-                                // Basename all the directories because on some servers they don't return the fulll paths.
-                                $list_data = array();
+    //                             // Basename all the directories because on some servers they don't return the fulll paths.
+    //                             $list_data = array();
 
-                                foreach ($lists as $list) {
-                                    $list_data[] = basename($list);
-                                }
+    //                             foreach ($lists as $list) {
+    //                                 $list_data[] = basename($list);
+    //                             }
 
-                                if (!in_array(basename($destination), $list_data)) {
-                                    if (!ftp_mkdir($connection, $destination)) {
-                                        $json['error'] = sprintf($this->language->get('error_ftp_directory'), $destination);
-                                    }
-                                }
-                            }
+    //                             if (!in_array(basename($destination), $list_data)) {
+    //                                 if (!ftp_mkdir($connection, $destination)) {
+    //                                     $json['error'] = sprintf($this->language->get('error_ftp_directory'), $destination);
+    //                                 }
+    //                             }
+    //                         }
 
-                            if (is_file($file)) {
-                                if (!ftp_put($connection, $destination, $file, FTP_BINARY)) {
-                                    $json['error'] = sprintf($this->language->get('error_ftp_file'), $file);
-                                }
-                            }
-                        }
-                    } else {
-                        $json['error'] = sprintf($this->language->get('error_ftp_root'), $root);
-                    }
-                } else {
-                    $json['error'] = sprintf($this->language->get('error_ftp_login'), $this->config->get('config_ftp_username'));
-                }
+    //                         if (is_file($file)) {
+    //                             if (!ftp_put($connection, $destination, $file, FTP_BINARY)) {
+    //                                 $json['error'] = sprintf($this->language->get('error_ftp_file'), $file);
+    //                             }
+    //                         }
+    //                     }
+    //                 } else {
+    //                     $json['error'] = sprintf($this->language->get('error_ftp_root'), $root);
+    //                 }
+    //             } else {
+    //                 $json['error'] = sprintf($this->language->get('error_ftp_login'), $this->config->get('config_ftp_username'));
+    //             }
 
-                ftp_close($connection);
-            } else {
-                $json['error'] = sprintf($this->language->get('error_ftp_connection'), $this->config->get('config_ftp_hostname'), $this->config->get('config_ftp_port'));
-            }
-        }
+    //             ftp_close($connection);
+    //         } else {
+    //             $json['error'] = sprintf($this->language->get('error_ftp_connection'), $this->config->get('config_ftp_hostname'), $this->config->get('config_ftp_port'));
+    //         }
+    //     }
 
-        $this->response->addHeader('Content-Type: application/json');
-        $this->response->setOutput(json_encode($json));
-    }
+    //     $this->response->addHeader('Content-Type: application/json');
+    //     $this->response->setOutput(json_encode($json));
+    // }
 
     public function sql()
     {
@@ -383,9 +399,9 @@ class ControllerExtensionInstaller extends Controller
             $json['error'] = $this->language->get('error_permission');
         }
 
-        $file = DIR_UPLOAD . $this->request->post['path'] . '/install.sql';
+        $file = SR_UPLOAD . $this->request->post['path'] . '/install.sql';
 
-        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
             $json['error'] = $this->language->get('error_file');
         }
 
@@ -401,7 +417,7 @@ class ControllerExtensionInstaller extends Controller
                             $sql .= $line;
 
                             if (preg_match('/;\s*$/', $line)) {
-                                $sql = str_replace(" `oc_", " `" . DB_PREFIX, $sql);
+                                // $sql = str_replace(" `oc_", " `" . DB_PREFIX, $sql);
 
                                 $this->db->query($sql);
 
@@ -429,9 +445,9 @@ class ControllerExtensionInstaller extends Controller
             $json['error'] = $this->language->get('error_permission');
         }
 
-        $file = DIR_UPLOAD . $this->request->post['path'] . '/install.xml';
+        $file = SR_UPLOAD . $this->request->post['path'] . '/install.xml';
 
-        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
             $json['error'] = $this->language->get('error_file');
         }
 
@@ -508,9 +524,9 @@ class ControllerExtensionInstaller extends Controller
             $json['error'] = $this->language->get('error_permission');
         }
 
-        $file = DIR_UPLOAD . $this->request->post['path'] . '/install.php';
+        $file = SR_UPLOAD . $this->request->post['path'] . '/install.php';
 
-        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+        if (!is_file($file) || substr(str_replace('\\', '/', realpath($file)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
             $json['error'] = $this->language->get('error_file');
         }
 
@@ -536,9 +552,9 @@ class ControllerExtensionInstaller extends Controller
             $json['error'] = $this->language->get('error_permission');
         }
 
-        $directory = DIR_UPLOAD . $this->request->post['path'];
+        $directory = SR_UPLOAD . $this->request->post['path'];
         
-        if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(DIR_UPLOAD)) != DIR_UPLOAD) {
+        if (!is_dir($directory) || substr(str_replace('\\', '/', realpath($directory)), 0, strlen(SR_UPLOAD)) != SR_UPLOAD) {
             $json['error'] = $this->language->get('error_directory');
         }
 
@@ -595,7 +611,7 @@ class ControllerExtensionInstaller extends Controller
         }
 
         if (!$json) {
-            $directories = glob(DIR_UPLOAD . 'temp-*', GLOB_ONLYDIR);
+            $directories = glob(SR_UPLOAD . 'temp-*', GLOB_ONLYDIR);
 
             if ($directories) {
                 foreach ($directories as $directory) {

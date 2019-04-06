@@ -1106,7 +1106,7 @@
 
 		$(document).delegate('#button-ip-add', 'click', function () {
 			$.ajax({
-				url: 'index.php?route=user/api/addip&token=<?php echo $token; ?>&api_id=<?php echo $api_id; ?>',
+				url: '/index.php?route=user/api/addip&token=<?php echo $token; ?>&api_id=<?php echo $api_id; ?>',
 				type: 'post',
 				data: 'ip=<?php echo $api_ip; ?>',
 				dataType: 'json',
@@ -1372,7 +1372,7 @@
 		$('input[name=\'customer\']').autocomplete({
 			'source': function (request, response) {
 				$.ajax({
-					url: 'index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +
+					url: '/index.php?route=customer/customer/autocomplete&token=<?php echo $token; ?>&filter_name=' +
 						encodeURIComponent(request),
 					dataType: 'json',
 					success: function (json) {
@@ -1463,7 +1463,7 @@
 		// Custom Fields
 		$('select[name=\'customer_group_id\']').on('change', function () {
 			$.ajax({
-				url: 'index.php?route=customer/customer/customfield&token=<?php echo $token; ?>&customer_group_id=' + this.value,
+				url: '/index.php?route=customer/customer/customfield&token=<?php echo $token; ?>&customer_group_id=' + this.value,
 				dataType: 'json',
 				success: function (json) {
 					$('.custom-field').hide();
@@ -1575,7 +1575,7 @@
 		$('#tab-product input[name=\'product\']').autocomplete({
 			'source': function (request, response) {
 				$.ajax({
-					url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +
+					url: '/index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +
 						encodeURIComponent(request),
 					dataType: 'json',
 					success: function (json) {
@@ -1938,7 +1938,7 @@
 		// Payment Address
 		$('select[name=\'payment_address\']').on('change', function () {
 			$.ajax({
-				url: 'index.php?route=customer/customer/address&token=<?php echo $token; ?>&address_id=' + this.value,
+				url: '/index.php?route=customer/customer/address&token=<?php echo $token; ?>&address_id=' + this.value,
 				dataType: 'json',
 				beforeSend: function () {
 					$('select[name=\'payment_address\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
@@ -1993,7 +1993,7 @@
 
 		$('#tab-payment select[name=\'country_id\']').on('change', function () {
 			$.ajax({
-				url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
+				url: '/index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
 				dataType: 'json',
 				beforeSend: function () {
 					$('#tab-payment select[name=\'country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
@@ -2137,7 +2137,7 @@
 		// Shipping Address
 		$('select[name=\'shipping_address\']').on('change', function () {
 			$.ajax({
-				url: 'index.php?route=customer/customer/address&token=<?php echo $token; ?>&address_id=' + this.value,
+				url: '/index.php?route=customer/customer/address&token=<?php echo $token; ?>&address_id=' + this.value,
 				dataType: 'json',
 				beforeSend: function () {
 					$('select[name=\'shipping_address\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
@@ -2192,7 +2192,7 @@
 
 		$('#tab-shipping select[name=\'country_id\']').on('change', function () {
 			$.ajax({
-				url: 'index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
+				url: '/index.php?route=localisation/country/country&token=<?php echo $token; ?>&country_id=' + this.value,
 				dataType: 'json',
 				beforeSend: function () {
 					$('#tab-shipping select[name=\'country_id\']').after(' <i class="fa fa-circle-o-notch fa-spin"></i>');
@@ -2546,7 +2546,7 @@
 						clearInterval(timer);
 
 						$.ajax({
-							url: 'index.php?route=tool/upload/upload&token=<?php echo $token; ?>',
+							url: '/index.php?route=tool/upload/upload&token=<?php echo $token; ?>',
 							type: 'post',
 							dataType: 'json',
 							data: new FormData($('#form-upload')[0]),

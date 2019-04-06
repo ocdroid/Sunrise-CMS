@@ -290,15 +290,13 @@
 			</div>
 		</div>
 	</div>
- <script src="view/javascript/summernote/summernote.js"></script>
-	<link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
-	<script src="view/javascript/summernote/opencart.js"></script>
+
 <script>
 // Category
 $('input[name=\'category\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
-			url: 'index.php?route=blog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+			url: '/index.php?route=blog/category/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 			dataType: 'json',			
 			success: function(json) {
 				response($.map(json, function(item) {
@@ -327,7 +325,7 @@ $('#article-category').delegate('.fa-minus-circle', 'click', function() {
 $('input[name=\'download\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
-			url: 'index.php?route=catalog/download/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+			url: '/index.php?route=catalog/download/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 			dataType: 'json',			
 			success: function(json) {
 				response($.map(json, function(item) {
@@ -356,7 +354,7 @@ $('#article-download').delegate('.fa-minus-circle', 'click', function() {
 $('input[name=\'related\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
-			url: 'index.php?route=blog/article/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+			url: '/index.php?route=blog/article/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 			dataType: 'json',			
 			success: function(json) {
 				response($.map(json, function(item) {
@@ -384,7 +382,7 @@ $('#article-related').delegate('.fa-minus-circle', 'click', function() {
 $('input[name=\'relatedproduct\']').autocomplete({
 	'source': function(request, response) {
 		$.ajax({
-			url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+			url: '/index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
 			dataType: 'json',			
 			success: function(json) {
 				response($.map(json, function(item) {
