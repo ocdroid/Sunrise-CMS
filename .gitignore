@@ -6,7 +6,7 @@ dist/images/cache/
 dist/images/.tmb/*
 dist/images/.trash/*
 dist/images/.quarantine/*
-dist/system/storage/cache/
+dist/cache/
 *.log
 
 dist/.htaccess
