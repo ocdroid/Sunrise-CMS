@@ -124,7 +124,6 @@ class ControllerCommonHeader extends Controller
 
             $data['stores'][] = array(
                 'name' => $this->config->get('config_name'),
-                // 'href' => HTTP_CATALOG
                 'href' => '/'
             );
 
