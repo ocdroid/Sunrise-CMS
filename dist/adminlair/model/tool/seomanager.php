@@ -25,7 +25,8 @@ class ModelToolSeoManager extends Model
     public function deleteUrlAlias($url_alias_id)
     {
         $this->db->query("
-			DELETE FROM `url_alias` 
+			DELETE 
+			FROM `url_alias` 
 			WHERE `url_alias_id` = '" . (int)$url_alias_id . "'
 		");
         $this->cache->delete('seo_pro');

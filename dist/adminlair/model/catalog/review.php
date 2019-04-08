@@ -61,7 +61,8 @@ class ModelCatalogReview extends Model
     public function deleteReview($review_id)
     {
         $this->db->query("
-            DELETE FROM review 
+            DELETE 
+			FROM review 
             WHERE review_id = '" . (int)$review_id . "'
         ");
 

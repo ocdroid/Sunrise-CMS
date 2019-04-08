@@ -108,7 +108,8 @@ class ModelCustomerCustomer extends Model
         }
 
         $this->db->query("
-            DELETE FROM address 
+            DELETE 
+			FROM address 
             WHERE customer_id = '" . (int)$customer_id . "'
         ");
 
@@ -159,23 +160,28 @@ class ModelCustomerCustomer extends Model
     public function deleteCustomer($customer_id)
     {
         $this->db->query("
-        	DELETE FROM customer 
+        	DELETE 
+			FROM customer 
         	WHERE customer_id = '" . (int)$customer_id . "'
         ");
         $this->db->query("
-        	DELETE FROM customer_reward 
+        	DELETE 
+			FROM customer_reward 
         	WHERE customer_id = '" . (int)$customer_id . "'
         ");
         $this->db->query("
-        	DELETE FROM customer_transaction 
+        	DELETE 
+			FROM customer_transaction 
         	WHERE customer_id = '" . (int)$customer_id . "'
         ");
         $this->db->query("
-        	DELETE FROM customer_ip 
+        	DELETE 
+			FROM customer_ip 
         	WHERE customer_id = '" . (int)$customer_id . "'
         ");
         $this->db->query("
-        	DELETE FROM address 
+        	DELETE 
+			FROM address 
         	WHERE customer_id = '" . (int)$customer_id . "'
         ");
     }
@@ -630,7 +636,8 @@ class ModelCustomerCustomer extends Model
     public function deleteTransaction($order_id)
     {
         $this->db->query("
-            DELETE FROM customer_transaction 
+            DELETE 
+			FROM customer_transaction 
             WHERE order_id = '" . (int)$order_id . "'
         ");
     }
@@ -737,7 +744,8 @@ class ModelCustomerCustomer extends Model
     public function deleteReward($order_id)
     {
         $this->db->query("
-            DELETE FROM customer_reward 
+            DELETE 
+			FROM customer_reward 
             WHERE order_id = '" . (int)$order_id . "' 
                 AND points > 0
         ");
@@ -845,7 +853,8 @@ class ModelCustomerCustomer extends Model
     public function deleteLoginAttempts($email)
     {
         $this->db->query("
-            DELETE FROM `customer_login` 
+            DELETE 
+			FROM `customer_login` 
             WHERE `email` = '" . $this->db->escape($email) . "'
         ");
     }

@@ -146,7 +146,8 @@ class ModelBlogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM blog_category_description 
+            DELETE 
+			FROM blog_category_description 
             WHERE blog_category_id = '" . (int)$blog_category_id . "'
         ");
 
@@ -175,7 +176,8 @@ class ModelBlogCategory extends Model
             foreach ($query->rows as $category_path) {
                 // Delete the path below the current one
                 $this->db->query("
-                    DELETE FROM `blog_category_path` 
+                    DELETE 
+			FROM `blog_category_path` 
                     WHERE blog_category_id = '" . (int)$category_path['blog_category_id'] . "' 
                         AND level < '" . (int)$category_path['level'] . "'
                 ");
@@ -223,7 +225,8 @@ class ModelBlogCategory extends Model
         } else {
             // Delete the path below the current one
             $this->db->query("
-                DELETE FROM `blog_category_path` 
+                DELETE 
+			FROM `blog_category_path` 
                 WHERE blog_category_id = '" . (int)$blog_category_id . "'
             ");
 
@@ -257,7 +260,8 @@ class ModelBlogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM blog_category_to_store 
+            DELETE 
+			FROM blog_category_to_store 
             WHERE blog_category_id = '" . (int)$blog_category_id . "'
         ");
 
@@ -272,7 +276,8 @@ class ModelBlogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM blog_category_to_layout 
+            DELETE 
+			FROM blog_category_to_layout 
             WHERE blog_category_id = '" . (int)$blog_category_id . "'
         ");
 
@@ -288,7 +293,8 @@ class ModelBlogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM url_alias 
+            DELETE 
+			FROM url_alias 
             WHERE query = 'blog_category_id=" . (int)$blog_category_id . "'
         ");
 
@@ -321,7 +327,8 @@ class ModelBlogCategory extends Model
     public function deleteCategory($blog_category_id)
     {
         $this->db->query("
-            DELETE FROM blog_category_path 
+            DELETE 
+			FROM blog_category_path 
             WHERE blog_category_id = '" . (int)$blog_category_id . "'
         ");
 
@@ -336,27 +343,33 @@ class ModelBlogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM blog_category 
+            DELETE 
+			FROM blog_category 
             WHERE blog_category_id = '" . (int)$blog_category_id . "'
         ");
         $this->db->query("
-            DELETE FROM blog_category_description 
+            DELETE 
+			FROM blog_category_description 
             WHERE blog_category_id = '" . (int)$blog_category_id . "'
         ");
         $this->db->query("
-            DELETE FROM blog_category_to_store 
+            DELETE 
+			FROM blog_category_to_store 
             WHERE blog_category_id = '" . (int)$blog_category_id . "'
         ");
         $this->db->query("
-            DELETE FROM blog_category_to_layout 
+            DELETE 
+			FROM blog_category_to_layout 
             WHERE blog_category_id = '" . (int)$blog_category_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_to_blog_category 
+            DELETE 
+			FROM article_to_blog_category 
             WHERE blog_category_id = '" . (int)$blog_category_id . "'
         ");
         $this->db->query("
-            DELETE FROM url_alias 
+            DELETE 
+			FROM url_alias 
             WHERE query = 'blog_category_id=" . (int)$blog_category_id . "'
         ");
 
@@ -374,7 +387,8 @@ class ModelBlogCategory extends Model
         foreach ($query->rows as $category) {
             // Delete the path below the current one
             $this->db->query("
-                DELETE FROM `blog_category_path` 
+                DELETE 
+			FROM `blog_category_path` 
                 WHERE blog_category_id = '" . (int)$category['blog_category_id'] . "'
             ");
 

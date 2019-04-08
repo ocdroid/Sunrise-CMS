@@ -62,7 +62,8 @@ class ModelUserApi extends Model
 		");
 
         $this->db->query("
-			DELETE FROM api_ip 
+			DELETE 
+			FROM api_ip 
 			WHERE api_id = '" . (int)$api_id . "'
 		");
 
@@ -82,7 +83,8 @@ class ModelUserApi extends Model
     public function deleteApi($api_id)
     {
         $this->db->query("
-			DELETE FROM `api` 
+			DELETE 
+			FROM `api` 
 			WHERE api_id = '" . (int)$api_id . "'
 		");
     }
@@ -196,7 +198,8 @@ class ModelUserApi extends Model
     public function deleteApiSession($api_session_id)
     {
         $this->db->query("
-			DELETE FROM `api_session` 
+			DELETE 
+			FROM `api_session` 
 			WHERE api_session_id = '" . (int)$api_session_id . "'
 		");
     }

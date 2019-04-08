@@ -74,7 +74,8 @@ class ModelCatalogFilter extends Model
         ");
 
         $this->db->query("
-            DELETE FROM filter_group_description 
+            DELETE 
+			FROM filter_group_description 
             WHERE filter_group_id = '" . (int)$filter_group_id . "'
         ");
 
@@ -88,11 +89,13 @@ class ModelCatalogFilter extends Model
         }
 
         $this->db->query("
-            DELETE FROM filter 
+            DELETE 
+			FROM filter 
             WHERE filter_group_id = '" . (int)$filter_group_id . "'
         ");
         $this->db->query("
-            DELETE FROM filter_description 
+            DELETE 
+			FROM filter_description 
             WHERE filter_group_id = '" . (int)$filter_group_id . "'
         ");
 
@@ -131,19 +134,23 @@ class ModelCatalogFilter extends Model
     public function deleteFilter($filter_group_id)
     {
         $this->db->query("
-        	DELETE FROM `filter_group` 
+        	DELETE 
+			FROM `filter_group` 
         	WHERE filter_group_id = '" . (int)$filter_group_id . "'
         ");
         $this->db->query("
-        	DELETE FROM `filter_group_description` 
+        	DELETE 
+			FROM `filter_group_description` 
         	WHERE filter_group_id = '" . (int)$filter_group_id . "'
         ");
         $this->db->query("
-        	DELETE FROM `filter` 
+        	DELETE 
+			FROM `filter` 
         	WHERE filter_group_id = '" . (int)$filter_group_id . "'
         ");
         $this->db->query("
-        	DELETE FROM `filter_description` 
+        	DELETE 
+			FROM `filter_description` 
         	WHERE filter_group_id = '" . (int)$filter_group_id . "'
         ");
     }

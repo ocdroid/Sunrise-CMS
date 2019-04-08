@@ -54,7 +54,8 @@ class ModelExtensionFeedGoogleBase extends Model
     public function import($string)
     {
         $this->db->query("
-            DELETE FROM google_base_category
+            DELETE 
+			FROM google_base_category
         ");
 
         $lines = explode("\n", $string);
@@ -103,7 +104,8 @@ class ModelExtensionFeedGoogleBase extends Model
     public function addCategory($data)
     {
         $this->db->query("
-            DELETE FROM google_base_category_to_category 
+            DELETE 
+			FROM google_base_category_to_category 
             WHERE category_id = '" . (int)$data['category_id'] . "'
         ");
 
@@ -117,7 +119,8 @@ class ModelExtensionFeedGoogleBase extends Model
     public function deleteCategory($category_id)
     {
         $this->db->query("
-            DELETE FROM google_base_category_to_category WHERE category_id = '" . (int)$category_id . "'
+            DELETE 
+			FROM google_base_category_to_category WHERE category_id = '" . (int)$category_id . "'
         ");
     }
 

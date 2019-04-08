@@ -61,7 +61,8 @@ class ModelLocalisationTaxClass extends Model
 		");
 
         $this->db->query("
-			DELETE FROM tax_rule 
+			DELETE 
+			FROM tax_rule 
 			WHERE tax_class_id = '" . (int)$tax_class_id . "'
 		");
 
@@ -83,11 +84,13 @@ class ModelLocalisationTaxClass extends Model
     public function deleteTaxClass($tax_class_id)
     {
         $this->db->query("
-			DELETE FROM tax_class 
+			DELETE 
+			FROM tax_class 
 			WHERE tax_class_id = '" . (int)$tax_class_id . "'
 		");
         $this->db->query("
-			DELETE FROM tax_rule 
+			DELETE 
+			FROM tax_rule 
 			WHERE tax_class_id = '" . (int)$tax_class_id . "'
 		");
 

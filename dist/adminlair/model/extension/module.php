@@ -45,11 +45,13 @@ class ModelExtensionModule extends Model
     public function deleteModule($module_id)
     {
         $this->db->query("
-			DELETE FROM `module` 
+			DELETE 
+			FROM `module` 
 			WHERE `module_id` = '" . (int)$module_id . "'
 		");
         $this->db->query("
-			DELETE FROM `layout_module` 
+			DELETE 
+			FROM `layout_module` 
 			WHERE `code` LIKE '%." . (int)$module_id . "'
 		");
     }
@@ -94,11 +96,13 @@ class ModelExtensionModule extends Model
     public function deleteModulesByCode($code)
     {
         $this->db->query("
-			DELETE FROM `module` 
+			DELETE 
+			FROM `module` 
 			WHERE `code` = '" . $this->db->escape($code) . "'
 		");
         $this->db->query("
-			DELETE FROM `layout_module` 
+			DELETE 
+			FROM `layout_module` 
 			WHERE `code` LIKE '" . $this->db->escape($code) . "' 
 				OR `code` LIKE '" . $this->db->escape($code . '.%') . "'
 		");

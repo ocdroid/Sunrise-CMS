@@ -52,7 +52,8 @@ class ModelCatalogAttributeGroup extends Model
         ");
 
         $this->db->query("
-            DELETE FROM attribute_group_description 
+            DELETE 
+			FROM attribute_group_description 
             WHERE attribute_group_id = '" . (int)$attribute_group_id . "'
         ");
 
@@ -69,11 +70,13 @@ class ModelCatalogAttributeGroup extends Model
     public function deleteAttributeGroup($attribute_group_id)
     {
         $this->db->query("
-            DELETE FROM attribute_group 
+            DELETE 
+			FROM attribute_group 
             WHERE attribute_group_id = '" . (int)$attribute_group_id . "'
         ");
         $this->db->query("
-            DELETE FROM attribute_group_description 
+            DELETE 
+			FROM attribute_group_description 
             WHERE attribute_group_id = '" . (int)$attribute_group_id . "'
         ");
     }

@@ -97,7 +97,8 @@ class ModelCustomerCustomField extends Model
         ");
 
         $this->db->query("
-            DELETE FROM custom_field_description 
+            DELETE 
+			FROM custom_field_description 
             WHERE custom_field_id = '" . (int)$custom_field_id . "'
         ");
 
@@ -111,7 +112,8 @@ class ModelCustomerCustomField extends Model
         }
 
         $this->db->query("
-            DELETE FROM custom_field_customer_group 
+            DELETE 
+			FROM custom_field_customer_group 
             WHERE custom_field_id = '" . (int)$custom_field_id . "'
         ");
 
@@ -129,11 +131,13 @@ class ModelCustomerCustomField extends Model
         }
 
         $this->db->query("
-            DELETE FROM custom_field_value 
+            DELETE 
+			FROM custom_field_value 
             WHERE custom_field_id = '" . (int)$custom_field_id . "'
         ");
         $this->db->query("
-            DELETE FROM custom_field_value_description 
+            DELETE 
+			FROM custom_field_value_description 
             WHERE custom_field_id = '" . (int)$custom_field_id . "'
         ");
 
@@ -172,23 +176,28 @@ class ModelCustomerCustomField extends Model
     public function deleteCustomField($custom_field_id)
     {
         $this->db->query("
-        	DELETE FROM `custom_field` 
+        	DELETE 
+			FROM `custom_field` 
         	WHERE custom_field_id = '" . (int)$custom_field_id . "'
         ");
         $this->db->query("
-        	DELETE FROM `custom_field_description` 
+        	DELETE 
+			FROM `custom_field_description` 
         	WHERE custom_field_id = '" . (int)$custom_field_id . "'
         ");
         $this->db->query("
-        	DELETE FROM `custom_field_customer_group` 
+        	DELETE 
+			FROM `custom_field_customer_group` 
         	WHERE custom_field_id = '" . (int)$custom_field_id . "'
         ");
         $this->db->query("
-        	DELETE FROM `custom_field_value` 
+        	DELETE 
+			FROM `custom_field_value` 
         	WHERE custom_field_id = '" . (int)$custom_field_id . "'
         ");
         $this->db->query("
-        	DELETE FROM `custom_field_value_description` 
+        	DELETE 
+			FROM `custom_field_value_description` 
         	WHERE custom_field_id = '" . (int)$custom_field_id . "'
         ");
     }

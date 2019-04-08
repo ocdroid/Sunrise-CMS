@@ -51,7 +51,8 @@ class ModelLocalisationStockStatus extends Model
     public function editStockStatus($stock_status_id, $data)
     {
         $this->db->query("
-			DELETE FROM stock_status 
+			DELETE 
+			FROM stock_status 
 			WHERE stock_status_id = '" . (int)$stock_status_id . "'
 		");
 
@@ -70,7 +71,8 @@ class ModelLocalisationStockStatus extends Model
     public function deleteStockStatus($stock_status_id)
     {
         $this->db->query("
-			DELETE FROM stock_status 
+			DELETE 
+			FROM stock_status 
 			WHERE stock_status_id = '" . (int)$stock_status_id . "'
 		");
 

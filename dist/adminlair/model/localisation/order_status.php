@@ -51,7 +51,8 @@ class ModelLocalisationOrderStatus extends Model
     public function editOrderStatus($order_status_id, $data)
     {
         $this->db->query("
-			DELETE FROM order_status 
+			DELETE 
+			FROM order_status 
 			WHERE order_status_id = '" . (int)$order_status_id . "'
 		");
 
@@ -70,7 +71,8 @@ class ModelLocalisationOrderStatus extends Model
     public function deleteOrderStatus($order_status_id)
     {
         $this->db->query("
-			DELETE FROM order_status 
+			DELETE 
+			FROM order_status 
 			WHERE order_status_id = '" . (int)$order_status_id . "'
 		");
 

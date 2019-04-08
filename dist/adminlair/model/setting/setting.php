@@ -47,7 +47,8 @@ class ModelSettingSetting extends Model
     public function editSetting($code, $data, $store_id = 0)
     {
         $this->db->query("
-			DELETE FROM `setting` 
+			DELETE 
+			FROM `setting` 
 			WHERE store_id = '" . (int)$store_id . "' 
 				AND `code` = '" . $this->db->escape($code) . "'
 		");
@@ -79,7 +80,8 @@ class ModelSettingSetting extends Model
     public function deleteSetting($code, $store_id = 0)
     {
         $this->db->query("
-			DELETE FROM setting 
+			DELETE 
+			FROM setting 
 			WHERE store_id = '" . (int)$store_id . "' 
 				AND `code` = '" . $this->db->escape($code) . "'
 		");

@@ -54,7 +54,8 @@ class ModelCatalogAttribute extends Model
         ");
 
         $this->db->query("
-            DELETE FROM attribute_description 
+            DELETE 
+			FROM attribute_description 
             WHERE attribute_id = '" . (int)$attribute_id . "'
         ");
 
@@ -71,11 +72,13 @@ class ModelCatalogAttribute extends Model
     public function deleteAttribute($attribute_id)
     {
         $this->db->query("
-            DELETE FROM attribute 
+            DELETE 
+			FROM attribute 
             WHERE attribute_id = '" . (int)$attribute_id . "'
         ");
         $this->db->query("
-            DELETE FROM attribute_description 
+            DELETE 
+			FROM attribute_description 
             WHERE attribute_id = '" . (int)$attribute_id . "'
         ");
     }

@@ -99,7 +99,8 @@ class ModelBlogArticle extends Model
         
         if (isset($data['main_blog_category_id']) && $data['main_blog_category_id'] > 0) {
             $this->db->query("
-                DELETE FROM article_to_blog_category 
+                DELETE 
+				FROM article_to_blog_category 
                 WHERE article_id = '" . (int)$article_id . "' 
                     AND blog_category_id = '" . (int)$data['main_blog_category_id'] . "'
             ");
@@ -121,7 +122,8 @@ class ModelBlogArticle extends Model
         if (isset($data['article_related'])) {
             foreach ($data['article_related'] as $related_id) {
                 $this->db->query("
-                    DELETE FROM article_related 
+                    DELETE 
+                    FROM article_related 
                     WHERE article_id = '" . (int)$article_id . "' 
                         AND related_id = '" . (int)$related_id . "'
                 ");
@@ -131,7 +133,8 @@ class ModelBlogArticle extends Model
                         related_id = '" . (int)$related_id . "'
                 ");
                 $this->db->query("
-                    DELETE FROM article_related 
+                    DELETE 
+				    FROM article_related 
                     WHERE article_id = '" . (int)$related_id . "' 
                         AND related_id = '" . (int)$article_id . "'
                 ");
@@ -146,7 +149,8 @@ class ModelBlogArticle extends Model
         if (isset($data['product_related'])) {
             foreach ($data['product_related'] as $related_id) {
                 $this->db->query("
-                    DELETE FROM article_related_product 
+                    DELETE 
+				    FROM article_related_product 
                     WHERE article_id = '" . (int)$article_id . "' 
                         AND product_id = '" . (int)$related_id . "'
                 ");
@@ -205,7 +209,8 @@ class ModelBlogArticle extends Model
         }
 
         $this->db->query("
-            DELETE FROM article_description 
+            DELETE 
+            FROM article_description 
             WHERE article_id = '" . (int)$article_id . "'
         ");
 
@@ -224,7 +229,8 @@ class ModelBlogArticle extends Model
         }
 
         $this->db->query("
-            DELETE FROM article_to_store 
+            DELETE 
+            FROM article_to_store 
             WHERE article_id = '" . (int)$article_id . "'
         ");
 
@@ -239,7 +245,8 @@ class ModelBlogArticle extends Model
         }
 
         $this->db->query("
-            DELETE FROM article_image 
+            DELETE 
+            FROM article_image 
             WHERE article_id = '" . (int)$article_id . "'
         ");
 
@@ -255,7 +262,8 @@ class ModelBlogArticle extends Model
         }
 
         $this->db->query("
-            DELETE FROM article_to_download 
+            DELETE 
+            FROM article_to_download 
             WHERE article_id = '" . (int)$article_id . "'
         ");
 
@@ -270,7 +278,8 @@ class ModelBlogArticle extends Model
         }
 
         $this->db->query("
-            DELETE FROM article_to_blog_category 
+            DELETE 
+            FROM article_to_blog_category 
             WHERE article_id = '" . (int)$article_id . "'
         ");
 
@@ -286,7 +295,8 @@ class ModelBlogArticle extends Model
         
         if (isset($data['main_blog_category_id']) && $data['main_blog_category_id'] > 0) {
             $this->db->query("
-                DELETE FROM article_to_blog_category 
+                DELETE 
+				FROM article_to_blog_category 
                 WHERE article_id = '" . (int)$article_id . "' 
                     AND blog_category_id = '" . (int)$data['main_blog_category_id'] . "'
             ");
@@ -306,18 +316,21 @@ class ModelBlogArticle extends Model
         }
 
         $this->db->query("
-            DELETE FROM article_related 
+            DELETE 
+            FROM article_related 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_related 
+            DELETE 
+            FROM article_related 
             WHERE related_id = '" . (int)$article_id . "'
         ");
 
         if (isset($data['article_related'])) {
             foreach ($data['article_related'] as $related_id) {
                 $this->db->query("
-                    DELETE FROM article_related 
+                    DELETE 
+				    FROM article_related 
                     WHERE article_id = '" . (int)$article_id . "' 
                         AND related_id = '" . (int)$related_id . "'
                 ");
@@ -327,7 +340,8 @@ class ModelBlogArticle extends Model
                         related_id = '" . (int)$related_id . "'
                 ");
                 $this->db->query("
-                    DELETE FROM article_related 
+                    DELETE 
+				    FROM article_related 
                     WHERE article_id = '" . (int)$related_id . "' 
                         AND related_id = '" . (int)$article_id . "'
                 ");
@@ -340,14 +354,16 @@ class ModelBlogArticle extends Model
         }
         
         $this->db->query("
-            DELETE FROM article_related_product 
+            DELETE 
+            FROM article_related_product 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         
         if (isset($data['product_related'])) {
             foreach ($data['product_related'] as $related_id) {
                 $this->db->query("
-                    DELETE FROM article_related_product 
+                    DELETE 
+				    FROM article_related_product 
                     WHERE article_id = '" . (int)$article_id . "' 
                         AND product_id = '" . (int)$related_id . "'
                 ");
@@ -360,7 +376,8 @@ class ModelBlogArticle extends Model
         }
 
         $this->db->query("
-            DELETE FROM article_to_layout 
+            DELETE 
+            FROM article_to_layout 
             WHERE article_id = '" . (int)$article_id . "'
         ");
 
@@ -376,7 +393,8 @@ class ModelBlogArticle extends Model
         }
 
         $this->db->query("
-            DELETE FROM url_alias 
+            DELETE 
+            FROM url_alias 
             WHERE query = 'article_id=" . (int)$article_id . "'
         ");
 
@@ -442,51 +460,63 @@ class ModelBlogArticle extends Model
     public function deleteArticle($article_id)
     {
         $this->db->query("
-            DELETE FROM article 
+            DELETE 
+            FROM article 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_description 
+            DELETE 
+            FROM article_description 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_image 
+            DELETE 
+            FROM article_image 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_related 
+            DELETE 
+            FROM article_related 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_related 
+            DELETE 
+            FROM article_related 
             WHERE related_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_related_product 
+            DELETE 
+            FROM article_related_product 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_to_blog_category 
+            DELETE 
+            FROM article_to_blog_category 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_to_download 
+            DELETE 
+            FROM article_to_download 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_to_layout 
+            DELETE 
+            FROM article_to_layout 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_to_store 
+            DELETE 
+            FROM article_to_store 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM review_article 
+            DELETE 
+            FROM review_article 
             WHERE article_id = '" . (int)$article_id . "'
         ");
         $this->db->query("
-            DELETE FROM url_alias 
+            DELETE 
+            FROM url_alias 
             WHERE query = 'article_id=" . (int)$article_id . "'
         ");
 

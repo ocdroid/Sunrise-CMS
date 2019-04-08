@@ -54,7 +54,8 @@ class ModelLocalisationZone extends Model
     public function deleteZone($zone_id)
     {
         $this->db->query("
-			DELETE FROM zone 
+			DELETE 
+			FROM zone 
 			WHERE zone_id = '" . (int)$zone_id . "'
 		");
 

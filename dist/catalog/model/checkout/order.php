@@ -194,12 +194,14 @@ class ModelCheckoutOrder extends Model
         ");
 
         $this->db->query("
-            DELETE FROM order_product 
+            DELETE 
+			FROM order_product 
             WHERE order_id = '" . (int)$order_id . "'
         ");
 
         $this->db->query("
-            DELETE FROM order_option 
+            DELETE 
+			FROM order_option 
             WHERE order_id = '" . (int)$order_id . "'
         ");
 
@@ -238,7 +240,8 @@ class ModelCheckoutOrder extends Model
 
         // Totals
         $this->db->query("
-            DELETE FROM order_total 
+            DELETE 
+			FROM order_total 
             WHERE order_id = '" . (int)$order_id . "'
         ");
 
@@ -262,27 +265,32 @@ class ModelCheckoutOrder extends Model
         $this->addOrderHistory($order_id, 0);
 
         $this->db->query("
-            DELETE FROM `order` 
+            DELETE 
+			FROM `order` 
             WHERE order_id = '" . (int)$order_id . "'
         ");
 
         $this->db->query("
-            DELETE FROM `order_product` 
+            DELETE 
+			FROM `order_product` 
             WHERE order_id = '" . (int)$order_id . "'
         ");
 
         $this->db->query("
-            DELETE FROM `order_option` 
+            DELETE 
+			FROM `order_option` 
             WHERE order_id = '" . (int)$order_id . "'
         ");
 
         $this->db->query("
-            DELETE FROM `order_total` 
+            DELETE 
+			FROM `order_total` 
             WHERE order_id = '" . (int)$order_id . "'
         ");
 
         $this->db->query("
-            DELETE FROM `order_history` 
+            DELETE 
+			FROM `order_history` 
             WHERE order_id = '" . (int)$order_id . "'
         ");
     }

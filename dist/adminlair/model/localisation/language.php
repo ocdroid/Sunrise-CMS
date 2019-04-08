@@ -460,96 +460,115 @@ class ModelLocalisationLanguage extends Model
     public function deleteLanguage($language_id)
     {
         $this->db->query("
-        	DELETE FROM language 
+        	DELETE 
+			FROM language 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
 
         $this->cache->delete('language');
         
         $this->db->query("
-        	DELETE FROM article_description 
+        	DELETE 
+			FROM article_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->cache->delete('article');
         $this->db->query("
-        	DELETE FROM blog_category_description 
+        	DELETE 
+			FROM blog_category_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM custommenu_description 
+        	DELETE 
+			FROM custommenu_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM custommenu_child_description 
+        	DELETE 
+			FROM custommenu_child_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
 
         $this->db->query("
-        	DELETE FROM attribute_description 
+        	DELETE 
+			FROM attribute_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM attribute_group_description 
+        	DELETE 
+			FROM attribute_group_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM category_description 
+        	DELETE 
+			FROM category_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
 
         $this->cache->delete('category');
 
         $this->db->query("
-        	DELETE FROM customer_group_description 
+        	DELETE 
+			FROM customer_group_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM download_description 
+        	DELETE 
+			FROM download_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM filter_description 
+        	DELETE 
+			FROM filter_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM filter_group_description 
+        	DELETE 
+			FROM filter_group_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM information_description 
+        	DELETE 
+			FROM information_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
 
         $this->cache->delete('information');
 
         $this->db->query("
-        	DELETE FROM option_description 
+        	DELETE 
+			FROM option_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM option_value_description 
+        	DELETE 
+			FROM option_value_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM order_status 
+        	DELETE 
+			FROM order_status 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
 
         $this->cache->delete('order_status');
 
         $this->db->query("
-        	DELETE FROM product_attribute 
+        	DELETE 
+			FROM product_attribute 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_description 
+        	DELETE 
+			FROM product_description 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
 
         $this->cache->delete('product');
 
         $this->db->query("
-        	DELETE FROM stock_status 
+        	DELETE 
+			FROM stock_status 
         	WHERE language_id = '" . (int)$language_id . "'
         ");
 

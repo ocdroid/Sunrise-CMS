@@ -36,7 +36,8 @@ class ModelLocalisationGeoZone extends Model
         if (isset($data['zone_to_geo_zone'])) {
             foreach ($data['zone_to_geo_zone'] as $value) {
                 $this->db->query("
-					DELETE FROM zone_to_geo_zone 
+					DELETE 
+			FROM zone_to_geo_zone 
 					WHERE geo_zone_id = '" . (int)$geo_zone_id . "' 
 						AND country_id = '" . (int)$value['country_id'] . "' 
 						AND zone_id = '" . (int)$value['zone_id'] . "'
@@ -68,14 +69,16 @@ class ModelLocalisationGeoZone extends Model
 		");
 
         $this->db->query("
-			DELETE FROM zone_to_geo_zone 
+			DELETE 
+			FROM zone_to_geo_zone 
 			WHERE geo_zone_id = '" . (int)$geo_zone_id . "'
 		");
 
         if (isset($data['zone_to_geo_zone'])) {
             foreach ($data['zone_to_geo_zone'] as $value) {
                 $this->db->query("
-					DELETE FROM zone_to_geo_zone 
+					DELETE 
+			FROM zone_to_geo_zone 
 					WHERE geo_zone_id = '" . (int)$geo_zone_id . "' 
 						AND country_id = '" . (int)$value['country_id'] . "' 
 						AND zone_id = '" . (int)$value['zone_id'] . "'
@@ -97,11 +100,13 @@ class ModelLocalisationGeoZone extends Model
     public function deleteGeoZone($geo_zone_id)
     {
         $this->db->query("
-			DELETE FROM geo_zone 
+			DELETE 
+			FROM geo_zone 
 			WHERE geo_zone_id = '" . (int)$geo_zone_id . "'
 			");
         $this->db->query("
-			DELETE FROM zone_to_geo_zone 
+			DELETE 
+			FROM zone_to_geo_zone 
 			WHERE geo_zone_id = '" . (int)$geo_zone_id . "'
 			");
 

@@ -66,7 +66,8 @@ class ModelDesignLayout extends Model
 		");
 
         $this->db->query("
-			DELETE FROM layout_route 
+			DELETE 
+			FROM layout_route 
 			WHERE layout_id = '" . (int)$layout_id . "'
 		");
 
@@ -82,7 +83,8 @@ class ModelDesignLayout extends Model
         }
 
         $this->db->query("
-			DELETE FROM layout_module 
+			DELETE 
+			FROM layout_module 
 			WHERE layout_id = '" . (int)$layout_id . "'
 		");
 
@@ -102,27 +104,33 @@ class ModelDesignLayout extends Model
     public function deleteLayout($layout_id)
     {
         $this->db->query("
-			DELETE FROM layout 
+			DELETE 
+			FROM layout 
 			WHERE layout_id = '" . (int)$layout_id . "'
 		");
         $this->db->query("
-			DELETE FROM layout_route 
+			DELETE 
+			FROM layout_route 
 			WHERE layout_id = '" . (int)$layout_id . "'
 		");
         $this->db->query("
-			DELETE FROM layout_module 
+			DELETE 
+			FROM layout_module 
 			WHERE layout_id = '" . (int)$layout_id . "'
 		");
         $this->db->query("
-			DELETE FROM category_to_layout 
+			DELETE 
+			FROM category_to_layout 
 			WHERE layout_id = '" . (int)$layout_id . "'
 		");
         $this->db->query("
-			DELETE FROM product_to_layout 
+			DELETE 
+			FROM product_to_layout 
 			WHERE layout_id = '" . (int)$layout_id . "'
 		");
         $this->db->query("
-			DELETE FROM information_to_layout 
+			DELETE 
+			FROM information_to_layout 
 			WHERE layout_id = '" . (int)$layout_id . "'
 		");
     }

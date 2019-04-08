@@ -72,7 +72,8 @@ class ModelDesignBenefit extends Model
         }
         
         $this->db->query("
-			DELETE FROM benefit_description 
+			DELETE 
+			FROM benefit_description 
 			WHERE benefit_id = '" . (int)$benefit_id . "'
 		");
     
@@ -89,11 +90,13 @@ class ModelDesignBenefit extends Model
     public function deleteBenefit($benefit_id)
     {
         $this->db->query("
-			DELETE FROM benefit 
+			DELETE 
+			FROM benefit 
 			WHERE benefit_id = '" . (int)$benefit_id . "'
 		");
         $this->db->query("
-			DELETE FROM benefit_description 
+			DELETE 
+			FROM benefit_description 
 			WHERE benefit_id = '" . (int)$benefit_id . "'
 		");
     }

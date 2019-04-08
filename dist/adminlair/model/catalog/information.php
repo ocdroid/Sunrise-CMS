@@ -96,7 +96,8 @@ class ModelCatalogInformation extends Model
         ");
 
         $this->db->query("
-            DELETE FROM information_description 
+            DELETE 
+			FROM information_description 
             WHERE information_id = '" . (int)$information_id . "'
         ");
 
@@ -114,7 +115,8 @@ class ModelCatalogInformation extends Model
         }
 
         $this->db->query("
-            DELETE FROM information_to_store 
+            DELETE 
+			FROM information_to_store 
             WHERE information_id = '" . (int)$information_id . "'
         ");
 
@@ -129,7 +131,8 @@ class ModelCatalogInformation extends Model
         }
 
         $this->db->query("
-            DELETE FROM information_to_layout 
+            DELETE 
+			FROM information_to_layout 
             WHERE information_id = '" . (int)$information_id . "'
         ");
 
@@ -145,7 +148,8 @@ class ModelCatalogInformation extends Model
         }
 
         $this->db->query("
-            DELETE FROM url_alias 
+            DELETE 
+			FROM url_alias 
             WHERE query = 'information_id=" . (int)$information_id . "'
         ");
 
@@ -177,23 +181,28 @@ class ModelCatalogInformation extends Model
     public function deleteInformation($information_id)
     {
         $this->db->query("
-        	DELETE FROM information 
+        	DELETE 
+			FROM information 
         	WHERE information_id = '" . (int)$information_id . "'
         ");
         $this->db->query("
-        	DELETE FROM information_description 
+        	DELETE 
+			FROM information_description 
         	WHERE information_id = '" . (int)$information_id . "'
         ");
         $this->db->query("
-        	DELETE FROM information_to_store 
+        	DELETE 
+			FROM information_to_store 
         	WHERE information_id = '" . (int)$information_id . "'
         ");
         $this->db->query("
-        	DELETE FROM information_to_layout 
+        	DELETE 
+			FROM information_to_layout 
         	WHERE information_id = '" . (int)$information_id . "'
         ");
         $this->db->query("
-        	DELETE FROM url_alias 
+        	DELETE 
+			FROM url_alias 
         	WHERE query = 'information_id=" . (int)$information_id . "'
         ");
 

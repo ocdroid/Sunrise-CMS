@@ -114,14 +114,16 @@ class ModelCatalogProduct extends Model
                 if ($product_attribute['attribute_id']) {
                     // Removes duplicates
                     $this->db->query("
-                        DELETE FROM product_attribute 
+                        DELETE 
+			FROM product_attribute 
                         WHERE product_id = '" . (int)$product_id . "' 
                         AND attribute_id = '" . (int)$product_attribute['attribute_id'] . "'
                     ");
 
                     foreach ($product_attribute['product_attribute_description'] as $language_id => $product_attribute_description) {
                         $this->db->query("
-                            DELETE FROM product_attribute 
+                            DELETE 
+			FROM product_attribute 
                             WHERE product_id = '" . (int)$product_id . "' 
                                 AND attribute_id = '" . (int)$product_attribute['attribute_id'] . "' 
                                 AND language_id = '" . (int)$language_id . "'
@@ -242,7 +244,8 @@ class ModelCatalogProduct extends Model
         
         if (isset($data['main_category_id']) && $data['main_category_id'] > 0) {
             $this->db->query("
-                DELETE FROM product_to_category 
+                DELETE 
+			FROM product_to_category 
                 WHERE product_id = '" . (int)$product_id . "' 
                     AND category_id = '" . (int)$data['main_category_id'] . "'
             ");
@@ -274,7 +277,8 @@ class ModelCatalogProduct extends Model
         if (isset($data['product_related'])) {
             foreach ($data['product_related'] as $related_id) {
                 $this->db->query("
-                    DELETE FROM product_related 
+                    DELETE 
+			FROM product_related 
                     WHERE product_id = '" . (int)$product_id . "' 
                         AND related_id = '" . (int)$related_id . "'
                 ");
@@ -284,7 +288,8 @@ class ModelCatalogProduct extends Model
                         related_id = '" . (int)$related_id . "'
                 ");
                 $this->db->query("
-                    DELETE FROM product_related 
+                    DELETE 
+			FROM product_related 
                     WHERE product_id = '" . (int)$related_id . "' 
                         AND related_id = '" . (int)$product_id . "'
                 ");
@@ -299,7 +304,8 @@ class ModelCatalogProduct extends Model
         if (isset($data['product_related_article'])) {
             foreach ($data['product_related_article'] as $article_id) {
                 $this->db->query("
-                    DELETE FROM product_related_article 
+                    DELETE 
+			FROM product_related_article 
                     WHERE product_id = '" . (int)$product_id . "' 
                         AND article_id = '" . (int)$article_id . "'
                 ");
@@ -403,11 +409,13 @@ class ModelCatalogProduct extends Model
         ");
 
         $this->db->query("
-            DELETE FROM product_tab 
+            DELETE 
+			FROM product_tab 
             WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-            DELETE FROM product_tab_desc 
+            DELETE 
+			FROM product_tab_desc 
             WHERE product_id = '" . (int)$product_id . "'
         ");
         
@@ -444,7 +452,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_description 
+            DELETE 
+			FROM product_description 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -464,7 +473,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_to_store 
+            DELETE 
+			FROM product_to_store 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -479,7 +489,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_attribute 
+            DELETE 
+			FROM product_attribute 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -488,7 +499,8 @@ class ModelCatalogProduct extends Model
                 if ($product_attribute['attribute_id']) {
                     // Removes duplicates
                     $this->db->query("
-                        DELETE FROM product_attribute 
+                        DELETE 
+			FROM product_attribute 
                         WHERE product_id = '" . (int)$product_id . "' 
                             AND attribute_id = '" . (int)$product_attribute['attribute_id'] . "'
                     ");
@@ -507,11 +519,13 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_option 
+            DELETE 
+			FROM product_option 
             WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-            DELETE FROM product_option_value 
+            DELETE 
+			FROM product_option_value 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -560,7 +574,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_discount 
+            DELETE 
+			FROM product_discount 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -580,7 +595,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_special 
+            DELETE 
+			FROM product_special 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -599,7 +615,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_image 
+            DELETE 
+			FROM product_image 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -615,7 +632,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_to_download 
+            DELETE 
+			FROM product_to_download 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -630,7 +648,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_to_category 
+            DELETE 
+			FROM product_to_category 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -646,7 +665,8 @@ class ModelCatalogProduct extends Model
         
         if (isset($data['main_category_id']) && $data['main_category_id'] > 0) {
             $this->db->query("
-                DELETE FROM product_to_category 
+                DELETE 
+			FROM product_to_category 
                 WHERE product_id = '" . (int)$product_id . "' 
                     AND category_id = '" . (int)$data['main_category_id'] . "'
             ");
@@ -666,7 +686,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_filter 
+            DELETE 
+			FROM product_filter 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -681,18 +702,21 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_related 
+            DELETE 
+			FROM product_related 
             WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-            DELETE FROM product_related 
+            DELETE 
+			FROM product_related 
             WHERE related_id = '" . (int)$product_id . "'
         ");
 
         if (isset($data['product_related'])) {
             foreach ($data['product_related'] as $related_id) {
                 $this->db->query("
-                    DELETE FROM product_related 
+                    DELETE 
+			FROM product_related 
                     WHERE product_id = '" . (int)$product_id . "' 
                         AND related_id = '" . (int)$related_id . "'
                 ");
@@ -702,7 +726,8 @@ class ModelCatalogProduct extends Model
                         related_id = '" . (int)$related_id . "'
                 ");
                 $this->db->query("
-                    DELETE FROM product_related 
+                    DELETE 
+			FROM product_related 
                     WHERE product_id = '" . (int)$related_id . "' 
                         AND related_id = '" . (int)$product_id . "'
                 ");
@@ -715,14 +740,16 @@ class ModelCatalogProduct extends Model
         }
         
         $this->db->query("
-            DELETE FROM product_related_article 
+            DELETE 
+			FROM product_related_article 
             WHERE product_id = '" . (int)$product_id . "'
         ");
         
         if (isset($data['product_related_article'])) {
             foreach ($data['product_related_article'] as $article_id) {
                 $this->db->query("
-                    DELETE FROM product_related_article 
+                    DELETE 
+			FROM product_related_article 
                     WHERE product_id = '" . (int)$product_id . "' 
                         AND article_id = '" . (int)$article_id . "'
                 ");
@@ -735,7 +762,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_reward 
+            DELETE 
+			FROM product_reward 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -753,7 +781,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM product_to_layout 
+            DELETE 
+			FROM product_to_layout 
             WHERE product_id = '" . (int)$product_id . "'
         ");
 
@@ -769,7 +798,8 @@ class ModelCatalogProduct extends Model
         }
         
         $this->db->query("
-            DELETE FROM product_to_benefit 
+            DELETE 
+			FROM product_to_benefit 
             WHERE product_id = '" . (int)$product_id . "'
         ");
         if (isset($data['product_benefits'])) {
@@ -783,7 +813,8 @@ class ModelCatalogProduct extends Model
         }
         
         $this->db->query("
-            DELETE FROM product_to_sticker 
+            DELETE 
+			FROM product_to_sticker 
             WHERE product_id = '" . (int)$product_id . "'
         ");
         
@@ -801,7 +832,8 @@ class ModelCatalogProduct extends Model
         }
 
         $this->db->query("
-            DELETE FROM url_alias 
+            DELETE 
+			FROM url_alias 
             WHERE query = 'product_id=" . (int)$product_id . "'
         ");
         
@@ -874,95 +906,118 @@ class ModelCatalogProduct extends Model
     public function deleteProduct($product_id)
     {
         $this->db->query("
-        	DELETE FROM product 
+        	DELETE 
+			FROM product 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_attribute 
+        	DELETE 
+			FROM product_attribute 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_description 
+        	DELETE 
+			FROM product_description 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_discount 
+        	DELETE 
+			FROM product_discount 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_filter 
+        	DELETE 
+			FROM product_filter 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_image 
+        	DELETE 
+			FROM product_image 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_option 
+        	DELETE 
+			FROM product_option 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_option_value 
+        	DELETE 
+			FROM product_option_value 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_related 
+        	DELETE 
+			FROM product_related 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_related 
+        	DELETE 
+			FROM product_related 
         	WHERE related_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_related_article 
+        	DELETE 
+			FROM product_related_article 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_reward 
+        	DELETE 
+			FROM product_reward 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_special 
+        	DELETE 
+			FROM product_special 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_to_category 
+        	DELETE 
+			FROM product_to_category 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_to_download 
+        	DELETE 
+			FROM product_to_download 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_to_layout 
+        	DELETE 
+			FROM product_to_layout 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_to_store 
+        	DELETE 
+			FROM product_to_store 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM review 
+        	DELETE 
+			FROM review 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM url_alias 
+        	DELETE 
+			FROM url_alias 
         	WHERE query = 'product_id=" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_tab 
+        	DELETE 
+			FROM product_tab 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_tab_desc 
+        	DELETE 
+			FROM product_tab_desc 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_to_benefit 
+        	DELETE 
+			FROM product_to_benefit 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_to_sticker 
+        	DELETE 
+			FROM product_to_sticker 
         	WHERE product_id = '" . (int)$product_id . "'
         ");
         

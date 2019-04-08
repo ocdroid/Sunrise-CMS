@@ -35,7 +35,8 @@ class Cart
         $this->tax = $registry->get('tax');
 
         // Remove all the expired carts with no customer ID
-        $this->db->query("DELETE FROM cart WHERE (api_id > '0' OR customer_id = '0') AND date_added < DATE_SUB(NOW(), INTERVAL 1 DAY)");
+        $this->db->query("DELETE 
+			FROM cart WHERE (api_id > '0' OR customer_id = '0') AND date_added < DATE_SUB(NOW(), INTERVAL 1 DAY)");
 
         if ($this->customer->getId()) {
             // We want to change the session ID on all the old items in the customers cart
@@ -45,7 +46,8 @@ class Cart
             $cart_query = $this->db->query("SELECT * FROM cart WHERE api_id = '0' AND customer_id = '0' AND session_id = '" . $this->db->escape($this->session->getId()) . "'");
 
             foreach ($cart_query->rows as $cart) {
-                $this->db->query("DELETE FROM cart WHERE cart_id = '" . (int)$cart['cart_id'] . "'");
+                $this->db->query("DELETE 
+			FROM cart WHERE cart_id = '" . (int)$cart['cart_id'] . "'");
 
                 // The advantage of using $this->add is that it will check if the products already exist and increaser the quantity if necessary.
                 $this->add($cart['product_id'], $cart['quantity'], json_decode($cart['option']));
@@ -275,12 +277,14 @@ class Cart
 
     public function remove($cart_id)
     {
-        $this->db->query("DELETE FROM cart WHERE cart_id = '" . (int)$cart_id . "' AND api_id = '" . (isset($this->session->data['api_id']) ? (int)$this->session->data['api_id'] : 0) . "' AND customer_id = '" . (int)$this->customer->getId() . "' AND session_id = '" . $this->db->escape($this->session->getId()) . "'");
+        $this->db->query("DELETE 
+			FROM cart WHERE cart_id = '" . (int)$cart_id . "' AND api_id = '" . (isset($this->session->data['api_id']) ? (int)$this->session->data['api_id'] : 0) . "' AND customer_id = '" . (int)$this->customer->getId() . "' AND session_id = '" . $this->db->escape($this->session->getId()) . "'");
     }
 
     public function clear()
     {
-        $this->db->query("DELETE FROM cart WHERE api_id = '" . (isset($this->session->data['api_id']) ? (int)$this->session->data['api_id'] : 0) . "' AND customer_id = '" . (int)$this->customer->getId() . "' AND session_id = '" . $this->db->escape($this->session->getId()) . "'");
+        $this->db->query("DELETE 
+			FROM cart WHERE api_id = '" . (isset($this->session->data['api_id']) ? (int)$this->session->data['api_id'] : 0) . "' AND customer_id = '" . (int)$this->customer->getId() . "' AND session_id = '" . $this->db->escape($this->session->getId()) . "'");
     }
 
     public function getSubTotal()

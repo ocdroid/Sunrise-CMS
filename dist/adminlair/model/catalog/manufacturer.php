@@ -114,7 +114,8 @@ class ModelCatalogManufacturer extends Model
     public function editManufacturer($manufacturer_id, $data)
     {
         $this->db->query("
-            DELETE FROM manufacturer_to_layout 
+            DELETE 
+			FROM manufacturer_to_layout 
             WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
 
@@ -146,7 +147,8 @@ class ModelCatalogManufacturer extends Model
         }
         
         $this->db->query("
-            DELETE FROM manufacturer_description 
+            DELETE 
+			FROM manufacturer_description 
             WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
         
@@ -164,7 +166,8 @@ class ModelCatalogManufacturer extends Model
         }
 
         $this->db->query("
-            DELETE FROM manufacturer_to_store 
+            DELETE 
+			FROM manufacturer_to_store 
             WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
 
@@ -179,14 +182,16 @@ class ModelCatalogManufacturer extends Model
         }
         
         $this->db->query("
-            DELETE FROM product_related_mn 
+            DELETE 
+			FROM product_related_mn 
             WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
     
         if (isset($data['product_related'])) {
             foreach ($data['product_related'] as $related_id) {
                 $this->db->query("
-                    DELETE FROM product_related_mn 
+                    DELETE 
+			FROM product_related_mn 
                     WHERE manufacturer_id = '" . (int)$manufacturer_id . "' 
                         AND product_id = '" . (int)$related_id . "'
                 ");
@@ -199,14 +204,16 @@ class ModelCatalogManufacturer extends Model
         }
         
         $this->db->query("
-            DELETE FROM article_related_mn 
+            DELETE 
+			FROM article_related_mn 
             WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
     
         if (isset($data['article_related'])) {
             foreach ($data['article_related'] as $related_id) {
                 $this->db->query("
-                    DELETE FROM article_related_mn 
+                    DELETE 
+			FROM article_related_mn 
                     WHERE manufacturer_id = '" . (int)$manufacturer_id . "' 
                         AND article_id = '" . (int)$related_id . "'
                     ");
@@ -219,7 +226,8 @@ class ModelCatalogManufacturer extends Model
         }
 
         $this->db->query("
-            DELETE FROM url_alias 
+            DELETE 
+			FROM url_alias 
             WHERE query = 'manufacturer_id=" . (int)$manufacturer_id . "'
         ");
         
@@ -240,31 +248,38 @@ class ModelCatalogManufacturer extends Model
     public function deleteManufacturer($manufacturer_id)
     {
         $this->db->query("
-        	DELETE FROM manufacturer 
+        	DELETE 
+			FROM manufacturer 
         	WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
         $this->db->query("
-        	DELETE FROM manufacturer_description 
+        	DELETE 
+			FROM manufacturer_description 
         	WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
         $this->db->query("
-        	DELETE FROM manufacturer_to_layout 
+        	DELETE 
+			FROM manufacturer_to_layout 
         	WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
         $this->db->query("
-        	DELETE FROM manufacturer_to_store 
+        	DELETE 
+			FROM manufacturer_to_store 
         	WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
         $this->db->query("
-        	DELETE FROM url_alias 
+        	DELETE 
+			FROM url_alias 
         	WHERE query = 'manufacturer_id=" . (int)$manufacturer_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_related_mn 
+        	DELETE 
+			FROM product_related_mn 
         	WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
         $this->db->query("
-        	DELETE FROM article_related_mn 
+        	DELETE 
+			FROM article_related_mn 
         	WHERE manufacturer_id = '" . (int)$manufacturer_id . "'
         ");
 

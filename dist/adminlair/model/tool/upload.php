@@ -40,7 +40,8 @@ class ModelToolUpload extends Model
     public function deleteUpload($upload_id)
     {
         $this->db->query("
-			DELETE FROM upload 
+			DELETE 
+			FROM upload 
 			WHERE upload_id = '" . (int)$upload_id . "'
 		");
     }

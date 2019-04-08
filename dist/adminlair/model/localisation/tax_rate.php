@@ -62,7 +62,8 @@ class ModelLocalisationTaxRate extends Model
 		");
 
         $this->db->query("
-			DELETE FROM tax_rate_to_customer_group 
+			DELETE 
+			FROM tax_rate_to_customer_group 
 			WHERE tax_rate_id = '" . (int)$tax_rate_id . "'
 		");
 
@@ -80,11 +81,13 @@ class ModelLocalisationTaxRate extends Model
     public function deleteTaxRate($tax_rate_id)
     {
         $this->db->query("
-			DELETE FROM tax_rate 
+			DELETE 
+			FROM tax_rate 
 			WHERE tax_rate_id = '" . (int)$tax_rate_id . "'
 		");
         $this->db->query("
-			DELETE FROM tax_rate_to_customer_group 
+			DELETE 
+			FROM tax_rate_to_customer_group 
 			WHERE tax_rate_id = '" . (int)$tax_rate_id . "'
 		");
     }

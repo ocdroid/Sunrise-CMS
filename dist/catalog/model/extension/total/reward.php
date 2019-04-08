@@ -104,7 +104,8 @@ class ModelExtensionTotalReward extends Model
     public function unconfirm($order_id)
     {
         $this->db->query("
-			DELETE FROM customer_reward 
+			DELETE 
+			FROM customer_reward 
 			WHERE order_id = '" . (int)$order_id . "' AND points < 0
 		");
     }

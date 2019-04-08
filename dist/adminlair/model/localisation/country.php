@@ -58,7 +58,8 @@ class ModelLocalisationCountry extends Model
     public function deleteCountry($country_id)
     {
         $this->db->query("
-            DELETE FROM country 
+            DELETE 
+			FROM country 
             WHERE country_id = '" . (int)$country_id . "'
         ");
 

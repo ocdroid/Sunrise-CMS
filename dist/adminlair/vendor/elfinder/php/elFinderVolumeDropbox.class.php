@@ -559,7 +559,8 @@ class elFinderVolumeDropbox extends elFinderVolumeDriver {
 					
 					if (empty($entry[1])) {
 						$ptimes[$pkey] = isset($ptimes[$pkey])? max(array($now, $ptimes[$pkey])) : $now;
-						$this->DB->exec('delete from '.$this->DB_TableName.' '.$where);
+						$this->DB->exec('DELETE 
+			FROM '.$this->DB_TableName.' '.$where);
 						! $delete && $delete = true;
 						continue;
 					}

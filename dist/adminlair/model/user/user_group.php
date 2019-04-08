@@ -46,7 +46,8 @@ class ModelUserUserGroup extends Model
     public function deleteUserGroup($user_group_id)
     {
         $this->db->query("
-			DELETE FROM user_group 
+			DELETE 
+			FROM user_group 
 			WHERE user_group_id = '" . (int)$user_group_id . "'
 		");
     }

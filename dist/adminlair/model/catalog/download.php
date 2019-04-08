@@ -55,7 +55,8 @@ class ModelCatalogDownload extends Model
         ");
 
         $this->db->query("
-            DELETE FROM download_description 
+            DELETE 
+			FROM download_description 
             WHERE download_id = '" . (int)$download_id . "'
         ");
 
@@ -72,11 +73,13 @@ class ModelCatalogDownload extends Model
     public function deleteDownload($download_id)
     {
         $this->db->query("
-            DELETE FROM download 
+            DELETE 
+			FROM download 
             WHERE download_id = '" . (int)$download_id . "'
         ");
         $this->db->query("
-            DELETE FROM download_description 
+            DELETE 
+			FROM download_description 
             WHERE download_id = '" . (int)$download_id . "'
         ");
     }

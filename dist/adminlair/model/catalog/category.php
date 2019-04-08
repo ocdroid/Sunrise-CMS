@@ -179,7 +179,8 @@ class ModelCatalogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM category_description 
+            DELETE 
+			FROM category_description 
             WHERE category_id = '" . (int)$category_id . "'
         ");
 
@@ -208,7 +209,8 @@ class ModelCatalogCategory extends Model
             foreach ($query->rows as $category_path) {
                 // Delete the path below the current one
                 $this->db->query("
-                    DELETE FROM `category_path` 
+                    DELETE 
+			FROM `category_path` 
                     WHERE category_id = '" . (int)$category_path['category_id'] . "' 
                         AND level < '" . (int)$category_path['level'] . "'
                 ");
@@ -256,7 +258,8 @@ class ModelCatalogCategory extends Model
         } else {
             // Delete the path below the current one
             $this->db->query("
-                DELETE FROM `category_path` 
+                DELETE 
+			FROM `category_path` 
                 WHERE category_id = '" . (int)$category_id . "'
             ");
 
@@ -290,7 +293,8 @@ class ModelCatalogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM category_filter 
+            DELETE 
+			FROM category_filter 
             WHERE category_id = '" . (int)$category_id . "'
         ");
 
@@ -304,7 +308,8 @@ class ModelCatalogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM category_to_store 
+            DELETE 
+			FROM category_to_store 
             WHERE category_id = '" . (int)$category_id . "'
         ");
 
@@ -319,14 +324,16 @@ class ModelCatalogCategory extends Model
         }
         
         $this->db->query("
-            DELETE FROM product_related_wb 
+            DELETE 
+			FROM product_related_wb 
             WHERE category_id = '" . (int)$category_id . "'
         ");
     
         if (isset($data['product_related'])) {
             foreach ($data['product_related'] as $related_id) {
                 $this->db->query("
-                    DELETE FROM product_related_wb 
+                    DELETE 
+			FROM product_related_wb 
                     WHERE category_id = '" . (int)$category_id . "' 
                         AND product_id = '" . (int)$related_id . "'
                 ");
@@ -339,14 +346,16 @@ class ModelCatalogCategory extends Model
         }
         
         $this->db->query("
-            DELETE FROM article_related_wb 
+            DELETE 
+			FROM article_related_wb 
             WHERE category_id = '" . (int)$category_id . "'
         ");
     
         if (isset($data['article_related'])) {
             foreach ($data['article_related'] as $related_id) {
                 $this->db->query("
-                    DELETE FROM article_related_wb 
+                    DELETE 
+			FROM article_related_wb 
                     WHERE category_id = '" . (int)$category_id . "' 
                         AND article_id = '" . (int)$related_id . "'
                 ");
@@ -359,7 +368,8 @@ class ModelCatalogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM category_to_layout 
+            DELETE 
+			FROM category_to_layout 
             WHERE category_id = '" . (int)$category_id . "'
         ");
 
@@ -375,7 +385,8 @@ class ModelCatalogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM url_alias 
+            DELETE 
+			FROM url_alias 
             WHERE query = 'category_id=" . (int)$category_id . "'
         ");
         
@@ -408,7 +419,8 @@ class ModelCatalogCategory extends Model
     public function deleteCategory($category_id)
     {
         $this->db->query("
-            DELETE FROM category_path 
+            DELETE 
+			FROM category_path 
             WHERE category_id = '" . (int)$category_id . "'
         ");
 
@@ -422,39 +434,48 @@ class ModelCatalogCategory extends Model
         }
 
         $this->db->query("
-            DELETE FROM category 
+            DELETE 
+			FROM category 
             WHERE category_id = '" . (int)$category_id . "'
         ");
         $this->db->query("
-            DELETE FROM category_description 
+            DELETE 
+			FROM category_description 
             WHERE category_id = '" . (int)$category_id . "'
         ");
         $this->db->query("
-            DELETE FROM category_filter 
+            DELETE 
+			FROM category_filter 
             WHERE category_id = '" . (int)$category_id . "'
         ");
         $this->db->query("
-            DELETE FROM category_to_store 
+            DELETE 
+			FROM category_to_store 
             WHERE category_id = '" . (int)$category_id . "'
         ");
         $this->db->query("
-            DELETE FROM category_to_layout 
+            DELETE 
+			FROM category_to_layout 
             WHERE category_id = '" . (int)$category_id . "'
         ");
         $this->db->query("
-            DELETE FROM product_to_category 
+            DELETE 
+			FROM product_to_category 
             WHERE category_id = '" . (int)$category_id . "'
         ");
         $this->db->query("
-            DELETE FROM url_alias 
+            DELETE 
+			FROM url_alias 
             WHERE query = 'category_id=" . (int)$category_id . "'
         ");
         $this->db->query("
-            DELETE FROM product_related_wb 
+            DELETE 
+			FROM product_related_wb 
             WHERE category_id = '" . (int)$category_id . "'
         ");
         $this->db->query("
-            DELETE FROM article_related_wb 
+            DELETE 
+			FROM article_related_wb 
             WHERE category_id = '" . (int)$category_id . "'
         ");
 
@@ -471,7 +492,8 @@ class ModelCatalogCategory extends Model
         foreach ($query->rows as $category) {
             // Delete the path below the current one
             $this->db->query("
-                DELETE FROM `category_path` 
+                DELETE 
+			FROM `category_path` 
                 WHERE category_id = '" . (int)$category['category_id'] . "'
             ");
 

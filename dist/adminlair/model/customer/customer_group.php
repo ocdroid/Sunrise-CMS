@@ -55,7 +55,8 @@ class ModelCustomerCustomerGroup extends Model
         ");
 
         $this->db->query("
-            DELETE FROM customer_group_description 
+            DELETE 
+			FROM customer_group_description 
             WHERE customer_group_id = '" . (int)$customer_group_id . "'
         ");
 
@@ -73,27 +74,33 @@ class ModelCustomerCustomerGroup extends Model
     public function deleteCustomerGroup($customer_group_id)
     {
         $this->db->query("
-        	DELETE FROM customer_group 
+        	DELETE 
+			FROM customer_group 
         	WHERE customer_group_id = '" . (int)$customer_group_id . "'
         ");
         $this->db->query("
-        	DELETE FROM customer_group_description 
+        	DELETE 
+			FROM customer_group_description 
         	WHERE customer_group_id = '" . (int)$customer_group_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_discount 
+        	DELETE 
+			FROM product_discount 
         	WHERE customer_group_id = '" . (int)$customer_group_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_special 
+        	DELETE 
+			FROM product_special 
         	WHERE customer_group_id = '" . (int)$customer_group_id . "'
         ");
         $this->db->query("
-        	DELETE FROM product_reward 
+        	DELETE 
+			FROM product_reward 
         	WHERE customer_group_id = '" . (int)$customer_group_id . "'
         ");
         $this->db->query("
-        	DELETE FROM tax_rate_to_customer_group 
+        	DELETE 
+			FROM tax_rate_to_customer_group 
         	WHERE customer_group_id = '" . (int)$customer_group_id . "'
         ");
     }

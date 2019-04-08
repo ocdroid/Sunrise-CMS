@@ -58,7 +58,8 @@ class ModelLocalisationLocation extends Model
     public function deleteLocation($location_id)
     {
         $this->db->query("
-			DELETE FROM location 
+			DELETE 
+			FROM location 
 			WHERE location_id = '" . (int)$location_id . "'
 		");
     }

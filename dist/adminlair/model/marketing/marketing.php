@@ -49,7 +49,8 @@ class ModelMarketingMarketing extends Model
     public function deleteMarketing($marketing_id)
     {
         $this->db->query("
-            DELETE FROM marketing 
+            DELETE 
+			FROM marketing 
             WHERE marketing_id = '" . (int)$marketing_id . "'
         ");
     }

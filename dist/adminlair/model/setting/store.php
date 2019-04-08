@@ -49,8 +49,10 @@ class ModelSettingStore extends Model
 
     public function deleteStore($store_id)
     {
-        $this->db->query("DELETE FROM store WHERE store_id = '" . (int)$store_id . "'");
-        $this->db->query("DELETE FROM layout_route WHERE store_id = '" . (int)$store_id . "'");
+        $this->db->query("DELETE 
+			FROM store WHERE store_id = '" . (int)$store_id . "'");
+        $this->db->query("DELETE 
+			FROM layout_route WHERE store_id = '" . (int)$store_id . "'");
 
         $this->cache->delete('store');
     }

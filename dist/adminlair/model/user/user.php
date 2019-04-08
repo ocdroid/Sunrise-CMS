@@ -88,7 +88,8 @@ class ModelUserUser extends Model
     public function deleteUser($user_id)
     {
         $this->db->query("
-			DELETE FROM `user` 
+			DELETE 
+			FROM `user` 
 			WHERE user_id = '" . (int)$user_id . "'
 		");
     }

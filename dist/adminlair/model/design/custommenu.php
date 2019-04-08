@@ -196,7 +196,8 @@ class ModelDesignCustomMenu extends Model
         ");
 
         $this->db->query("
-            DELETE FROM custommenu_description 
+            DELETE 
+			FROM custommenu_description 
             WHERE custommenu_id = '" . (int)$custommenu_id . "'
         ");
 
@@ -212,7 +213,8 @@ class ModelDesignCustomMenu extends Model
 
         if (!empty($data['custommenu_store'])) {
             $this->db->query("
-                DELETE FROM custommenu_to_store 
+                DELETE 
+			FROM custommenu_to_store 
                 WHERE custommenu_id = '" . (int)$custommenu_id . "'
             ");
 
@@ -242,7 +244,8 @@ class ModelDesignCustomMenu extends Model
         $custommenu_id = $query->row['custommenu_id'];
 
         $this->db->query("
-            DELETE FROM custommenu_child_description 
+            DELETE 
+			FROM custommenu_child_description 
             WHERE custommenu_child_id = '" . (int)$custommenu_child_id . "'
         ");
 
@@ -259,7 +262,8 @@ class ModelDesignCustomMenu extends Model
 
         if (!empty($data['custommenu_store'])) {
             $this->db->query("
-                DELETE FROM custommenu_child_to_store 
+                DELETE 
+			FROM custommenu_child_to_store 
                 WHERE custommenu_child_id = '" . (int)$custommenu_child_id . "'
             ");
 
@@ -276,15 +280,18 @@ class ModelDesignCustomMenu extends Model
     public function deletecustommenu($custommenu_id)
     {
         $this->db->query("
-            DELETE FROM `custommenu` 
+            DELETE 
+			FROM `custommenu` 
             WHERE custommenu_id = '" . (int)$custommenu_id . "'
         ");
         $this->db->query("
-            DELETE FROM `custommenu_description` 
+            DELETE 
+			FROM `custommenu_description` 
             WHERE custommenu_id = '" . (int)$custommenu_id . "'
         ");
         $this->db->query("
-            DELETE FROM `custommenu_to_store` 
+            DELETE 
+			FROM `custommenu_to_store` 
             WHERE custommenu_id = '" . (int)$custommenu_id . "'
         ");
         
@@ -295,17 +302,20 @@ class ModelDesignCustomMenu extends Model
         ");
         
         $this->db->query("
-            DELETE FROM `custommenu_child` 
+            DELETE 
+			FROM `custommenu_child` 
             WHERE custommenu_id = '" . (int)$custommenu_id . "'
         ");
         $this->db->query("
-            DELETE FROM `custommenu_child_description` 
+            DELETE 
+			FROM `custommenu_child_description` 
             WHERE custommenu_id = '" . (int)$custommenu_id . "'
         ");
         
         if (!empty($query->num_rows)) {
             $this->db->query("
-                DELETE FROM `custommenu_child_to_store` 
+                DELETE 
+			FROM `custommenu_child_to_store` 
                 WHERE custommenu_child_id = '" . (int)$query->row['custommenu_child_id'] . "'
             ");
         }
@@ -314,15 +324,18 @@ class ModelDesignCustomMenu extends Model
     public function deleteChildcustommenu($custommenu_child_id)
     {
         $this->db->query("
-        	DELETE FROM `custommenu_child` 
+        	DELETE 
+			FROM `custommenu_child` 
         	WHERE custommenu_child_id = '" . (int)$custommenu_child_id . "'
         ");
         $this->db->query("
-        	DELETE FROM `custommenu_child_description` 
+        	DELETE 
+			FROM `custommenu_child_description` 
         	WHERE custommenu_child_id = '" . (int)$custommenu_child_id . "'
         ");
         $this->db->query("
-        	DELETE FROM `custommenu_child_to_store` 
+        	DELETE 
+			FROM `custommenu_child_to_store` 
         	WHERE custommenu_child_id = '" . (int)$custommenu_child_id . "'
         ");
     }
@@ -480,15 +493,18 @@ class ModelDesignCustomMenu extends Model
                 }
 
                 $this->db->query("
-                    DELETE FROM `custommenu_child` 
+                    DELETE 
+			FROM `custommenu_child` 
                     WHERE custommenu_child_id = '" . $custommenuType[1] . "'
                 ");
                 $this->db->query("
-                    DELETE FROM `custommenu_child_description` 
+                    DELETE 
+			FROM `custommenu_child_description` 
                     WHERE custommenu_child_id = '" . $custommenuType[1] . "'
                 ");
                 $this->db->query("
-                    DELETE FROM `custommenu_child_to_store` 
+                    DELETE 
+			FROM `custommenu_child_to_store` 
                     WHERE custommenu_child_id = '" . $custommenuType[1] . "'
                 ");
 
@@ -545,15 +561,18 @@ class ModelDesignCustomMenu extends Model
                 }
 
                 $this->db->query("
-                    DELETE FROM `custommenu` 
+                    DELETE 
+			FROM `custommenu` 
                     WHERE custommenu_id = '" . $custommenuType[1] . "'
                 ");
                 $this->db->query("
-                    DELETE FROM `custommenu_description` 
+                    DELETE 
+			FROM `custommenu_description` 
                     WHERE custommenu_id = '" . $custommenuType[1] . "'
                 ");
                 $this->db->query("
-                    DELETE FROM `custommenu_to_store` 
+                    DELETE 
+			FROM `custommenu_to_store` 
                     WHERE custommenu_id = '" . $custommenuType[1] . "'
                 ");
 

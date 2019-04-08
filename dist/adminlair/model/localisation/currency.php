@@ -68,7 +68,8 @@ class ModelLocalisationCurrency extends Model
     public function deleteCurrency($currency_id)
     {
         $this->db->query("
-			DELETE FROM currency 
+			DELETE 
+			FROM currency 
 			WHERE currency_id = '" . (int)$currency_id . "'
 		");
 

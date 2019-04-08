@@ -77,7 +77,8 @@ class ModelCatalogOption extends Model
         ");
 
         $this->db->query("
-            DELETE FROM option_description 
+            DELETE 
+			FROM option_description 
             WHERE option_id = '" . (int)$option_id . "'
         ");
 
@@ -91,11 +92,13 @@ class ModelCatalogOption extends Model
         }
 
         $this->db->query("
-            DELETE FROM option_value 
+            DELETE 
+			FROM option_value 
             WHERE option_id = '" . (int)$option_id . "'
         ");
         $this->db->query("
-            DELETE FROM option_value_description 
+            DELETE 
+			FROM option_value_description 
             WHERE option_id = '" . (int)$option_id . "'
         ");
 
@@ -136,19 +139,23 @@ class ModelCatalogOption extends Model
     public function deleteOption($option_id)
     {
         $this->db->query("
-        	DELETE FROM `option` 
+        	DELETE 
+			FROM `option` 
         	WHERE option_id = '" . (int)$option_id . "'
         ");
         $this->db->query("
-        	DELETE FROM option_description 
+        	DELETE 
+			FROM option_description 
         	WHERE option_id = '" . (int)$option_id . "'
         ");
         $this->db->query("
-        	DELETE FROM option_value 
+        	DELETE 
+			FROM option_value 
         	WHERE option_id = '" . (int)$option_id . "'
         ");
         $this->db->query("
-        	DELETE FROM option_value_description 
+        	DELETE 
+			FROM option_value_description 
         	WHERE option_id = '" . (int)$option_id . "'
         ");
     }

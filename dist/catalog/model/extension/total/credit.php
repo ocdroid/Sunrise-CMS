@@ -63,7 +63,8 @@ class ModelExtensionTotalCredit extends Model
     public function unconfirm($order_id)
     {
         $this->db->query("
-			DELETE FROM customer_transaction 
+			DELETE 
+			FROM customer_transaction 
 			WHERE order_id = '" . (int)$order_id . "'
 		");
     }

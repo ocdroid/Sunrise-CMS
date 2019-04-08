@@ -62,7 +62,8 @@ class ModelDesignSticker extends Model
     public function deleteSticker($sticker_id)
     {
         $this->db->query("
-			DELETE FROM sticker 
+			DELETE 
+			FROM sticker 
 			WHERE sticker_id = '" . (int)$sticker_id . "'
 		");
     }

@@ -61,7 +61,8 @@ class ModelDesignBanner extends Model
 		");
 
         $this->db->query("
-			DELETE FROM banner_image 
+			DELETE 
+			FROM banner_image 
 			WHERE banner_id = '" . (int)$banner_id . "'
 		");
 
@@ -85,11 +86,13 @@ class ModelDesignBanner extends Model
     public function deleteBanner($banner_id)
     {
         $this->db->query("
-			DELETE FROM banner 
+			DELETE 
+			FROM banner 
 			WHERE banner_id = '" . (int)$banner_id . "'
 		");
         $this->db->query("
-			DELETE FROM banner_image 
+			DELETE 
+			FROM banner_image 
 			WHERE banner_id = '" . (int)$banner_id . "'
 		");
     }
