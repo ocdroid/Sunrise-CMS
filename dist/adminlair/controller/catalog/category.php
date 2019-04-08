@@ -39,9 +39,9 @@ class ControllerCatalogCategory extends Controller
 
     public function add()
     {
-        $this->document->addStyle('/css/admin/general/suneditor.css');
-        $this->document->addStyle('/css/admin/page/catalog/product.css');
-        $this->document->addScript('/js/admin/general/suneditor.js');
+        $this->document->addStyle('/css/adminlair/general/suneditor.css');
+        $this->document->addStyle('/css/adminlair/page/catalog/product.css');
+        $this->document->addScript('/js/adminlair/general/suneditor.js');
 
         $this->load->language('catalog/category');
 
@@ -76,9 +76,9 @@ class ControllerCatalogCategory extends Controller
 
     public function edit()
     {
-        $this->document->addStyle('/css/admin/general/suneditor.css');
-        $this->document->addStyle('/css/admin/page/catalog/product.css');
-        $this->document->addScript('/js/admin/general/suneditor.js');
+        $this->document->addStyle('/css/adminlair/general/suneditor.css');
+        $this->document->addStyle('/css/adminlair/page/catalog/product.css');
+        $this->document->addScript('/js/adminlair/general/suneditor.js');
 
         $this->load->language('catalog/category');
 

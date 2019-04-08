@@ -201,14 +201,14 @@ class ControllerCommonHeader extends Controller
             // route
             if (isset($this->request->get['route'])) {
                 if ($this->request->get['route'] == 'product/product') {
-                    $data['quick_edit_admin'] = 'admin/index.php?route=catalog/product/edit&product_id=' . $this->request->get['product_id'] . '&token=' . $data['token_admin'];
+                    $data['quick_edit_admin'] = '/adminlair/index.php?route=catalog/product/edit&product_id=' . $this->request->get['product_id'] . '&token=' . $data['token_admin'];
                 } elseif ($this->request->get['route'] == 'product/category') {
                     $path_parts = explode('_', $this->request->get['path']);
-                    $data['quick_edit_admin'] = 'admin/index.php?route=catalog/category/edit&category_id=' . array_pop($path_parts) . '&token=' . $data['token_admin'];
+                    $data['quick_edit_admin'] = '/adminlair/index.php?route=catalog/category/edit&category_id=' . array_pop($path_parts) . '&token=' . $data['token_admin'];
                 } elseif ($this->request->get['route'] == 'information/information') {
-                    $data['quick_edit_admin'] = 'admin/index.php?route=catalog/information/edit&information_id=' . $this->request->get['information_id'] . '&token=' . $data['token_admin'];
+                    $data['quick_edit_admin'] = '/adminlair/index.php?route=catalog/information/edit&information_id=' . $this->request->get['information_id'] . '&token=' . $data['token_admin'];
                 } elseif ($this->request->get['route'] == 'product/manufacturer/info') {
-                    $data['quick_edit_admin'] = 'admin/index.php?route=catalog/manufacturer/edit&manufacturer_id=' . $this->request->get['manufacturer_id'] . '&token=' . $data['token_admin'];
+                    $data['quick_edit_admin'] = '/adminlair/index.php?route=catalog/manufacturer/edit&manufacturer_id=' . $this->request->get['manufacturer_id'] . '&token=' . $data['token_admin'];
                 } else {
                     $data['quick_edit_admin'] = '';
                 }
@@ -218,28 +218,28 @@ class ControllerCommonHeader extends Controller
             //
             
             // links
-            $data['dashboard_admin'] = 'admin/index.php?route=common/dashboard&token=' . $data['token_admin'];
-            $data['category_add_admin'] = 'admin/index.php?route=catalog/category/add&token=' . $data['token_admin'];
-            $data['product_add_admin'] = 'admin/index.php?route=catalog/product/add&token=' . $data['token_admin'];
-            $data['filter_add_admin'] = 'admin/index.php?route=catalog/filter/add&token=' . $data['token_admin'];
-            $data['attribute_add_admin'] = 'admin/index.php?route=catalog/attribute/add&token=' . $data['token_admin'];
-            $data['option_add_admin'] = 'admin/index.php?route=catalog/option/add&token=' . $data['token_admin'];
-            $data['manufacturer_add_admin'] = 'admin/index.php?route=catalog/manufacturer/add&token=' . $data['token_admin'];
-            $data['information_add_admin'] = 'admin/index.php?route=catalog/information/add&token=' . $data['token_admin'];
-            $data['category_all_admin'] = 'admin/index.php?route=catalog/category&token=' . $data['token_admin'];
-            $data['product_all_admin'] = 'admin/index.php?route=catalog/product&token=' . $data['token_admin'];
-            $data['filter_all_admin'] = 'admin/index.php?route=catalog/filter&token=' . $data['token_admin'];
-            $data['attribute_all_admin'] = 'admin/index.php?route=catalog/attribute&token=' . $data['token_admin'];
-            $data['option_all_admin'] = 'admin/index.php?route=catalog/option&token=' . $data['token_admin'];
-            $data['manufacturer_all_admin'] = 'admin/index.php?route=catalog/manufacturer&token=' . $data['token_admin'];
-            $data['review_all_admin'] = 'admin/index.php?route=catalog/review&token=' . $data['token_admin'];
-            $data['information_all_admin'] = 'admin/index.php?route=catalog/information&token=' . $data['token_admin'];
-            $data['orders_pending_admin'] = 'admin/index.php?route=sale/order&token=' . $data['token_admin'] . '&filter_order_status=1';
-            $data['orders_processing_admin'] = 'admin/index.php?route=sale/order&token=' . $data['token_admin'] . '&filter_order_status=1';
-            $data['orders_orders_today'] = 'admin/index.php?route=sale/order&token=' . $data['token_admin'] . '&filter_date_added=' . date('Y-m-d');
-            $data['all_orders_admin'] = 'admin/index.php?route=sale/order&token=' . $data['token_admin'];
-            $data['return_admin'] = 'admin/index.php?route=sale/return&token=' . $data['token_admin'];
-            $data['adminbar_logout'] = 'admin/index.php?route=common/logout&token=' . $data['token_admin'];
+            $data['dashboard_admin'] = '/adminlair/index.php?route=common/dashboard&token=' . $data['token_admin'];
+            $data['category_add_admin'] = '/adminlair/index.php?route=catalog/category/add&token=' . $data['token_admin'];
+            $data['product_add_admin'] = '/adminlair/index.php?route=catalog/product/add&token=' . $data['token_admin'];
+            $data['filter_add_admin'] = '/adminlair/index.php?route=catalog/filter/add&token=' . $data['token_admin'];
+            $data['attribute_add_admin'] = '/adminlair/index.php?route=catalog/attribute/add&token=' . $data['token_admin'];
+            $data['option_add_admin'] = '/adminlair/index.php?route=catalog/option/add&token=' . $data['token_admin'];
+            $data['manufacturer_add_admin'] = '/adminlair/index.php?route=catalog/manufacturer/add&token=' . $data['token_admin'];
+            $data['information_add_admin'] = '/adminlair/index.php?route=catalog/information/add&token=' . $data['token_admin'];
+            $data['category_all_admin'] = '/adminlair/index.php?route=catalog/category&token=' . $data['token_admin'];
+            $data['product_all_admin'] = '/adminlair/index.php?route=catalog/product&token=' . $data['token_admin'];
+            $data['filter_all_admin'] = '/adminlair/index.php?route=catalog/filter&token=' . $data['token_admin'];
+            $data['attribute_all_admin'] = '/adminlair/index.php?route=catalog/attribute&token=' . $data['token_admin'];
+            $data['option_all_admin'] = '/adminlair/index.php?route=catalog/option&token=' . $data['token_admin'];
+            $data['manufacturer_all_admin'] = '/adminlair/index.php?route=catalog/manufacturer&token=' . $data['token_admin'];
+            $data['review_all_admin'] = '/adminlair/index.php?route=catalog/review&token=' . $data['token_admin'];
+            $data['information_all_admin'] = '/adminlair/index.php?route=catalog/information&token=' . $data['token_admin'];
+            $data['orders_pending_admin'] = '/adminlair/index.php?route=sale/order&token=' . $data['token_admin'] . '&filter_order_status=1';
+            $data['orders_processing_admin'] = '/adminlair/index.php?route=sale/order&token=' . $data['token_admin'] . '&filter_order_status=1';
+            $data['orders_orders_today'] = '/adminlair/index.php?route=sale/order&token=' . $data['token_admin'] . '&filter_date_added=' . date('Y-m-d');
+            $data['all_orders_admin'] = '/adminlair/index.php?route=sale/order&token=' . $data['token_admin'];
+            $data['return_admin'] = '/adminlair/index.php?route=sale/return&token=' . $data['token_admin'];
+            $data['adminbar_logout'] = '/adminlair/index.php?route=common/logout&token=' . $data['token_admin'];
             //
 
             // language

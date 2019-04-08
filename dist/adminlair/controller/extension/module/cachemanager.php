@@ -68,9 +68,9 @@ class ControllerExtensionModuleCachemanager extends Controller
             'href' => $this->url->link('extension/module/cachemanager', 'token=' . $this->session->data['token'], true)
         );
 
-        $data['clearallcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearallcache&token=' . $this->session->data['token']);
-        $data['clearcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearcache&token=' . $this->session->data['token']);
-        $data['clearsystemcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearsystemcache&token=' . $this->session->data['token']);
+        $data['clearallcache'] = ('/adminlair/index.php?route=extension/module/cachemanager/clearallcache&token=' . $this->session->data['token']);
+        $data['clearcache'] = ('/adminlair/index.php?route=extension/module/cachemanager/clearcache&token=' . $this->session->data['token']);
+        $data['clearsystemcache'] = ('/adminlair/index.php?route=extension/module/cachemanager/clearsystemcache&token=' . $this->session->data['token']);
 
         $data['cancel'] = $this->url->link('extension/extension', 'token=' . $this->session->data['token'] . '&type=module', true);
 

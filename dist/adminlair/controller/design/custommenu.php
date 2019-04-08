@@ -94,8 +94,8 @@ class ControllerDesignCustomMenu extends Controller
 
         $this->load->model('design/custommenu');
 
-        $this->document->addStyle('/css/admin/general/custommenu.css');
-        $this->document->addScript('/js/admin/general/custommenu.js');
+        $this->document->addStyle('/css/adminlair/general/custommenu.css');
+        $this->document->addScript('/js/adminlair/general/custommenu.js');
 
         $data['changecustommenuPosition'] = $this->url->link('design/custommenu/changecustommenuPosition', 'token=' . $this->session->data['token'], 'SSL');
 

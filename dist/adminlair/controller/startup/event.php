@@ -30,7 +30,7 @@ class ControllerStartupEvent extends Controller
         $results = $this->model_extension_event->getEvents();
         
         foreach ($results as $result) {
-            if ((substr($result['trigger'], 0, 6) == 'admin/') && $result['status']) {
+            if ((substr($result['trigger'], 0, 6) == 'adminlair/') && $result['status']) {
                 $this->event->register(substr($result['trigger'], 6), new Action($result['action']));
             }
         }

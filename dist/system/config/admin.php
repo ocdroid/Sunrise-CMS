@@ -21,8 +21,8 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 // Site
-$_['site_base']        = '/admin/';
-$_['site_ssl']         = '/admin/';
+$_['site_base']        = '/adminlair/';
+$_['site_ssl']         = '/adminlair/';
 
 // Database
 $_['db_autostart']     = true;

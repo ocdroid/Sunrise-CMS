@@ -26,7 +26,7 @@ class ControllerCommonHeader extends Controller
     {
 
         // scripts & styles
-        $this->document->addStyle('/css/admin/general/styles.css');
+        $this->document->addStyle('/css/adminlair/general/styles.css');
         $this->document->addStyle('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/css/uikit.min.css');
         $this->document->addScript('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js');
         $this->document->addScript('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js');
@@ -79,9 +79,9 @@ class ControllerCommonHeader extends Controller
             $data['logout'] = $this->url->link('common/logout', 'token=' . $this->session->data['token'], true);
             
             //CacheManager
-            $data['clearallcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearallcache&token=' . $this->session->data['token']);
-            $data['clearcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearcache&token=' . $this->session->data['token']);
-            $data['clearsystemcache'] = ('/admin/index.php?route=extension/module/cachemanager/clearsystemcache&token=' . $this->session->data['token']);
+            $data['clearallcache'] = ('/adminlair/index.php?route=extension/module/cachemanager/clearallcache&token=' . $this->session->data['token']);
+            $data['clearcache'] = ('/adminlair/index.php?route=extension/module/cachemanager/clearcache&token=' . $this->session->data['token']);
+            $data['clearsystemcache'] = ('/adminlair/index.php?route=extension/module/cachemanager/clearsystemcache&token=' . $this->session->data['token']);
 
             
             // fast add menu

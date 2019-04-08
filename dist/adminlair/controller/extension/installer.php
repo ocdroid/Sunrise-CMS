@@ -191,7 +191,7 @@ class ControllerExtensionInstaller extends Controller
                             // Compare admin files
                             $file = SR_APPLICATION . substr($zip_name, 13);
 
-                            if (is_file($file) && substr($zip_name, 0, 13) == 'upload/admin/') {
+                            if (is_file($file) && substr($zip_name, 0, 13) == 'upload/adminlair/') {
                                 $json['overwrite'][] = substr($zip_name, 7);
                             }
 

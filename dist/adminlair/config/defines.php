@@ -21,16 +21,16 @@
     along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 // Paths
-define('SR_APPLICATION', $_SERVER['DOCUMENT_ROOT'] . '/admin/');
+define('SR_APPLICATION', $_SERVER['DOCUMENT_ROOT'] . '/adminlair/');
 define('SR_CACHE', $_SERVER['DOCUMENT_ROOT'] . '/cache/');
 define('SR_CATALOG', $_SERVER['DOCUMENT_ROOT'] . '/catalog/');
 define('SR_CONFIG', $_SERVER['DOCUMENT_ROOT'] . '/system/config/');
 define('SR_DOWNLOAD', $_SERVER['DOCUMENT_ROOT'] . '/download/');
 define('SR_IMAGE', $_SERVER['DOCUMENT_ROOT'] . '/images/');
-define('SR_LANGUAGE', $_SERVER['DOCUMENT_ROOT'] . '/admin/language/');
+define('SR_LANGUAGE', $_SERVER['DOCUMENT_ROOT'] . '/adminlair/language/');
 define('SR_LOGS', $_SERVER['DOCUMENT_ROOT'] . '/logs/');
 define('SR_SYSTEM', $_SERVER['DOCUMENT_ROOT'] . '/system/');
-define('SR_TEMPLATE', $_SERVER['DOCUMENT_ROOT'] . '/admin/view/');
+define('SR_TEMPLATE', $_SERVER['DOCUMENT_ROOT'] . '/adminlair/view/');
 define('SR_UPLOAD', $_SERVER['DOCUMENT_ROOT'] . '/upload/');
 
 // Cache type ( file or redis)
