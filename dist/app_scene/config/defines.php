@@ -19,17 +19,19 @@
 
     You should have received a copy of the GNU General Public License
     along with this program. If not, see <http://www.gnu.org/licenses/>. */
+    
+// Paths
+define('SR_APPLICATION', $_SERVER['DOCUMENT_ROOT'] . '/app_scene/');
+define('SR_CACHE', $_SERVER['DOCUMENT_ROOT'] . '/cache/');
+define('SR_CONFIG', $_SERVER['DOCUMENT_ROOT'] . '/system/config/');
+define('SR_DOWNLOAD', $_SERVER['DOCUMENT_ROOT'] . '/download/');
+define('SR_IMAGE', $_SERVER['DOCUMENT_ROOT'] . '/images/');
+define('SR_LANGUAGE', $_SERVER['DOCUMENT_ROOT'] . '/app_scene/language/');
+define('SR_LOGS', $_SERVER['DOCUMENT_ROOT'] . '/logs/');
+define('SR_SYSTEM', $_SERVER['DOCUMENT_ROOT'] . '/system/');
+define('SR_TEMPLATE', $_SERVER['DOCUMENT_ROOT'] . '/app_scene/view/theme/');
+define('SR_UPLOAD', $_SERVER['DOCUMENT_ROOT'] . '/upload/');
 
-// Version
-define('VERSION', '1.0.0');
-
-// Configuration
-require('app_scene/config/db.php');
-require('app_scene/config/debug.php');
-require('app_scene/config/defines.php');
-require('app_scene/config/domain.php');
-
-// Startup
-require(SR_SYSTEM . 'startup.php');
-
-start('app_scene');
+// Cache type ( file or redis)
+define('SR_CATALOG_CACHE_TYPE', 'redis');
+define('SR_CATALOG_CACHE_EXPIRE', '3600');
