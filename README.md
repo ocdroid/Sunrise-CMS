@@ -14,7 +14,7 @@ The project is based on the Opencart code base and its custom builds, but there 
 
 ## Demo
 * [Frontend](https://sunrise-cms.freelance-team.su/)   
-* [Backend](https://sunrise-cms.freelance-team.su/admin/) (login: ```admin```, password: ```dev```)
+* [Backend](https://sunrise-cms.freelance-team.su/app_lair/) (login: ```admin```, password: ```dev```)
 
 ## Screenshots
 Main page* | Catalog page* | Product page* | Checkout page*
@@ -44,8 +44,8 @@ Product ([mobile](https://developers.google.com/speed/pagespeed/insights/?hl=en&
 
 ## Install
 1. Move ```/dist/``` contents to your webroot
-2. Edit ```$domain``` value in ```catalog/config/domain.php``` and ```admin/config/domain.php```
-3. Edit your database settings in ```catalog/config/db.php``` and ```admin/config/db.php```
+2. Edit ```$domain``` value in ```app_scene/config/domain.php``` and ```app_lair/config/domain.php```
+3. Edit your database settings in ```app_scene/config/db.php``` and ```app_lair/config/db.php```
 4. Import ```cms.sql```
 
 ## Requirements

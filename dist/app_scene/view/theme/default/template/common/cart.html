@@ -1,0 +1,133 @@
+<!-- cart.html -->
+<button class="uk-button uk-button-default" id="cc_header_cart" type="button" uk-toggle="target: #cc_cart" uk-tooltip="title: <?php echo $products_price; ?>; pos: top">
+	<span uk-icon="cart"></span>
+	<span class="uk-text-capitalize" id="cart-total">		
+		<?php echo $products_count; ?>
+		<?php echo $text_items; ?>
+	</span>
+</button>
+
+<div id="cc_cart" uk-modal>
+	<div class="uk-modal-dialog uk-modal-body" id="cc_header_modal_cart">
+		
+		<h2 class="uk-modal-title">
+			<?php echo $text_header_cart; ?>
+		</h2>
+
+		<?php if ($products) { ?>
+		
+			<div class="uk-alert-success" uk-alert>
+				<a class="uk-alert-close" uk-close></a>
+				<span uk-icon="info"></span>
+				<?php echo $text_header_cart_qt_info; ?>
+			</div>
+
+			<table class="uk-table uk-table-middle uk-table-hover">
+
+				<?php foreach ($products as $product) { ?>
+				
+					<tr>
+
+						<td class="cc_cart_info_image uk-table-shrink">
+
+							<?php if ($product['thumb']) { ?>
+
+								<a href="<?php echo $product['href']; ?>">
+									<img data-src="<?php echo $product['thumb']; ?>" width="" height="" title="<?php echo $product['name']; ?>" alt="<?php echo $product['name']; ?>" uk-img>
+								</a>
+
+							<?php } ?>
+							
+						</td>
+
+						<td class="cc_cart_info_name">
+
+							<a href="<?php echo $product['href']; ?>">
+								<?php echo $product['name']; ?>
+							</a>
+							
+							<?php if ($product['option']) { ?>
+								<?php foreach ($product['option'] as $option) { ?>
+									<?php echo $option['name']; ?>
+									<?php echo $option['value']; ?>
+								<?php } ?>
+							<?php } ?>
+
+						</td>
+						
+						<td class="cc_cart_info_price uk-text-right@s">
+							<span class="uk-text-meta">
+								(Qt: <?php echo $product['quantity']; ?>)
+							</span>
+							<?php echo $product['total']; ?>
+						</td>
+
+						<td class="cc_cart_info_act uk-table-shrink">
+							<span onclick="cart.remove('<?php echo $product['cart_id']; ?>');" uk-icon="close" uk-tooltip="title: <?php echo $button_remove; ?>; pos: top"></span>
+						</td>
+
+					</tr>
+
+				<?php } ?>
+
+			</table>
+
+			<hr>
+
+			<table class="cc_cart_total uk-table uk-table-small">
+				
+				<?php foreach ($totals as $total) { ?>
+					
+					<tr>
+						<td>
+				
+							<div class="uk-grid-small" uk-grid>
+						
+								<div class="uk-width-expand" uk-leader="media: 320">
+									<?php echo $total['title']; ?>
+								</div>
+						
+								<div class="cc_cart_total_price">
+									<?php echo $total['text']; ?>
+								</div>
+						
+							</div>
+			
+						</td>
+					</tr>
+					
+				<?php } ?>
+			
+			</table>
+
+			<hr>
+
+		<?php } else { ?>
+
+			<p>
+				<?php echo $text_empty; ?>
+			</p>
+
+			<p class="uk-text-muted">
+				<?php echo $text_empty_info; ?>
+			</p>
+
+		<?php } ?>
+
+		<p class="uk-text-right">
+
+			<button class="uk-modal-close-default" type="button" uk-close></button>
+
+			<a class="uk-button uk-button-default" type="button" href="<?php echo $cart; ?>">
+				<?php echo $text_cart; ?>
+			</a>
+
+			<a class="uk-button uk-button-primary" type="button" href="<?php echo $checkout; ?>">
+				<?php echo $text_checkout; ?>
+			</a>
+
+		</p>
+
+	</div>
+</div>
+<!-- /cart.html -->

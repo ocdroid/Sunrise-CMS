@@ -1,0 +1,82 @@
+body {
+	overflow-y: scroll;
+}
+.uk-container:not(.uk-container-expand) {
+	max-width: 1600px;
+}
+
+/* uikit3 fix */
+button > span.uk-icon {
+    position: relative;
+    top: -1px;
+}
+.uk-navbar-dropdown-nav > li > a:focus, 
+.uk-navbar-dropdown-nav > li > a:hover, 
+.uk-dropdown-nav > li.uk-active > a, 
+.uk-dropdown-nav > li > a:focus, 
+.uk-dropdown-nav > li > a:hover {
+	text-decoration: underline;
+}
+
+/* main menu icons fix */
+#menu-dashboard span {
+	position: relative;
+	top: -3px;
+}
+#menu-catalog ul a.uk-text-muted {
+	cursor: default;
+}
+
+/* beautiful background */
+.cc_admin_bacground {
+	background: linear-gradient(200deg, rgb(195, 167, 156), rgb(253, 251, 254), rgb(229, 178, 135), rgb(246, 175, 121));
+	background-size: 250% 250%;
+	animation: Gradient 25s ease infinite;
+}
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+/* header */
+.cc_admin_header_logo {
+	max-height: 44px;
+	width: auto;
+}
+
+/* footer vertical separator */
+.cc_admin_footer_vertical_separator::after {
+	content: '|';
+	display: inline-block;
+	margin: 0 5px;
+}
+
+/* top menu bar */
+.uk-navbar-container .uk-inline {
+	background: transparent;
+	margin: -15px -10px -15px 0px;
+	padding: 15px 0px;
+}
+	.uk-navbar-container .uk-inline:hover {
+		background: rgb(235, 177, 130);
+		cursor: pointer;
+	}
+		.uk-navbar-container .uk-inline > a {
+			padding: 15px;
+		}
+			.uk-navbar-container .uk-inline > a:hover {
+				text-decoration: none;
+			}
+		.uk-navbar-container .uk-inline > span:first-child {
+			padding-left: 15px;
+		}
+		.uk-navbar-container .uk-inline > span:last-child {
+			padding-right: 15px;
+		}

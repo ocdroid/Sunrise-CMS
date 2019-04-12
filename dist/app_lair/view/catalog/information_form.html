@@ -1,0 +1,683 @@
+<!-- information_form.html -->
+<?php echo $header; ?>
+
+<?php echo $column; ?>
+
+<!-- breadcrumbs -->
+<?php require(SR_TEMPLATE.'./inc.breadcrumbs.html'); ?>
+
+<!-- alerts -->
+<?php require(SR_TEMPLATE.'./inc.alert_warning.html'); ?>
+
+<div class="uk-section uk-padding-medium-bottom uk-padding-remove">
+	<div 
+		class="uk-container uk-background-default" 
+		uk-height-viewport="expand: true"
+	>
+
+		<form 
+			action="<?php echo $action; ?>" 
+			method="post" 
+			enctype="multipart/form-data" 
+			id="form-information" 
+			class="uk-form-stacked"
+		>
+
+			<div class="uk-flex" uk-grid>
+				
+				<div class="uk-width-1-1 uk-width-1-1@s uk-width-1-1@m uk-width-4-5@l uk-width-5-6@xl uk-margin-medium-top uk-margin-small-bottom">
+
+					<ul uk-tab="media: @s; connect: #ci_admin_tabs">
+
+						<li class="uk-active">
+							<a href="#">
+								<?php echo $tab_general; ?>
+							</a>
+						</li>
+
+						<li>
+							<a href="#">
+								SEO
+							</a>
+						</li>
+
+					</ul>
+
+					<ul 
+						id="ci_admin_tabs" 
+						class="uk-switcher uk-margin"
+					>
+						
+						<li>
+
+							<ul 
+								id="language" 
+								uk-tab="connect: #ci_admin_tabs_lang"
+							>
+				
+								<?php foreach ($languages as $language) { ?>
+
+									<li class="uk-active">
+										<a href="#language<?php echo $language['language_id']; ?>">
+											
+											<img 
+												src="language/<?php echo $language['code']; ?>/<?php echo $language['code']; ?>.png" 
+												title="<?php echo $language['name']; ?>"
+											>
+												
+											<?php echo $language['name']; ?>
+
+										</a>
+									</li>
+				
+								<?php } ?>
+
+							</ul>
+
+							<ul 
+								id="ci_admin_tabs_lang" 
+								class="uk-switcher uk-margin"
+							>
+							
+								<?php foreach ($languages as $language) { ?>
+											
+									<div id="language<?php echo $language['language_id']; ?>">
+
+										<div class="uk-margin">
+
+											<label 
+												class="uk-form-label uk-text-muted" 
+												for="input-title<?php echo $language['language_id']; ?>"
+											>
+												<?php echo $entry_title; ?>
+											
+											</label>
+
+											<div class="uk-form-controls">
+
+												<input 
+													type="text" 
+													name="information_description[<?php echo $language['language_id']; ?>][title]" 
+													value="<?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['title'] : ''; ?>" 
+													placeholder="<?php echo $entry_title; ?>" 
+													id="input-title<?php echo $language['language_id']; ?>" 
+													class="uk-input"
+												>
+												
+												<?php if (isset($error_title[$language['language_id']])) { ?>
+													
+													<?php echo $error_title[$language['language_id']]; ?>
+													
+												<?php } ?>
+
+											</div>
+
+										</div>
+
+										<div class="uk-margin">
+											
+											<label 
+												class="uk-form-label uk-text-muted" 
+												for="input-description<?php echo $language['language_id']; ?>"
+											>
+												<?php echo $entry_description; ?>
+											</label>
+											
+											<div class="uk-form-controls">
+												
+												<textarea 
+													name="information_description[<?php echo $language['language_id']; ?>][description]" 
+													placeholder="<?php echo $entry_description; ?>" 
+													id="input-description<?php echo $language['language_id']; ?>" 
+													class="sun-editor-editable uk-textarea"
+												><?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['description'] : ''; ?></textarea>
+
+												<?php if (isset($error_description[$language['language_id']])) { ?>
+
+													<?php echo $error_description[$language['language_id']]; ?>
+													
+												<?php } ?>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								<?php } ?>
+
+							</ul>
+
+						</li>
+
+						<li>
+
+							<div 
+								id="language<?php echo $language['language_id']; ?>" 
+								class="uk-flex uk-flex-column"
+							>
+
+								<div class="uk-margin">
+
+									<label 
+										class="uk-form-label uk-text-muted" 
+										for="input-meta-h1<?php echo $language['language_id']; ?>"
+									>
+										<?php echo $entry_meta_h1; ?>
+									</label>
+									
+									<div class="uk-form-controls">
+
+										<input 
+											type="text" 
+											name="information_description[<?php echo $language['language_id']; ?>][meta_h1]" 
+											value="<?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['meta_h1'] : ''; ?>" 
+											placeholder="<?php echo $entry_meta_h1; ?>" 
+											id="input-meta-h1<?php echo $language['language_id']; ?>" 
+											class="uk-input"
+										>
+										
+										<?php if (isset($error_meta_h1[$language['language_id']])) { ?>
+											<?php echo $error_meta_h1[$language['language_id']]; ?>
+										<?php } ?>
+
+									</div>
+
+								</div>
+
+								<div class="uk-margin">
+
+									<label 
+										class="uk-form-label uk-text-muted" 
+										for="input-meta-title<?php echo $language['language_id']; ?>"
+									>
+										<?php echo $entry_meta_title; ?>
+									</label>
+
+									<div class="uk-form-controls">
+										
+										<input 
+											type="text" 
+											name="information_description[<?php echo $language['language_id']; ?>][meta_title]" 
+											value="<?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['meta_title'] : ''; ?>" 
+											placeholder="<?php echo $entry_meta_title; ?>" 
+											id="input-meta-title<?php echo $language['language_id']; ?>" 
+											class="uk-input"
+										>
+
+										<?php if (isset($error_meta_title[$language['language_id']])) { ?>
+											<?php echo $error_meta_title[$language['language_id']]; ?>
+										<?php } ?>
+
+									</div>
+
+								</div>
+
+								<div class="uk-margin">
+
+									<label 
+										class="uk-form-label uk-text-muted" 
+										for="input-meta-description<?php echo $language['language_id']; ?>"
+									>
+										<?php echo $entry_meta_description; ?>
+									</label>
+									
+									<div class="uk-form-controls">
+
+										<input 
+											type="text" 
+											name="information_description[<?php echo $language['language_id']; ?>][meta_description]]" 
+											value="<?php echo isset($information_description[$language['language_id']]) ? $information_description[$language['language_id']]['meta_description'] : ''; ?>" 
+											placeholder="<?php echo $entry_meta_description; ?>" 
+											id="input-meta-description<?php echo $language['language_id']; ?>" 
+											class="uk-input"
+										>
+
+									</div>
+
+								</div>
+
+								<div class="uk-margin">
+
+									<label 
+										class="uk-form-label uk-text-muted" 
+										for="input-keyword"
+									>
+										<?php echo $entry_keyword; ?>
+										(<?php echo $help_keyword; ?>)
+									</label>
+
+									<div class="uk-form-controls">
+
+										<input 
+											type="text" 
+											name="keyword" 
+											value="<?php echo $keyword; ?>" 
+											placeholder="<?php echo $entry_keyword; ?>" 
+											id="input-keyword" 
+											class="uk-input"
+										>
+										
+										<?php if ($error_keyword) { ?>
+											<?php echo $error_keyword; ?>
+										<?php } ?>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div class="uk-margin">
+
+								<label 
+									class="uk-form-label uk-text-muted" 
+									for="input-noindex"
+								>
+									<?php echo $entry_noindex; ?>
+									(<?php echo $help_noindex; ?>)
+								</label>
+
+								<div class="uk-form-controls">
+									
+									<select 
+										name="noindex" 
+										id="input-noindex" 
+										class="uk-select"
+									>
+										<?php if ($noindex) { ?>
+
+											<option value="1" selected>
+												<?php echo $text_enabled; ?>
+											</option>
+
+											<option value="0">
+												<?php echo $text_disabled; ?>
+											</option>
+
+										<?php } else { ?>
+
+											<option value="1">
+												<?php echo $text_enabled; ?>
+											</option>
+
+											<option value="0" selected>
+												<?php echo $text_disabled; ?>
+											</option>
+
+										<?php } ?>
+									</select>
+
+								</div>
+
+							</div>
+
+						</li>
+
+					</ul>
+
+				</div>
+
+				<div class="uk-width-1-1 uk-width-1-1@s uk-width-1-1@m uk-width-1-5@l uk-width-1-6@xl uk-margin-large-top">
+
+					<div class="uk-margin uk-margin-small uk-padding-small uk-tile-muted">
+
+						<label 
+							class="uk-form-label" 
+							for="input-status"
+						>
+							<?php echo $entry_status; ?>
+						</label>
+						
+						<div class="uk-form-controls">
+
+							<select 
+								name="status" 
+								id="input-status" 
+								class="uk-select"
+							>
+
+								<?php if ($status) { ?>
+
+									<option value="1" selected>
+										<?php echo $text_enabled; ?>
+									</option>
+
+									<option value="0">
+										<?php echo $text_disabled; ?>
+									</option>
+
+								<?php } else { ?>
+									
+									<option value="1">
+										<?php echo $text_enabled; ?>
+									</option>
+
+									<option value="0" selected>
+										<?php echo $text_disabled; ?>
+									</option>
+								
+								<?php } ?>
+
+							</select>
+
+						</div>
+
+					</div>
+
+					<div class="uk-margin uk-margin-small uk-padding-small uk-tile-muted">
+					
+						<label 
+							class="uk-form-label" 
+							for="input-bottom"
+						>
+							<?php echo $entry_bottom; ?>
+							(<?php echo $help_bottom; ?>)
+						</label>
+
+						<div class="uk-form-controls">
+
+							<label>
+
+								<?php if ($bottom) { ?>
+
+									<input 
+										id="input-bottom" 
+										class="uk-checkbox" 
+										type="checkbox" 
+										name="bottom" 
+										value="1" 
+										checked
+									>
+
+								<?php } else { ?>
+
+									<input 
+										id="input-bottom" 
+										class="uk-checkbox" 
+										type="checkbox" 
+										name="bottom" 
+										value="1"
+									>
+
+								<?php } ?>
+
+							</label>
+
+						</div>
+
+					</div>
+
+					<div class="uk-margin uk-margin-small uk-padding-small uk-tile-muted">
+
+						<label 
+							class="uk-form-label" 
+							for="input-sort-order"
+						>
+							<?php echo $entry_sort_order; ?>
+						</label>
+
+						<div class="uk-form-controls">
+							<input 
+								type="text" 
+								name="sort_order" 
+								value="<?php echo $sort_order; ?>" 
+								placeholder="<?php echo $entry_sort_order; ?>" 
+								id="input-sort-order" 
+								class="uk-input"
+							>
+						</div>
+		
+					</div>
+
+					<div class="uk-margin uk-margin-small uk-padding-small uk-tile-muted">
+
+						<label 
+							class="uk-form-label" 
+							for="input-layout"
+						>
+							<?php echo $entry_layout; ?>
+							(<?php echo $text_default; ?>)
+						</label>
+
+						<div class="uk-form-controls">
+
+							<select 
+								name="information_layout[0]" 
+								id="input-layout" 
+								class="uk-select"
+							>
+								
+								<option value=""></option>
+
+								<?php foreach ($layouts as $layout) { ?>
+									
+									<?php if (isset($information_layout[0]) && $information_layout[0] == $layout['layout_id']) { ?>
+										
+										<option 
+											value="<?php echo $layout['layout_id']; ?>" 
+											selected
+										>
+											<?php echo $layout['name']; ?>
+										</option>
+
+									<?php } else { ?>
+
+										<option value="<?php echo $layout['layout_id']; ?>">
+											<?php echo $layout['name']; ?>
+										</option>
+									
+									<?php } ?>
+								<?php } ?>
+
+							</select>
+
+						</div>
+					
+					</div>
+
+					<?php foreach ($stores as $store) { ?>
+
+						<div class="uk-margin uk-margin-small uk-padding-small uk-tile-muted">
+
+							<label 
+								class="uk-form-label" 
+								for="information_layout[<?php echo $store['store_id']; ?>]"
+							>
+								<?php echo $store['name']; ?>
+							</label>
+
+							<div class="uk-form-controls">
+
+								<select 
+									name="information_layout[<?php echo $store['store_id']; ?>]" 
+									class="uk-select"
+								>
+									
+									<option value=""></option>
+
+									<?php foreach ($layouts as $layout) { ?>
+
+										<?php if (isset($information_layout[$store['store_id']]) && $information_layout[$store['store_id']] == $layout['layout_id']) { ?>
+
+											<option 
+												value="<?php echo $layout['layout_id']; ?>" 
+												selected
+											>
+												<?php echo $layout['name']; ?>
+											</option>
+
+										<?php } else { ?>
+
+											<option value="<?php echo $layout['layout_id']; ?>">
+												<?php echo $layout['name']; ?>
+											</option>
+
+										<?php } ?>
+
+									<?php } ?>
+								</select>
+
+							</div>
+
+						</div>
+
+					<?php } ?>
+					
+					<div class="uk-margin uk-margin-small uk-padding-small uk-tile-muted">
+
+						<label 
+							class="uk-form-label" 
+							for="input-store"
+						>
+							<?php echo $text_default; ?>
+						</label>
+
+						<div class="uk-form-controls">
+							
+							<label>
+
+								<?php if (in_array(0, $information_store)) { ?>
+									
+									<input 
+										class="uk-checkbox" 
+										id="input-store" 
+										type="checkbox" 
+										name="information_store[]" 
+										value="0" 
+										checked
+									>
+
+								<?php } else { ?>
+									
+									<input 
+										class="uk-checkbox" 
+										id="input-store" 
+										type="checkbox" 
+										name="information_store[]" 
+										value="0"
+									>
+
+								<?php } ?>
+
+							</label>
+
+						</div>
+
+					</div>
+
+					<?php foreach ($stores as $store) { ?>
+
+						<div class="uk-margin uk-margin-small uk-padding-small uk-tile-muted">
+
+							<label 
+								class="uk-form-label" 
+								for="input-store"
+							>
+								<?php echo $store['name']; ?>
+							</label>
+
+							<div class="uk-form-controls">
+
+								<label>
+
+									<?php if (in_array($store['store_id'], $information_store)) { ?>
+										
+										<input 
+											class="uk-checkbox" 
+											id="input-store" 
+											type="checkbox" 
+											name="information_store[]" 
+											value="<?php echo $store['store_id']; ?>" 
+											checked
+										>
+
+									<?php } else { ?>
+										
+										<input 
+											class="uk-checkbox" 
+											id="input-store" 
+											type="checkbox" 
+											name="information_store[]" 
+											value="<?php echo $store['store_id']; ?>"
+										>
+
+									<?php } ?>
+
+								</label>
+
+							</div>
+
+						</div>
+
+					<?php } ?>
+
+					<div class="uk-margin uk-margin-small">
+
+						<button 
+							type="submit" 
+							form="form-information" 
+							title="<?php echo $button_save; ?>" 
+							class="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" 
+							onclick="suneditor.save();"
+						>
+							<span uk-icon="pull"></span>
+							Save
+						</button>
+
+						<a 
+							href="<?php echo $cancel; ?>" 
+							title="<?php echo $button_cancel; ?>" 
+							class="uk-button uk-button-default uk-width-1-1 uk-margin-small-bottom"
+						>
+							<span uk-icon="reply"></span>
+							Cancel
+						</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</form>
+
+	</div>
+</div>
+
+<script>
+	const suneditor = SUNEDITOR.create('input-description<?php echo $language['language_id']; ?>', {
+		fontSize : [
+			10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38
+		],
+		font : [
+			'Segoe UI',
+			'Helvetica Neue,Helvetica',
+			'Arial',
+			'Tahoma',
+			'Trebuchet MS',
+			'Verdana'
+		],
+		width : '100%',
+		height : '450',
+		videoWidth : 360,
+		videoHeight : 115,
+		imageWidth : 150,
+		popupDisplay : 'local',
+		resizingBar : false,
+		buttonList : [
+			['fullScreen', 'codeView', 'showBlocks'],
+			['undo', 'redo'], 
+			['removeFormat'], 
+			['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'], 
+			['fontColor', 'hiliteColor'], ['outdent', 'indent'], 
+			['align', 'horizontalRule', 'list'], 
+			['font', 'fontSize', 'formatBlock'], 
+			['link', 'image', 'video'],
+			['table']
+		]
+	});
+</script>
+
+<?php echo $footer; ?>
+<!-- /information_form.html -->

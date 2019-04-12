@@ -1,0 +1,94 @@
+/* https://stackoverflow.com/questions/9836151/what-is-this-css-selector-class-span */
+body[class^="product"] .uk-lightbox {
+	background: rgb(255, 255, 255);
+}
+body[class^="product"] .uk-lightbox-toolbar {
+	background: rgb(255, 255, 255, 0);
+}
+body[class^="product"] .uk-lightbox-toolbar-icon,
+body[class^="product"] .uk-lightbox-toolbar *,
+body[class^="product"] .uk-lightbox-button,
+body[class^="product"] .uk-lightbox-toolbar *,
+body[class^="product"] .uk-lightbox-toolbar.uk-position-bottom {
+	color: rgb(102, 102, 102);
+}
+body[class^="product"] .uk-lightbox-button {
+	background: rgb(255, 255, 255, 0.3);
+}
+	body[class^="product"] .uk-lightbox-button:hover {
+		color: rgb(132, 132, 132);
+	}
+
+.cc_plg {
+	
+}
+	.cc_plg > a {
+		cursor: zoom-in;
+	}
+
+.cc_pmi_stock {
+	background-color: rgba(0, 128, 0, 0.1);
+	padding: 3px 10px;
+	border-radius: 2px;
+	margin-right: 20px;
+}
+.cc_pmi_model {
+	background-color: rgb(254, 242, 184);
+	padding: 3px 10px;
+	border-radius: 2px;
+}
+
+.cc_pop {
+	background-color: rgba(0, 128, 0, 0.1);
+	padding: 1px 5px;
+	border-radius: 2px;
+}
+
+.cc_pcrl {
+	margin-bottom: 20px;
+}
+.cc_pcrr ul:last-child li {
+	padding: 0 10px;
+}
+
+.uk-accordion label, 
+li.uk-open label {
+	cursor: pointer;
+}
+
+.cc_product_price .uk-accordion-title {
+	cursor: pointer;
+}
+	.cc_product_price_common {
+		text-decoration: line-through;
+		line-height: 1.5;
+		vertical-align: text-top;
+	}
+		.cc_product_price_common span {
+			position: relative;
+			top: -1px;
+			margin-left: 5px;
+		}
+
+.cc_palc a:last-child span {
+	display: none;
+}
+
+@media (min-width: 900px) {
+
+	.cc_pmi_zoom {
+		position: relative;
+		height: 50vh;
+		margin-bottom: -50vh;
+		width: calc(100% + 40px);
+		z-index: -1;
+		top: 54px;
+		left: -20px;
+		display: none
+	}
+		.cc_zi-up {
+			display: block;
+			z-index: 999;
+		}
+
+}

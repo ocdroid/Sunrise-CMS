@@ -1,0 +1,345 @@
+	<!-- footer.html -->
+	<div class="uk-margin-large-top uk-text-center cc_to_top">
+		<a href="#" uk-totop uk-scroll></a>
+	</div>
+
+	<div class="uk-section uk-section-muted uk-dark uk-padding-small">
+		<div class="uk-container">
+
+			<footer>
+					
+				<div class="uk-margin uk-margin-medium-top uk-margin-medium-bottom uk-flex uk-flex-center" uk-grid>
+
+					<div class="uk-width-1-1 uk-width-1-1@s uk-width-1-1@m uk-width-1-2@l uk-width-1-2@xl uk-flex uk-grid-collapse" uk-grid>
+						
+						<div class="uk-width-1-1 uk-width-1-3@s uk-width-1-3@m uk-width-1-3@l uk-width-1-3@xl uk-text-center uk-text-left@l">
+					
+							<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+								<?php echo $text_account; ?>
+							</h4>
+				
+							<ul class="uk-list">
+
+								<li>
+									<a 
+										href="<?php echo $account; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_account; ?>
+									</a>
+								</li>
+
+								<li>
+									<a 
+										href="<?php echo $order; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_order; ?>
+									</a>
+								</li>
+
+								<li>
+									<a 
+										href="<?php echo $newsletter; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_newsletter; ?>
+									</a>
+								</li>
+
+							</ul>
+
+							<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+								<?php echo $text_service; ?>
+							</h4>
+				
+							<ul class="uk-list">
+	
+								<li>
+									<a 
+										href="<?php echo $contact; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_contact; ?>
+									</a>
+								</li>
+	
+							</ul>
+
+							<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+								We accept
+							</h4>
+
+							<div class="cc_footer_payments_icons uk-flex uk-margin-medium-bottom">
+								<img src="/images/app_scene/peyments/bank.png" alt="bank icon" width="" height="20px">
+								<img src="/images/app_scene/peyments/card.png" alt="card icon" width="" height="20px">
+								<img src="/images/app_scene/peyments/cash.png" alt="cash icon" width="" height="20px">
+								<img src="/images/app_scene/peyments/mobile.png" alt="mobile icon" width="" height="20px">
+								<img src="/images/app_scene/peyments/terminal.png" alt="terminal icon" width="" height="20px">
+							</div>
+	
+							<style>
+								.cc_footer_payments_icons img {
+									height: 20px;
+									margin-right: 10px;
+								}
+							</style>
+
+						</div>
+
+						<div class="uk-width-1-1 uk-width-1-3@s uk-width-1-3@m uk-width-1-3@l uk-width-1-3@xl uk-text-center uk-text-left@l">
+							
+							<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+								<?php echo $text_extra; ?>
+							</h4>
+				
+							<ul class="uk-list">
+								
+								<li>
+									<a 
+										href="<?php echo $manufacturer; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_manufacturer; ?>
+									</a>
+								</li>
+
+								<li>
+									<a 
+										href="<?php echo $special; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_special; ?>
+									</a>
+								</li>
+
+								<li>
+									<a 
+										href="<?php echo $mostviewed; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_mostviewed; ?>
+									</a>
+								</li>
+
+								<li>
+									<a 
+										href="<?php echo $bestseller; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_bestseller; ?>
+									</a>
+								</li>
+
+								<li class="uk-margin-medium-bottom">
+									<a 
+										href="<?php echo $latest; ?>" 
+										class="uk-text-muted"
+									>
+										<?php echo $text_latest; ?>
+									</a>
+								</li>
+
+							</ul>
+
+						</div>
+
+						<div class="uk-width-1-1 uk-width-1-3@s uk-width-1-3@m uk-width-1-3@l uk-width-1-3@xl uk-text-center uk-text-left@l">
+							
+							<?php if ($informations) { ?>
+
+								<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+									<?php echo $text_information; ?>
+								</h4>
+				
+								<ul class="uk-list">
+				
+									<?php foreach ($informations as $information) { ?>
+										<li>
+											<a 
+												href="<?php echo $information['href']; ?>"
+												class="uk-text-muted"
+											>
+												<?php echo $information['title']; ?>
+											</a>
+										</li>
+									<?php } ?>
+				
+								</ul>
+
+							<?php } ?>
+
+						</div>
+
+					</div>
+
+					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-2@m uk-width-1-4@l uk-width-1-4@xl uk-text-center uk-text-left@l">
+						
+						<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+							Our contacts
+						</h4>
+
+						<div class="uk-margin uk-flex uk-flex-center uk-grid-small" uk-grid>
+						
+							<div class="uk-width-1-1">
+
+								<a href="#" class="uk-icon-button uk-margin-small-right" uk-icon="instagram"></a>
+								<a href="#" class="uk-icon-button  uk-margin-small-right" uk-icon="facebook"></a>
+								<a href="#" class="uk-icon-button  uk-margin-small-right" uk-icon="youtube"></a>
+								<a href="#" class="uk-icon-button" uk-icon="google-plus"></a>
+								
+							</div>
+
+							<div class="uk-width-1-1">
+
+								<span class="uk-text-small uk-text-bold">
+									Address:
+								</span>
+
+								<div class="uk-text-muted">
+									01234, Ukraine, Petropavlіvs'ka Borshhagіvka town, Sunny street, building 13, room 666
+								</div>
+
+							</div>
+
+							<div class="uk-width-1-2">
+
+								<span class="uk-text-small uk-text-bold">
+									Working time:
+								</span>
+								
+								<div class="uk-text-muted">
+									Mon-Fri: 09:00-22:00, Sat-Sun: Day off
+								</div>
+
+							</div>
+							
+							<div class="uk-width-1-2">
+
+								<span class="uk-text-small uk-text-bold">
+									Contact by phone:
+								</span>
+
+								<div>
+
+									<a class="uk-text-muted" href="tel:#">
+										8 800 123 45 67 
+									</a>
+
+									<br>
+
+									<a class="uk-text-muted" href="tel:#">
+										+380 (12) 345-67-89
+									</a>
+
+									<br>
+
+									<a class="uk-text-muted" href="tel:#">
+										+380 (98) 765-43-21
+									</a>
+
+								</div>
+
+							</div>
+
+							<div class="uk-width-1-1">
+
+								<span class="uk-text-small uk-text-bold">
+									E-mail:
+								</span>
+
+								<div>
+
+									<a class="uk-text-muted" href="mailto:sunrise-cms@demo.email">
+										sunrise-cms@demo.email
+									</a>
+
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div class="uk-width-1-1 uk-width-1-2@s uk-width-1-2@m uk-width-1-4@l uk-width-1-4@xl uk-text-center uk-text-left@l">
+						
+						<h4 class="uk-text-bold">
+							
+							<img src="<?php echo $logo; ?>" alt="Sunrise CMS Demo Logo" style="margin-right: 15px;max-height: 40px;">
+							
+							Sunrise CMS Demo
+
+						</h4>
+
+						<div>
+							Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima sint voluptates nostrum et quibusdam doloremque numquam totam eveniet culpa saepe explicabo enim, delectus deserunt aut tempore molestias exercitationem officiis obcaecati.
+						</div>
+
+						<h4 class="uk-text-uppercase uk-text-small uk-text-bold">
+							Subscribe to newsletter
+						</h4>
+
+						<div class="uk-button-group">
+
+							<input class="uk-input" type="text" placeholder="Subscribe">
+
+							<button class="uk-button uk-button-secondary">
+								Subscribe
+							</button>
+
+						</div>
+
+					</div>
+
+				</div>
+				
+			</footer>
+
+		</div>
+	</div>
+
+	<div class="uk-section uk-section-secondary uk-light uk-padding-small">
+		<div class="uk-container">
+
+			<div class="uk-margin uk-padding-remove uk-grid-collapse" uk-grid>
+
+				<div class="uk-width-1-1 uk-width-2-3@s uk-width-3-4@m uk-width-4-5@l uk-width-5-6@xl uk-text-left@s uk-text-center">
+					<?php echo $store_name; ?> <span class="uk-text-muted">- <?php echo $text_powered; ?> &copy; <?php echo $store_year; ?></span>
+				</div>
+			
+				<div class="uk-width-1-1 uk-width-1-3@s uk-width-1-4@m uk-width-1-5@l uk-width-1-6@xl uk-text-right@s uk-text-center">
+					
+					<span>
+						From Ukraine with love
+					</span>
+
+					<img class="cc_footer_image" src="/images/ilu.png" alt="From Ukraine With Love">
+
+				</div>
+
+				<style>
+					.cc_footer_image {
+						height: 23px;
+						margin-left: 5px;
+						position: relative;
+						top: -2px;
+					}
+				</style>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!-- inc.debug_panel.html -->
+	<?php if (defined('IS_DEBUG')) { ?>
+		<?php require_once(SR_TEMPLATE.'/default/template/inc.debug_panel.html'); ?>
+	<?php } ?>
+
+</div>
+
+</body>
+
+</html>
+<!-- /footer.html -->
