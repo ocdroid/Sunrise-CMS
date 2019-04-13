@@ -31,7 +31,6 @@ class ControllerCommonHeader extends Controller
         $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js');
         $this->document->addScriptAsync('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js');
         $this->document->addScriptDefer('https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js');
-        $this->document->addScript('https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js');
         $this->document->addScriptAsync('/js/app_scene/general/common/cart.js');
         //
         
@@ -47,7 +46,7 @@ class ControllerCommonHeader extends Controller
         $data['robots'] = $this->document->getRobots();
         
         $data['stylespreload'] = $this->document->getStylespreload();
-        $data['styles'] = $this->document->getStyles();
+        $data['styles']= $this->document->getStyles();
         
         $data['scriptsasync'] = $this->document->getScriptsAsync();
         $data['scriptsdefer'] = $this->document->getScriptsDefer();
@@ -69,7 +68,12 @@ class ControllerCommonHeader extends Controller
 
         $data['text_home'] = $this->language->get('text_home');
         $data['text_shopping_cart'] = $this->language->get('text_shopping_cart');
-        $data['text_logged'] = sprintf($this->language->get('text_logged'), $this->url->link('account/account', '', true), $this->customer->getFirstName(), $this->url->link('account/logout', '', true));
+        $data['text_logged'] = sprintf(
+            $this->language->get('text_logged'),
+            $this->url->link('account/account', '', true),
+            $this->customer->getFirstName(),
+            $this->url->link('account/logout', '', true)
+        );
         $data['text_account'] = $this->language->get('text_account');
         $data['text_register'] = $this->language->get('text_register');
         $data['text_login'] = $this->language->get('text_login');
