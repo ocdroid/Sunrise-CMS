@@ -610,8 +610,8 @@ class ModelBlogCategory extends Model
                 FROM blog_category c 
                 LEFT JOIN blog_category_description cd ON (c.blog_category_id = cd.blog_category_id) 
                 LEFT JOIN blog_category_to_store c2s ON (c.blog_category_id = c2s.blog_category_id) 
-                WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' A
-                    ND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "' 
+                WHERE cd.language_id = '" . (int)$this->config->get('config_language_id') . "' 
+                    AND c2s.store_id = '" . (int)$this->config->get('config_store_id') . "' 
                 ORDER BY c.parent_id, c.sort_order, cd.name
             ");
 
