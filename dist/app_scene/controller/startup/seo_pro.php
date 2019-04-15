@@ -1,24 +1,24 @@
 <?php
 
 /* 	Sunrise CMS - Open source CMS for widespread use.
-	Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
+    Copyright (c) 2019 Mykola Burakov (burakov.work@gmail.com)
 
-	See SOURCE.txt for other and additional information.
+    See SOURCE.txt for other and additional information.
 
-	This file is part of Sunrise CMS.
+    This file is part of Sunrise CMS.
 
-	This program is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-	This program is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-	GNU General Public License for more details.
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+    GNU General Public License for more details.
 
-	You should have received a copy of the GNU General Public License
-	along with this program. If not, see <http://www.gnu.org/licenses/>. */
+    You should have received a copy of the GNU General Public License
+    along with this program. If not, see <http://www.gnu.org/licenses/>. */
 
 class ControllerStartupSeoPro extends Controller
 {
@@ -78,7 +78,11 @@ class ControllerStartupSeoPro extends Controller
         $this->cache_data = $this->cache->get('seo_pro');
 
         if (!$this->cache_data) {
-            $query = $this->db->query("SELECT LOWER(`keyword`) as 'keyword', `query` FROM url_alias");
+            $query = $this->db->query("
+                SELECT LOWER(`keyword`) as 'keyword', 
+                    `query` 
+                FROM url_alias
+            ");
             
             $this->cache_data = array();
 
@@ -96,11 +100,19 @@ class ControllerStartupSeoPro extends Controller
         }
         //
 
-        $query = $this->db->query("SELECT `value` FROM `setting` WHERE `key` = 'config_language'");
+        $query = $this->db->query("
+            SELECT `value` 
+            FROM `setting` 
+            WHERE `key` = 'config_language'
+        ");
 
         $this->config_language = $query->row['value'];
 
-        $query = $this->db->query("SELECT * FROM language WHERE status = '1'");
+        $query = $this->db->query("
+            SELECT * 
+            FROM language 
+            WHERE status = '1'
+        ");
 
         foreach ($query->rows as $result) {
             $this->languages[$result['code']] = $result;
@@ -451,7 +463,13 @@ class ControllerStartupSeoPro extends Controller
         }
 
         if (!isset($path[$product_id])) {
-            $query = $this->db->query("SELECT category_id FROM product_to_category WHERE product_id = '" . $product_id . "' ORDER BY main_category DESC LIMIT 1");
+            $query = $this->db->query("
+                SELECT category_id 
+                FROM product_to_category 
+                WHERE product_id = '" . $product_id . "' 
+                ORDER BY main_category DESC 
+                LIMIT 1
+            ");
 
             $path[$product_id] = $this->getPathByCategory($query->num_rows ? (int)$query->row['category_id'] : 0);
 
