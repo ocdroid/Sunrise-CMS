@@ -48,5 +48,3 @@ $_['text_empty_field']    	   = 'Empty fields!';
 //ajax messages
 $_['ajax_success']             = 'File %s success found!';
 $_['ajax_warning']             = 'File %s not found';
-
-?>
