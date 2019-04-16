@@ -162,14 +162,14 @@ class ControllerToolSeoManager extends Controller
         $data['breadcrumbs'] = array();
 
         $data['breadcrumbs'][] = array(
-                    'text' => $this->language->get('text_home'),
-                    'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
-                );
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+        );
 
         $data['breadcrumbs'][] = array(
-                    'text' => $this->language->get('heading_title'),
-                    'href' => $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url, 'SSL')
-                );
+            'text' => $this->language->get('heading_title'),
+            'href' => $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url, 'SSL')
+        );
                 
         //dop
         $data['action'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'], true);
@@ -289,11 +289,11 @@ class ControllerToolSeoManager extends Controller
         $data['url_aliases'] = array();
 
         $filterdata = array(
-                    'sort' => $sort,
-                    'order' => $order,
-                    'start' => ($page - 1) * $this->config->get('config_limit_admin'),
-                    'limit' => $this->config->get('config_limit_admin')
-                    );
+            'sort' => $sort,
+            'order' => $order,
+            'start' => ($page - 1) * $this->config->get('config_limit_admin'),
+            'limit' => $this->config->get('config_limit_admin')
+        );
 
         $url_alias_total = $this->model_tool_seomanager->getTotalUrlAalias();
 
@@ -301,15 +301,13 @@ class ControllerToolSeoManager extends Controller
 
         foreach ($results as $result) {
             $data['url_aliases'][] = array(
-                            'url_alias_id' => $result['url_alias_id'],
-                            'query' => $result['query'],
-                            'keyword' => $result['keyword'],
-                            'selected' => isset($this->request->post['selected']) && in_array($result['url_alias_id'], $this->request->post['selected']),
-                            'action_text' => $this->language->get('text_edit')
-                            );
+                'url_alias_id' => $result['url_alias_id'],
+                'query' => $result['query'],
+                'keyword' => $result['keyword'],
+                'selected' => isset($this->request->post['selected']) && in_array($result['url_alias_id'], $this->request->post['selected']),
+                'action_text' => $this->language->get('text_edit')
+            );
         }
-                
-                
 
         $data['heading_title'] = $this->language->get('heading_title');
 
@@ -368,14 +366,14 @@ class ControllerToolSeoManager extends Controller
         $data['breadcrumbs'] = array();
 
         $data['breadcrumbs'][] = array(
-                    'text' => $this->language->get('text_home'),
-                    'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
-                );
+            'text' => $this->language->get('text_home'),
+            'href' => $this->url->link('common/dashboard', 'token=' . $this->session->data['token'], 'SSL')
+        );
 
         $data['breadcrumbs'][] = array(
-                    'text' => $this->language->get('heading_title'),
-                    'href' => $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url, 'SSL')
-                );
+            'text' => $this->language->get('heading_title'),
+            'href' => $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . $url, 'SSL')
+        );
 
         $data['sort_query'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&sort=ua.query' . $url, 'SSL');
         $data['sort_keyword'] = $this->url->link('tool/seomanager', 'token=' . $this->session->data['token'] . '&sort=ua.keyword' . $url, 'SSL');

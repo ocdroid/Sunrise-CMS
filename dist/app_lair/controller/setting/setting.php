@@ -291,29 +291,29 @@ class ControllerSettingSetting extends Controller
             $data['error_complete_status'] = '';
         }
 
-        if (isset($this->error['ftp_hostname'])) {
-            $data['error_ftp_hostname'] = $this->error['ftp_hostname'];
-        } else {
-            $data['error_ftp_hostname'] = '';
-        }
+        // if (isset($this->error['ftp_hostname'])) {
+        //     $data['error_ftp_hostname'] = $this->error['ftp_hostname'];
+        // } else {
+        //     $data['error_ftp_hostname'] = '';
+        // }
 
-        if (isset($this->error['ftp_port'])) {
-            $data['error_ftp_port'] = $this->error['ftp_port'];
-        } else {
-            $data['error_ftp_port'] = '';
-        }
+        // if (isset($this->error['ftp_port'])) {
+        //     $data['error_ftp_port'] = $this->error['ftp_port'];
+        // } else {
+        //     $data['error_ftp_port'] = '';
+        // }
 
-        if (isset($this->error['ftp_username'])) {
-            $data['error_ftp_username'] = $this->error['ftp_username'];
-        } else {
-            $data['error_ftp_username'] = '';
-        }
+        // if (isset($this->error['ftp_username'])) {
+        //     $data['error_ftp_username'] = $this->error['ftp_username'];
+        // } else {
+        //     $data['error_ftp_username'] = '';
+        // }
 
-        if (isset($this->error['ftp_password'])) {
-            $data['error_ftp_password'] = $this->error['ftp_password'];
-        } else {
-            $data['error_ftp_password'] = '';
-        }
+        // if (isset($this->error['ftp_password'])) {
+        //     $data['error_ftp_password'] = $this->error['ftp_password'];
+        // } else {
+        //     $data['error_ftp_password'] = '';
+        // }
 
         if (isset($this->error['error_filename'])) {
             $data['error_error_filename'] = $this->error['error_filename'];
