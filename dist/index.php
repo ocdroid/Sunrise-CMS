@@ -30,6 +30,6 @@ require('app_scene/config/defines.php');
 require('app_scene/config/domain.php');
 
 // Startup
-require('system/startup.php');
+require(SR_SYSTEM . 'startup.php');
 
 start('app_scene');

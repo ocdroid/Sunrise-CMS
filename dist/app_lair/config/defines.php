@@ -29,6 +29,7 @@ define('SR_DOWNLOAD', $_SERVER['DOCUMENT_ROOT'] . '/download/');
 define('SR_IMAGE', $_SERVER['DOCUMENT_ROOT'] . '/images/');
 define('SR_LANGUAGE', $_SERVER['DOCUMENT_ROOT'] . '/app_lair/language/');
 define('SR_LOGS', $_SERVER['DOCUMENT_ROOT'] . '/logs/');
+define('SR_SYSTEM', $_SERVER['DOCUMENT_ROOT'] . '/system/');
 define('SR_TEMPLATE', $_SERVER['DOCUMENT_ROOT'] . '/app_lair/view/');
 define('SR_UPLOAD', $_SERVER['DOCUMENT_ROOT'] . '/upload/');
 

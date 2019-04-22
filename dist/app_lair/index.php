@@ -9,6 +9,6 @@ require('config/defines.php');
 require('config/domain.php');
 
 // Startup
-require('system/startup.php');
+require(SR_SYSTEM . 'startup.php');
 
 start('app_lair');
