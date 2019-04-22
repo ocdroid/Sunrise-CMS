@@ -30,39 +30,39 @@ if ((isset($_SERVER['HTTPS']) && (($_SERVER['HTTPS'] == 'on') || ($_SERVER['HTTP
 }
 
 // Engine
-require(SR_SYSTEM . 'engine/action.php');
-require(SR_SYSTEM . 'engine/controller.php');
-require(SR_SYSTEM . 'engine/event.php');
-require(SR_SYSTEM . 'engine/front.php');
-require(SR_SYSTEM . 'engine/loader.php');
-require(SR_SYSTEM . 'engine/model.php');
-require(SR_SYSTEM . 'engine/registry.php');
-require(SR_SYSTEM . 'engine/proxy.php');
+require('system/engine/action.php');
+require('system/engine/controller.php');
+require('system/engine/event.php');
+require('system/engine/front.php');
+require('system/engine/loader.php');
+require('system/engine/model.php');
+require('system/engine/registry.php');
+require('system/engine/proxy.php');
 
 // Helpers
-require(SR_SYSTEM . 'helper/general.php');
-require(SR_SYSTEM . 'helper/utf8.php');
-require(SR_SYSTEM . 'helper/json.php');
+require('system/helper/general.php');
+require('system/helper/utf8.php');
+require('system/helper/json.php');
 
 // Libraries (autoload, including subfolders)
 function library($class)
 {
-    $file = SR_SYSTEM . 'library/' . str_replace('\\', '/', strtolower($class)) . '.php';
+    $file = 'system/library/' . str_replace('\\', '/', strtolower($class)) . '.php';
 
-    include_once(($file));
+    include_once($file);
 }
 
 spl_autoload_register('library');
 spl_autoload_extensions('.php');
 
 // Mobile Detect (global)
-require(SR_SYSTEM . 'library/Mobile_Detect.php');
+require('system/library/Mobile_Detect.php');
 $detect = new Mobile_Detect();
 define('isMobile', $detect->isMobile(), false);
 define('isTablet', $detect->isTablet(), false);
 
-// start
+// User-defined function: start('...') in index.php
 function start($application_config)
 {
-    require(SR_SYSTEM . 'framework.php');
+    require('system/framework.php');
 }

@@ -210,7 +210,7 @@ class ControllerExtensionInstaller extends Controller
                             }
 
                             // Compare system files
-                            $file = SR_SYSTEM . substr($zip_name, 14);
+                            $file = 'system/' . substr($zip_name, 14);
 
                             if (is_file($file) && substr($zip_name, 0, 14) == 'upload/system/') {
                                 $json['overwrite'][] = substr($zip_name, 7);
@@ -346,7 +346,7 @@ class ControllerExtensionInstaller extends Controller
     //                         }
 
     //                         if (substr($destination, 0, 6) == 'system') {
-    //                             $destination = basename(SR_SYSTEM) . substr($destination, 6);
+    //                             $destination = basename('system/') . substr($destination, 6);
     //                         }
 
     //                         if (is_dir($file)) {
